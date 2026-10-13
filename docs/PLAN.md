@@ -75,6 +75,25 @@ sheetlight/
   tests/         real-world .xlsx corpus, e2e, benchmarks
 ```
 
+## Phase 0 outcomes (2026-10-13)
+Reports: `docs/spikes/ironcalc-engine.md`, `docs/spikes/canvas-grid.md`.
+- **Engine: conditional GO for IronCalc, running natively in the Tauri Rust backend** (not WASM), pinned to a
+  specific IronCalc git `main` commit (0.8.3 crashes on deep reverse chains and uses ~1 GB to open a 15 MB file).
+  One engine thread (actor) holds a model per document; the TS `WorkbookEngine` contract stays async.
+- **Fidelity layer** owned by Sheetlight: IronCalc drops charts, images, comments, data validation and autofilter
+  on save → detect + warn on open, re-insert original parts on save, model autofilter/validation ourselves.
+- **Locale layer**: model runs with locale `en` (English formulas); values are formatted for es via IronCalc's
+  native formatter; Sheetlight owns parsing of locale-style typed input.
+- **Large CSV fast path**: native typed-column store (engine would use ~940 MB for 1M rows); promote to an
+  IronCalc model on first formula/format edit.
+- **Full recalc on every edit** (~150 ms on 2M cells/100k formulas; upstream issue #849) → engine thread, batch edits.
+- Sort, autofilter, find/replace, month fill series, notes editing are not in IronCalc → Sheetlight implements them.
+- **Grid: GO.** The spike's canvas grid (`sheetlight-spikes/grid`) is promoted to `src/grid` with refactors:
+  split GridController, selection state into `model/`, binary block transfer (string + offsets), sheet ids and
+  block versions, invalidation events, merged cells in partial repaint, accessibility. Blit fast-scroll path and
+  its pixel test are mandatory.
+- File bytes move between Rust and the webview as binary IPC, not base64.
+
 ## Phases
 0. **Spikes (parallel)**: A) IronCalc evaluation; B) canvas grid prototype; C) project scaffold from Doclight. Gate: user reviews numbers.
 1. **Foundations** (orchestrator): contracts (`WorkbookEngine`, `GridModel`, `Command`, `SelectionState`), command/undo system, test corpus.

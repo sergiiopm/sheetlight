@@ -1,20 +1,19 @@
 # src/files
 
-Opening and saving workbooks.
+Opening and saving workbooks, frontend side. Workbooks themselves are opened
+and saved **by path inside the engine** (Rust): `.xlsx` through IronCalc plus
+the fidelity layer (`src-tauri/src/xlsx_package`), `.csv` through the
+typed-column store (`src-tauri/src/csv_store`), `.xls` through calamine. All
+saves are atomic (temp file + rename, `src-tauri/src/files.rs`).
 
-Current contents (ported from Doclight):
-
-- `native.ts` — read/write file bytes through Tauri commands, open/save dialogs,
-  browser fallbacks for `npm run dev` without Tauri
-- `path.ts` — file names, format detection, untitled names (`Libro1.xlsx`)
+- `native.ts` — raw binary IPC for small side files (`read_file_bytes`,
+  `write_file_bytes`, atomic), open/save dialogs, browser fallbacks for
+  `npm run dev` without Tauri
+- `path.ts` — file names, format detection (`.xlsm` opens as xlsx), untitled
+  names (`Libro1.xlsx`), default save path for legacy formats
 - `types.ts` — supported formats and dialog filters
-
-Planned:
-
-- `.xlsx` read/write (warn when a file contains features that would be lost on save)
-- `.csv` fast path for very large files (streaming / columnar)
-- `.xls` import only (saved back as `.xlsx`)
-
-Note: bytes currently cross the IPC boundary as base64, as in Doclight. For
-large files switch to raw binary IPC (`tauri::ipc::Response` / raw request
-bodies) or let Rust parse the file directly.
+- `csv.ts` — CSV option choices and labels (delimiter, encoding, decimal
+  separator) for the import/save dialogs; save options that keep what was
+  detected on open
+- `fidelity.ts` — Spanish wording for `FidelityWarning`s (open banner) and
+  `SaveResult.lost` (after save)

@@ -1,35 +1,21 @@
 import { OPEN_FILTERS, SAVE_FILTERS } from "@/files/types";
 
-// Bytes cross the Tauri IPC boundary as base64 (ported from Doclight). Fine for
-// typical workbooks; large CSVs should move to raw binary IPC (see README.md).
-
-function bytesToBase64(bytes: Uint8Array): string {
-  let binary = "";
-  const chunk = 0x8000;
-  for (let index = 0; index < bytes.length; index += chunk) {
-    binary += String.fromCharCode(...bytes.subarray(index, index + chunk));
-  }
-  return btoa(binary);
-}
-
-function base64ToBytes(value: string): Uint8Array {
-  const binary = atob(value);
-  const bytes = new Uint8Array(binary.length);
-  for (let index = 0; index < binary.length; index += 1) {
-    bytes[index] = binary.charCodeAt(index);
-  }
-  return bytes;
-}
+// File bytes cross the Tauri IPC boundary as raw binary (no base64): reads come
+// back as an ArrayBuffer (`tauri::ipc::Response`), writes send the bytes as the
+// raw request body with the target path in a header. Workbooks themselves are
+// opened and saved by path inside the engine; these helpers are for small
+// side files (imports, exports, previews).
 
 export async function readPathBytes(path: string): Promise<Uint8Array> {
   const { invoke } = await import("@tauri-apps/api/core");
-  const encoded = await invoke<string>("read_file_b64", { path });
-  return base64ToBytes(encoded);
+  const buffer = await invoke<ArrayBuffer>("read_file_bytes", { path });
+  return new Uint8Array(buffer);
 }
 
+/** Writes atomically (temp file + rename); the original survives a failed write. */
 export async function writePathBytes(path: string, bytes: Uint8Array): Promise<void> {
   const { invoke } = await import("@tauri-apps/api/core");
-  await invoke("write_file_b64", { path, contents: bytesToBase64(bytes) });
+  await invoke("write_file_bytes", bytes, { headers: { path: encodeURIComponent(path) } });
 }
 
 export async function pickOpenPaths(): Promise<string[]> {
@@ -70,7 +56,7 @@ export function pickBrowserFiles(): Promise<File[]> {
     const input = document.createElement("input");
     input.type = "file";
     input.multiple = true;
-    input.accept = ".xlsx,.xls,.csv,text/csv";
+    input.accept = ".xlsx,.xlsm,.xls,.csv,text/csv";
     input.addEventListener("change", () => {
       resolve(Array.from(input.files ?? []));
     }, { once: true });

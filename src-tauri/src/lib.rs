@@ -1,12 +1,11 @@
 // Phase 1 contract stubs: remove the `allow`s once each module is wired in.
 #[allow(dead_code)]
 mod charts;
-// `pub` + `doc(hidden)` only so the integration tests in `src-tauri/tests/`
-// (corpus harness, WS5) can reach the backends; not a public API.
-#[allow(dead_code)]
+// `pub` + `doc(hidden)` only so the integration tests and benches in
+// `src-tauri/tests/` and `src-tauri/benches/` (WS5) can reach the backends;
+// not a public API.
 #[doc(hidden)]
 pub mod csv_store;
-#[allow(dead_code)]
 #[doc(hidden)]
 pub mod engine;
 mod files;
@@ -18,7 +17,7 @@ use std::sync::Mutex;
 use tauri::{Emitter, Manager};
 
 /// Extensions Sheetlight accepts from the command line ("Open with", double click).
-const WORKBOOK_EXTENSIONS: [&str; 3] = [".xlsx", ".xls", ".csv"];
+const WORKBOOK_EXTENSIONS: [&str; 4] = [".xlsx", ".xlsm", ".xls", ".csv"];
 
 struct LaunchState {
     paths: Mutex<Vec<String>>,
@@ -75,11 +74,12 @@ pub fn run() {
             app.manage(LaunchState {
                 paths: Mutex::new(workbook_paths_from_args(&args)),
             });
+            app.manage(engine::commands::start_engine(app.handle().clone()));
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
-            files::read_file_b64,
-            files::write_file_b64,
+            files::read_file_bytes,
+            files::write_file_bytes,
             take_launch_paths,
             engine::commands::engine_new_document,
             engine::commands::engine_open_document,

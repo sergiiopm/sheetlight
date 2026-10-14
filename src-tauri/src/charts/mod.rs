@@ -19,6 +19,9 @@ mod parse;
 mod refs;
 mod write;
 
+#[cfg(test)]
+mod package_tests;
+
 
 pub use refs::{rename_chart_refs, shift_chart_refs, RefShift};
 

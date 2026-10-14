@@ -25,6 +25,10 @@ tauri-plugin-single-instance = "2"
 # Formula engine, pinned to IronCalc main (see docs/spikes/ironcalc-engine.md).
 ironcalc = { git = "https://github.com/ironcalc/IronCalc", rev = "341ec870afa5c898479ca92ab03800cf86dee2f1" }
 ironcalc_base = { git = "https://github.com/ironcalc/IronCalc", rev = "341ec870afa5c898479ca92ab03800cf86dee2f1" }
+# Engine actor replies (already in the tree through tauri / ironcalc).
+tokio = { version = "1", features = ["sync"] }
+chrono = { version = "0.4", default-features = false, features = ["std"] }
+csv = "1"
 
 [profile.release]
 codegen-units = 1

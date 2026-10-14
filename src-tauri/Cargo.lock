@@ -3327,6 +3327,8 @@ name = "sheetlight"
 version = "0.0.1"
 dependencies = [
  "base64 0.22.1",
+ "chrono",
+ "csv",
  "ironcalc",
  "ironcalc_base",
  "serde",
@@ -3336,6 +3338,7 @@ dependencies = [
  "tauri-plugin-dialog",
  "tauri-plugin-opener",
  "tauri-plugin-single-instance",
+ "tokio",
 ]
 
 [[package]]

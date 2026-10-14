@@ -176,7 +176,7 @@ function FontControls() {
       return;
     }
     void fmt.setStyle(controller, { fontSize: Math.round(value * 2) / 2 });
-    controller.focusGrid();
+    controller.focusGrid(true);
   };
 
   return (
@@ -218,7 +218,7 @@ function FontControls() {
             if (event.key === "Enter") applySize(event.currentTarget.value);
             if (event.key === "Escape") {
               setSizeText(null);
-              controller.focusGrid();
+              controller.focusGrid(true);
             }
           }}
           className="h-7 w-12 rounded-md border border-input bg-background px-1.5 text-xs disabled:opacity-50"

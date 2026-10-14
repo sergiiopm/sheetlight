@@ -1,20 +1,24 @@
-import { useCallback } from "react";
+import { lazy, Suspense, useCallback } from "react";
 import { useController } from "@/components/controller-context";
-import { CsvOptionsDialog, OptionsDialog, SortDialog } from "@/components/dialogs/DataDialogs";
-import { FindReplacePanel } from "@/components/dialogs/FindReplacePanel";
-import { FormatCellsDialog } from "@/components/dialogs/FormatCellsDialog";
-import {
-  AboutDialog,
-  DeleteSheetDialog,
-  GoToDialog,
-  PasteSpecialDialog,
-  ShiftCellsDialog,
-  SizeDialog,
-  UnhideSheetsDialog,
-} from "@/components/dialogs/SimpleDialogs";
 import { UnsavedDialog } from "@/components/UnsavedDialog";
 import { useStore } from "@/hooks/store";
 import { sessionFileName } from "@/hooks/workbook-session";
+
+// Dialogs load on first use to keep the start-up bundle small (cold start < 1 s).
+const data = () => import("@/components/dialogs/DataDialogs");
+const simple = () => import("@/components/dialogs/SimpleDialogs");
+const FormatCellsDialog = lazy(() => import("@/components/dialogs/FormatCellsDialog").then((m) => ({ default: m.FormatCellsDialog })));
+const FindReplacePanel = lazy(() => import("@/components/dialogs/FindReplacePanel").then((m) => ({ default: m.FindReplacePanel })));
+const SortDialog = lazy(() => data().then((m) => ({ default: m.SortDialog })));
+const CsvOptionsDialog = lazy(() => data().then((m) => ({ default: m.CsvOptionsDialog })));
+const OptionsDialog = lazy(() => data().then((m) => ({ default: m.OptionsDialog })));
+const AboutDialog = lazy(() => simple().then((m) => ({ default: m.AboutDialog })));
+const DeleteSheetDialog = lazy(() => simple().then((m) => ({ default: m.DeleteSheetDialog })));
+const GoToDialog = lazy(() => simple().then((m) => ({ default: m.GoToDialog })));
+const PasteSpecialDialog = lazy(() => simple().then((m) => ({ default: m.PasteSpecialDialog })));
+const ShiftCellsDialog = lazy(() => simple().then((m) => ({ default: m.ShiftCellsDialog })));
+const SizeDialog = lazy(() => simple().then((m) => ({ default: m.SizeDialog })));
+const UnhideSheetsDialog = lazy(() => simple().then((m) => ({ default: m.UnhideSheetsDialog })));
 
 /** Renders the dialog in `controller.dialog` and the unsaved-changes prompt. */
 export function DialogHost() {
@@ -74,7 +78,7 @@ export function DialogHost() {
 
   return (
     <>
-      {content}
+      <Suspense fallback={null}>{content}</Suspense>
       <UnsavedDialog
         open={pending !== null}
         documentName={pendingSession ? sessionFileName(pendingSession.meta.get()) : ""}

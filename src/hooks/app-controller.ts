@@ -214,12 +214,22 @@ export class AppController {
 
   closeDialog(): void {
     this.dialog.set(null);
-    this.focusGrid();
+    this.focusGrid(true);
   }
 
-  focusGrid(): void {
+  /**
+   * Gives the keyboard back to the grid on the next frame. Unless `force`,
+   * a text field that has the focus by then (cell editor, sheet rename,
+   * find panel) keeps it: async actions must not steal it from the user.
+   */
+  focusGrid(force = false): void {
     const grid = this.session?.grid;
-    if (grid) requestAnimationFrame(() => grid.focus());
+    if (!grid || typeof requestAnimationFrame === "undefined") return;
+    requestAnimationFrame(() => {
+      const focused = typeof document === "undefined" ? null : document.activeElement;
+      if (!force && focused && isEditableTarget(focused)) return;
+      grid.focus();
+    });
   }
 
   /** True while a modal UI (dialog, unsaved prompt) owns the keyboard. */

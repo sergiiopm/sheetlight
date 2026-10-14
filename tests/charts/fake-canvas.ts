@@ -65,8 +65,8 @@ export class FakeContext implements ChartContext2D {
   lineTo(x: number, y: number) {
     this.record("lineTo", [x, y]);
   }
-  arc(...args: number[]) {
-    this.record("arc", args);
+  arc(x: number, y: number, radius: number, startAngle: number, endAngle: number, counterclockwise?: boolean) {
+    this.record("arc", [x, y, radius, startAngle, endAngle, counterclockwise ?? false]);
   }
   rect(...args: number[]) {
     this.record("rect", args);

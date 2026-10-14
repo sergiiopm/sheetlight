@@ -45,13 +45,16 @@ function roundTo(v: number, decimals: number): number {
  * - zero is included unless all values sit in a narrow band far from it
  *   (range < 1/6 of the largest magnitude);
  * - 5% headroom, then rounded out to the major unit;
- * - major unit from 1/2/5 × 10^n so that there are at most `maxTicks` intervals.
+ * - major unit from 1/2/5 × 10^n so that there are at most `maxTicks` intervals
+ *   (at least two when the data crosses zero, which must be a tick).
  */
 export function niceScale(dataMin: number, dataMax: number, maxTicks: number): AxisScale {
   let lo = Number.isFinite(dataMin) ? dataMin : 0;
   let hi = Number.isFinite(dataMax) ? dataMax : 0;
   if (lo > hi) [lo, hi] = [hi, lo];
-  const intervals = Math.max(1, Math.floor(maxTicks));
+  // Mixed signs need zero as a tick, hence at least two intervals.
+  const intervals = Math.max(lo < 0 && hi > 0 ? 2 : 1, Math.floor(maxTicks));
+  const degenerate = lo === hi;
   if (lo === hi) {
     if (lo === 0) {
       hi = 1;
@@ -68,7 +71,8 @@ export function niceScale(dataMin: number, dataMax: number, maxTicks: number): A
     lo = Math.min(lo, 0);
     hi = Math.max(hi, 0);
   }
-  const pad = (hi - lo) * 0.05;
+  // A constant series gets an exact 0..value axis (Excel: all zeros -> 0..1).
+  const pad = degenerate ? 0 : (hi - lo) * 0.05;
   let step = niceStep((hi - lo) / intervals);
   for (let guard = 0; ; guard += 1) {
     // Headroom only on sides that are not pinned at zero.

@@ -107,7 +107,9 @@ describe("axis scale", () => {
     ]) {
       for (const max of [1, 2, 3, 5, 8, 12]) {
         const s = niceScale(lo, hi, max);
-        expect(s.ticks.length - 1, `${lo}..${hi} / ${max}`).toBeLessThanOrEqual(max);
+        // Data crossing zero needs at least two intervals (zero is always a tick).
+        const allowed = lo < 0 && hi > 0 ? Math.max(2, max) : max;
+        expect(s.ticks.length - 1, `${lo}..${hi} / ${max}`).toBeLessThanOrEqual(allowed);
         expect(s.min).toBeLessThanOrEqual(lo);
         expect(s.max).toBeGreaterThanOrEqual(hi);
       }

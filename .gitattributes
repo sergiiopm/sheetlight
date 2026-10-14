@@ -1,0 +1,8 @@
+* text=auto
+*.bin binary
+*.xlsx binary
+*.xls binary
+*.ods binary
+*.png binary
+*.ico binary
+*.icns binary

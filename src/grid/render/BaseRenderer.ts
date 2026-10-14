@@ -117,11 +117,18 @@ export class BaseRenderer {
     if (!blitCompatible(prev, L)) return false;
     this.beginFrame(ctx);
     const rects: DeviceRect[] = dirty.slice();
-    for (let i = 0; i < L.panes.length; i++) {
-      const p = L.panes[i];
-      const q = prev.panes[i];
-      this.blitRegion(ctx, paneDeviceRect(L, p), q.scrollDevX - p.scrollDevX, q.scrollDevY - p.scrollDevY, rects);
-    }
+    const m = paneDeviceRect(L, L.main);
+    const dx = prev.main.scrollDevX - L.main.scrollDevX;
+    const dy = prev.main.scrollDevY - L.main.scrollDevY;
+    // Everything that scrolls vertically (row headers, left pane, main pane)
+    // moves by the same dy, and everything that scrolls horizontally (column
+    // headers, top pane, main pane) by the same dx: one blit per axis. A
+    // diagonal scroll shifts the main pane twice, which composes exactly.
+    // Each drawImage(self) can cost a full-canvas copy, so fewer is faster.
+    const exposed: DeviceRect[] = [];
+    this.blitRegion(ctx, { x0: 0, x1: m.x1, y0: m.y0, y1: m.y1 }, 0, dy, exposed);
+    this.blitRegion(ctx, { x0: m.x0, x1: m.x1, y0: 0, y1: m.y1 }, dx, 0, exposed);
+    for (const r of exposed) rects.push(r);
     // Grow every repaint rect by the border reach: a border of a cell inside
     // the rect may paint just outside it (and vice versa), so the margin is
     // repainted too (identical pixels where nothing changed).
@@ -130,17 +137,7 @@ export class BaseRenderer {
       const g = { x0: rect.x0 - grow, y0: rect.y0 - grow, x1: rect.x1 + grow, y1: rect.y1 + grow };
       for (const p of L.panes) this.renderPane(ctx, L, p, g);
     }
-
-    // Headers scroll with the main pane: blit their strips too, repaint the exposed labels.
-    const headerRects: DeviceRect[] = [];
-    const m = paneDeviceRect(L, L.main);
-    const hw = Math.round(L.headerW * L.dpr);
-    const hh = Math.round(L.headerH * L.dpr);
-    const dx = prev.main.scrollDevX - L.main.scrollDevX;
-    const dy = prev.main.scrollDevY - L.main.scrollDevY;
-    this.blitRegion(ctx, { x0: m.x0, x1: m.x1, y0: 0, y1: hh }, dx, 0, headerRects);
-    this.blitRegion(ctx, { x0: 0, x1: hw, y0: m.y0, y1: m.y1 }, 0, dy, headerRects);
-    for (const rect of headerRects) this.renderHeaders(ctx, L, rect);
+    for (const rect of exposed) this.renderHeaders(ctx, L, rect);
     this.renderFrozenLines(ctx, L);
     return true;
   }

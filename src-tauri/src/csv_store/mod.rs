@@ -142,6 +142,21 @@ pub fn open(path: &str, options: &CsvOptions, doc: DocumentId, events: EventSink
     Ok((Box::new(store), resolved.to_options()))
 }
 
+/// Canonical cell input of a text value (shared with the `.xls` importer):
+/// prefixed with `'` when the engine would otherwise read it as a number,
+/// boolean, date or formula.
+pub(crate) fn write_text_input(text: &str, out: &mut String) {
+    if value::type_input(text) != Some(value::Typed::Text) || text.starts_with('\'') {
+        out.push('\'');
+    }
+    out.push_str(text);
+}
+
+/// Canonical en-US input of a number (shortest round-trip form).
+pub(crate) fn write_number_input(value: f64, out: &mut String) {
+    value::write_canonical_number(value, out);
+}
+
 /// Excel names the sheet after the file (`ventas.csv` -> `ventas`), max 31 chars.
 pub fn sheet_name_from_path(path: &str) -> String {
     let file = path.rsplit(['/', '\\']).next().unwrap_or(path);

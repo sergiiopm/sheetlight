@@ -290,13 +290,7 @@ impl Data {
             Val::Empty => {}
             Val::Num(v, _) => value::write_canonical_number(v, out),
             Val::Bool(b) => out.push_str(if b { "TRUE" } else { "FALSE" }),
-            Val::Text(id) => {
-                let text = self.strings.get(id);
-                if value::type_input(text) != Some(value::Typed::Text) || text.starts_with('\'') {
-                    out.push('\'');
-                }
-                out.push_str(text);
-            }
+            Val::Text(id) => super::write_text_input(self.strings.get(id), out),
         }
     }
 

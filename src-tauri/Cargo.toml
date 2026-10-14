@@ -22,6 +22,9 @@ serde_json = "1"
 base64 = "0.22"
 tauri-plugin-opener = "2"
 tauri-plugin-single-instance = "2"
+# Formula engine, pinned to IronCalc main (see docs/spikes/ironcalc-engine.md).
+ironcalc = { git = "https://github.com/ironcalc/IronCalc", rev = "341ec870afa5c898479ca92ab03800cf86dee2f1" }
+ironcalc_base = { git = "https://github.com/ironcalc/IronCalc", rev = "341ec870afa5c898479ca92ab03800cf86dee2f1" }
 
 [profile.release]
 codegen-units = 1

@@ -1,4 +1,13 @@
+// Phase 1 contract stubs: remove the `allow`s once each module is wired in.
+#[allow(dead_code)]
+mod charts;
+#[allow(dead_code)]
+mod csv_store;
+#[allow(dead_code)]
+mod engine;
 mod files;
+#[allow(dead_code)]
+mod xlsx_package;
 
 use std::sync::Mutex;
 use tauri::{Emitter, Manager};
@@ -66,7 +75,28 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             files::read_file_b64,
             files::write_file_b64,
-            take_launch_paths
+            take_launch_paths,
+            engine::commands::engine_new_document,
+            engine::commands::engine_open_document,
+            engine::commands::engine_get_document_info,
+            engine::commands::engine_save_document,
+            engine::commands::engine_close_document,
+            engine::commands::engine_get_sheet_info,
+            engine::commands::engine_fetch_blocks,
+            engine::commands::engine_get_styles,
+            engine::commands::engine_find_data_edge,
+            engine::commands::engine_get_column_text_samples,
+            engine::commands::engine_get_cell,
+            engine::commands::engine_get_range_values,
+            engine::commands::engine_get_selection_stats,
+            engine::commands::engine_find,
+            engine::commands::engine_get_filter_values,
+            engine::commands::engine_get_charts,
+            engine::commands::engine_apply,
+            engine::commands::engine_undo,
+            engine::commands::engine_redo,
+            engine::commands::engine_copy,
+            engine::commands::engine_list_functions
         ])
         .run(tauri::generate_context!())
         .expect("error while running Sheetlight");

@@ -1,13 +1,18 @@
 // Phase 1 contract stubs: remove the `allow`s once each module is wired in.
 #[allow(dead_code)]
 mod charts;
+// `pub` + `doc(hidden)` only so the integration tests in `src-tauri/tests/`
+// (corpus harness, WS5) can reach the backends; not a public API.
 #[allow(dead_code)]
-mod csv_store;
+#[doc(hidden)]
+pub mod csv_store;
 #[allow(dead_code)]
-mod engine;
+#[doc(hidden)]
+pub mod engine;
 mod files;
 #[allow(dead_code)]
-mod xlsx_package;
+#[doc(hidden)]
+pub mod xlsx_package;
 
 use std::sync::Mutex;
 use tauri::{Emitter, Manager};

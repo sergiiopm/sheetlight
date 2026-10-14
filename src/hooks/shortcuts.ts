@@ -28,6 +28,8 @@ const SHIFTED_CODES: Record<string, string> = {
   Digit5: "%",
   Digit6: "^",
   Digit7: "&",
+  Digit9: "(",
+  Digit0: ")",
   Backquote: "~",
   Minus: "_",
 };

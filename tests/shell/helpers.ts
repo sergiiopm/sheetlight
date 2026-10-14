@@ -72,3 +72,66 @@ export async function setup(native = true) {
   await manager.ensureOne();
   return { engine, files, hooks, manager };
 }
+
+// ---------------------------------------------------------------------------
+// Controller harness
+// ---------------------------------------------------------------------------
+
+import type { ApplyResult, EngineOp } from "@/engine/contract";
+import type { DocumentId } from "@/engine/types";
+import { AppController } from "@/hooks/app-controller";
+import { registerShellCommands } from "@/hooks/app-commands";
+import type { ClipboardContents, SystemClipboard } from "@/hooks/clipboard";
+import { createSettingsStore } from "@/lib/settings";
+
+/** Op types the memory fake cannot run: recorded and acknowledged with a synthetic result. */
+const FAKED = new Set(["sort", "paste", "setAutoFilter", "filterColumn", "replace", "copyFormat", "setBorders", "insertCells", "deleteCells"]);
+
+export class RecordingEngine extends PathMemoryEngine {
+  readonly batches: EngineOp[][] = [];
+  nextResult: Partial<ApplyResult> = {};
+
+  override async apply(doc: DocumentId, ops: ReadonlyArray<EngineOp>): Promise<ApplyResult> {
+    this.batches.push([...ops]);
+    const extra = this.nextResult;
+    this.nextResult = {};
+    if (ops.some((op) => FAKED.has(op.type))) {
+      return { dirty: true, canUndo: true, canRedo: false, selection: null, created: [], affected: 3, elapsedMs: 0, ...extra };
+    }
+    return { ...(await super.apply(doc, ops)), ...extra };
+  }
+
+  lastOps(): EngineOp[] {
+    return this.batches[this.batches.length - 1] ?? [];
+  }
+}
+
+export function stubClipboard(): SystemClipboard & { written: Array<{ text: string; html: string }>; contents: ClipboardContents | null } {
+  const stub = {
+    written: [] as Array<{ text: string; html: string }>,
+    contents: null as ClipboardContents | null,
+    async write(text: string, html: string) {
+      stub.written.push({ text, html });
+      stub.contents = { text, html };
+    },
+    async read() {
+      if (!stub.contents) throw new Error("denied");
+      return stub.contents;
+    },
+  };
+  return stub;
+}
+
+export async function controllerSetup() {
+  const engine = new RecordingEngine();
+  const clipboard = stubClipboard();
+  const memory = new Map<string, string>();
+  const settings = createSettingsStore({ getItem: (k) => memory.get(k) ?? null, setItem: (k, v) => void memory.set(k, v) });
+  const files = testGateway(true);
+  const controller = new AppController({ engine, files, clipboard, settings, refreshDelayMs: 0, pasteFallbackMs: 0 });
+  registerShellCommands(controller);
+  await controller.manager.ensureOne();
+  await controller.refresh();
+  const session = controller.session!;
+  return { engine, clipboard, settings, files, controller, session };
+}

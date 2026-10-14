@@ -3329,6 +3329,7 @@ dependencies = [
  "base64 0.22.1",
  "ironcalc",
  "ironcalc_base",
+ "quick-xml",
  "serde",
  "serde_json",
  "tauri",

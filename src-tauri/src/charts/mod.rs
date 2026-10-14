@@ -20,8 +20,6 @@ mod write;
 
 use crate::engine::types::{ChartDraft, ChartSpec, EngineResult};
 
-pub use write::{qualify_ref, quote_sheet};
-
 /// EMUs (English Metric Units) per CSS pixel at 96 dpi.
 pub const EMU_PER_PX: f64 = 9525.0;
 
@@ -82,6 +80,7 @@ pub fn write_chart_anchor_xml(chart: &ChartSpec, frame_id: u32, rel_id: &str) ->
 
 #[cfg(test)]
 mod tests {
+    use super::write::{qualify_ref, quote_sheet};
     use super::*;
     use crate::engine::types::{
         AnchorPoint, ChartAnchor, ChartGrouping, ChartSeries, ChartType, LegendPosition,

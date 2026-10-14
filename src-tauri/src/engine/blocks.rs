@@ -71,6 +71,27 @@ impl BlockCells {
         !self.non_empty
     }
 
+    /// Display text of a cell (for tests and backends reading back a block).
+    #[cfg(test)]
+    pub fn text(&self, index: usize) -> &str {
+        &self.texts[index]
+    }
+
+    #[cfg(test)]
+    pub fn kind(&self, index: usize) -> u8 {
+        self.kinds[index]
+    }
+
+    #[cfg(test)]
+    pub fn style_id(&self, index: usize) -> u32 {
+        self.style_ids[index]
+    }
+
+    #[cfg(test)]
+    pub fn flags(&self, index: usize) -> u8 {
+        self.flags[index]
+    }
+
     /// Content hash used as the block version (equal hash => identical content).
     pub fn content_hash(&self) -> u32 {
         let mut hash: u32 = 0x811c_9dc5;
@@ -137,7 +158,7 @@ impl BlocksWriter {
         for text in &cells.texts {
             self.buf.extend_from_slice(text.as_bytes());
         }
-        while self.buf.len() % 4 != 0 {
+        while !self.buf.len().is_multiple_of(4) {
             self.buf.push(0);
         }
     }

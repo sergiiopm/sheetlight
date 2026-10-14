@@ -3,7 +3,6 @@
 mod charts;
 #[allow(dead_code)]
 mod csv_store;
-#[allow(dead_code)]
 mod engine;
 mod files;
 #[allow(dead_code)]
@@ -70,6 +69,7 @@ pub fn run() {
             app.manage(LaunchState {
                 paths: Mutex::new(workbook_paths_from_args(&args)),
             });
+            app.manage(engine::commands::start_engine(app.handle().clone()));
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![

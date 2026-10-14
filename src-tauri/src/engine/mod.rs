@@ -7,6 +7,7 @@
 //!   backend (this module) and the CSV store (`crate::csv_store`).
 //! - `commands`: `#[tauri::command]` entry points, one per `WorkbookEngine` method.
 
+pub mod actor;
 pub mod backend;
 pub mod blocks;
 pub mod commands;

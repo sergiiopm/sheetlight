@@ -245,6 +245,43 @@ impl WorkbookBackend {
     }
 }
 
+/// `engine.copy` for backends without IronCalc (CSV store): builds an
+/// unstyled internal clip from the values of the range.
+pub fn copy_values(sheet: SheetId, values: &RangeValues) -> ClipboardData {
+    let mut text = String::new();
+    let mut html = String::from("<html><head><meta charset=\"utf-8\"></head><body><table>");
+    let mut cells = Vec::with_capacity(values.values.len());
+    for (row_values, row_display) in values.values.iter().zip(&values.display) {
+        html.push_str("<tr>");
+        let mut fields = Vec::with_capacity(row_values.len());
+        let mut line = Vec::with_capacity(row_values.len());
+        for (value, shown) in row_values.iter().zip(row_display) {
+            let input = match value {
+                CellValue::Empty => String::new(),
+                CellValue::Number { value } => display::number_input(*value),
+                CellValue::Bool { value } => if *value { "TRUE" } else { "FALSE" }.to_string(),
+                CellValue::Error { value } => value.clone(),
+                CellValue::Text { value } => match display::parse_canonical(value) {
+                    display::Parsed::Text { forced: false, .. } => value.clone(),
+                    _ => format!("'{value}"),
+                },
+            };
+            fields.push(tsv_field(shown));
+            let align = if matches!(value, CellValue::Number { .. }) { " style=\"text-align:right\"" } else { "" };
+            html.push_str(&format!("<td{align}>{}</td>", escape_html(shown)));
+            line.push(ClipCell { value_input: input.clone(), input, style: Style::default(), link: None, is_spill: false });
+        }
+        html.push_str("</tr>");
+        text.push_str(&fields.join("\t"));
+        text.push_str("\r\n");
+        cells.push(line);
+    }
+    html.push_str("</table></body></html>");
+    let id = NEXT_CLIP.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+    store(Clip { id, owner: 0, sheet, range: values.range, cells });
+    ClipboardData { clip_id: id, text, html }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

@@ -150,6 +150,14 @@
   "presupuesto_familiar.xlsx|Presupuesto 2025!S16": "Excel snaps a subtraction result within ~1e-15 relative of its operands to 0 (here 718,8 - 59,9*12) and shows '0,00 €'; IronCalc keeps -1e-13 and shows '-0,00 €' (red section)."
  },
  "roundtrip": {},
+ "roundtrip_csv": {
+  "clientes_win1252.csv|*": "BUG (WS2/WS3, CSV save): the CSV store's write_csv already encodes (target encoding + BOM) and the actor's save_document decodes that with from_utf8_lossy and encodes it again (encode_csv). Windows-1252 accents become '?', UTF-16 output is garbage, and UTF-8 files get a second BOM (reopened A1 starts with U+FEFF). Every CSV saved from the fast store is affected.",
+  "columnas_mixtas.csv|@roundtrip:csvOptions": "BUG (WS2/WS3, contract): saving as UTF-8 always writes a BOM and reopening detects encoding 'utf-8-bom', which is not a CsvOptions.encoding value; the file's own dialect does not survive a save.",
+  "inventario_tabuladores.csv|@roundtrip:csvOptions": "BUG (WS2/WS3, contract): saving as UTF-8 always writes a BOM and reopening detects encoding 'utf-8-bom', which is not a CsvOptions.encoding value; the file's own dialect does not survive a save.",
+  "movimientos_banco_es.csv|A1": "BUG (WS2/WS3, CSV save): the CSV store's write_csv already encodes (target encoding + BOM) and the actor's save_document decodes that with from_utf8_lossy and encodes it again (encode_csv). Windows-1252 accents become '?', UTF-16 output is garbage, and UTF-8 files get a second BOM (reopened A1 starts with U+FEFF). Every CSV saved from the fast store is affected.",
+  "sensores_iso.csv|@roundtrip:csvOptions": "BUG (WS2/WS3, contract): saving as UTF-8 always writes a BOM and reopening detects encoding 'utf-8-bom', which is not a CsvOptions.encoding value; the file's own dialect does not survive a save.",
+  "unicode_utf16le.csv|*": "BUG (WS2/WS3, CSV save): the CSV store's write_csv already encodes (target encoding + BOM) and the actor's save_document decodes that with from_utf8_lossy and encodes it again (encode_csv). Windows-1252 accents become '?', UTF-16 output is garbage, and UTF-8 files get a second BOM (reopened A1 starts with U+FEFF). Every CSV saved from the fast store is affected."
+ },
  "fidelity": {
   "informe_ventas.xlsx|@getCharts": "Pending WS6: charts::parse_chart_xml is still a Phase 1 stub, so charts found in the file are not extracted and getCharts returns nothing (they are still preserved on save)."
  },

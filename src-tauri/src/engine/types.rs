@@ -58,6 +58,7 @@ pub enum CellKind {
     Pending = 5,
 }
 
+#[allow(dead_code)] // contract constants; not every flag is produced yet
 pub mod cell_flag {
     pub const FORMULA: u8 = 1 << 0;
     pub const COMMENT: u8 = 1 << 1;

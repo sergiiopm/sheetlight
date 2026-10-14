@@ -29,6 +29,12 @@ type BlockSlot = GridBlock | null | undefined;
 
 type Align = "left" | "center" | "right";
 
+/**
+ * How far (in line widths) a cell border can paint outside its cell: borders
+ * sit on the shared edge (`x0 - lw`) and thick/double ones grow around it.
+ */
+const BORDER_REACH = 3;
+
 const BORDER_WIDTH: Record<BorderSpec["style"], number> = {
   thin: 1,
   hair: 1,
@@ -116,7 +122,14 @@ export class BaseRenderer {
       const q = prev.panes[i];
       this.blitRegion(ctx, paneDeviceRect(L, p), q.scrollDevX - p.scrollDevX, q.scrollDevY - p.scrollDevY, rects);
     }
-    for (const rect of rects) for (const p of L.panes) this.renderPane(ctx, L, p, rect);
+    // Grow every repaint rect by the border reach: a border of a cell inside
+    // the rect may paint just outside it (and vice versa), so the margin is
+    // repainted too (identical pixels where nothing changed).
+    const grow = BORDER_REACH * this.lineWidth(L.dpr);
+    for (const rect of rects) {
+      const g = { x0: rect.x0 - grow, y0: rect.y0 - grow, x1: rect.x1 + grow, y1: rect.y1 + grow };
+      for (const p of L.panes) this.renderPane(ctx, L, p, g);
+    }
 
     // Headers scroll with the main pane: blit their strips too, repaint the exposed labels.
     const headerRects: DeviceRect[] = [];
@@ -418,9 +431,11 @@ export class BaseRenderer {
         }
         continue;
       }
-      if (sid !== 0 && x1 > clipL && x0 < clipR) {
+      // Borders reach up to BORDER_REACH line widths into the neighbouring cells.
+      const reach = BORDER_REACH * lw;
+      if (sid !== 0 && x1 > x0 && x1 + reach > clipL && x0 - reach < clipR) {
         const st = styles.get(sid);
-        if (st.fill !== null && x1 > x0) {
+        if (st.fill !== null && x1 > clipL && x0 < clipR) {
           this.setFill(ctx, st.fill);
           ctx.fillRect(x0, y0, x1 - x0, y1 - y0);
         }

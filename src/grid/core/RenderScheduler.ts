@@ -72,6 +72,11 @@ export class RenderScheduler {
     this.invalidate(keys.length > 0 ? LAYER_BLOCKS : LAYER_DATA);
   }
 
+  /** A frame is scheduled (readiness checks in tests / benchmarks). */
+  get framePending(): boolean {
+    return this.rafId !== 0;
+  }
+
   requestFrame(): void {
     if (this.rafId === 0 && !this.disposed) this.rafId = requestAnimationFrame(this.frame);
   }

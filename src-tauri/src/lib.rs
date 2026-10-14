@@ -5,6 +5,7 @@ mod csv_store;
 #[allow(dead_code)]
 mod engine;
 mod files;
+#[allow(dead_code)]
 mod xlsx_package;
 
 use std::sync::Mutex;

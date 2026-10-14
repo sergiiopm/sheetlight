@@ -6,12 +6,14 @@
 //! git-ignored benchmark files.
 #![allow(dead_code)]
 
+pub mod actor;
+
 use std::collections::BTreeMap;
 use std::path::{Path, PathBuf};
 
 use serde::Deserialize;
 use sheetlight_lib::engine::backend::DocumentBackend;
-use sheetlight_lib::engine::types::{CellAddress, CellRange, CellValue, CsvOptions};
+use sheetlight_lib::engine::types::{CellAddress, CellDetails, CellRange, CellValue, CsvOptions, EngineResult, SheetId, SheetMeta};
 
 pub fn corpus_dir() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR")).join("..").join("tests").join("corpus")
@@ -215,6 +217,8 @@ pub struct Report {
     pub checked: usize,
     pub failures: Vec<String>,
     pub known: Vec<String>,
+    /// Known-gap keys that passed (remove them from known-gaps.json).
+    pub stale: Vec<String>,
 }
 
 impl Report {
@@ -222,14 +226,45 @@ impl Report {
         self.failures.push(msg);
     }
 
+    /// Records the outcome of one check of `<file>|<key>`: failures listed in
+    /// `gaps` are reported as known; a listed key that passes is reported as
+    /// stale so the list can shrink.
+    pub fn record(&mut self, gaps: &BTreeMap<String, String>, file: &str, key: &str, problems: Vec<String>, stage: &str) {
+        let known = is_known_gap(gaps, file, key);
+        if problems.is_empty() {
+            if gaps.contains_key(&format!("{file}|{key}")) {
+                self.stale.push(format!("{file}|{key}"));
+            }
+            return;
+        }
+        let msg = format!("{file}{stage}: {key}: {}", problems.join("; "));
+        if known {
+            self.known.push(msg);
+        } else {
+            self.fail(msg);
+        }
+    }
+
     pub fn assert_ok(&self, what: &str) {
         for k in &self.known {
             eprintln!("  known gap: {k}");
+        }
+        for k in &self.stale {
+            eprintln!("  now passing (remove from known-gaps.json): {k}");
         }
         if !self.failures.is_empty() {
             panic!("{what}: {} failure(s) out of {} checks:\n  {}", self.failures.len(), self.checked, self.failures.join("\n  "));
         }
         eprintln!("{what}: {} checks OK ({} known gaps)", self.checked, self.known.len());
+    }
+
+    /// For the `#[ignore]`d strict twin of a test: fails while any known gap
+    /// remains, so `cargo test -- --ignored` lists the open bugs.
+    pub fn assert_no_known_gaps(&self, what: &str) {
+        self.assert_ok(what);
+        if !self.known.is_empty() {
+            panic!("{what}: {} known gap(s) still open:\n  {}", self.known.len(), self.known.join("\n  "));
+        }
     }
 }
 
@@ -241,49 +276,77 @@ impl Report {
 /// `DocumentBackend` seam (`cell_details`): value, es display and formula input.
 pub fn check_backend(backend: &dyn DocumentBackend, exp: &Expected, gaps: &BTreeMap<String, String>, report: &mut Report) {
     let sheets = backend.sheets();
+    check_cells(&sheets, backend.active_sheet(), &|s, a| backend.cell_details(s, a), exp, gaps, report);
+}
+
+/// What a check compares for each expected cell.
+#[derive(Clone, Copy)]
+pub struct CheckWhat {
+    pub display: bool,
+    pub input: bool,
+}
+
+pub const CHECK_ALL: CheckWhat = CheckWhat { display: true, input: true };
+
+/// Compares every expected cell with what `get` (a backend, or the engine
+/// actor's `getCell`) reports: value, es display and formula input.
+pub fn check_cells(
+    sheets: &[SheetMeta],
+    active: SheetId,
+    get: &dyn Fn(SheetId, CellAddress) -> EngineResult<CellDetails>,
+    exp: &Expected,
+    gaps: &BTreeMap<String, String>,
+    report: &mut Report,
+) {
+    check_cells_with(sheets, active, get, exp, gaps, report, CHECK_ALL, "");
+}
+
+#[allow(clippy::too_many_arguments)]
+pub fn check_cells_with(
+    sheets: &[SheetMeta],
+    active: SheetId,
+    get: &dyn Fn(SheetId, CellAddress) -> EngineResult<CellDetails>,
+    exp: &Expected,
+    gaps: &BTreeMap<String, String>,
+    report: &mut Report,
+    what: CheckWhat,
+    stage: &str,
+) {
     let names: Vec<&str> = sheets.iter().map(|s| s.name.as_str()).collect();
-    if exp.kind == "xlsx" && names != exp.sheets.iter().map(String::as_str).collect::<Vec<_>>() {
-        report.fail(format!("{}: sheets {names:?} != expected {:?}", exp.file, exp.sheets));
+    if exp.kind != "csv" && names != exp.sheets.iter().map(String::as_str).collect::<Vec<_>>() {
+        report.fail(format!("{}{stage}: sheets {names:?} != expected {:?}", exp.file, exp.sheets));
     }
     for (reference, cell) in &exp.cells {
         report.checked += 1;
         let (sheet_name, a1) = split_ref(reference);
         let sheet = match sheet_name {
             Some(n) => sheets.iter().find(|s| s.name == n).map(|s| s.id),
-            None => Some(backend.active_sheet()),
+            None => Some(active),
         };
         let Some(sheet) = sheet else {
-            report.fail(format!("{}: {reference}: sheet not found", exp.file));
+            report.fail(format!("{}{stage}: {reference}: sheet not found", exp.file));
             continue;
         };
         let addr = parse_a1(a1);
-        let known = is_known_gap(gaps, &exp.file, reference);
         let mut problems = Vec::new();
-        match backend.cell_details(sheet, addr) {
-            Err(e) => problems.push(format!("cell_details error {e}")),
+        match get(sheet, addr) {
+            Err(e) => problems.push(format!("getCell error {e}")),
             Ok(d) => {
                 if !cell.accepts(&d.value) {
                     problems.push(format!("value {:?} != {}", d.value, cell.describe()));
                 }
-                if let Some(want) = &cell.display {
+                if let (true, Some(want)) = (what.display, &cell.display) {
                     if &d.display != want {
                         problems.push(format!("display {:?} != {want:?}", d.display));
                     }
                 }
-                if let Some(want) = &cell.input {
+                if let (true, Some(want)) = (what.input, &cell.input) {
                     if &d.input != want {
                         problems.push(format!("input {:?} != {want:?}", d.input));
                     }
                 }
             }
         }
-        if !problems.is_empty() {
-            let msg = format!("{}: {reference}: {}", exp.file, problems.join("; "));
-            if known {
-                report.known.push(msg);
-            } else {
-                report.fail(msg);
-            }
-        }
+        report.record(gaps, &exp.file, reference, problems, stage);
     }
 }

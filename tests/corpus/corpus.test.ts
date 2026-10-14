@@ -139,7 +139,9 @@ describe("test corpus (tests/corpus/files)", () => {
       for (const key of Object.keys(entries as Record<string, string>)) {
         const [file, cell] = key.split("|");
         expect(dataFiles, key).toContain(file);
-        if (cell !== "*") expect(Object.keys(loadExpected(file).cells), key).toContain(cell);
+        // `@what` / `Sheet!@what` name non-cell checks (structure, warnings, CSV options).
+        if (cell === "*" || cell.split("!").pop()?.startsWith("@")) continue;
+        expect(Object.keys(loadExpected(file).cells), key).toContain(cell);
       }
     }
   });

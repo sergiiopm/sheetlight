@@ -1,9 +1,9 @@
 //! Corpus harness for the file layer (WS3): `xlsx_package::inspect` and
 //! `csv_store::open`, driven by `tests/corpus/files/*.expected.json`.
 //!
-//! Tests marked `#[ignore = "WS3: …"]` exercise behavior that is still a
-//! Phase 1 stub on `main`. Phase 3 enables them by deleting the attribute
-//! (or runs them now with `cargo test -- --ignored`).
+//! Accepted deviations live in `tests/corpus/known-gaps.json` (sections
+//! `inspect` and `csv_store`); each check has an `#[ignore]`d strict twin
+//! that fails while a known gap is open (`cargo test -- --ignored`).
 
 mod common;
 
@@ -83,9 +83,7 @@ fn feature_key(f: FidelityFeature) -> String {
     serde_json::to_value(f).unwrap().as_str().unwrap().to_string()
 }
 
-#[test]
-#[ignore = "WS3: xlsx_package::inspect is a Phase 1 stub"]
-fn xlsx_inspect_reports_every_fidelity_feature() {
+fn inspect_report(gaps: &BTreeMap<String, String>) -> Report {
     let mut report = Report::default();
     for (path, exp) in corpus_files_of_kind("xlsx") {
         let bytes = std::fs::read(&path).unwrap();
@@ -93,32 +91,46 @@ fn xlsx_inspect_reports_every_fidelity_feature() {
         let found: BTreeMap<String, u32> = pkg.warnings.iter().map(|w| (feature_key(w.feature), w.count)).collect();
         for (feature, count) in &exp.fidelity {
             report.checked += 1;
-            match found.get(feature) {
-                None => report.fail(format!("{}: no warning for `{feature}` ({count} in file)", exp.file)),
+            let problems = match found.get(feature) {
+                None => vec![format!("no warning for `{feature}` ({count} in file)")],
                 // Counts are only pinned where they are unambiguous.
                 Some(n) if ["charts", "images", "comments"].contains(&feature.as_str()) && n != count => {
-                    report.fail(format!("{}: `{feature}` count {n} != {count}", exp.file))
+                    vec![format!("`{feature}` count {n} != {count}")]
                 }
-                _ => {}
-            }
+                _ => Vec::new(),
+            };
+            report.record(gaps, &exp.file, &format!("@{feature}"), problems, "");
         }
         // Charts are extracted (anchors + parsed XML) for the chart layer.
         let charts: u32 = exp.features.values().map(|f| f.charts).sum();
         report.checked += 1;
-        if pkg.charts.len() as u32 != charts {
-            report.fail(format!("{}: {} charts extracted, file has {charts}", exp.file, pkg.charts.len()));
-        }
+        let problems = if pkg.charts.len() as u32 == charts {
+            Vec::new()
+        } else {
+            vec![format!("{} charts extracted, file has {charts}", pkg.charts.len())]
+        };
+        report.record(gaps, &exp.file, "@chartsExtracted", problems, "");
         // Autofilter ranges are extracted per original sheet index.
         for (i, sheet) in exp.sheets.iter().enumerate() {
             let want = exp.features.get(sheet).and_then(|f| f.auto_filter.as_deref()).map(parse_range);
             let got = pkg.auto_filters.iter().find(|(idx, _)| *idx == i).map(|(_, r)| *r);
             report.checked += 1;
-            if want != got {
-                report.fail(format!("{}: sheet {sheet}: autofilter {got:?} != {want:?}", exp.file));
-            }
+            let problems = if want == got { Vec::new() } else { vec![format!("autofilter {got:?} != {want:?}")] };
+            report.record(gaps, &exp.file, &format!("{sheet}!@autoFilter"), problems, "");
         }
     }
-    report.assert_ok("xlsx_package::inspect fidelity warnings");
+    report
+}
+
+#[test]
+fn xlsx_inspect_reports_every_fidelity_feature() {
+    inspect_report(&known_gaps("inspect")).assert_ok("xlsx_package::inspect fidelity warnings");
+}
+
+#[test]
+#[ignore = "strict twin: fails while tests/corpus/known-gaps.json `inspect` has open bugs"]
+fn xlsx_inspect_reports_every_fidelity_feature_strict() {
+    inspect_report(&known_gaps("inspect")).assert_no_known_gaps("xlsx_package::inspect (strict)");
 }
 
 // ---------------------------------------------------------------------------
@@ -150,18 +162,14 @@ fn open_csv_and_wait(path: &std::path::Path) -> (Box<dyn DocumentBackend>, CsvOp
     (backend, detected)
 }
 
-#[test]
-#[ignore = "WS3: csv_store::open is a Phase 1 stub"]
-fn csv_store_detects_options_and_reads_expected_cells() {
-    let gaps = known_gaps("csv_store");
+fn csv_store_report(gaps: &BTreeMap<String, String>) -> Report {
     let mut report = Report::default();
     for (path, exp) in corpus_files_of_kind("csv") {
         let (backend, detected) = open_csv_and_wait(&path);
         let want = exp.csv.as_ref().unwrap();
         report.checked += 1;
-        if &detected != want {
-            report.fail(format!("{}: detected {detected:?} != {want:?}", exp.file));
-        }
+        let problems = if &detected == want { Vec::new() } else { vec![format!("detected {detected:?} != {want:?}")] };
+        report.record(gaps, &exp.file, "@csvOptions", problems, "");
         report.checked += 1;
         if backend.kind() != BackendKind::Csv {
             report.fail(format!("{}: backend kind {:?}", exp.file, backend.kind()));
@@ -173,13 +181,24 @@ fn csv_store_detects_options_and_reads_expected_cells() {
         if used.map(|u| (u.r1 + 1, u.c1 + 1)) != Some((rows, cols)) {
             report.fail(format!("{}: used range {used:?}, expected {rows} rows x {cols} cols", exp.file));
         }
-        check_backend(backend.as_ref(), &exp, &gaps, &mut report);
+        check_backend(backend.as_ref(), &exp, gaps, &mut report);
     }
-    report.assert_ok("csv_store corpus");
+    report
 }
 
 #[test]
-#[ignore = "WS3: csv_store::open is a Phase 1 stub; needs `python tests/corpus/gen_corpus.py big`"]
+fn csv_store_detects_options_and_reads_expected_cells() {
+    csv_store_report(&known_gaps("csv_store")).assert_ok("csv_store corpus");
+}
+
+#[test]
+#[ignore = "strict twin: fails while tests/corpus/known-gaps.json `csv_store` has open bugs"]
+fn csv_store_detects_options_and_reads_expected_cells_strict() {
+    csv_store_report(&known_gaps("csv_store")).assert_no_known_gaps("csv_store corpus (strict)");
+}
+
+#[test]
+#[ignore = "slow in debug builds; needs `python tests/corpus/gen_corpus.py big` (the benches generate their own files)"]
 fn csv_store_opens_big_1m_csv() {
     for name in ["big_1M.csv", "big_1M_es.csv"] {
         let path = generated_dir().join(name);

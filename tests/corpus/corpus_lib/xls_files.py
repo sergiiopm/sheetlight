@@ -112,9 +112,9 @@ def nominas_legacy(out_dir: str) -> dict:
         res.write(r, 3, xlwt.Formula(f'ROUND(C{x}/B{x},2)'), eur)
         total = round(sum(by_dept[dept]), 2)
         cells[f"Resumen!A{x}"] = _cell(dept)
-        cells[f"Resumen!B{x}"] = _cell(len(by_dept[dept]))
-        cells[f"Resumen!C{x}"] = _cell(total, F.EUR)
-        cells[f"Resumen!D{x}"] = _cell(F.excel_round(total / len(by_dept[dept]), 2), F.EUR)
+        cells[f"Resumen!B{x}"] = _cell(len(by_dept[dept]), input_=f"=COUNTIF({rng_dept},A{x})")
+        cells[f"Resumen!C{x}"] = _cell(total, F.EUR, f"=SUMIF({rng_dept},A{x},{rng_neto})")
+        cells[f"Resumen!D{x}"] = _cell(F.excel_round(total / len(by_dept[dept]), 2), F.EUR, f"=ROUND(C{x}/B{x},2)")
     tr = 3 + len(DEPTS)
     tx = tr + 1
     res.write(tr, 0, "Total", bold)
@@ -124,9 +124,9 @@ def nominas_legacy(out_dir: str) -> dict:
     res.write(tr + 1, 2, xlwt.Formula(f"MAX({rng_neto})"), eur)
     res.write(tr + 2, 0, "Primer empleado")
     res.write(tr + 2, 2, xlwt.Formula("Empleados!A2"))
-    cells[f"Resumen!B{tx}"] = _cell(n)
-    cells[f"Resumen!C{tx}"] = _cell(round(sum(netos), 2), F.EUR)
-    cells[f"Resumen!C{tx + 1}"] = _cell(max(netos), F.EUR)
+    cells[f"Resumen!B{tx}"] = _cell(n, input_=f"=SUM(B4:B{tr})")
+    cells[f"Resumen!C{tx}"] = _cell(round(sum(netos), 2), F.EUR, f"=SUM(C4:C{tr})")
+    cells[f"Resumen!C{tx + 1}"] = _cell(max(netos), F.EUR, f"=MAX({rng_neto})")
     cells[f"Resumen!C{tx + 2}"] = cells["Empleados!A2"] | {}
     cells["Resumen!A1"] = _cell("Resumen de nóminas")
 

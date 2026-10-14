@@ -211,21 +211,24 @@
     "type": "number",
     "value": 6.0
    },
-   "display": "6"
+   "display": "6",
+   "input": "=COUNTIF(Empleados!$C$2:$C$25,A4)"
   },
   "Resumen!C4": {
    "value": {
     "type": "number",
     "value": 9796.03
    },
-   "display": "9.796,03 €"
+   "display": "9.796,03 €",
+   "input": "=SUMIF(Empleados!$C$2:$C$25,A4,Empleados!$J$2:$J$25)"
   },
   "Resumen!D4": {
    "value": {
     "type": "number",
     "value": 1632.67
    },
-   "display": "1.632,67 €"
+   "display": "1.632,67 €",
+   "input": "=ROUND(C4/B4,2)"
   },
   "Resumen!A5": {
    "value": {
@@ -239,21 +242,24 @@
     "type": "number",
     "value": 6.0
    },
-   "display": "6"
+   "display": "6",
+   "input": "=COUNTIF(Empleados!$C$2:$C$25,A5)"
   },
   "Resumen!C5": {
    "value": {
     "type": "number",
     "value": 10776.68
    },
-   "display": "10.776,68 €"
+   "display": "10.776,68 €",
+   "input": "=SUMIF(Empleados!$C$2:$C$25,A5,Empleados!$J$2:$J$25)"
   },
   "Resumen!D5": {
    "value": {
     "type": "number",
     "value": 1796.11
    },
-   "display": "1.796,11 €"
+   "display": "1.796,11 €",
+   "input": "=ROUND(C5/B5,2)"
   },
   "Resumen!A6": {
    "value": {
@@ -267,21 +273,24 @@
     "type": "number",
     "value": 6.0
    },
-   "display": "6"
+   "display": "6",
+   "input": "=COUNTIF(Empleados!$C$2:$C$25,A6)"
   },
   "Resumen!C6": {
    "value": {
     "type": "number",
     "value": 10392.66
    },
-   "display": "10.392,66 €"
+   "display": "10.392,66 €",
+   "input": "=SUMIF(Empleados!$C$2:$C$25,A6,Empleados!$J$2:$J$25)"
   },
   "Resumen!D6": {
    "value": {
     "type": "number",
     "value": 1732.11
    },
-   "display": "1.732,11 €"
+   "display": "1.732,11 €",
+   "input": "=ROUND(C6/B6,2)"
   },
   "Resumen!A7": {
    "value": {
@@ -295,42 +304,48 @@
     "type": "number",
     "value": 6.0
    },
-   "display": "6"
+   "display": "6",
+   "input": "=COUNTIF(Empleados!$C$2:$C$25,A7)"
   },
   "Resumen!C7": {
    "value": {
     "type": "number",
     "value": 9460.62
    },
-   "display": "9.460,62 €"
+   "display": "9.460,62 €",
+   "input": "=SUMIF(Empleados!$C$2:$C$25,A7,Empleados!$J$2:$J$25)"
   },
   "Resumen!D7": {
    "value": {
     "type": "number",
     "value": 1576.77
    },
-   "display": "1.576,77 €"
+   "display": "1.576,77 €",
+   "input": "=ROUND(C7/B7,2)"
   },
   "Resumen!B8": {
    "value": {
     "type": "number",
     "value": 24.0
    },
-   "display": "24"
+   "display": "24",
+   "input": "=SUM(B4:B7)"
   },
   "Resumen!C8": {
    "value": {
     "type": "number",
     "value": 40425.99
    },
-   "display": "40.425,99 €"
+   "display": "40.425,99 €",
+   "input": "=SUM(C4:C7)"
   },
   "Resumen!C9": {
    "value": {
     "type": "number",
     "value": 2304.96
    },
-   "display": "2.304,96 €"
+   "display": "2.304,96 €",
+   "input": "=MAX(Empleados!$J$2:$J$25)"
   },
   "Resumen!C10": {
    "value": {

@@ -517,6 +517,7 @@ fn chart_draft(sheet: SheetId) -> ChartDraft {
             categories_ref: Some("Hoja1!$A$2:$A$4".into()),
             values_ref: "Hoja1!$B$2:$B$4".into(),
             color: None,
+            chart_type: None,
         }],
         anchor: ChartAnchor { from: point(1, 3), to: point(15, 9) },
         legend: LegendPosition::Bottom,
@@ -540,6 +541,18 @@ fn charts_are_stored_as_specs() {
     // Charts follow inserted rows.
     apply(&mut b, vec![EngineOp::InsertRows { sheet: s, index: 0, count: 2 }]);
     assert_eq!(b.charts(s)[0].draft.anchor.from.row, 3);
+    // ... and so do their series references.
+    assert_eq!(b.charts(s)[0].draft.series[0].values_ref, "Hoja1!$B$4:$B$6");
+    apply(&mut b, vec![EngineOp::DeleteCols { sheet: s, index: 0, count: 1 }]);
+    assert_eq!(b.charts(s)[0].draft.series[0].values_ref, "Hoja1!$A$4:$A$6");
+    assert_eq!(b.charts(s)[0].draft.series[0].categories_ref.as_deref(), Some("Hoja1!#REF!"));
+    assert_eq!(b.charts(s)[0].draft.anchor.from.col, 2);
+    apply(&mut b, vec![EngineOp::RenameSheet { sheet: s, name: "Ventas 2026".into() }]);
+    assert_eq!(b.charts(s)[0].draft.series[0].values_ref, "'Ventas 2026'!$A$4:$A$6");
+    b.undo().unwrap();
+    b.undo().unwrap();
+    assert_eq!(b.charts(s)[0].draft.series[0].values_ref, "Hoja1!$B$4:$B$6");
+    assert_eq!(b.charts(s)[0].draft.anchor.from.col, 3);
     apply(&mut b, vec![EngineOp::DeleteChart { sheet: s, id }]);
     assert!(b.charts(s).is_empty());
     b.undo().unwrap();

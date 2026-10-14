@@ -16,7 +16,11 @@
 
 mod dom;
 mod parse;
+mod refs;
 mod write;
+
+
+pub use refs::{rename_chart_refs, shift_chart_refs, RefShift};
 
 use crate::engine::types::{ChartDraft, ChartSpec, EngineResult};
 

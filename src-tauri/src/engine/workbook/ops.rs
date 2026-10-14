@@ -572,6 +572,7 @@ impl WorkbookBackend {
             (Axis::Col, false) => self.ic(b, |um| um.delete_columns(sheet_index, at, n))?,
         }
         self.shift_meta(sheet, axis, insert, index, count);
+        self.shift_chart_refs(b, sheet, axis, insert, index, count);
         let op = if insert { StructureOp::Insert } else { StructureOp::Delete };
         b.scope.structure.push((sheet, axis, op, index, count));
         b.data(sheet);
@@ -690,6 +691,24 @@ impl WorkbookBackend {
     }
 
     // ----- charts --------------------------------------------------------------
+
+    /// Rewrites chart series references (on every sheet) that point into rows or
+    /// columns inserted/deleted on `sheet`; IronCalc only rewrites cell formulas.
+    fn shift_chart_refs(&mut self, b: &mut Batch, sheet: SheetId, axis: Axis, insert: bool, index: u32, count: u32) {
+        let names: std::collections::HashMap<SheetId, String> =
+            self.model().workbook.worksheets.iter().map(|ws| (ws.sheet_id, ws.name.clone())).collect();
+        let Some(target) = names.get(&sheet) else { return };
+        let shift = crate::charts::RefShift { rows: axis == Axis::Row, insert, index, count };
+        for (id, extra) in self.meta.sheets.iter_mut() {
+            let Some(own) = names.get(id) else { continue };
+            for chart in &mut extra.charts {
+                if crate::charts::shift_chart_refs(&mut chart.draft, own, target, &shift) {
+                    chart.from_file = false;
+                    b.scope.charts.insert(*id);
+                }
+            }
+        }
+    }
 
     fn op_add_chart(&mut self, b: &mut Batch, chart: &ChartDraft) -> EngineResult<()> {
         self.sheet_index(chart.sheet)?;

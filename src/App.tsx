@@ -6,7 +6,8 @@ import { TabBar } from "@/components/TabBar";
 import { Toolbar } from "@/components/Toolbar";
 import { useShortcuts } from "@/hooks/use-shortcuts";
 import { useWorkbookTabs } from "@/hooks/use-workbook-tabs";
-import { applyTheme, getPreferredTheme, type ThemeMode } from "@/lib/theme";
+import { getSettingsStore } from "@/lib/settings";
+import { applyTheme, resolveTheme, type ThemeMode } from "@/lib/theme";
 
 export default function App() {
   const [theme, setTheme] = useState<ThemeMode>("light");
@@ -14,7 +15,7 @@ export default function App() {
   const session = useWorkbookTabs({ onError: setError });
 
   useEffect(() => {
-    const initial = getPreferredTheme();
+    const initial = resolveTheme(getSettingsStore().get().theme);
     setTheme(initial);
     applyTheme(initial);
   }, []);

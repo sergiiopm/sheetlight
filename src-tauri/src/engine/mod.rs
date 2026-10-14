@@ -11,3 +11,4 @@ pub mod backend;
 pub mod blocks;
 pub mod commands;
 pub mod types;
+pub mod workbook;

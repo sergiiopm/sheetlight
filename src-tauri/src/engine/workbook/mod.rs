@@ -162,7 +162,7 @@ impl WorkbookBackend {
     /// Wraps a loaded model (no undo history). `extras` seeds per-sheet
     /// metadata by sheet index (comments are also imported from the model).
     pub fn from_model(model: Model<'static>, mut extras: Vec<SheetExtra>) -> Self {
-        let base_style = model.workbook.styles.get_style(0).unwrap_or_default();
+        let base_style = styles::style_at(&model.workbook.styles, 0).unwrap_or_default();
         let mut meta = Meta::default();
         for (index, ws) in model.workbook.worksheets.iter().enumerate() {
             let mut extra = if index < extras.len() { std::mem::take(&mut extras[index]) } else { SheetExtra::default() };
@@ -250,7 +250,7 @@ impl WorkbookBackend {
         if let Some(info) = self.xf_cache.borrow().get(&xf) {
             return info.clone();
         }
-        let style = self.model().workbook.styles.get_style(xf).unwrap_or_default();
+        let style = styles::style_at(&self.model().workbook.styles, xf).unwrap_or_default();
         let info = XfInfo { num_fmt: style.num_fmt.clone(), quote_prefix: style.quote_prefix };
         self.xf_cache.borrow_mut().insert(xf, info.clone());
         info
@@ -265,7 +265,7 @@ impl WorkbookBackend {
             return id;
         }
         let model = self.model();
-        let style = model.workbook.styles.get_style(xf).unwrap_or_default();
+        let style = styles::style_at(&model.workbook.styles, xf).unwrap_or_default();
         let cell_style = styles::to_cell_style(&style, &self.base_style, &model.workbook.theme, nf_color);
         let mut table = self.styles.borrow_mut();
         let id = table.intern(cell_style);

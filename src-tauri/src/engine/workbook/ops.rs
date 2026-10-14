@@ -106,7 +106,7 @@ impl WorkbookBackend {
             return true;
         }
         let plain = match scratch.workbook.worksheets[0].cell(1, 1).as_deref() {
-            Some(Cell::SharedString { s, .. }) => scratch.workbook.styles.get_style(*s).map(|st| !st.quote_prefix).unwrap_or(false),
+            Some(Cell::SharedString { s, .. }) => super::styles::style_at(&scratch.workbook.styles, *s).map(|st| !st.quote_prefix).unwrap_or(false),
             _ => false,
         };
         let _ = scratch.set_user_input(0, 1, 1, String::new());

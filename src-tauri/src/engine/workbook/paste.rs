@@ -1092,7 +1092,7 @@ mod tests {
 
     #[test]
     fn google_sheets_html() {
-        let html = r#"<meta charset="utf-8"><google-sheets-html-origin><table xmlns="http://www.w3.org/1999/xhtml" cellspacing="0" cellpadding="0" dir="ltr" border="1"><colgroup><col width="100"/></colgroup><tbody><tr style="height:21px;"><td style="overflow:hidden;padding:2px 3px 2px 3px;vertical-align:bottom;font-weight:bold;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Total&quot;}">Total</td><td style="overflow:hidden;padding:2px 3px 2px 3px;vertical-align:bottom;text-align:right;" data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:42.5}">42,50</td></tr></tbody></table>"#;
+        let html = r##"<meta charset="utf-8"><google-sheets-html-origin><table xmlns="http://www.w3.org/1999/xhtml" cellspacing="0" cellpadding="0" dir="ltr" border="1"><colgroup><col width="100"/></colgroup><tbody><tr style="height:21px;"><td style="overflow:hidden;padding:2px 3px 2px 3px;vertical-align:bottom;font-weight:bold;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Total&quot;}">Total</td><td style="overflow:hidden;padding:2px 3px 2px 3px;vertical-align:bottom;text-align:right;" data-sheets-value="{&quot;1&quot;:3,&quot;3&quot;:42.5}">42,50</td></tr></tbody></table>"##;
         let table = parse_html_table(html);
         assert_eq!(table.cells[0][0].value, LocalValue::Text("Total".into()));
         assert_eq!(table.cells[0][0].style.bold, Some(true));
@@ -1102,7 +1102,7 @@ mod tests {
 
     #[test]
     fn libreoffice_html() {
-        let html = r#"<table cellspacing="0" border="0"><tr><td height="17" align="left"><b><i>Mes</i></b></td><td align="right" sdval="3" sdnum="3082;">3</td></tr><tr><td>a &amp; b<br>c</td><td bgcolor="#C5E0B4">x</td></tr></table>"#;
+        let html = r##"<table cellspacing="0" border="0"><tr><td height="17" align="left"><b><i>Mes</i></b></td><td align="right" sdval="3" sdnum="3082;">3</td></tr><tr><td>a &amp; b<br>c</td><td bgcolor="#C5E0B4">x</td></tr></table>"##;
         let table = parse_html_table(html);
         assert_eq!(table.cells[0][0].style.bold, Some(true));
         assert_eq!(table.cells[0][0].style.italic, Some(true));

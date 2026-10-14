@@ -319,7 +319,7 @@ impl WorkbookBackend {
                 (input, raw.to_contract(), display, spill_anchor)
             }
         };
-        let style = model.workbook.styles.get_style(xf).unwrap_or_default();
+        let style = super::styles::style_at(&model.workbook.styles, xf).unwrap_or_default();
         let format = CellFormat {
             style: to_cell_style(&style, &self.base_style, &model.workbook.theme, None),
             num_fmt: display_num_fmt(&style.num_fmt),

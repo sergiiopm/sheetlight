@@ -66,6 +66,19 @@ impl StyleTable {
     }
 }
 
+/// Full style of an IronCalc style index (`Styles::get_style` is crate-private).
+pub fn style_at(styles: &ironcalc_base::types::Styles, index: i32) -> Option<Style> {
+    let xf = styles.cell_xfs.get(usize::try_from(index).ok()?)?;
+    Some(Style {
+        alignment: xf.alignment.clone(),
+        num_fmt: ironcalc_base::number_format::get_num_fmt(xf.num_fmt_id, &styles.num_fmts),
+        fill: styles.fills.get(xf.fill_id as usize)?.clone(),
+        font: styles.fonts.get(xf.font_id as usize)?.clone(),
+        border: styles.borders.get(xf.border_id as usize)?.clone(),
+        quote_prefix: xf.quote_prefix,
+    })
+}
+
 /// Lower-case `#rrggbb` of an IronCalc color (theme colors resolved).
 pub fn resolve_color(color: &Color, theme: &Theme) -> Option<String> {
     match color {

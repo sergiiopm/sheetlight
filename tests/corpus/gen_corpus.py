@@ -22,7 +22,7 @@ import zipfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
-from corpus_lib import big, csv_files, esfmt, xlsx_files  # noqa: E402
+from corpus_lib import big, csv_files, esfmt, xls_files, xlsx_files  # noqa: E402
 from corpus_lib.xlsxbook import write_expected  # noqa: E402
 
 FILES_DIR = os.path.join(HERE, "files")
@@ -33,7 +33,7 @@ MAX_COMMITTED_BYTES = 1_000_000
 def gen_files(out_dir: str) -> list[str]:
     os.makedirs(out_dir, exist_ok=True)
     written = []
-    for gen in xlsx_files.ALL + csv_files.ALL:
+    for gen in xlsx_files.ALL + xls_files.ALL + csv_files.ALL:
         expected = gen(out_dir)
         written.append(expected["file"])
         written.append(os.path.basename(write_expected(out_dir, expected)))
@@ -46,11 +46,17 @@ def gen_files(out_dir: str) -> list[str]:
 
 def same_content(a: str, b: str) -> bool:
     """Byte equality, except .xlsx packages compare their uncompressed parts
-    (deflate output may differ between zlib builds on CI and locally)."""
+    (deflate output may differ between zlib builds on CI and locally) with
+    CRLF folded to LF (XlsxWriter writes XML through text-mode files, so parts
+    generated on Windows carry CRLF and parts generated on Linux carry LF)."""
     if a.endswith(".xlsx"):
+        def part(z: zipfile.ZipFile, n: str) -> bytes:
+            data = z.read(n)
+            return data.replace(b"\r\n", b"\n") if n.endswith((".xml", ".rels")) else data
+
         with zipfile.ZipFile(a) as za, zipfile.ZipFile(b) as zb:
             names = za.namelist()
-            return names == zb.namelist() and all(za.read(n) == zb.read(n) for n in names)
+            return names == zb.namelist() and all(part(za, n) == part(zb, n) for n in names)
     return filecmp.cmp(a, b, shallow=False)
 
 

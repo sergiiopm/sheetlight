@@ -1,6 +1,6 @@
 import type { EngineOp } from "@/engine/contract";
 import type { CellRange } from "@/engine/types";
-import type { EditRequest, GridContextMenuEvent, GridViewport } from "@/grid/api";
+import type { EditRequest, GridContextMenuEvent, GridProps, GridViewport } from "@/grid/api";
 import { Grid } from "@/grid/core/Grid";
 import { LIGHT_THEME } from "@/grid/render/theme";
 import { createSelectionStore, singleCellSelection, type SelectionState, type SelectionStore } from "@/model/selection";
@@ -45,6 +45,7 @@ class Harness {
   /** Pixels of the last `diffAgainstFullRedraw` (debugging failures). */
   lastDiff: { before: Uint8ClampedArray; after: Uint8ClampedArray; width: number } | null = null;
   private host: HTMLDivElement | null = null;
+  private props: GridProps | null = null;
 
   async mount(o: MountOptions = {}): Promise<void> {
     this.unmount();
@@ -57,24 +58,22 @@ class Harness {
     document.body.appendChild(host);
     const selection = createSelectionStore(singleCellSelection(sheet));
     const log = this.log;
-    const grid = new Grid(
-      host,
-      {
-        engine,
-        doc: info.doc,
-        sheet,
-        selection,
-        readOnly: o.readOnly,
-        initialView: o.zoom ? { topLeft: { row: o.frozenRows ?? 0, col: o.frozenCols ?? 0 }, zoom: o.zoom } : undefined,
-        onApply: (ops) => log.ops.push(ops),
-        onEditRequest: (r) => log.edits.push(r),
-        onUnhandledKey: (e) => log.keys.push(`${e.ctrlKey ? "Ctrl+" : ""}${e.key}`),
-        onContextMenu: (e) => log.menus.push(e),
-        onFilterButton: (col) => log.filters.push(col),
-        onViewportChange: (v) => log.views.push(v),
-      },
-      { incrementalRender: o.incremental !== false, theme: LIGHT_THEME },
-    );
+    const props: GridProps = {
+      engine,
+      doc: info.doc,
+      sheet,
+      selection,
+      readOnly: o.readOnly,
+      initialView: o.zoom ? { topLeft: { row: o.frozenRows ?? 0, col: o.frozenCols ?? 0 }, zoom: o.zoom } : undefined,
+      onApply: (ops) => log.ops.push(ops),
+      onEditRequest: (r) => log.edits.push(r),
+      onUnhandledKey: (e) => log.keys.push(`${e.ctrlKey ? "Ctrl+" : ""}${e.key}`),
+      onContextMenu: (e) => log.menus.push(e),
+      onFilterButton: (col) => log.filters.push(col),
+      onViewportChange: (v) => log.views.push(v),
+    };
+    const grid = new Grid(host, props, { incrementalRender: o.incremental !== false, theme: LIGHT_THEME });
+    this.props = props;
     this.host = host;
     this.grid = grid;
     this.engine = engine;
@@ -251,6 +250,25 @@ class Harness {
 
   focus(): void {
     this.g().focus();
+  }
+
+  /** Add a sheet to the document and show it (the `sheet` prop changes). */
+  async switchToNewSheet(view?: GridViewport): Promise<number> {
+    const engine = this.engine;
+    const props = this.props;
+    if (!engine || !props || !this.selection) throw new Error("not mounted");
+    const res = await engine.apply(props.doc, [{ type: "addSheet" }]);
+    const sheet = res.created[0];
+    this.selection.set(singleCellSelection(sheet, { row: 5, col: 2 }));
+    this.props = { ...props, sheet, initialView: view };
+    this.g().update(this.props);
+    await new Promise((r) => setTimeout(r, 50));
+    await this.settle();
+    return sheet;
+  }
+
+  dataSheet(): number | null {
+    return this.g().data()?.sheet ?? null;
   }
 }
 

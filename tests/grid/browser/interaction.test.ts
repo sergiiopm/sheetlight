@@ -364,6 +364,34 @@ describe.skipIf(!chromiumPath)("grid interaction (headless Chromium)", () => {
     expect((await sel()).active).toEqual({ row: 0, col: 0 });
   });
 
+  it("drag-selecting past the bottom edge auto-scrolls and keeps extending", async () => {
+    const a = await center(2, 1);
+    await page.mouse.move(a.x, a.y);
+    await page.mouse.down();
+    await page.mouse.move(a.x, 640, { steps: 4 });
+    await page.waitForFunction(() => window.SL.view().topLeft.row > 10, undefined, { timeout: 5_000 });
+    await page.mouse.up();
+    await settle();
+    const s = await sel();
+    expect(s.ranges[0].r0).toBe(2);
+    expect(s.ranges[0].r1).toBeGreaterThan(30);
+    expect(s.active).toEqual({ row: 2, col: 1 });
+  });
+
+  it("switching sheets reloads data and applies the initial view", async () => {
+    await page.evaluate(() => window.SL.scrollBy(0, 500));
+    const sheet = await page.evaluate(() => window.SL.switchToNewSheet({ topLeft: { row: 30, col: 3 }, zoom: 1.5 }));
+    expect(await page.evaluate(() => window.SL.dataSheet())).toBe(sheet);
+    const v = await page.evaluate(() => window.SL.view());
+    expect(v).toEqual({ topLeft: { row: 30, col: 3 }, zoom: 1.5 });
+    expect((await sel()).sheet).toBe(sheet);
+    // Edits now target the new sheet.
+    await click(31, 4);
+    await press("Delete");
+    const op = (await log()).ops.at(-1)?.[0];
+    expect(op?.type === "clear" && op.sheet).toBe(sheet);
+  });
+
   it("autofit measures text in CSS px at 100% zoom", async () => {
     const widths = await page.evaluate(() => window.SL.autofit([0, 1, 30]));
     expect(widths[0]).toBeGreaterThan(widths[1]);

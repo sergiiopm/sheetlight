@@ -2,14 +2,15 @@
 
 Lightweight, fast, local spreadsheet app for Windows. Sister app of Doclight
 (`C:\Dev\Proyectos\doclight`, same author and conventions). The product and
-engineering plan lives in `docs/PLAN.md`; read it before larger changes.
+engineering plan lives in `docs/PLAN.md`; module boundaries, contracts, data flow
+and the workstream rules live in `docs/ARCHITECTURE.md`. Read both before larger changes.
 
 ## Stack
 
 - Tauri 2 (Rust, `src-tauri/`) + React 19 + TypeScript (strict) + Vite
 - Tailwind CSS 4, Radix primitives, shadcn-style components in `src/components/ui`, lucide-react icons
 - Vitest for unit tests
-- Formula engine: IronCalc (under evaluation), always behind the `WorkbookEngine` contract
+- Formula engine: IronCalc, native in Rust (pinned git rev), always behind the `WorkbookEngine` contract
 
 ## Folder responsibilities
 
@@ -58,6 +59,12 @@ Before finishing a change, `npm run build` and `npm test` must pass.
 - Modules talk through contracts (`WorkbookEngine`, `GridModel`, `Command`,
   `SelectionState`); do not reach into another module's internals.
 - Keep dependencies lean; check that a new dependency is justified (installer target < 15 MB).
+
+## Git
+
+- Conventional Commits with a scope: `feat(grid): …`, `fix(engine): …`, `test(files): …`,
+  `docs: …`, `build: …`, `ci: …`, `chore: …`. Small, focused commits.
+- Work on branches and open PRs to `main` (see `docs/ARCHITECTURE.md` §5).
 
 ## Versioning
 

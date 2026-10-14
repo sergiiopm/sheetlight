@@ -477,11 +477,14 @@ export class BaseRenderer {
         continue;
       }
 
+      // Rows shorter than the font clip the text vertically (Excel never paints into the next row).
+      const short = fm.ascent + fm.descent > y1 - lw - y0;
       const quickFit = text.length * fm.maxCharW <= avail;
       const w = quickFit ? 0 : measurer.measure(st.font, text);
       if (quickFit || w <= avail) {
         if (!visible) continue;
-        this.drawText(ctx, st, text, align, availL, availR, baseline, w);
+        if (short) this.drawClipped(ctx, st, text, align, availL, availR, baseline, cx0, cx1 - lw, y0, y1 - lw);
+        else this.drawText(ctx, st, text, align, availL, availR, baseline, w);
         continue;
       }
       if (st.shrink) {
@@ -532,7 +535,7 @@ export class BaseRenderer {
       const textL = align === "right" ? availR : availL;
       const fitsSpan =
         align === "left" ? availL + w <= spanR - lw : align === "right" ? availR - w >= spanL : (cx0 + cx1 - lw) / 2 - w / 2 >= spanL && (cx0 + cx1 - lw) / 2 + w / 2 <= spanR - lw;
-      if (fitsSpan) this.drawText(ctx, st, text, align, textL, availR, baseline, w);
+      if (fitsSpan && !short) this.drawText(ctx, st, text, align, textL, availR, baseline, w);
       else this.drawClipped(ctx, st, text, align, availL, availR, baseline, spanL, spanR - lw, y0, y1 - lw);
     }
   }

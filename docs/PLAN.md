@@ -97,7 +97,8 @@ Reports: `docs/spikes/ironcalc-engine.md`, `docs/spikes/canvas-grid.md`.
 ## Phases
 0. **Spikes (parallel)**: A) IronCalc evaluation; B) canvas grid prototype; C) project scaffold from Doclight. Gate: user reviews numbers.
 1. **Foundations** (orchestrator): contracts (`WorkbookEngine`, `GridModel`, `Command`, `SelectionState`), command/undo system, test corpus.
-2. **Parallel build** (worktrees): WS1 Grid, WS2 Engine, WS3 Files, WS4 UI shell, WS5 QA/benchmarks, WS6 Charts.
+2. **Parallel build** (worktrees): WS1 Grid, WS2 Engine, WS3 Files, WS4 UI shell, WS5 QA/benchmarks, WS6 Charts, WS7 Editor.
+   Ownership and rules: `docs/ARCHITECTURE.md`.
 3. **Integration** (orchestrator) — MVP passes benchmarks.
 4. **Polish (parallel)**: clipboard, sort/filter, find/replace, advanced formatting, shortcuts.
 5. **Cross review**: code review agents, perf audit, user's real files.

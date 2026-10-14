@@ -1,43 +1,53 @@
-//! Engine-level benchmarks against the PLAN targets (docs/PLAN.md).
+//! Engine benchmarks against the PLAN performance targets (docs/PLAN.md),
+//! measured through the engine actor (the same path as the Tauri commands).
 //!
-//!     python tests/corpus/gen_corpus.py big          # once: writes tests/corpus/generated/
-//!     cd src-tauri && cargo bench --bench engine      # all
-//!     cd src-tauri && cargo bench --bench engine -- open_xlsx recalc_chain
+//!     cd src-tauri && cargo bench --bench engine                  # all, release profile (what ships)
+//!     cd src-tauri && cargo bench --bench engine -- open_csv recalc
+//!     cd src-tauri && cargo test --bench engine                   # smoke run, debug build
 //!
-//! `cargo bench` builds with the release profile (LTO), which is what ships.
-//! Results are printed as a markdown table and written to
-//! `tests/bench/results/engine-<unix time>.json` (git-ignored); copy the
-//! table into tests/bench/RESULTS.md.
+//! Environment:
+//! - `SHEETLIGHT_BENCH_SCALE=0.1` shrinks every generated file (quick runs; not comparable to targets).
+//! - `SHEETLIGHT_BENCH_RUNS=n` repetitions per timed step (default 3; median reported).
 //!
-//! Each benchmark reports the median of a few runs. Peak RSS is the process
-//! high-water mark, so run one benchmark per process when the RAM number
-//! matters (pass its name as the only argument).
+//! Big files are generated deterministically at bench time into the cargo
+//! target dir (`benches/support/data.rs`) and cached there; nothing is
+//! committed. Results are printed as a markdown table (also appended to
+//! `$GITHUB_STEP_SUMMARY` on CI) and written to
+//! `tests/bench/results/engine-<unix time>.json` (git-ignored). Copy the table
+//! into docs/qa/benchmarks.md with the machine line.
 //!
-//! Phase 3: once the actor and workbook backend exist (WS2), switch
-//! `open_xlsx` / `recalc_chain` from the raw IronCalc calls to the same path
-//! the app uses (actor `openDocument` + `apply`), keeping the raw numbers as
-//! a baseline row.
+//! Peak RSS is the process high-water mark, so it only grows: run one
+//! benchmark per process when the RAM number matters.
 
-use std::path::{Path, PathBuf};
-use std::sync::mpsc;
-use std::sync::{Arc, Mutex};
+#[allow(dead_code)]
+#[path = "../tests/common/actor.rs"]
+mod actor;
+#[path = "support/data.rs"]
+mod data;
+
+use std::path::PathBuf;
 use std::time::{Duration, Instant};
 
-use ironcalc::import::load_from_xlsx;
-use sheetlight_lib::engine::backend::EventSink;
-use sheetlight_lib::engine::types::{CsvOptions, EngineErrorCode, EngineEvent};
+use actor::Actor;
+use sheetlight_lib::engine::types::*;
 
 struct Row {
     name: &'static str,
     target: &'static str,
     target_ms: Option<f64>,
-    median_ms: Option<f64>,
+    median_ms: f64,
     detail: String,
     peak_mb: f64,
 }
 
-fn generated(name: &str) -> PathBuf {
-    Path::new(env!("CARGO_MANIFEST_DIR")).join("../tests/corpus/generated").join(name)
+impl Row {
+    fn verdict(&self) -> &'static str {
+        match self.target_ms {
+            Some(t) if self.median_ms <= t => "PASS",
+            Some(_) => "FAIL",
+            None => "info",
+        }
+    }
 }
 
 fn median(mut v: Vec<f64>) -> f64 {
@@ -45,9 +55,28 @@ fn median(mut v: Vec<f64>) -> f64 {
     v[v.len() / 2]
 }
 
-fn ms(t: Instant) -> f64 {
-    t.elapsed().as_secs_f64() * 1000.0
+fn ms(d: Duration) -> f64 {
+    d.as_secs_f64() * 1000.0
 }
+
+fn runs() -> usize {
+    std::env::var("SHEETLIGHT_BENCH_RUNS").ok().and_then(|v| v.parse().ok()).unwrap_or(3).max(1)
+}
+
+fn scaled(rows: usize) -> usize {
+    let scale: f64 = std::env::var("SHEETLIGHT_BENCH_SCALE").ok().and_then(|v| v.parse().ok()).unwrap_or(1.0);
+    ((rows as f64 * scale) as usize).max(1000)
+}
+
+fn out_path(name: &str) -> PathBuf {
+    let dir = data::data_dir().join("out");
+    std::fs::create_dir_all(&dir).unwrap();
+    dir.join(name)
+}
+
+// ---------------------------------------------------------------------------
+// Memory (process high-water mark)
+// ---------------------------------------------------------------------------
 
 #[cfg(windows)]
 mod mem {
@@ -96,196 +125,314 @@ mod mem {
 
 #[cfg(not(windows))]
 mod mem {
+    /// Peak resident set (`VmHWM`) in MB; 0 where /proc is not available.
     pub fn peak_mb() -> f64 {
-        0.0
+        std::fs::read_to_string("/proc/self/status")
+            .ok()
+            .and_then(|s| s.lines().find(|l| l.starts_with("VmHWM:")).and_then(|l| l.split_whitespace().nth(1)?.parse::<f64>().ok()))
+            .map(|kb| kb / 1024.0)
+            .unwrap_or(0.0)
     }
 }
 
-fn missing(name: &'static str, target: &'static str, file: &str) -> Row {
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
+
+fn open_timed(actor: &Actor, path: &std::path::Path) -> (DocumentInfo, Duration, Duration) {
+    let p = path.to_string_lossy().into_owned();
+    let t = Instant::now();
+    let info = actor.call(move |s| s.open_document(&p, None)).unwrap_or_else(|e| panic!("open {}: {e}", path.display()));
+    let first = t.elapsed();
+    let info = if info.loading { actor.wait_loaded(info.doc, Duration::from_secs(600)) } else { info };
+    (info, first, t.elapsed())
+}
+
+/// Fetches the blocks of a 50-row x 20-col viewport at `row` (2 x 2 blocks
+/// when it straddles block edges), as the grid does on a scroll jump.
+fn fetch_viewport(actor: &Actor, doc: DocumentId, sheet: SheetId, row: u32) -> (Duration, usize) {
+    let (br0, br1) = (row / BLOCK_ROWS, (row + 49) / BLOCK_ROWS);
+    let keys: Vec<BlockKey> = (br0..=br1).flat_map(|br| (0..=1).map(move |bc| BlockKey { br, bc })).collect();
+    let req = BlockRequest { sheet, keys, known_versions: None, priority: 0 };
+    let t = Instant::now();
+    let bytes = actor.call(move |s| s.fetch_blocks(doc, &req)).expect("fetchBlocks");
+    (t.elapsed(), bytes.len())
+}
+
+fn fetch_bench(name: &'static str, actor: &Actor, info: &DocumentInfo, rows: u32, what: &str) -> Row {
+    let mut rng = data::Rng::new(7);
+    let mut times = Vec::new();
+    let mut bytes = 0;
+    for i in 0..60 {
+        // Alternate far jumps (cold blocks) with the top of the sheet.
+        let row = if i % 2 == 0 { rng.below(rows.saturating_sub(60) as u64) as u32 } else { 0 };
+        let (t, b) = fetch_viewport(actor, info.doc, info.active_sheet, row);
+        times.push(ms(t));
+        bytes = bytes.max(b);
+    }
+    let p95 = {
+        let mut v = times.clone();
+        v.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        v[v.len() * 95 / 100]
+    };
     Row {
         name,
-        target,
-        target_ms: None,
-        median_ms: None,
-        detail: format!("skipped: {file} missing (python tests/corpus/gen_corpus.py big)"),
+        target: "< 16 ms (1 frame @ 60 fps)",
+        target_ms: Some(16.0),
+        median_ms: median(times),
+        detail: format!("{what}: 50x20 viewport (4 blocks) at random rows, p95 {p95:.1} ms, <= {} KB per call", bytes / 1024),
         peak_mb: mem::peak_mb(),
     }
 }
 
-/// PLAN: open a 10 MB .xlsx (~100k rows x 20 cols) in < 2 s.
-/// big_100k.xlsx is 15 MB with 100k formulas, so it is harder than the target.
-fn open_xlsx() -> Row {
-    let path = generated("big_100k.xlsx");
-    if !path.exists() {
-        return missing("open_xlsx", "< 2000 ms", "big_100k.xlsx");
+fn value(actor: &Actor, doc: DocumentId, sheet: SheetId, row: u32, col: u32) -> f64 {
+    match actor.cell(doc, sheet, row, col).value {
+        CellValue::Number { value } => value,
+        other => panic!("expected a number at ({row},{col}), got {other:?}"),
     }
-    let mut runs = Vec::new();
-    let mut eval = Vec::new();
-    for _ in 0..3 {
-        let t = Instant::now();
-        let mut model = load_from_xlsx(path.to_str().unwrap(), "en", "UTC", "en").expect("load big_100k");
-        let load = ms(t);
-        let t2 = Instant::now();
-        model.evaluate();
-        eval.push(ms(t2));
-        runs.push(load + eval.last().unwrap());
+}
+
+// ---------------------------------------------------------------------------
+// Benchmarks
+// ---------------------------------------------------------------------------
+
+/// PLAN: open a 1M-row CSV in < 5 s, browsable while loading. Also the
+/// Spanish dialect, block fetches on the loaded file and CSV save.
+fn csv_benches(filters: &[String]) -> Vec<Row> {
+    let rows = scaled(1_000_000);
+    let (en, es) = data::big_csv(rows);
+    let mut out = Vec::new();
+    let actor = Actor::start();
+    for (name, path) in [("open_csv", &en), ("open_csv_es", &es)] {
+        if !selected(name, filters) {
+            continue;
+        }
+        let mut first = Vec::new();
+        let mut done = Vec::new();
+        let mut opened = None;
+        for _ in 0..runs() {
+            let (info, f, d) = open_timed(&actor, path);
+            first.push(ms(f));
+            done.push(ms(d));
+            if let Some(prev) = opened.replace(info) {
+                actor.close(prev.doc);
+            }
+        }
+        let info = opened.unwrap();
+        let used = actor.sheet_info(info.doc, info.active_sheet).used_range.unwrap();
+        assert_eq!(used.r1 as usize, rows, "{name}: every row loaded");
+        let csv = info.csv.clone().unwrap_or_default();
+        out.push(Row {
+            name,
+            target: "< 5000 ms",
+            target_ms: Some(5000.0),
+            median_ms: median(done),
+            detail: format!(
+                "{} rows x 10, {} MB; browsable after {:.0} ms; detected {:?}/{:?}/{:?}",
+                rows + 1,
+                std::fs::metadata(path).unwrap().len() / 1_000_000,
+                median(first),
+                csv.delimiter.unwrap_or_default(),
+                csv.encoding.unwrap_or_default(),
+                csv.decimal.unwrap_or_default()
+            ),
+            peak_mb: mem::peak_mb(),
+        });
+        if name == "open_csv" {
+            if selected("fetch_blocks_csv", filters) {
+                out.push(fetch_bench("fetch_blocks_csv", &actor, &info, rows as u32, "big CSV store"));
+            }
+            if selected("save_csv", filters) {
+                let target = out_path("big_1M_saved.csv");
+                let mut times = Vec::new();
+                for _ in 0..runs() {
+                    let t = Instant::now();
+                    actor.save_as(info.doc, &target, SaveFormat::Csv);
+                    times.push(ms(t.elapsed()));
+                }
+                out.push(Row {
+                    name: "save_csv",
+                    target: "< 5000 ms (= open budget)",
+                    target_ms: Some(5000.0),
+                    median_ms: median(times),
+                    detail: format!("{rows}-row CSV store -> CSV, {} MB written", std::fs::metadata(&target).unwrap().len() / 1_000_000),
+                    peak_mb: mem::peak_mb(),
+                });
+            }
+        }
+        actor.close(info.doc);
     }
-    Row {
-        name: "open_xlsx",
-        target: "< 2000 ms",
-        target_ms: Some(2000.0),
-        median_ms: Some(median(runs)),
-        detail: format!("big_100k.xlsx raw IronCalc load + evaluate (evaluate {:.0} ms)", median(eval)),
-        peak_mb: mem::peak_mb(),
+    out
+}
+
+/// PLAN: open a 10 MB .xlsx (~100k rows x 20 cols) in < 2 s; also block
+/// fetches, one edit (full recalc on 2M cells) and save.
+fn xlsx_benches(filters: &[String]) -> Vec<Row> {
+    let rows = scaled(100_000);
+    let (path, t2) = data::big_xlsx(rows);
+    let size_mb = std::fs::metadata(&path).unwrap().len() as f64 / 1e6;
+    let actor = Actor::start();
+    let mut out = Vec::new();
+    let mut times = Vec::new();
+    let mut info = None;
+    for _ in 0..runs() {
+        let (i, _, d) = open_timed(&actor, &path);
+        times.push(ms(d));
+        if let Some(prev) = info.replace(i) {
+            actor.close(prev.doc);
+        }
     }
+    let info = info.unwrap();
+    let (doc, sheet) = (info.doc, info.active_sheet);
+    let got = value(&actor, doc, sheet, 1, 19);
+    assert!((got - t2).abs() < 1e-6, "T2 = {got}, expected {t2}");
+    if selected("open_xlsx", filters) {
+        out.push(Row {
+            name: "open_xlsx",
+            target: "< 2000 ms",
+            target_ms: Some(2000.0),
+            median_ms: median(times),
+            detail: format!("{} rows x 20 + {rows} formulas, {size_mb:.1} MB; inspect + IronCalc load + evaluate", rows + 1),
+            peak_mb: mem::peak_mb(),
+        });
+    }
+    if selected("fetch_blocks_xlsx", filters) {
+        out.push(fetch_bench("fetch_blocks_xlsx", &actor, &info, rows as u32, "big_100k workbook"));
+    }
+    if selected("edit_big", filters) {
+        let mut times = Vec::new();
+        let mut engine_ms = Vec::new();
+        for i in 0..runs() {
+            let t = Instant::now();
+            let r = actor.set(doc, sheet, 1, 6, &format!("{}", 10 + i));
+            times.push(ms(t.elapsed()));
+            engine_ms.push(r.elapsed_ms);
+        }
+        out.push(Row {
+            name: "edit_big",
+            target: "info (~150 ms)",
+            target_ms: None,
+            median_ms: median(times),
+            detail: format!("setCells G2 + full recalc of {} cells / {rows} formulas (engine {:.0} ms)", rows * 20, median(engine_ms)),
+            peak_mb: mem::peak_mb(),
+        });
+    }
+    if selected("save_xlsx", filters) {
+        let target = out_path("big_100k_saved.xlsx");
+        let mut times = Vec::new();
+        for _ in 0..runs() {
+            let t = Instant::now();
+            actor.save_as(doc, &target, SaveFormat::Xlsx);
+            times.push(ms(t.elapsed()));
+        }
+        out.push(Row {
+            name: "save_xlsx",
+            target: "< 2000 ms (= open budget)",
+            target_ms: Some(2000.0),
+            median_ms: median(times),
+            detail: format!("IronCalc export + post_process + atomic write, {:.1} MB", std::fs::metadata(&target).unwrap().len() as f64 / 1e6),
+            peak_mb: mem::peak_mb(),
+        });
+    }
+    out
 }
 
 /// PLAN: recalc 100k chained formulas in < 200 ms.
 fn recalc_chain() -> Row {
-    let path = generated("chain_100k.xlsx");
-    if !path.exists() {
-        return missing("recalc_chain", "< 200 ms", "chain_100k.xlsx");
-    }
-    let mut model = load_from_xlsx(path.to_str().unwrap(), "en", "UTC", "en").expect("load chain_100k");
-    model.evaluate();
-    let mut runs = Vec::new();
-    for i in 0..7 {
-        model.set_user_input(0, 1, 1, format!("{}", i + 2)).unwrap();
+    let rows = scaled(100_000);
+    let path = data::chain_xlsx(rows);
+    let actor = Actor::start();
+    let (info, _, _) = open_timed(&actor, &path);
+    let (doc, sheet) = (info.doc, info.active_sheet);
+    assert_eq!(value(&actor, doc, sheet, rows as u32 - 1, 0), rows as f64);
+    let mut times = Vec::new();
+    let mut engine_ms = Vec::new();
+    for i in 0..runs().max(5) {
         let t = Instant::now();
-        model.evaluate();
-        runs.push(ms(t));
+        let r = actor.set(doc, sheet, 0, 0, &format!("{}", i + 2));
+        times.push(ms(t.elapsed()));
+        engine_ms.push(r.elapsed_ms);
     }
-    let last = model.get_formatted_cell_value(0, 100_000, 1).unwrap_or_default();
+    let last = value(&actor, doc, sheet, rows as u32 - 1, 0);
+    assert_eq!(last, (rows + runs().max(5)) as f64, "chain end after the last edit");
     Row {
         name: "recalc_chain",
         target: "< 200 ms",
         target_ms: Some(200.0),
-        median_ms: Some(median(runs)),
-        detail: format!("edit A1 + full evaluate; A100000 = {last}"),
+        median_ms: median(times),
+        detail: format!("setCells A1 + full recalc of {rows} chained formulas (engine {:.0} ms)", median(engine_ms)),
         peak_mb: mem::peak_mb(),
     }
 }
 
-/// Informational: one edit on big_100k (IronCalc recalculates everything).
-fn edit_big() -> Row {
-    let path = generated("big_100k.xlsx");
-    if !path.exists() {
-        return missing("edit_big", "info (~150 ms)", "big_100k.xlsx");
-    }
-    let mut model = load_from_xlsx(path.to_str().unwrap(), "en", "UTC", "en").expect("load big_100k");
-    model.evaluate();
-    let mut runs = Vec::new();
-    for i in 0..5 {
-        model.set_user_input(0, 2, 7, format!("{}", 10 + i)).unwrap();
-        let t = Instant::now();
-        model.evaluate();
-        runs.push(ms(t));
-    }
-    Row {
-        name: "edit_big",
-        target: "info",
-        target_ms: None,
-        median_ms: Some(median(runs)),
-        detail: "set G2 + full evaluate on 2M cells / 100k formulas".into(),
-        peak_mb: mem::peak_mb(),
-    }
+fn selected(name: &str, filters: &[String]) -> bool {
+    filters.is_empty() || filters.iter().any(|f| name.contains(f.as_str()))
 }
 
-/// PLAN: open a 1M-row CSV in < 5 s, browsable while loading.
-fn open_csv() -> Row {
-    let path = generated("big_1M.csv");
-    if !path.exists() {
-        return missing("open_csv", "< 5000 ms", "big_1M.csv");
-    }
-    let (tx, rx) = mpsc::channel::<(Instant, EngineEvent)>();
-    let tx = Mutex::new(tx);
-    let sink: EventSink = Arc::new(move |e| {
-        let _ = tx.lock().unwrap().send((Instant::now(), e));
-    });
-    let t = Instant::now();
-    let opened = sheetlight_lib::csv_store::open(path.to_str().unwrap(), &CsvOptions::default(), 1, sink);
-    let detect_ms = ms(t);
-    let backend = match opened {
-        Ok((backend, _)) => backend,
-        Err(e) if e.code == EngineErrorCode::Unsupported => {
-            return Row {
-                name: "open_csv",
-                target: "< 5000 ms",
-                target_ms: None,
-                median_ms: None,
-                detail: format!("skipped: {} (WS3 csv_store not on this branch)", e.message),
-                peak_mb: mem::peak_mb(),
-            }
-        }
-        Err(e) => panic!("csv_store::open: {e}"),
+fn machine() -> String {
+    let cpu = if cfg!(windows) {
+        std::env::var("PROCESSOR_IDENTIFIER").unwrap_or_default()
+    } else {
+        std::fs::read_to_string("/proc/cpuinfo")
+            .ok()
+            .and_then(|s| s.lines().find(|l| l.starts_with("model name")).map(|l| l.split(':').nth(1).unwrap_or("").trim().to_string()))
+            .unwrap_or_default()
     };
-    let mut first_rows: Option<f64> = None;
-    let total = loop {
-        match rx.recv_timeout(Duration::from_secs(120)) {
-            Ok((at, EngineEvent::LoadProgress { rows_loaded, done, error, .. })) => {
-                assert!(error.is_none(), "load error {error:?}");
-                if rows_loaded > 0 && first_rows.is_none() {
-                    first_rows = Some(at.duration_since(t).as_secs_f64() * 1000.0);
-                }
-                if done {
-                    break at.duration_since(t).as_secs_f64() * 1000.0;
-                }
-            }
-            Ok(_) => {}
-            Err(_) => panic!("CSV load did not finish in 120 s"),
-        }
-    };
-    drop(backend);
-    Row {
-        name: "open_csv",
-        target: "< 5000 ms",
-        target_ms: Some(5000.0),
-        median_ms: Some(total),
-        detail: format!(
-            "big_1M.csv csv_store; detect {detect_ms:.0} ms, first rows {:.0} ms",
-            first_rows.unwrap_or(f64::NAN)
-        ),
-        peak_mb: mem::peak_mb(),
-    }
+    let cores = std::thread::available_parallelism().map(|n| n.get()).unwrap_or(0);
+    format!("{} {} · {cpu} · {cores} logical cores", std::env::consts::OS, std::env::consts::ARCH)
 }
 
 fn main() {
     // `cargo bench` passes `--bench`; everything else is a benchmark name filter.
     let filters: Vec<String> = std::env::args().skip(1).filter(|a| !a.starts_with("--")).collect();
-    type Bench = (&'static str, fn() -> Row);
-    let all: [Bench; 4] = [("open_xlsx", open_xlsx), ("recalc_chain", recalc_chain), ("edit_big", edit_big), ("open_csv", open_csv)];
     let mut rows = Vec::new();
-    for (name, f) in all {
-        if !filters.is_empty() && !filters.iter().any(|x| name.contains(x.as_str())) {
-            continue;
-        }
-        eprintln!("running {name}…");
-        rows.push(f());
+    let csv_names = ["open_csv", "open_csv_es", "fetch_blocks_csv", "save_csv"];
+    if csv_names.iter().any(|n| selected(n, &filters)) {
+        eprintln!("running CSV benchmarks…");
+        rows.extend(csv_benches(&filters));
+    }
+    let xlsx_names = ["open_xlsx", "fetch_blocks_xlsx", "edit_big", "save_xlsx"];
+    if xlsx_names.iter().any(|n| selected(n, &filters)) {
+        eprintln!("running xlsx benchmarks…");
+        rows.extend(xlsx_benches(&filters));
+    }
+    if selected("recalc_chain", &filters) {
+        eprintln!("running recalc_chain…");
+        rows.push(recalc_chain());
     }
 
-    println!("\n| Benchmark | Target | Median | Verdict | Peak RSS | Detail |");
-    println!("|---|---|---|---|---|---|");
+    let profile = if cfg!(debug_assertions) { "debug" } else { "release" };
+    let scale = std::env::var("SHEETLIGHT_BENCH_SCALE").unwrap_or_else(|_| "1".into());
+    let mut table = format!("Machine: {} · profile {profile} · scale {scale} · runs {}\n\n", machine(), runs());
+    table.push_str("| Benchmark | Target | Median | Verdict | Peak RSS | Detail |\n|---|---|---|---|---|---|\n");
     let mut json = Vec::new();
     for r in &rows {
-        let verdict = match (r.median_ms, r.target_ms) {
-            (Some(v), Some(t)) if v <= t => "PASS",
-            (Some(_), Some(_)) => "FAIL",
-            (Some(_), None) => "info",
-            _ => "skipped",
-        };
-        let median = r.median_ms.map(|v| format!("{v:.0} ms")).unwrap_or_else(|| "-".into());
-        println!("| {} | {} | {median} | {verdict} | {:.0} MB | {} |", r.name, r.target, r.peak_mb, r.detail);
+        table.push_str(&format!(
+            "| {} | {} | {:.0} ms | {} | {:.0} MB | {} |\n",
+            r.name,
+            r.target,
+            r.median_ms,
+            r.verdict(),
+            r.peak_mb,
+            r.detail
+        ));
         json.push(serde_json::json!({
-            "name": r.name, "target": r.target, "medianMs": r.median_ms, "verdict": verdict,
-            "peakMb": r.peak_mb, "detail": r.detail,
+            "name": r.name, "target": r.target, "targetMs": r.target_ms, "medianMs": r.median_ms,
+            "verdict": r.verdict(), "peakMb": r.peak_mb, "detail": r.detail,
         }));
     }
-    let out_dir = Path::new(env!("CARGO_MANIFEST_DIR")).join("../tests/bench/results");
+    println!("\n{table}");
+    if let Ok(summary) = std::env::var("GITHUB_STEP_SUMMARY") {
+        use std::io::Write;
+        if let Ok(mut f) = std::fs::OpenOptions::new().append(true).create(true).open(summary) {
+            let _ = writeln!(f, "## Engine benchmarks\n\n{table}");
+        }
+    }
+    let out_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../tests/bench/results");
     let _ = std::fs::create_dir_all(&out_dir);
     let stamp = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map(|d| d.as_secs()).unwrap_or(0);
     let file = out_dir.join(format!("engine-{stamp}.json"));
-    let profile = if cfg!(debug_assertions) { "debug" } else { "release" };
-    let doc = serde_json::json!({ "profile": profile, "results": json });
+    let doc = serde_json::json!({ "machine": machine(), "profile": profile, "scale": scale, "runs": runs(), "results": json });
     if std::fs::write(&file, serde_json::to_string_pretty(&doc).unwrap()).is_ok() {
         eprintln!("wrote {}", file.display());
     }

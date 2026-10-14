@@ -65,6 +65,27 @@ describe("chart integration seam", () => {
   });
 });
 
+describe("editor commits", () => {
+  it("update dirty/undo state but leave the selection to the editor", async () => {
+    const { controller, session, engine } = await controllerSetup();
+    const before = session.selection.get();
+    engine.nextResult = { selection: { sheet: session.activeSheet, ranges: [{ r0: 9, c0: 9, r1: 9, c1: 9 }], active: { row: 9, col: 9 } } };
+    await controller.manager.applyEdit(session, [{ type: "setCells", sheet: session.activeSheet, cells: [{ row: 0, col: 0, input: "1" }] }]);
+    expect(session.info.dirty).toBe(true);
+    expect(session.info.canUndo).toBe(true);
+    expect(session.selection.get()).toBe(before);
+  });
+
+  it("rethrow engine errors so the editor can reopen with the message", async () => {
+    const { controller, session, engine } = await controllerSetup();
+    engine.apply = async () => {
+      throw new Error("Fórmula no válida.");
+    };
+    await expect(controller.manager.applyEdit(session, [])).rejects.toThrow("Fórmula no válida.");
+    expect(controller.notices.get()).toEqual([]);
+  });
+});
+
 describe("pending cell edits", () => {
   it("commits the entry before a toolbar command runs", async () => {
     const { controller, session, engine } = await controllerSetup();

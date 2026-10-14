@@ -12,6 +12,7 @@
 //!   (`ene`, `enero`, `lun`, `Jan`, `Monday`…) → continue the list;
 //! - anything else (formulas, mixed) → repeats the source cyclically, shifting
 //!   relative references of formulas.
+//!
 //! Formats are copied from the source cells cyclically.
 
 use ironcalc_base::formatter::dates::{date_to_serial_number, from_excel_date};

@@ -36,12 +36,8 @@ use super::backend::{ApplyOutcome, DocumentBackend};
 use super::blocks::BlockCells;
 use super::types::*;
 
-pub use clipboard::{take_clip, Clip};
-pub use display::{format_number_es, parse_canonical, Parsed};
-pub use io::{
-    import_csv_small, import_workbook, load_xlsx, new_workbook, CsvImport, DEFAULT_TIMEZONE, MODEL_LANGUAGE,
-    MODEL_LOCALE,
-};
+pub use clipboard::copy_values;
+pub use io::{import_csv_small, import_workbook, load_xlsx, new_workbook, MODEL_LANGUAGE, MODEL_LOCALE};
 pub use functions::FUNCTION_NAMES;
 
 use history::History;
@@ -338,19 +334,6 @@ pub(crate) fn parse_a1(text: &str) -> Option<(u32, u32)> {
         return None;
     }
     Some((row - 1, col - 1))
-}
-
-/// 0 → "A".
-pub(crate) fn col_name(col: u32) -> String {
-    let mut n = col + 1;
-    let mut out = Vec::new();
-    while n > 0 {
-        let m = (n - 1) % 26;
-        out.push(b'A' + m as u8);
-        n = (n - 1) / 26;
-    }
-    out.reverse();
-    String::from_utf8(out).unwrap_or_default()
 }
 
 impl DocumentBackend for WorkbookBackend {

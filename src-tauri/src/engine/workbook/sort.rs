@@ -105,9 +105,9 @@ impl WorkbookBackend {
         // The in-place writer needs every cell of its rectangle.
         for row in lo..=hi {
             for col in c0..=c1 {
-                if !block.contains_key(&(ic_row(row), col)) {
+                if let std::collections::hash_map::Entry::Vacant(slot) = block.entry((ic_row(row), col)) {
                     if let Some(cell) = snapshot.get(&(ic_row(row), col)) {
-                        block.insert((ic_row(row), col), cell.clone());
+                        slot.insert(cell.clone());
                     }
                 }
             }

@@ -56,13 +56,6 @@ impl RawValue<'_> {
         }
     }
 
-    pub fn as_number(&self) -> Option<f64> {
-        match self {
-            RawValue::Number(n) => Some(*n),
-            _ => None,
-        }
-    }
-
     pub fn is_empty(&self) -> bool {
         matches!(self, RawValue::Empty)
     }

@@ -560,7 +560,7 @@ impl WorkbookBackend {
             // Excel refuses to push data off the sheet.
             if let Some(bounds) = used_bounds(self.worksheet(sheet)?) {
                 let last = if axis == Axis::Row { bounds.r1 } else { bounds.c1 } as u32;
-                if last >= index + 1 && last + count > limit {
+                if last > index && last + count > limit {
                     return Err(invalid("No se pueden insertar celdas porque se perderían datos al final de la hoja."));
                 }
             }

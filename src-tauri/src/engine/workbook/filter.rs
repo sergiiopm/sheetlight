@@ -210,7 +210,7 @@ impl WorkbookBackend {
 }
 
 /// Excel ascending order: numbers, text (case-insensitive), booleans, errors, blanks.
-#[derive(Debug, Clone, PartialEq, PartialOrd)]
+#[derive(Debug, Clone, PartialEq)]
 pub(crate) enum SortKey {
     Number(f64),
     Text(String),
@@ -221,9 +221,32 @@ pub(crate) enum SortKey {
 
 impl Eq for SortKey {}
 
+impl SortKey {
+    fn rank(&self) -> u8 {
+        match self {
+            SortKey::Number(_) => 0,
+            SortKey::Text(_) => 1,
+            SortKey::Bool(_) => 2,
+            SortKey::Error(_) => 3,
+            SortKey::Blank => 4,
+        }
+    }
+}
+
 impl Ord for SortKey {
     fn cmp(&self, other: &Self) -> std::cmp::Ordering {
-        self.partial_cmp(other).unwrap_or(std::cmp::Ordering::Equal)
+        match (self, other) {
+            (SortKey::Number(a), SortKey::Number(b)) => a.total_cmp(b),
+            (SortKey::Text(a), SortKey::Text(b)) | (SortKey::Error(a), SortKey::Error(b)) => a.cmp(b),
+            (SortKey::Bool(a), SortKey::Bool(b)) => a.cmp(b),
+            _ => self.rank().cmp(&other.rank()),
+        }
+    }
+}
+
+impl PartialOrd for SortKey {
+    fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
+        Some(self.cmp(other))
     }
 }
 

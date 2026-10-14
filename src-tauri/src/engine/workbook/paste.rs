@@ -55,6 +55,7 @@ impl WorkbookBackend {
     /// `source`) anchored at `anchor` on `target_sheet`. Relative references
     /// shift by `anchor - source origin`; `cut` moves instead (and updates
     /// references to the moved cells).
+    #[allow(clippy::too_many_arguments)]
     pub(crate) fn paste_cells(
         &mut self,
         b: &mut Batch,
@@ -456,9 +457,9 @@ impl WorkbookBackend {
             self.ic(b, |um| um.range_clear_all(&area(index, &range)))?;
         }
         let band = match (vertical, insert) {
-            (true, true) => (range.r0 <= last_row).then(|| CellRange { r0: range.r0, c0: range.c0, r1: last_row, c1: range.c1 }),
+            (true, true) => (range.r0 <= last_row).then_some(CellRange { r0: range.r0, c0: range.c0, r1: last_row, c1: range.c1 }),
             (true, false) => (range.r1 < last_row).then(|| CellRange { r0: range.r1 + 1, c0: range.c0, r1: last_row, c1: range.c1 }),
-            (false, true) => (range.c0 <= last_col).then(|| CellRange { r0: range.r0, c0: range.c0, r1: range.r1, c1: last_col }),
+            (false, true) => (range.c0 <= last_col).then_some(CellRange { r0: range.r0, c0: range.c0, r1: range.r1, c1: last_col }),
             (false, false) => (range.c1 < last_col).then(|| CellRange { r0: range.r0, c0: range.c1 + 1, r1: range.r1, c1: last_col }),
         };
         if let Some(band) = band {

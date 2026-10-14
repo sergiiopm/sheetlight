@@ -60,10 +60,6 @@ impl StyleTable {
     pub fn get(&self, id: StyleId) -> Option<&CellStyle> {
         self.styles.get(id as usize)
     }
-
-    pub fn len(&self) -> usize {
-        self.styles.len()
-    }
 }
 
 /// Full style of an IronCalc style index (`Styles::get_style` is crate-private).

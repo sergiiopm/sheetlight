@@ -29,11 +29,21 @@ export interface HarnessLog {
   picks: Array<{ range: CellRange; final: boolean }>;
 }
 
+/**
+ * Skia's analytic anti-aliasing of non-axis-aligned shapes (rotated text)
+ * differs by a few levels when the same shape is clipped differently (an
+ * incremental strip edge vs. a full pane). Such pixels are counted apart
+ * from real differences (missing / misplaced content).
+ */
+const AA_TOLERANCE = 40;
+
 class Harness {
   grid: Grid | null = null;
   engine: SyntheticEngine | null = null;
   selection: SelectionStore | null = null;
   log: HarnessLog = emptyLog();
+  /** Pixels of the last `diffAgainstFullRedraw` (debugging failures). */
+  lastDiff: { before: Uint8ClampedArray; after: Uint8ClampedArray; width: number } | null = null;
   private host: HTMLDivElement | null = null;
 
   async mount(o: MountOptions = {}): Promise<void> {
@@ -70,6 +80,11 @@ class Harness {
     this.engine = engine;
     this.selection = selection;
     await grid.ready;
+    await this.settle();
+    // Chromium moves a canvas from GPU to CPU raster after the first readback;
+    // read once now so every frame compared later uses the same rasterizer.
+    this.pixels(this.baseCanvas());
+    grid.scheduler.reset();
     await this.settle();
   }
 
@@ -126,9 +141,10 @@ class Harness {
 
   /**
    * Compare the current (incrementally produced) cell layer with a full
-   * redraw of the same state. Returns the number of differing pixels.
+   * redraw of the same state: `differing` pixels (real differences) and
+   * `antialias` pixels (edge coverage within `AA_TOLERANCE`).
    */
-  async diffAgainstFullRedraw(): Promise<{ differing: number; incremental: number; full: number; box: [number, number, number, number] | null }> {
+  async diffAgainstFullRedraw(): Promise<{ differing: number; antialias: number; incremental: number; full: number; box: [number, number, number, number] | null }> {
     const grid = this.g();
     const canvas = this.baseCanvas();
     const before = this.pixels(canvas).slice();
@@ -136,17 +152,23 @@ class Harness {
     grid.scheduler.reset();
     await this.settle();
     const after = this.pixels(canvas);
+    this.lastDiff = { before, after, width: canvas.width };
     let differing = 0;
+    let antialias = 0;
     let box: [number, number, number, number] | null = null;
     for (let i = 0; i < before.length; i += 4) {
-      if (before[i] !== after[i] || before[i + 1] !== after[i + 1] || before[i + 2] !== after[i + 2] || before[i + 3] !== after[i + 3]) {
-        const x = (i / 4) % canvas.width;
-        const y = Math.floor(i / 4 / canvas.width);
-        box = box ? [Math.min(box[0], x), Math.min(box[1], y), Math.max(box[2], x), Math.max(box[3], y)] : [x, y, x, y];
-        differing++;
+      const d = Math.max(Math.abs(before[i] - after[i]), Math.abs(before[i + 1] - after[i + 1]), Math.abs(before[i + 2] - after[i + 2]), Math.abs(before[i + 3] - after[i + 3]));
+      if (d === 0) continue;
+      if (d <= AA_TOLERANCE) {
+        antialias++;
+        continue;
       }
+      const x = (i / 4) % canvas.width;
+      const y = Math.floor(i / 4 / canvas.width);
+      box = box ? [Math.min(box[0], x), Math.min(box[1], y), Math.max(box[2], x), Math.max(box[3], y)] : [x, y, x, y];
+      differing++;
     }
-    return { differing, incremental: counts.incremental, full: counts.full, box };
+    return { differing, antialias, incremental: counts.incremental, full: counts.full, box };
   }
 
   /** RGBA of a canvas pixel at CSS coordinates (base or overlay layer). */

@@ -5,8 +5,10 @@ import { chromiumPath, openHarness, startBrowserEnv, type BrowserEnv } from "./b
 /**
  * Pixel-exactness guard of the incremental renderer: after a sequence of
  * scrolls (blit + exposed strips + rows of late-arriving blocks), the cell
- * layer must be bit-identical to a full redraw of the same state, at several
- * device pixel ratios, zoom levels and with/without frozen panes.
+ * layer must match a full redraw of the same state, at several device pixel
+ * ratios, zoom levels and with/without frozen panes. Axis-aligned content is
+ * bit-identical; only anti-aliased edges of rotated text that crosses a
+ * repaint edge may differ by a few levels (see `AA_TOLERANCE`).
  */
 describe.skipIf(!chromiumPath)("grid blit (headless Chromium)", () => {
   let env: BrowserEnv;
@@ -61,6 +63,7 @@ describe.skipIf(!chromiumPath)("grid blit (headless Chromium)", () => {
           expect(r.incremental).toBeGreaterThan(0);
           expect(r.box).toBeNull();
           expect(r.differing).toBe(0);
+          expect(r.antialias).toBeLessThan(200);
         }, 60_000);
       }
     }

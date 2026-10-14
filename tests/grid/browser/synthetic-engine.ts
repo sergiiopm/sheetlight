@@ -42,6 +42,10 @@ const STYLES: ReadonlyArray<CellStyle> = [
   { fontFamily: "Georgia", fontSize: 14, strike: true, vAlign: "middle" },
   { hAlign: "fill" },
   { fill: "#e0e7ff", hAlign: "center", vAlign: "middle", bold: true },
+  { rotation: 45 },
+  { rotation: 255, hAlign: "center" },
+  { shrinkToFit: true },
+  { rotation: -30, hAlign: "right", vAlign: "top", underline: true },
 ];
 
 const WORDS = ["Ventas", "Enero", "Total general", "Madrid", "Barcelona", "Producto", "Descripción larga que desborda", "x", "Año"];

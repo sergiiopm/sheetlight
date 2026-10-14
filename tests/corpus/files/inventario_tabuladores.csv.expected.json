@@ -1,0 +1,195 @@
+{
+ "file": "inventario_tabuladores.csv",
+ "kind": "csv",
+ "description": "Inventario separado por tabuladores (UTF-8 sin BOM, LF, punto decimal) con comas, `;` y comillas sueltas dentro de los campos para despistar la detección de separador.",
+ "sheets": [
+  "inventario_tabuladores"
+ ],
+ "activeSheet": "inventario_tabuladores",
+ "csv": {
+  "delimiter": "\t",
+  "encoding": "utf-8",
+  "decimal": "."
+ },
+ "bom": false,
+ "lineEnding": "lf",
+ "rows": 41,
+ "cols": 5,
+ "cells": {
+  "B1": {
+   "value": {
+    "type": "text",
+    "value": "Descripción"
+   },
+   "display": "Descripción"
+  },
+  "A2": {
+   "value": {
+    "type": "text",
+    "value": "SKU-20000"
+   },
+   "display": "SKU-20000"
+  },
+  "B2": {
+   "value": {
+    "type": "text",
+    "value": "Tornillo M6, cabeza hexagonal; zincado"
+   },
+   "display": "Tornillo M6, cabeza hexagonal; zincado"
+  },
+  "C2": {
+   "value": {
+    "type": "number",
+    "value": 365.0
+   },
+   "display": "365"
+  },
+  "D2": {
+   "value": {
+    "type": "number",
+    "value": 114.13
+   },
+   "display": "114,13"
+  },
+  "A3": {
+   "value": {
+    "type": "text",
+    "value": "SKU-20001"
+   },
+   "display": "SKU-20001"
+  },
+  "B3": {
+   "value": {
+    "type": "text",
+    "value": "Taladro percutor 750 W"
+   },
+   "display": "Taladro percutor 750 W"
+  },
+  "C3": {
+   "value": {
+    "type": "number",
+    "value": 356.0
+   },
+   "display": "356"
+  },
+  "D3": {
+   "value": {
+    "type": "number",
+    "value": 183.75
+   },
+   "display": "183,75"
+  },
+  "A4": {
+   "value": {
+    "type": "text",
+    "value": "SKU-20002"
+   },
+   "display": "SKU-20002"
+  },
+  "B4": {
+   "value": {
+    "type": "text",
+    "value": "Cinta aislante 19 mm x 20 m"
+   },
+   "display": "Cinta aislante 19 mm x 20 m"
+  },
+  "C4": {
+   "value": {
+    "type": "number",
+    "value": 352.0
+   },
+   "display": "352"
+  },
+  "D4": {
+   "value": {
+    "type": "number",
+    "value": 19.6
+   },
+   "display": "19,6"
+  },
+  "A5": {
+   "value": {
+    "type": "text",
+    "value": "SKU-20003"
+   },
+   "display": "SKU-20003"
+  },
+  "B5": {
+   "value": {
+    "type": "text",
+    "value": "Llave inglesa 10\""
+   },
+   "display": "Llave inglesa 10\""
+  },
+  "C5": {
+   "value": {
+    "type": "number",
+    "value": 378.0
+   },
+   "display": "378"
+  },
+  "D5": {
+   "value": {
+    "type": "number",
+    "value": 30.57
+   },
+   "display": "30,57"
+  },
+  "A6": {
+   "value": {
+    "type": "text",
+    "value": "SKU-20004"
+   },
+   "display": "SKU-20004"
+  },
+  "B6": {
+   "value": {
+    "type": "text",
+    "value": "Pintura plástica blanca, 15 L"
+   },
+   "display": "Pintura plástica blanca, 15 L"
+  },
+  "C6": {
+   "value": {
+    "type": "number",
+    "value": 236.0
+   },
+   "display": "236"
+  },
+  "D6": {
+   "value": {
+    "type": "number",
+    "value": 222.44
+   },
+   "display": "222,44"
+  },
+  "A7": {
+   "value": {
+    "type": "text",
+    "value": "SKU-20005"
+   },
+   "display": "SKU-20005"
+  },
+  "B7": {
+   "value": {
+    "type": "text",
+    "value": "Manguera 25 m; con racores"
+   },
+   "display": "Manguera 25 m; con racores"
+  },
+  "C7": {
+   "value": {
+    "type": "number",
+    "value": 60.0
+   },
+   "display": "60"
+  },
+  "D7": {
+   "value": {
+    "type": "number",
+    "value": 122.33
+   },
+   "display": "122,33"
+  }
+ }
+}

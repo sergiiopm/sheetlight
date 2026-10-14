@@ -1,0 +1,361 @@
+{
+ "file": "informe_ventas.xlsx",
+ "kind": "xlsx",
+ "description": "Informe con 3 gráficos (columnas agrupadas, líneas, circular), una imagen, 3 comentarios, 3 validaciones de datos (lista, número entero, fecha), hipervínculos interno y externo, nombres definidos, conjunto de iconos, INDEX/MATCH/MAX.",
+ "sheets": [
+  "Informe",
+  "Datos"
+ ],
+ "activeSheet": "Informe",
+ "definedNames": {
+  "Ventas": "Datos!$F$2:$F$13",
+  "Regiones": "Datos!$B$1:$E$1"
+ },
+ "features": {
+  "Informe": {
+   "merges": [
+    "C2:H2"
+   ],
+   "colWidths": 2,
+   "dataValidations": 3,
+   "comments": 3,
+   "hyperlinks": 2,
+   "images": 1,
+   "charts": 3
+  },
+  "Datos": {
+   "frozen": [
+    1,
+    1
+   ],
+   "colWidths": 8,
+   "conditionalFormats": 1
+  }
+ },
+ "fidelity": {
+  "charts": 3,
+  "images": 1,
+  "comments": 3,
+  "dataValidation": 3,
+  "conditionalFormatting": 1
+ },
+ "cells": {
+  "Datos!F2": {
+   "value": {
+    "type": "number",
+    "value": 44697.0
+   },
+   "display": "44.697 €",
+   "input": "=SUM(B2:E2)"
+  },
+  "Datos!H2": {
+   "value": {
+    "type": "number",
+    "value": 0.74495
+   },
+   "display": "74,5%",
+   "input": "=F2/G2"
+  },
+  "Datos!F3": {
+   "value": {
+    "type": "number",
+    "value": 31074.0
+   },
+   "display": "31.074 €",
+   "input": "=SUM(B3:E3)"
+  },
+  "Datos!H3": {
+   "value": {
+    "type": "number",
+    "value": 0.5179
+   },
+   "display": "51,8%",
+   "input": "=F3/G3"
+  },
+  "Datos!F4": {
+   "value": {
+    "type": "number",
+    "value": 57228.0
+   },
+   "display": "57.228 €",
+   "input": "=SUM(B4:E4)"
+  },
+  "Datos!H4": {
+   "value": {
+    "type": "number",
+    "value": 0.9538
+   },
+   "display": "95,4%",
+   "input": "=F4/G4"
+  },
+  "Datos!F5": {
+   "value": {
+    "type": "number",
+    "value": 53611.0
+   },
+   "display": "53.611 €",
+   "input": "=SUM(B5:E5)"
+  },
+  "Datos!H5": {
+   "value": {
+    "type": "number",
+    "value": 0.8935166666666666
+   },
+   "display": "89,4%",
+   "input": "=F5/G5"
+  },
+  "Datos!F6": {
+   "value": {
+    "type": "number",
+    "value": 54318.0
+   },
+   "display": "54.318 €",
+   "input": "=SUM(B6:E6)"
+  },
+  "Datos!H6": {
+   "value": {
+    "type": "number",
+    "value": 0.9053
+   },
+   "display": "90,5%",
+   "input": "=F6/G6"
+  },
+  "Datos!F7": {
+   "value": {
+    "type": "number",
+    "value": 53792.0
+   },
+   "display": "53.792 €",
+   "input": "=SUM(B7:E7)"
+  },
+  "Datos!H7": {
+   "value": {
+    "type": "number",
+    "value": 0.8965333333333333
+   },
+   "display": "89,7%",
+   "input": "=F7/G7"
+  },
+  "Datos!F8": {
+   "value": {
+    "type": "number",
+    "value": 70237.0
+   },
+   "display": "70.237 €",
+   "input": "=SUM(B8:E8)"
+  },
+  "Datos!H8": {
+   "value": {
+    "type": "number",
+    "value": 1.1706166666666666
+   },
+   "display": "117,1%",
+   "input": "=F8/G8"
+  },
+  "Datos!F9": {
+   "value": {
+    "type": "number",
+    "value": 59502.0
+   },
+   "display": "59.502 €",
+   "input": "=SUM(B9:E9)"
+  },
+  "Datos!H9": {
+   "value": {
+    "type": "number",
+    "value": 0.9917
+   },
+   "display": "99,2%",
+   "input": "=F9/G9"
+  },
+  "Datos!F10": {
+   "value": {
+    "type": "number",
+    "value": 50778.0
+   },
+   "display": "50.778 €",
+   "input": "=SUM(B10:E10)"
+  },
+  "Datos!H10": {
+   "value": {
+    "type": "number",
+    "value": 0.8463
+   },
+   "display": "84,6%",
+   "input": "=F10/G10"
+  },
+  "Datos!F11": {
+   "value": {
+    "type": "number",
+    "value": 55098.0
+   },
+   "display": "55.098 €",
+   "input": "=SUM(B11:E11)"
+  },
+  "Datos!H11": {
+   "value": {
+    "type": "number",
+    "value": 0.9183
+   },
+   "display": "91,8%",
+   "input": "=F11/G11"
+  },
+  "Datos!F12": {
+   "value": {
+    "type": "number",
+    "value": 67448.0
+   },
+   "display": "67.448 €",
+   "input": "=SUM(B12:E12)"
+  },
+  "Datos!H12": {
+   "value": {
+    "type": "number",
+    "value": 1.1241333333333334
+   },
+   "display": "112,4%",
+   "input": "=F12/G12"
+  },
+  "Datos!F13": {
+   "value": {
+    "type": "number",
+    "value": 75366.0
+   },
+   "display": "75.366 €",
+   "input": "=SUM(B13:E13)"
+  },
+  "Datos!H13": {
+   "value": {
+    "type": "number",
+    "value": 1.2561
+   },
+   "display": "125,6%",
+   "input": "=F13/G13"
+  },
+  "Datos!B14": {
+   "value": {
+    "type": "number",
+    "value": 157520.0
+   },
+   "display": "157.520 €",
+   "input": "=SUM(B2:B13)"
+  },
+  "Datos!C14": {
+   "value": {
+    "type": "number",
+    "value": 170007.0
+   },
+   "display": "170.007 €",
+   "input": "=SUM(C2:C13)"
+  },
+  "Datos!D14": {
+   "value": {
+    "type": "number",
+    "value": 184990.0
+   },
+   "display": "184.990 €",
+   "input": "=SUM(D2:D13)"
+  },
+  "Datos!E14": {
+   "value": {
+    "type": "number",
+    "value": 160632.0
+   },
+   "display": "160.632 €",
+   "input": "=SUM(E2:E13)"
+  },
+  "Datos!F14": {
+   "value": {
+    "type": "number",
+    "value": 673149.0
+   },
+   "display": "673.149 €",
+   "input": "=SUM(F2:F13)"
+  },
+  "Datos!G14": {
+   "value": {
+    "type": "number",
+    "value": 720000.0
+   },
+   "display": "720.000 €",
+   "input": "=SUM(G2:G13)"
+  },
+  "Datos!H14": {
+   "value": {
+    "type": "number",
+    "value": 0.9349291666666667
+   },
+   "display": "93,5%",
+   "input": "=F14/G14"
+  },
+  "Informe!B5": {
+   "value": {
+    "type": "number",
+    "value": 673149.0
+   },
+   "display": "673.149 €",
+   "input": "=Datos!F14"
+  },
+  "Informe!B6": {
+   "value": {
+    "type": "text",
+    "value": "Diciembre"
+   },
+   "display": "Diciembre",
+   "input": "=INDEX(Datos!A2:A13,MATCH(MAX(Datos!F2:F13),Datos!F2:F13,0))"
+  },
+  "Informe!B7": {
+   "value": {
+    "type": "number",
+    "value": 0.6861534331163166
+   },
+   "display": "68,6%",
+   "input": "=Datos!F13/Datos!F2-1"
+  },
+  "Informe!B8": {
+   "value": {
+    "type": "text",
+    "value": "Sur"
+   },
+   "display": "Sur"
+  },
+  "Informe!B9": {
+   "value": {
+    "type": "number",
+    "value": 170007.0
+   },
+   "display": "170.007 €",
+   "input": "=INDEX(Datos!B14:E14,MATCH(B8,Regiones,0))"
+  },
+  "Informe!B10": {
+   "value": {
+    "type": "number",
+    "value": 6.0
+   },
+   "display": "6"
+  },
+  "Informe!B11": {
+   "value": {
+    "type": "number",
+    "value": 53792.0
+   },
+   "display": "53.792 €",
+   "input": "=INDEX(Ventas,B10)"
+  },
+  "Informe!B12": {
+   "value": {
+    "type": "number",
+    "value": 46022.0
+   },
+   "display": "31/12/2025"
+  },
+  "Informe!B13": {
+   "value": {
+    "type": "number",
+    "value": 56095.75
+   },
+   "display": "56.096 €",
+   "input": "=AVERAGE(Ventas)"
+  }
+ }
+}

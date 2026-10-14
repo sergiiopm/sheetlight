@@ -1,0 +1,590 @@
+{
+ "file": "horario_calendario.xlsx",
+ "kind": "xlsx",
+ "description": "Horario semanal con celdas combinadas verticales y horizontales, colores, texto girado y horas hh:mm calculadas con TIME; registro de turnos con [h]:mm (> 24 h) y turno nocturno con MOD; calendario 2026 con DATE/WEEKDAY, formato condicional por fórmula, festivos, NETWORKDAYS, WORKDAY y SUMPRODUCT.",
+ "sheets": [
+  "Horario",
+  "Turnos",
+  "Calendario 2026"
+ ],
+ "activeSheet": "Horario",
+ "definedNames": {},
+ "features": {
+  "Horario": {
+   "frozen": [
+    2,
+    1
+   ],
+   "merges": [
+    "A1:G1",
+    "B3:B4",
+    "B5:B6",
+    "B8:B9",
+    "B10:B11",
+    "B12:B14",
+    "C3:C4",
+    "C5:C6",
+    "C8:C9",
+    "C10:C11",
+    "C12:C14",
+    "D3:D4",
+    "D5:D6",
+    "D8:D9",
+    "D10:D11",
+    "D12:D14",
+    "E3:E4",
+    "E5:E6",
+    "E8:E9",
+    "E10:E11",
+    "E12:E14",
+    "F3:F4",
+    "F5:F6",
+    "F8:F9",
+    "F10:F11",
+    "F12:F14",
+    "B7:F7",
+    "G3:G14"
+   ],
+   "colWidths": 7
+  },
+  "Turnos": {
+   "colWidths": 7
+  },
+  "Calendario 2026": {
+   "merges": [
+    "A1:H1",
+    "A3:G3",
+    "A13:G13"
+   ],
+   "colWidths": 10,
+   "conditionalFormats": 4
+  }
+ },
+ "fidelity": {
+  "conditionalFormatting": 4
+ },
+ "cells": {
+  "Horario!A3": {
+   "value": {
+    "type": "number",
+    "value": 0.3333333333333333
+   },
+   "display": "08:00",
+   "input": "=TIME(8,0,0)"
+  },
+  "Horario!A4": {
+   "value": {
+    "type": "number",
+    "value": 0.3541666666666667
+   },
+   "display": "08:30",
+   "input": "=A3+TIME(0,30,0)"
+  },
+  "Horario!A5": {
+   "value": {
+    "type": "number",
+    "value": 0.375
+   },
+   "display": "09:00",
+   "input": "=A4+TIME(0,30,0)"
+  },
+  "Horario!A6": {
+   "value": {
+    "type": "number",
+    "value": 0.3958333333333333
+   },
+   "display": "09:30",
+   "input": "=A5+TIME(0,30,0)"
+  },
+  "Horario!A7": {
+   "value": {
+    "type": "number",
+    "value": 0.4166666666666667
+   },
+   "display": "10:00",
+   "input": "=A6+TIME(0,30,0)"
+  },
+  "Horario!A8": {
+   "value": {
+    "type": "number",
+    "value": 0.4375
+   },
+   "display": "10:30",
+   "input": "=A7+TIME(0,30,0)"
+  },
+  "Horario!A9": {
+   "value": {
+    "type": "number",
+    "value": 0.4583333333333333
+   },
+   "display": "11:00",
+   "input": "=A8+TIME(0,30,0)"
+  },
+  "Horario!A10": {
+   "value": {
+    "type": "number",
+    "value": 0.4791666666666667
+   },
+   "display": "11:30",
+   "input": "=A9+TIME(0,30,0)"
+  },
+  "Horario!A11": {
+   "value": {
+    "type": "number",
+    "value": 0.5
+   },
+   "display": "12:00",
+   "input": "=A10+TIME(0,30,0)"
+  },
+  "Horario!A12": {
+   "value": {
+    "type": "number",
+    "value": 0.5208333333333334
+   },
+   "display": "12:30",
+   "input": "=A11+TIME(0,30,0)"
+  },
+  "Horario!A13": {
+   "value": {
+    "type": "number",
+    "value": 0.5416666666666666
+   },
+   "display": "13:00",
+   "input": "=A12+TIME(0,30,0)"
+  },
+  "Horario!A14": {
+   "value": {
+    "type": "number",
+    "value": 0.5625
+   },
+   "display": "13:30",
+   "input": "=A13+TIME(0,30,0)"
+  },
+  "Horario!B3": {
+   "value": {
+    "type": "text",
+    "value": "Matemáticas"
+   },
+   "display": "Matemáticas"
+  },
+  "Horario!B7": {
+   "value": {
+    "type": "text",
+    "value": "Recreo"
+   },
+   "display": "Recreo"
+  },
+  "Turnos!C2": {
+   "value": {
+    "type": "number",
+    "value": 0.3333333333333333
+   },
+   "display": "08:00"
+  },
+  "Turnos!D2": {
+   "value": {
+    "type": "number",
+    "value": 0.6875
+   },
+   "display": "16:30"
+  },
+  "Turnos!F2": {
+   "value": {
+    "type": "number",
+    "value": 0.3333333333333333
+   },
+   "display": "8:00",
+   "input": "=MOD(D2-C2,1)-E2/1440"
+  },
+  "Turnos!G2": {
+   "value": {
+    "type": "number",
+    "value": 8.0
+   },
+   "display": "8,00",
+   "input": "=ROUND(F2*24,2)"
+  },
+  "Turnos!F3": {
+   "value": {
+    "type": "number",
+    "value": 0.3541666666666667
+   },
+   "display": "8:30",
+   "input": "=MOD(D3-C3,1)-E3/1440"
+  },
+  "Turnos!G3": {
+   "value": {
+    "type": "number",
+    "value": 8.5
+   },
+   "display": "8,50",
+   "input": "=ROUND(F3*24,2)"
+  },
+  "Turnos!F4": {
+   "value": {
+    "type": "number",
+    "value": 0.3333333333333333
+   },
+   "display": "8:00",
+   "input": "=MOD(D4-C4,1)-E4/1440"
+  },
+  "Turnos!G4": {
+   "value": {
+    "type": "number",
+    "value": 8.0
+   },
+   "display": "8,00",
+   "input": "=ROUND(F4*24,2)"
+  },
+  "Turnos!F5": {
+   "value": {
+    "type": "number",
+    "value": 0.2916666666666667
+   },
+   "display": "7:00",
+   "input": "=MOD(D5-C5,1)-E5/1440"
+  },
+  "Turnos!G5": {
+   "value": {
+    "type": "number",
+    "value": 7.0
+   },
+   "display": "7,00",
+   "input": "=ROUND(F5*24,2)"
+  },
+  "Turnos!F6": {
+   "value": {
+    "type": "number",
+    "value": 0.25
+   },
+   "display": "6:00",
+   "input": "=MOD(D6-C6,1)-E6/1440"
+  },
+  "Turnos!G6": {
+   "value": {
+    "type": "number",
+    "value": 6.0
+   },
+   "display": "6,00",
+   "input": "=ROUND(F6*24,2)"
+  },
+  "Turnos!C7": {
+   "value": {
+    "type": "number",
+    "value": 0.9166666666666666
+   },
+   "display": "22:00"
+  },
+  "Turnos!D7": {
+   "value": {
+    "type": "number",
+    "value": 0.25
+   },
+   "display": "06:00"
+  },
+  "Turnos!F7": {
+   "value": {
+    "type": "number",
+    "value": 0.3125
+   },
+   "display": "7:30",
+   "input": "=MOD(D7-C7,1)-E7/1440"
+  },
+  "Turnos!G7": {
+   "value": {
+    "type": "number",
+    "value": 7.5
+   },
+   "display": "7,50",
+   "input": "=ROUND(F7*24,2)"
+  },
+  "Turnos!F8": {
+   "value": {
+    "type": "number",
+    "value": 0.3125
+   },
+   "display": "7:30",
+   "input": "=MOD(D8-C8,1)-E8/1440"
+  },
+  "Turnos!G8": {
+   "value": {
+    "type": "number",
+    "value": 7.5
+   },
+   "display": "7,50",
+   "input": "=ROUND(F8*24,2)"
+  },
+  "Turnos!F9": {
+   "value": {
+    "type": "number",
+    "value": 0.3333333333333333
+   },
+   "display": "8:00",
+   "input": "=MOD(D9-C9,1)-E9/1440"
+  },
+  "Turnos!G9": {
+   "value": {
+    "type": "number",
+    "value": 8.0
+   },
+   "display": "8,00",
+   "input": "=ROUND(F9*24,2)"
+  },
+  "Turnos!F10": {
+   "value": {
+    "type": "number",
+    "value": 0.3020833333333333
+   },
+   "display": "7:15",
+   "input": "=MOD(D10-C10,1)-E10/1440"
+  },
+  "Turnos!G10": {
+   "value": {
+    "type": "number",
+    "value": 7.25
+   },
+   "display": "7,25",
+   "input": "=ROUND(F10*24,2)"
+  },
+  "Turnos!F11": {
+   "value": {
+    "type": "number",
+    "value": 0.3125
+   },
+   "display": "7:30",
+   "input": "=MOD(D11-C11,1)-E11/1440"
+  },
+  "Turnos!G11": {
+   "value": {
+    "type": "number",
+    "value": 7.5
+   },
+   "display": "7,50",
+   "input": "=ROUND(F11*24,2)"
+  },
+  "Turnos!F13": {
+   "value": {
+    "type": "number",
+    "value": 3.1354166666666665
+   },
+   "display": "75:15",
+   "input": "=SUM(F2:F11)"
+  },
+  "Turnos!G13": {
+   "value": {
+    "type": "number",
+    "value": 75.25
+   },
+   "display": "75,25",
+   "input": "=ROUND(F13*24,2)"
+  },
+  "Turnos!F14": {
+   "value": {
+    "type": "number",
+    "value": 1.5625
+   },
+   "display": "37:30",
+   "input": "=SUMIF($A$2:$A$11,A14,$F$2:$F$11)"
+  },
+  "Turnos!F15": {
+   "value": {
+    "type": "number",
+    "value": 1.5729166666666665
+   },
+   "display": "37:45",
+   "input": "=SUMIF($A$2:$A$11,A15,$F$2:$F$11)"
+  },
+  "Calendario 2026!A3": {
+   "value": {
+    "type": "number",
+    "value": 46023.0
+   },
+   "display": "enero 2026",
+   "input": "=DATE(2026,1,1)"
+  },
+  "Calendario 2026!A5": {
+   "value": {
+    "type": "number",
+    "value": 46020.0
+   },
+   "display": "29",
+   "input": "=DATE(2026,1,1)-WEEKDAY(DATE(2026,1,1),2)+1"
+  },
+  "Calendario 2026!B5": {
+   "value": {
+    "type": "number",
+    "value": 46021.0
+   },
+   "display": "30",
+   "input": "=A5+1"
+  },
+  "Calendario 2026!C5": {
+   "value": {
+    "type": "number",
+    "value": 46022.0
+   },
+   "display": "31",
+   "input": "=B5+1"
+  },
+  "Calendario 2026!D5": {
+   "value": {
+    "type": "number",
+    "value": 46023.0
+   },
+   "display": "1",
+   "input": "=C5+1"
+  },
+  "Calendario 2026!E5": {
+   "value": {
+    "type": "number",
+    "value": 46024.0
+   },
+   "display": "2",
+   "input": "=D5+1"
+  },
+  "Calendario 2026!F5": {
+   "value": {
+    "type": "number",
+    "value": 46025.0
+   },
+   "display": "3",
+   "input": "=E5+1"
+  },
+  "Calendario 2026!G5": {
+   "value": {
+    "type": "number",
+    "value": 46026.0
+   },
+   "display": "4",
+   "input": "=F5+1"
+  },
+  "Calendario 2026!G10": {
+   "value": {
+    "type": "number",
+    "value": 46061.0
+   },
+   "display": "8",
+   "input": "=F10+1"
+  },
+  "Calendario 2026!A13": {
+   "value": {
+    "type": "number",
+    "value": 46054.0
+   },
+   "display": "febrero 2026",
+   "input": "=DATE(2026,2,1)"
+  },
+  "Calendario 2026!A15": {
+   "value": {
+    "type": "number",
+    "value": 46048.0
+   },
+   "display": "26",
+   "input": "=DATE(2026,2,1)-WEEKDAY(DATE(2026,2,1),2)+1"
+  },
+  "Calendario 2026!B15": {
+   "value": {
+    "type": "number",
+    "value": 46049.0
+   },
+   "display": "27",
+   "input": "=A15+1"
+  },
+  "Calendario 2026!C15": {
+   "value": {
+    "type": "number",
+    "value": 46050.0
+   },
+   "display": "28",
+   "input": "=B15+1"
+  },
+  "Calendario 2026!D15": {
+   "value": {
+    "type": "number",
+    "value": 46051.0
+   },
+   "display": "29",
+   "input": "=C15+1"
+  },
+  "Calendario 2026!E15": {
+   "value": {
+    "type": "number",
+    "value": 46052.0
+   },
+   "display": "30",
+   "input": "=D15+1"
+  },
+  "Calendario 2026!F15": {
+   "value": {
+    "type": "number",
+    "value": 46053.0
+   },
+   "display": "31",
+   "input": "=E15+1"
+  },
+  "Calendario 2026!G15": {
+   "value": {
+    "type": "number",
+    "value": 46054.0
+   },
+   "display": "1",
+   "input": "=F15+1"
+  },
+  "Calendario 2026!G20": {
+   "value": {
+    "type": "number",
+    "value": 46089.0
+   },
+   "display": "8",
+   "input": "=F20+1"
+  },
+  "Calendario 2026!K14": {
+   "value": {
+    "type": "number",
+    "value": 20.0
+   },
+   "display": "20",
+   "input": "=NETWORKDAYS(DATE(2026,1,1),DATE(2026,1,31),J3:J11)"
+  },
+  "Calendario 2026!K15": {
+   "value": {
+    "type": "number",
+    "value": 62.0
+   },
+   "display": "62",
+   "input": "=NETWORKDAYS(DATE(2026,1,1),DATE(2026,3,31),J3:J11)"
+  },
+  "Calendario 2026!K16": {
+   "value": {
+    "type": "number",
+    "value": 46065.0
+   },
+   "display": "12/02/2026",
+   "input": "=WORKDAY(DATE(2026,1,15),20,J3:J11)"
+  },
+  "Calendario 2026!K17": {
+   "value": {
+    "type": "number",
+    "value": 46307.0
+   },
+   "display": "lunes",
+   "input": "=DATE(2026,10,12)"
+  },
+  "Calendario 2026!K18": {
+   "value": {
+    "type": "number",
+    "value": 8.0
+   },
+   "display": "8",
+   "input": "=SUMPRODUCT((WEEKDAY(J3:J11,2)<6)*1)"
+  },
+  "Calendario 2026!K19": {
+   "value": {
+    "type": "number",
+    "value": 46065.0
+   },
+   "display": "12 de febrero de 2026",
+   "input": "=K16"
+  }
+ }
+}

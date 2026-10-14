@@ -1,0 +1,195 @@
+{
+ "file": "movimientos_banco_es.csv",
+ "kind": "csv",
+ "description": "Extracto bancario español: `;`, coma decimal, miles con punto en el saldo, UTF-8 con BOM, CRLF, fechas dd/mm/aaaa, comas dentro de campos sin comillas.",
+ "sheets": [
+  "movimientos_banco_es"
+ ],
+ "activeSheet": "movimientos_banco_es",
+ "csv": {
+  "delimiter": ";",
+  "encoding": "utf-8",
+  "decimal": ","
+ },
+ "bom": true,
+ "lineEnding": "crlf",
+ "rows": 61,
+ "cols": 6,
+ "cells": {
+  "A2": {
+   "value": {
+    "type": "number",
+    "value": 45663.0
+   },
+   "display": "06/01/2025"
+  },
+  "B2": {
+   "value": {
+    "type": "number",
+    "value": 45663.0
+   },
+   "display": "06/01/2025"
+  },
+  "C2": {
+   "value": {
+    "type": "text",
+    "value": "Cajero automático"
+   },
+   "display": "Cajero automático"
+  },
+  "D2": {
+   "value": {
+    "type": "number",
+    "value": -115.92
+   },
+   "display": "-115,92"
+  },
+  "E2": {
+   "value": {
+    "type": "number",
+    "value": 3134.08
+   },
+   "display": "3134,08"
+  },
+  "F2": {
+   "value": {
+    "type": "text",
+    "value": "EUR"
+   },
+   "display": "EUR"
+  },
+  "A3": {
+   "value": {
+    "type": "number",
+    "value": 45668.0
+   },
+   "display": "11/01/2025"
+  },
+  "B3": {
+   "value": {
+    "type": "number",
+    "value": 45668.0
+   },
+   "display": "11/01/2025"
+  },
+  "C3": {
+   "value": {
+    "type": "text",
+    "value": "Transferencia de José Muñoz"
+   },
+   "display": "Transferencia de José Muñoz"
+  },
+  "D3": {
+   "value": {
+    "type": "number",
+    "value": 829.9
+   },
+   "display": "829,9"
+  },
+  "E3": {
+   "value": {
+    "type": "number",
+    "value": 3963.98
+   },
+   "display": "3963,98"
+  },
+  "F3": {
+   "value": {
+    "type": "text",
+    "value": "EUR"
+   },
+   "display": "EUR"
+  },
+  "A4": {
+   "value": {
+    "type": "number",
+    "value": 45671.0
+   },
+   "display": "14/01/2025"
+  },
+  "B4": {
+   "value": {
+    "type": "number",
+    "value": 45671.0
+   },
+   "display": "14/01/2025"
+  },
+  "C4": {
+   "value": {
+    "type": "text",
+    "value": "Cajero automático"
+   },
+   "display": "Cajero automático"
+  },
+  "D4": {
+   "value": {
+    "type": "number",
+    "value": -25.2
+   },
+   "display": "-25,2"
+  },
+  "E4": {
+   "value": {
+    "type": "number",
+    "value": 3938.78
+   },
+   "display": "3938,78"
+  },
+  "F4": {
+   "value": {
+    "type": "text",
+    "value": "EUR"
+   },
+   "display": "EUR"
+  },
+  "A61": {
+   "value": {
+    "type": "number",
+    "value": 45808.0
+   },
+   "display": "31/05/2025"
+  },
+  "B61": {
+   "value": {
+    "type": "number",
+    "value": 45809.0
+   },
+   "display": "01/06/2025"
+  },
+  "C61": {
+   "value": {
+    "type": "text",
+    "value": "Recibo comunidad"
+   },
+   "display": "Recibo comunidad"
+  },
+  "D61": {
+   "value": {
+    "type": "number",
+    "value": -65.0
+   },
+   "display": "-65"
+  },
+  "E61": {
+   "value": {
+    "type": "number",
+    "value": 28203.95
+   },
+   "display": "28203,95"
+  },
+  "F61": {
+   "value": {
+    "type": "text",
+    "value": "EUR"
+   },
+   "display": "EUR"
+  },
+  "A1": {
+   "value": {
+    "type": "text",
+    "value": "Fecha operación"
+   },
+   "display": "Fecha operación"
+  }
+ }
+}

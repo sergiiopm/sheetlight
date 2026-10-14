@@ -1,0 +1,2542 @@
+{
+ "file": "cuenta_resultados.xlsx",
+ "kind": "xlsx",
+ "description": "Cuenta de pérdidas y ganancias de una pyme: diario contable, SUMIFS por trimestre, VLOOKUP, XLOOKUP, INDEX/MATCH, MAXIFS, AVERAGEIF, errores #N/A y #DIV/0!, préstamo con PMT y EOMONTH, VAN/TIR, fechas dd/mm/aaaa, nombres de hoja con acentos y espacios.",
+ "sheets": [
+  "PyG",
+  "Diario",
+  "Plan contable",
+  "Préstamo",
+  "Inversión"
+ ],
+ "activeSheet": "PyG",
+ "definedNames": {},
+ "features": {
+  "PyG": {
+   "frozen": [
+    4,
+    1
+   ],
+   "merges": [
+    "A1:G1"
+   ],
+   "colWidths": 7
+  },
+  "Diario": {
+   "frozen": [
+    1,
+    0
+   ],
+   "autoFilter": "A1:H373",
+   "colWidths": 8
+  },
+  "Plan contable": {
+   "colWidths": 3
+  },
+  "Préstamo": {
+   "frozen": [
+    11,
+    0
+   ],
+   "merges": [
+    "A1:F1"
+   ],
+   "colWidths": 6
+  },
+  "Inversión": {
+   "merges": [
+    "A1:C1"
+   ],
+   "colWidths": 2
+  }
+ },
+ "fidelity": {
+  "autoFilter": 1
+ },
+ "cells": {
+  "Diario!A2": {
+   "value": {
+    "type": "number",
+    "value": 45658.0
+   },
+   "display": "01/01/2025"
+  },
+  "Diario!E2": {
+   "value": {
+    "type": "number",
+    "value": 1543.29
+   },
+   "display": "1.543,29 €"
+  },
+  "Diario!F2": {
+   "value": {
+    "type": "text",
+    "value": "Aprovisionamientos"
+   },
+   "display": "Aprovisionamientos",
+   "input": "=VLOOKUP(C2,'Plan contable'!$A$2:$C$16,3,FALSE)"
+  },
+  "Diario!G2": {
+   "value": {
+    "type": "number",
+    "value": 1.0
+   },
+   "display": "1",
+   "input": "=MONTH(A2)"
+  },
+  "Diario!H2": {
+   "value": {
+    "type": "text",
+    "value": "T1"
+   },
+   "display": "T1",
+   "input": "=\"T\"&ROUNDUP(G2/3,0)"
+  },
+  "Diario!A3": {
+   "value": {
+    "type": "number",
+    "value": 45659.0
+   },
+   "display": "02/01/2025"
+  },
+  "Diario!E3": {
+   "value": {
+    "type": "number",
+    "value": 915.29
+   },
+   "display": "915,29 €"
+  },
+  "Diario!F3": {
+   "value": {
+    "type": "text",
+    "value": "Importe neto de la cifra de negocios"
+   },
+   "display": "Importe neto de la cifra de negocios",
+   "input": "=VLOOKUP(C3,'Plan contable'!$A$2:$C$16,3,FALSE)"
+  },
+  "Diario!G3": {
+   "value": {
+    "type": "number",
+    "value": 1.0
+   },
+   "display": "1",
+   "input": "=MONTH(A3)"
+  },
+  "Diario!H3": {
+   "value": {
+    "type": "text",
+    "value": "T1"
+   },
+   "display": "T1",
+   "input": "=\"T\"&ROUNDUP(G3/3,0)"
+  },
+  "Diario!A4": {
+   "value": {
+    "type": "number",
+    "value": 45659.0
+   },
+   "display": "02/01/2025"
+  },
+  "Diario!E4": {
+   "value": {
+    "type": "number",
+    "value": 1250.29
+   },
+   "display": "1.250,29 €"
+  },
+  "Diario!F4": {
+   "value": {
+    "type": "text",
+    "value": "Importe neto de la cifra de negocios"
+   },
+   "display": "Importe neto de la cifra de negocios",
+   "input": "=VLOOKUP(C4,'Plan contable'!$A$2:$C$16,3,FALSE)"
+  },
+  "Diario!G4": {
+   "value": {
+    "type": "number",
+    "value": 1.0
+   },
+   "display": "1",
+   "input": "=MONTH(A4)"
+  },
+  "Diario!H4": {
+   "value": {
+    "type": "text",
+    "value": "T1"
+   },
+   "display": "T1",
+   "input": "=\"T\"&ROUNDUP(G4/3,0)"
+  },
+  "PyG!B5": {
+   "value": {
+    "type": "number",
+    "value": 69007.29
+   },
+   "display": "69.007,29 €",
+   "input": "=SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A5,Diario!$H$2:$H$373,B$4)"
+  },
+  "PyG!C5": {
+   "value": {
+    "type": "number",
+    "value": 70028.64
+   },
+   "display": "70.028,64 €",
+   "input": "=SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A5,Diario!$H$2:$H$373,C$4)"
+  },
+  "PyG!D5": {
+   "value": {
+    "type": "number",
+    "value": 70882.74
+   },
+   "display": "70.882,74 €",
+   "input": "=SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A5,Diario!$H$2:$H$373,D$4)"
+  },
+  "PyG!E5": {
+   "value": {
+    "type": "number",
+    "value": 79187.5
+   },
+   "display": "79.187,50 €",
+   "input": "=SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A5,Diario!$H$2:$H$373,E$4)"
+  },
+  "PyG!B6": {
+   "value": {
+    "type": "number",
+    "value": -25677.54
+   },
+   "display": "-25.677,54 €",
+   "input": "=-SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A6,Diario!$H$2:$H$373,B$4)"
+  },
+  "PyG!C6": {
+   "value": {
+    "type": "number",
+    "value": -23370.13
+   },
+   "display": "-23.370,13 €",
+   "input": "=-SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A6,Diario!$H$2:$H$373,C$4)"
+  },
+  "PyG!D6": {
+   "value": {
+    "type": "number",
+    "value": -23596.22
+   },
+   "display": "-23.596,22 €",
+   "input": "=-SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A6,Diario!$H$2:$H$373,D$4)"
+  },
+  "PyG!E6": {
+   "value": {
+    "type": "number",
+    "value": -25526.13
+   },
+   "display": "-25.526,13 €",
+   "input": "=-SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A6,Diario!$H$2:$H$373,E$4)"
+  },
+  "PyG!B7": {
+   "value": {
+    "type": "number",
+    "value": -57450.0
+   },
+   "display": "-57.450,00 €",
+   "input": "=-SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A7,Diario!$H$2:$H$373,B$4)"
+  },
+  "PyG!C7": {
+   "value": {
+    "type": "number",
+    "value": -57450.0
+   },
+   "display": "-57.450,00 €",
+   "input": "=-SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A7,Diario!$H$2:$H$373,C$4)"
+  },
+  "PyG!D7": {
+   "value": {
+    "type": "number",
+    "value": -57450.0
+   },
+   "display": "-57.450,00 €",
+   "input": "=-SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A7,Diario!$H$2:$H$373,D$4)"
+  },
+  "PyG!E7": {
+   "value": {
+    "type": "number",
+    "value": -57450.0
+   },
+   "display": "-57.450,00 €",
+   "input": "=-SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A7,Diario!$H$2:$H$373,E$4)"
+  },
+  "PyG!B8": {
+   "value": {
+    "type": "number",
+    "value": -12883.14
+   },
+   "display": "-12.883,14 €",
+   "input": "=-SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A8,Diario!$H$2:$H$373,B$4)"
+  },
+  "PyG!C8": {
+   "value": {
+    "type": "number",
+    "value": -13073.98
+   },
+   "display": "-13.073,98 €",
+   "input": "=-SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A8,Diario!$H$2:$H$373,C$4)"
+  },
+  "PyG!D8": {
+   "value": {
+    "type": "number",
+    "value": -12181.14
+   },
+   "display": "-12.181,14 €",
+   "input": "=-SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A8,Diario!$H$2:$H$373,D$4)"
+  },
+  "PyG!E8": {
+   "value": {
+    "type": "number",
+    "value": -12310.0
+   },
+   "display": "-12.310,00 €",
+   "input": "=-SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A8,Diario!$H$2:$H$373,E$4)"
+  },
+  "PyG!B9": {
+   "value": {
+    "type": "number",
+    "value": -27003.390000000007
+   },
+   "display": "-27.003,39 €",
+   "input": "=SUM(B5:B8)"
+  },
+  "PyG!C9": {
+   "value": {
+    "type": "number",
+    "value": -23865.47
+   },
+   "display": "-23.865,47 €",
+   "input": "=SUM(C5:C8)"
+  },
+  "PyG!D9": {
+   "value": {
+    "type": "number",
+    "value": -22344.619999999995
+   },
+   "display": "-22.344,62 €",
+   "input": "=SUM(D5:D8)"
+  },
+  "PyG!E9": {
+   "value": {
+    "type": "number",
+    "value": -16098.630000000001
+   },
+   "display": "-16.098,63 €",
+   "input": "=SUM(E5:E8)"
+  },
+  "PyG!B10": {
+   "value": {
+    "type": "number",
+    "value": -3750.0
+   },
+   "display": "-3.750,00 €",
+   "input": "=-SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A10,Diario!$H$2:$H$373,B$4)"
+  },
+  "PyG!C10": {
+   "value": {
+    "type": "number",
+    "value": -3750.0
+   },
+   "display": "-3.750,00 €",
+   "input": "=-SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A10,Diario!$H$2:$H$373,C$4)"
+  },
+  "PyG!D10": {
+   "value": {
+    "type": "number",
+    "value": -3750.0
+   },
+   "display": "-3.750,00 €",
+   "input": "=-SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A10,Diario!$H$2:$H$373,D$4)"
+  },
+  "PyG!E10": {
+   "value": {
+    "type": "number",
+    "value": -3750.0
+   },
+   "display": "-3.750,00 €",
+   "input": "=-SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A10,Diario!$H$2:$H$373,E$4)"
+  },
+  "PyG!B11": {
+   "value": {
+    "type": "number",
+    "value": -30753.390000000007
+   },
+   "display": "-30.753,39 €",
+   "input": "=B9+B10"
+  },
+  "PyG!C11": {
+   "value": {
+    "type": "number",
+    "value": -27615.47
+   },
+   "display": "-27.615,47 €",
+   "input": "=C9+C10"
+  },
+  "PyG!D11": {
+   "value": {
+    "type": "number",
+    "value": -26094.619999999995
+   },
+   "display": "-26.094,62 €",
+   "input": "=D9+D10"
+  },
+  "PyG!E11": {
+   "value": {
+    "type": "number",
+    "value": -19848.63
+   },
+   "display": "-19.848,63 €",
+   "input": "=E9+E10"
+  },
+  "PyG!B12": {
+   "value": {
+    "type": "number",
+    "value": -1163.29
+   },
+   "display": "-1.163,29 €",
+   "input": "=-SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A12,Diario!$H$2:$H$373,B$4)"
+  },
+  "PyG!C12": {
+   "value": {
+    "type": "number",
+    "value": -1054.11
+   },
+   "display": "-1.054,11 €",
+   "input": "=-SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A12,Diario!$H$2:$H$373,C$4)"
+  },
+  "PyG!D12": {
+   "value": {
+    "type": "number",
+    "value": -1390.45
+   },
+   "display": "-1.390,45 €",
+   "input": "=-SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A12,Diario!$H$2:$H$373,D$4)"
+  },
+  "PyG!E12": {
+   "value": {
+    "type": "number",
+    "value": -1100.66
+   },
+   "display": "-1.100,66 €",
+   "input": "=-SUMIFS(Diario!$E$2:$E$373,Diario!$F$2:$F$373,$A12,Diario!$H$2:$H$373,E$4)"
+  },
+  "PyG!B13": {
+   "value": {
+    "type": "number",
+    "value": -31916.680000000008
+   },
+   "display": "-31.916,68 €",
+   "input": "=B11+B12"
+  },
+  "PyG!C13": {
+   "value": {
+    "type": "number",
+    "value": -28669.58
+   },
+   "display": "-28.669,58 €",
+   "input": "=C11+C12"
+  },
+  "PyG!D13": {
+   "value": {
+    "type": "number",
+    "value": -27485.069999999996
+   },
+   "display": "-27.485,07 €",
+   "input": "=D11+D12"
+  },
+  "PyG!E13": {
+   "value": {
+    "type": "number",
+    "value": -20949.29
+   },
+   "display": "-20.949,29 €",
+   "input": "=E11+E12"
+  },
+  "PyG!B14": {
+   "value": {
+    "type": "number",
+    "value": -0.0
+   },
+   "display": "0,00 €",
+   "input": "=-ROUND(MAX(0,B13)*25%,2)"
+  },
+  "PyG!C14": {
+   "value": {
+    "type": "number",
+    "value": -0.0
+   },
+   "display": "0,00 €",
+   "input": "=-ROUND(MAX(0,C13)*25%,2)"
+  },
+  "PyG!D14": {
+   "value": {
+    "type": "number",
+    "value": -0.0
+   },
+   "display": "0,00 €",
+   "input": "=-ROUND(MAX(0,D13)*25%,2)"
+  },
+  "PyG!E14": {
+   "value": {
+    "type": "number",
+    "value": -0.0
+   },
+   "display": "0,00 €",
+   "input": "=-ROUND(MAX(0,E13)*25%,2)"
+  },
+  "PyG!B15": {
+   "value": {
+    "type": "number",
+    "value": -31916.680000000008
+   },
+   "display": "-31.916,68 €",
+   "input": "=B13+B14"
+  },
+  "PyG!C15": {
+   "value": {
+    "type": "number",
+    "value": -28669.58
+   },
+   "display": "-28.669,58 €",
+   "input": "=C13+C14"
+  },
+  "PyG!D15": {
+   "value": {
+    "type": "number",
+    "value": -27485.069999999996
+   },
+   "display": "-27.485,07 €",
+   "input": "=D13+D14"
+  },
+  "PyG!E15": {
+   "value": {
+    "type": "number",
+    "value": -20949.29
+   },
+   "display": "-20.949,29 €",
+   "input": "=E13+E14"
+  },
+  "PyG!F5": {
+   "value": {
+    "type": "number",
+    "value": 289106.17
+   },
+   "display": "289.106,17 €",
+   "input": "=SUM(B5:E5)"
+  },
+  "PyG!G5": {
+   "value": {
+    "type": "number",
+    "value": 1.0
+   },
+   "display": "100,0%",
+   "input": "=IF($F$5=0,0,F5/$F$5)"
+  },
+  "PyG!F6": {
+   "value": {
+    "type": "number",
+    "value": -98170.02
+   },
+   "display": "-98.170,02 €",
+   "input": "=SUM(B6:E6)"
+  },
+  "PyG!G6": {
+   "value": {
+    "type": "number",
+    "value": -0.33956390484506094
+   },
+   "display": "-34,0%",
+   "input": "=IF($F$5=0,0,F6/$F$5)"
+  },
+  "PyG!F7": {
+   "value": {
+    "type": "number",
+    "value": -229800.0
+   },
+   "display": "-229.800,00 €",
+   "input": "=SUM(B7:E7)"
+  },
+  "PyG!G7": {
+   "value": {
+    "type": "number",
+    "value": -0.7948637000725374
+   },
+   "display": "-79,5%",
+   "input": "=IF($F$5=0,0,F7/$F$5)"
+  },
+  "PyG!F8": {
+   "value": {
+    "type": "number",
+    "value": -50448.259999999995
+   },
+   "display": "-50.448,26 €",
+   "input": "=SUM(B8:E8)"
+  },
+  "PyG!G8": {
+   "value": {
+    "type": "number",
+    "value": -0.17449734815414003
+   },
+   "display": "-17,4%",
+   "input": "=IF($F$5=0,0,F8/$F$5)"
+  },
+  "PyG!F9": {
+   "value": {
+    "type": "number",
+    "value": -89312.11
+   },
+   "display": "-89.312,11 €",
+   "input": "=SUM(B9:E9)"
+  },
+  "PyG!G9": {
+   "value": {
+    "type": "number",
+    "value": -0.30892495307173834
+   },
+   "display": "-30,9%",
+   "input": "=IF($F$5=0,0,F9/$F$5)"
+  },
+  "PyG!F10": {
+   "value": {
+    "type": "number",
+    "value": -15000.0
+   },
+   "display": "-15.000,00 €",
+   "input": "=SUM(B10:E10)"
+  },
+  "PyG!G10": {
+   "value": {
+    "type": "number",
+    "value": -0.051884053529538995
+   },
+   "display": "-5,2%",
+   "input": "=IF($F$5=0,0,F10/$F$5)"
+  },
+  "PyG!F11": {
+   "value": {
+    "type": "number",
+    "value": -104312.11
+   },
+   "display": "-104.312,11 €",
+   "input": "=SUM(B11:E11)"
+  },
+  "PyG!G11": {
+   "value": {
+    "type": "number",
+    "value": -0.36080900660127735
+   },
+   "display": "-36,1%",
+   "input": "=IF($F$5=0,0,F11/$F$5)"
+  },
+  "PyG!F12": {
+   "value": {
+    "type": "number",
+    "value": -4708.51
+   },
+   "display": "-4.708,51 €",
+   "input": "=SUM(B12:E12)"
+  },
+  "PyG!G12": {
+   "value": {
+    "type": "number",
+    "value": -0.016286438992291312
+   },
+   "display": "-1,6%",
+   "input": "=IF($F$5=0,0,F12/$F$5)"
+  },
+  "PyG!F13": {
+   "value": {
+    "type": "number",
+    "value": -109020.62000000001
+   },
+   "display": "-109.020,62 €",
+   "input": "=SUM(B13:E13)"
+  },
+  "PyG!G13": {
+   "value": {
+    "type": "number",
+    "value": -0.37709544559356867
+   },
+   "display": "-37,7%",
+   "input": "=IF($F$5=0,0,F13/$F$5)"
+  },
+  "PyG!F14": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUM(B14:E14)"
+  },
+  "PyG!G14": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,0%",
+   "input": "=IF($F$5=0,0,F14/$F$5)"
+  },
+  "PyG!F15": {
+   "value": {
+    "type": "number",
+    "value": -109020.62000000001
+   },
+   "display": "-109.020,62 €",
+   "input": "=SUM(B15:E15)"
+  },
+  "PyG!G15": {
+   "value": {
+    "type": "number",
+    "value": -0.37709544559356867
+   },
+   "display": "-37,7%",
+   "input": "=IF($F$5=0,0,F15/$F$5)"
+  },
+  "PyG!B19": {
+   "value": {
+    "type": "text",
+    "value": "Ventas de mercaderías"
+   },
+   "display": "Ventas de mercaderías",
+   "input": "=INDEX('Plan contable'!$B$2:$B$16,MATCH(A19,'Plan contable'!$A$2:$A$16,0))"
+  },
+  "PyG!C19": {
+   "value": {
+    "type": "text",
+    "value": "Importe neto de la cifra de negocios"
+   },
+   "display": "Importe neto de la cifra de negocios",
+   "input": "=XLOOKUP(A19,'Plan contable'!$A$2:$A$16,'Plan contable'!$C$2:$C$16,\"Sin grupo\")"
+  },
+  "PyG!D19": {
+   "value": {
+    "type": "number",
+    "value": 218140.53
+   },
+   "display": "218.140,53 €",
+   "input": "=SUMIF(Diario!$C$2:$C$373,A19,Diario!$E$2:$E$373)"
+  },
+  "PyG!E19": {
+   "value": {
+    "type": "number",
+    "value": 72.0
+   },
+   "display": "72",
+   "input": "=COUNTIF(Diario!$C$2:$C$373,A19)"
+  },
+  "PyG!F19": {
+   "value": {
+    "type": "number",
+    "value": 3029.7295833333333
+   },
+   "display": "3.029,73 €",
+   "input": "=IFERROR(AVERAGEIF(Diario!$C$2:$C$373,A19,Diario!$E$2:$E$373),0)"
+  },
+  "PyG!G19": {
+   "value": {
+    "type": "number",
+    "value": 4329.45
+   },
+   "display": "4.329,45 €",
+   "input": "=MAXIFS(Diario!$E$2:$E$373,Diario!$C$2:$C$373,A19)"
+  },
+  "PyG!B20": {
+   "value": {
+    "type": "text",
+    "value": "Prestaciones de servicios"
+   },
+   "display": "Prestaciones de servicios",
+   "input": "=INDEX('Plan contable'!$B$2:$B$16,MATCH(A20,'Plan contable'!$A$2:$A$16,0))"
+  },
+  "PyG!C20": {
+   "value": {
+    "type": "text",
+    "value": "Importe neto de la cifra de negocios"
+   },
+   "display": "Importe neto de la cifra de negocios",
+   "input": "=XLOOKUP(A20,'Plan contable'!$A$2:$A$16,'Plan contable'!$C$2:$C$16,\"Sin grupo\")"
+  },
+  "PyG!D20": {
+   "value": {
+    "type": "number",
+    "value": 70965.64
+   },
+   "display": "70.965,64 €",
+   "input": "=SUMIF(Diario!$C$2:$C$373,A20,Diario!$E$2:$E$373)"
+  },
+  "PyG!E20": {
+   "value": {
+    "type": "number",
+    "value": 60.0
+   },
+   "display": "60",
+   "input": "=COUNTIF(Diario!$C$2:$C$373,A20)"
+  },
+  "PyG!F20": {
+   "value": {
+    "type": "number",
+    "value": 1182.7606666666666
+   },
+   "display": "1.182,76 €",
+   "input": "=IFERROR(AVERAGEIF(Diario!$C$2:$C$373,A20,Diario!$E$2:$E$373),0)"
+  },
+  "PyG!G20": {
+   "value": {
+    "type": "number",
+    "value": 1757.27
+   },
+   "display": "1.757,27 €",
+   "input": "=MAXIFS(Diario!$E$2:$E$373,Diario!$C$2:$C$373,A20)"
+  },
+  "PyG!B21": {
+   "value": {
+    "type": "text",
+    "value": "Compras de mercaderías"
+   },
+   "display": "Compras de mercaderías",
+   "input": "=INDEX('Plan contable'!$B$2:$B$16,MATCH(A21,'Plan contable'!$A$2:$A$16,0))"
+  },
+  "PyG!C21": {
+   "value": {
+    "type": "text",
+    "value": "Aprovisionamientos"
+   },
+   "display": "Aprovisionamientos",
+   "input": "=XLOOKUP(A21,'Plan contable'!$A$2:$A$16,'Plan contable'!$C$2:$C$16,\"Sin grupo\")"
+  },
+  "PyG!D21": {
+   "value": {
+    "type": "number",
+    "value": 81102.85
+   },
+   "display": "81.102,85 €",
+   "input": "=SUMIF(Diario!$C$2:$C$373,A21,Diario!$E$2:$E$373)"
+  },
+  "PyG!E21": {
+   "value": {
+    "type": "number",
+    "value": 60.0
+   },
+   "display": "60",
+   "input": "=COUNTIF(Diario!$C$2:$C$373,A21)"
+  },
+  "PyG!F21": {
+   "value": {
+    "type": "number",
+    "value": 1351.7141666666669
+   },
+   "display": "1.351,71 €",
+   "input": "=IFERROR(AVERAGEIF(Diario!$C$2:$C$373,A21,Diario!$E$2:$E$373),0)"
+  },
+  "PyG!G21": {
+   "value": {
+    "type": "number",
+    "value": 2145.84
+   },
+   "display": "2.145,84 €",
+   "input": "=MAXIFS(Diario!$E$2:$E$373,Diario!$C$2:$C$373,A21)"
+  },
+  "PyG!B22": {
+   "value": {
+    "type": "text",
+    "value": "Trabajos realizados por otras empresas"
+   },
+   "display": "Trabajos realizados por otras empresas",
+   "input": "=INDEX('Plan contable'!$B$2:$B$16,MATCH(A22,'Plan contable'!$A$2:$A$16,0))"
+  },
+  "PyG!C22": {
+   "value": {
+    "type": "text",
+    "value": "Aprovisionamientos"
+   },
+   "display": "Aprovisionamientos",
+   "input": "=XLOOKUP(A22,'Plan contable'!$A$2:$A$16,'Plan contable'!$C$2:$C$16,\"Sin grupo\")"
+  },
+  "PyG!D22": {
+   "value": {
+    "type": "number",
+    "value": 17067.17
+   },
+   "display": "17.067,17 €",
+   "input": "=SUMIF(Diario!$C$2:$C$373,A22,Diario!$E$2:$E$373)"
+  },
+  "PyG!E22": {
+   "value": {
+    "type": "number",
+    "value": 24.0
+   },
+   "display": "24",
+   "input": "=COUNTIF(Diario!$C$2:$C$373,A22)"
+  },
+  "PyG!F22": {
+   "value": {
+    "type": "number",
+    "value": 711.1320833333334
+   },
+   "display": "711,13 €",
+   "input": "=IFERROR(AVERAGEIF(Diario!$C$2:$C$373,A22,Diario!$E$2:$E$373),0)"
+  },
+  "PyG!G22": {
+   "value": {
+    "type": "number",
+    "value": 1233.36
+   },
+   "display": "1.233,36 €",
+   "input": "=MAXIFS(Diario!$E$2:$E$373,Diario!$C$2:$C$373,A22)"
+  },
+  "PyG!B23": {
+   "value": {
+    "type": "text",
+    "value": "Sueldos y salarios"
+   },
+   "display": "Sueldos y salarios",
+   "input": "=INDEX('Plan contable'!$B$2:$B$16,MATCH(A23,'Plan contable'!$A$2:$A$16,0))"
+  },
+  "PyG!C23": {
+   "value": {
+    "type": "text",
+    "value": "Gastos de personal"
+   },
+   "display": "Gastos de personal",
+   "input": "=XLOOKUP(A23,'Plan contable'!$A$2:$A$16,'Plan contable'!$C$2:$C$16,\"Sin grupo\")"
+  },
+  "PyG!D23": {
+   "value": {
+    "type": "number",
+    "value": 174000.0
+   },
+   "display": "174.000,00 €",
+   "input": "=SUMIF(Diario!$C$2:$C$373,A23,Diario!$E$2:$E$373)"
+  },
+  "PyG!E23": {
+   "value": {
+    "type": "number",
+    "value": 12.0
+   },
+   "display": "12",
+   "input": "=COUNTIF(Diario!$C$2:$C$373,A23)"
+  },
+  "PyG!F23": {
+   "value": {
+    "type": "number",
+    "value": 14500.0
+   },
+   "display": "14.500,00 €",
+   "input": "=IFERROR(AVERAGEIF(Diario!$C$2:$C$373,A23,Diario!$E$2:$E$373),0)"
+  },
+  "PyG!G23": {
+   "value": {
+    "type": "number",
+    "value": 14500.0
+   },
+   "display": "14.500,00 €",
+   "input": "=MAXIFS(Diario!$E$2:$E$373,Diario!$C$2:$C$373,A23)"
+  },
+  "PyG!B24": {
+   "value": {
+    "type": "text",
+    "value": "Seguridad Social a cargo de la empresa"
+   },
+   "display": "Seguridad Social a cargo de la empresa",
+   "input": "=INDEX('Plan contable'!$B$2:$B$16,MATCH(A24,'Plan contable'!$A$2:$A$16,0))"
+  },
+  "PyG!C24": {
+   "value": {
+    "type": "text",
+    "value": "Gastos de personal"
+   },
+   "display": "Gastos de personal",
+   "input": "=XLOOKUP(A24,'Plan contable'!$A$2:$A$16,'Plan contable'!$C$2:$C$16,\"Sin grupo\")"
+  },
+  "PyG!D24": {
+   "value": {
+    "type": "number",
+    "value": 55800.0
+   },
+   "display": "55.800,00 €",
+   "input": "=SUMIF(Diario!$C$2:$C$373,A24,Diario!$E$2:$E$373)"
+  },
+  "PyG!E24": {
+   "value": {
+    "type": "number",
+    "value": 12.0
+   },
+   "display": "12",
+   "input": "=COUNTIF(Diario!$C$2:$C$373,A24)"
+  },
+  "PyG!F24": {
+   "value": {
+    "type": "number",
+    "value": 4650.0
+   },
+   "display": "4.650,00 €",
+   "input": "=IFERROR(AVERAGEIF(Diario!$C$2:$C$373,A24,Diario!$E$2:$E$373),0)"
+  },
+  "PyG!G24": {
+   "value": {
+    "type": "number",
+    "value": 4650.0
+   },
+   "display": "4.650,00 €",
+   "input": "=MAXIFS(Diario!$E$2:$E$373,Diario!$C$2:$C$373,A24)"
+  },
+  "PyG!B25": {
+   "value": {
+    "type": "text",
+    "value": "Arrendamientos y cánones"
+   },
+   "display": "Arrendamientos y cánones",
+   "input": "=INDEX('Plan contable'!$B$2:$B$16,MATCH(A25,'Plan contable'!$A$2:$A$16,0))"
+  },
+  "PyG!C25": {
+   "value": {
+    "type": "text",
+    "value": "Otros gastos de explotación"
+   },
+   "display": "Otros gastos de explotación",
+   "input": "=XLOOKUP(A25,'Plan contable'!$A$2:$A$16,'Plan contable'!$C$2:$C$16,\"Sin grupo\")"
+  },
+  "PyG!D25": {
+   "value": {
+    "type": "number",
+    "value": 21600.0
+   },
+   "display": "21.600,00 €",
+   "input": "=SUMIF(Diario!$C$2:$C$373,A25,Diario!$E$2:$E$373)"
+  },
+  "PyG!E25": {
+   "value": {
+    "type": "number",
+    "value": 12.0
+   },
+   "display": "12",
+   "input": "=COUNTIF(Diario!$C$2:$C$373,A25)"
+  },
+  "PyG!F25": {
+   "value": {
+    "type": "number",
+    "value": 1800.0
+   },
+   "display": "1.800,00 €",
+   "input": "=IFERROR(AVERAGEIF(Diario!$C$2:$C$373,A25,Diario!$E$2:$E$373),0)"
+  },
+  "PyG!G25": {
+   "value": {
+    "type": "number",
+    "value": 1800.0
+   },
+   "display": "1.800,00 €",
+   "input": "=MAXIFS(Diario!$E$2:$E$373,Diario!$C$2:$C$373,A25)"
+  },
+  "PyG!B26": {
+   "value": {
+    "type": "text",
+    "value": "Reparaciones y conservación"
+   },
+   "display": "Reparaciones y conservación",
+   "input": "=INDEX('Plan contable'!$B$2:$B$16,MATCH(A26,'Plan contable'!$A$2:$A$16,0))"
+  },
+  "PyG!C26": {
+   "value": {
+    "type": "text",
+    "value": "Otros gastos de explotación"
+   },
+   "display": "Otros gastos de explotación",
+   "input": "=XLOOKUP(A26,'Plan contable'!$A$2:$A$16,'Plan contable'!$C$2:$C$16,\"Sin grupo\")"
+  },
+  "PyG!D26": {
+   "value": {
+    "type": "number",
+    "value": 6710.53
+   },
+   "display": "6.710,53 €",
+   "input": "=SUMIF(Diario!$C$2:$C$373,A26,Diario!$E$2:$E$373)"
+  },
+  "PyG!E26": {
+   "value": {
+    "type": "number",
+    "value": 12.0
+   },
+   "display": "12",
+   "input": "=COUNTIF(Diario!$C$2:$C$373,A26)"
+  },
+  "PyG!F26": {
+   "value": {
+    "type": "number",
+    "value": 559.2108333333333
+   },
+   "display": "559,21 €",
+   "input": "=IFERROR(AVERAGEIF(Diario!$C$2:$C$373,A26,Diario!$E$2:$E$373),0)"
+  },
+  "PyG!G26": {
+   "value": {
+    "type": "number",
+    "value": 876.05
+   },
+   "display": "876,05 €",
+   "input": "=MAXIFS(Diario!$E$2:$E$373,Diario!$C$2:$C$373,A26)"
+  },
+  "PyG!B27": {
+   "value": {
+    "type": "text",
+    "value": "Servicios de profesionales independientes"
+   },
+   "display": "Servicios de profesionales independientes",
+   "input": "=INDEX('Plan contable'!$B$2:$B$16,MATCH(A27,'Plan contable'!$A$2:$A$16,0))"
+  },
+  "PyG!C27": {
+   "value": {
+    "type": "text",
+    "value": "Otros gastos de explotación"
+   },
+   "display": "Otros gastos de explotación",
+   "input": "=XLOOKUP(A27,'Plan contable'!$A$2:$A$16,'Plan contable'!$C$2:$C$16,\"Sin grupo\")"
+  },
+  "PyG!D27": {
+   "value": {
+    "type": "number",
+    "value": 4750.7
+   },
+   "display": "4.750,70 €",
+   "input": "=SUMIF(Diario!$C$2:$C$373,A27,Diario!$E$2:$E$373)"
+  },
+  "PyG!E27": {
+   "value": {
+    "type": "number",
+    "value": 12.0
+   },
+   "display": "12",
+   "input": "=COUNTIF(Diario!$C$2:$C$373,A27)"
+  },
+  "PyG!F27": {
+   "value": {
+    "type": "number",
+    "value": 395.89166666666665
+   },
+   "display": "395,89 €",
+   "input": "=IFERROR(AVERAGEIF(Diario!$C$2:$C$373,A27,Diario!$E$2:$E$373),0)"
+  },
+  "PyG!G27": {
+   "value": {
+    "type": "number",
+    "value": 538.83
+   },
+   "display": "538,83 €",
+   "input": "=MAXIFS(Diario!$E$2:$E$373,Diario!$C$2:$C$373,A27)"
+  },
+  "PyG!B28": {
+   "value": {
+    "type": "text",
+    "value": "Primas de seguros"
+   },
+   "display": "Primas de seguros",
+   "input": "=INDEX('Plan contable'!$B$2:$B$16,MATCH(A28,'Plan contable'!$A$2:$A$16,0))"
+  },
+  "PyG!C28": {
+   "value": {
+    "type": "text",
+    "value": "Otros gastos de explotación"
+   },
+   "display": "Otros gastos de explotación",
+   "input": "=XLOOKUP(A28,'Plan contable'!$A$2:$A$16,'Plan contable'!$C$2:$C$16,\"Sin grupo\")"
+  },
+  "PyG!D28": {
+   "value": {
+    "type": "number",
+    "value": 2160.0
+   },
+   "display": "2.160,00 €",
+   "input": "=SUMIF(Diario!$C$2:$C$373,A28,Diario!$E$2:$E$373)"
+  },
+  "PyG!E28": {
+   "value": {
+    "type": "number",
+    "value": 12.0
+   },
+   "display": "12",
+   "input": "=COUNTIF(Diario!$C$2:$C$373,A28)"
+  },
+  "PyG!F28": {
+   "value": {
+    "type": "number",
+    "value": 180.0
+   },
+   "display": "180,00 €",
+   "input": "=IFERROR(AVERAGEIF(Diario!$C$2:$C$373,A28,Diario!$E$2:$E$373),0)"
+  },
+  "PyG!G28": {
+   "value": {
+    "type": "number",
+    "value": 180.0
+   },
+   "display": "180,00 €",
+   "input": "=MAXIFS(Diario!$E$2:$E$373,Diario!$C$2:$C$373,A28)"
+  },
+  "PyG!B29": {
+   "value": {
+    "type": "text",
+    "value": "Publicidad, propaganda y relaciones públicas"
+   },
+   "display": "Publicidad, propaganda y relaciones públicas",
+   "input": "=INDEX('Plan contable'!$B$2:$B$16,MATCH(A29,'Plan contable'!$A$2:$A$16,0))"
+  },
+  "PyG!C29": {
+   "value": {
+    "type": "text",
+    "value": "Otros gastos de explotación"
+   },
+   "display": "Otros gastos de explotación",
+   "input": "=XLOOKUP(A29,'Plan contable'!$A$2:$A$16,'Plan contable'!$C$2:$C$16,\"Sin grupo\")"
+  },
+  "PyG!D29": {
+   "value": {
+    "type": "number",
+    "value": 6227.16
+   },
+   "display": "6.227,16 €",
+   "input": "=SUMIF(Diario!$C$2:$C$373,A29,Diario!$E$2:$E$373)"
+  },
+  "PyG!E29": {
+   "value": {
+    "type": "number",
+    "value": 12.0
+   },
+   "display": "12",
+   "input": "=COUNTIF(Diario!$C$2:$C$373,A29)"
+  },
+  "PyG!F29": {
+   "value": {
+    "type": "number",
+    "value": 518.93
+   },
+   "display": "518,93 €",
+   "input": "=IFERROR(AVERAGEIF(Diario!$C$2:$C$373,A29,Diario!$E$2:$E$373),0)"
+  },
+  "PyG!G29": {
+   "value": {
+    "type": "number",
+    "value": 1154.96
+   },
+   "display": "1.154,96 €",
+   "input": "=MAXIFS(Diario!$E$2:$E$373,Diario!$C$2:$C$373,A29)"
+  },
+  "PyG!B30": {
+   "value": {
+    "type": "text",
+    "value": "Suministros"
+   },
+   "display": "Suministros",
+   "input": "=INDEX('Plan contable'!$B$2:$B$16,MATCH(A30,'Plan contable'!$A$2:$A$16,0))"
+  },
+  "PyG!C30": {
+   "value": {
+    "type": "text",
+    "value": "Otros gastos de explotación"
+   },
+   "display": "Otros gastos de explotación",
+   "input": "=XLOOKUP(A30,'Plan contable'!$A$2:$A$16,'Plan contable'!$C$2:$C$16,\"Sin grupo\")"
+  },
+  "PyG!D30": {
+   "value": {
+    "type": "number",
+    "value": 6597.15
+   },
+   "display": "6.597,15 €",
+   "input": "=SUMIF(Diario!$C$2:$C$373,A30,Diario!$E$2:$E$373)"
+  },
+  "PyG!E30": {
+   "value": {
+    "type": "number",
+    "value": 24.0
+   },
+   "display": "24",
+   "input": "=COUNTIF(Diario!$C$2:$C$373,A30)"
+  },
+  "PyG!F30": {
+   "value": {
+    "type": "number",
+    "value": 274.88124999999997
+   },
+   "display": "274,88 €",
+   "input": "=IFERROR(AVERAGEIF(Diario!$C$2:$C$373,A30,Diario!$E$2:$E$373),0)"
+  },
+  "PyG!G30": {
+   "value": {
+    "type": "number",
+    "value": 379.75
+   },
+   "display": "379,75 €",
+   "input": "=MAXIFS(Diario!$E$2:$E$373,Diario!$C$2:$C$373,A30)"
+  },
+  "PyG!B31": {
+   "value": {
+    "type": "text",
+    "value": "Otros servicios"
+   },
+   "display": "Otros servicios",
+   "input": "=INDEX('Plan contable'!$B$2:$B$16,MATCH(A31,'Plan contable'!$A$2:$A$16,0))"
+  },
+  "PyG!C31": {
+   "value": {
+    "type": "text",
+    "value": "Otros gastos de explotación"
+   },
+   "display": "Otros gastos de explotación",
+   "input": "=XLOOKUP(A31,'Plan contable'!$A$2:$A$16,'Plan contable'!$C$2:$C$16,\"Sin grupo\")"
+  },
+  "PyG!D31": {
+   "value": {
+    "type": "number",
+    "value": 2402.72
+   },
+   "display": "2.402,72 €",
+   "input": "=SUMIF(Diario!$C$2:$C$373,A31,Diario!$E$2:$E$373)"
+  },
+  "PyG!E31": {
+   "value": {
+    "type": "number",
+    "value": 24.0
+   },
+   "display": "24",
+   "input": "=COUNTIF(Diario!$C$2:$C$373,A31)"
+  },
+  "PyG!F31": {
+   "value": {
+    "type": "number",
+    "value": 100.11333333333334
+   },
+   "display": "100,11 €",
+   "input": "=IFERROR(AVERAGEIF(Diario!$C$2:$C$373,A31,Diario!$E$2:$E$373),0)"
+  },
+  "PyG!G31": {
+   "value": {
+    "type": "number",
+    "value": 198.79
+   },
+   "display": "198,79 €",
+   "input": "=MAXIFS(Diario!$E$2:$E$373,Diario!$C$2:$C$373,A31)"
+  },
+  "PyG!B32": {
+   "value": {
+    "type": "text",
+    "value": "Amortización del inmovilizado material"
+   },
+   "display": "Amortización del inmovilizado material",
+   "input": "=INDEX('Plan contable'!$B$2:$B$16,MATCH(A32,'Plan contable'!$A$2:$A$16,0))"
+  },
+  "PyG!C32": {
+   "value": {
+    "type": "text",
+    "value": "Amortización del inmovilizado"
+   },
+   "display": "Amortización del inmovilizado",
+   "input": "=XLOOKUP(A32,'Plan contable'!$A$2:$A$16,'Plan contable'!$C$2:$C$16,\"Sin grupo\")"
+  },
+  "PyG!D32": {
+   "value": {
+    "type": "number",
+    "value": 15000.0
+   },
+   "display": "15.000,00 €",
+   "input": "=SUMIF(Diario!$C$2:$C$373,A32,Diario!$E$2:$E$373)"
+  },
+  "PyG!E32": {
+   "value": {
+    "type": "number",
+    "value": 12.0
+   },
+   "display": "12",
+   "input": "=COUNTIF(Diario!$C$2:$C$373,A32)"
+  },
+  "PyG!F32": {
+   "value": {
+    "type": "number",
+    "value": 1250.0
+   },
+   "display": "1.250,00 €",
+   "input": "=IFERROR(AVERAGEIF(Diario!$C$2:$C$373,A32,Diario!$E$2:$E$373),0)"
+  },
+  "PyG!G32": {
+   "value": {
+    "type": "number",
+    "value": 1250.0
+   },
+   "display": "1.250,00 €",
+   "input": "=MAXIFS(Diario!$E$2:$E$373,Diario!$C$2:$C$373,A32)"
+  },
+  "PyG!B33": {
+   "value": {
+    "type": "text",
+    "value": "Intereses de deudas"
+   },
+   "display": "Intereses de deudas",
+   "input": "=INDEX('Plan contable'!$B$2:$B$16,MATCH(A33,'Plan contable'!$A$2:$A$16,0))"
+  },
+  "PyG!C33": {
+   "value": {
+    "type": "text",
+    "value": "Gastos financieros"
+   },
+   "display": "Gastos financieros",
+   "input": "=XLOOKUP(A33,'Plan contable'!$A$2:$A$16,'Plan contable'!$C$2:$C$16,\"Sin grupo\")"
+  },
+  "PyG!D33": {
+   "value": {
+    "type": "number",
+    "value": 4708.51
+   },
+   "display": "4.708,51 €",
+   "input": "=SUMIF(Diario!$C$2:$C$373,A33,Diario!$E$2:$E$373)"
+  },
+  "PyG!E33": {
+   "value": {
+    "type": "number",
+    "value": 12.0
+   },
+   "display": "12",
+   "input": "=COUNTIF(Diario!$C$2:$C$373,A33)"
+  },
+  "PyG!F33": {
+   "value": {
+    "type": "number",
+    "value": 392.37583333333333
+   },
+   "display": "392,38 €",
+   "input": "=IFERROR(AVERAGEIF(Diario!$C$2:$C$373,A33,Diario!$E$2:$E$373),0)"
+  },
+  "PyG!G33": {
+   "value": {
+    "type": "number",
+    "value": 524.67
+   },
+   "display": "524,67 €",
+   "input": "=MAXIFS(Diario!$E$2:$E$373,Diario!$C$2:$C$373,A33)"
+  },
+  "PyG!B34": {
+   "value": {
+    "type": "text",
+    "value": "No existe"
+   },
+   "display": "No existe",
+   "input": "=IFERROR(INDEX('Plan contable'!$B$2:$B$16,MATCH(A34,'Plan contable'!$A$2:$A$16,0)),\"No existe\")"
+  },
+  "PyG!C34": {
+   "value": {
+    "type": "text",
+    "value": "Sin grupo"
+   },
+   "display": "Sin grupo",
+   "input": "=XLOOKUP(A34,'Plan contable'!$A$2:$A$16,'Plan contable'!$C$2:$C$16,\"Sin grupo\")"
+  },
+  "PyG!D34": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIF(Diario!$C$2:$C$373,A34,Diario!$E$2:$E$373)"
+  },
+  "PyG!E34": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0",
+   "input": "=COUNTIF(Diario!$C$2:$C$373,A34)"
+  },
+  "PyG!F34": {
+   "value": {
+    "type": "error",
+    "value": "#N/A"
+   },
+   "input": "=VLOOKUP(A34,'Plan contable'!$A$2:$C$16,2,FALSE)"
+  },
+  "PyG!G34": {
+   "value": {
+    "type": "error",
+    "value": "#DIV/0!"
+   },
+   "input": "=D34/E34"
+  },
+  "Préstamo!B3": {
+   "value": {
+    "type": "number",
+    "value": 150000.0
+   },
+   "display": "150.000,00 €"
+  },
+  "Préstamo!B4": {
+   "value": {
+    "type": "number",
+    "value": 0.045
+   },
+   "display": "4,50%"
+  },
+  "Préstamo!B6": {
+   "value": {
+    "type": "number",
+    "value": 45672.0
+   },
+   "display": "15/01/2025"
+  },
+  "Préstamo!B7": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=PMT(B4/12,B5*12,-B3)"
+  },
+  "Préstamo!B8": {
+   "value": {
+    "type": "number",
+    "value": 36549.13576263067
+   },
+   "display": "36.549,14 €",
+   "input": "=B7*B5*12-B3"
+  },
+  "Préstamo!B9": {
+   "value": {
+    "type": "number",
+    "value": 49309.0
+   },
+   "display": "31/12/2034",
+   "input": "=EOMONTH(B6,B5*12-1)"
+  },
+  "Préstamo!C9": {
+   "value": {
+    "type": "number",
+    "value": 49309.0
+   },
+   "display": "31 de diciembre de 2034",
+   "input": "=B9"
+  },
+  "Préstamo!B12": {
+   "value": {
+    "type": "number",
+    "value": 45688.0
+   },
+   "display": "31/01/2025",
+   "input": "=EOMONTH($B$6,A12-1)"
+  },
+  "Préstamo!C12": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D12": {
+   "value": {
+    "type": "number",
+    "value": 562.5
+   },
+   "display": "562,50 €",
+   "input": "=$B$3*$B$4/12"
+  },
+  "Préstamo!E12": {
+   "value": {
+    "type": "number",
+    "value": 992.0761313552555
+   },
+   "display": "992,08 €",
+   "input": "=C12-D12"
+  },
+  "Préstamo!F12": {
+   "value": {
+    "type": "number",
+    "value": 149007.92386864475
+   },
+   "display": "149.007,92 €",
+   "input": "=$B$3-E12"
+  },
+  "Préstamo!B13": {
+   "value": {
+    "type": "number",
+    "value": 45716.0
+   },
+   "display": "28/02/2025",
+   "input": "=EOMONTH($B$6,A13-1)"
+  },
+  "Préstamo!C13": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D13": {
+   "value": {
+    "type": "number",
+    "value": 558.7797145074178
+   },
+   "display": "558,78 €",
+   "input": "=F12*$B$4/12"
+  },
+  "Préstamo!E13": {
+   "value": {
+    "type": "number",
+    "value": 995.7964168478377
+   },
+   "display": "995,80 €",
+   "input": "=C13-D13"
+  },
+  "Préstamo!F13": {
+   "value": {
+    "type": "number",
+    "value": 148012.1274517969
+   },
+   "display": "148.012,13 €",
+   "input": "=F12-E13"
+  },
+  "Préstamo!B14": {
+   "value": {
+    "type": "number",
+    "value": 45747.0
+   },
+   "display": "31/03/2025",
+   "input": "=EOMONTH($B$6,A14-1)"
+  },
+  "Préstamo!C14": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D14": {
+   "value": {
+    "type": "number",
+    "value": 555.0454779442383
+   },
+   "display": "555,05 €",
+   "input": "=F13*$B$4/12"
+  },
+  "Préstamo!E14": {
+   "value": {
+    "type": "number",
+    "value": 999.5306534110172
+   },
+   "display": "999,53 €",
+   "input": "=C14-D14"
+  },
+  "Préstamo!F14": {
+   "value": {
+    "type": "number",
+    "value": 147012.59679838587
+   },
+   "display": "147.012,60 €",
+   "input": "=F13-E14"
+  },
+  "Préstamo!B15": {
+   "value": {
+    "type": "number",
+    "value": 45777.0
+   },
+   "display": "30/04/2025",
+   "input": "=EOMONTH($B$6,A15-1)"
+  },
+  "Préstamo!C15": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D15": {
+   "value": {
+    "type": "number",
+    "value": 551.297237993947
+   },
+   "display": "551,30 €",
+   "input": "=F14*$B$4/12"
+  },
+  "Préstamo!E15": {
+   "value": {
+    "type": "number",
+    "value": 1003.2788933613085
+   },
+   "display": "1.003,28 €",
+   "input": "=C15-D15"
+  },
+  "Préstamo!F15": {
+   "value": {
+    "type": "number",
+    "value": 146009.31790502457
+   },
+   "display": "146.009,32 €",
+   "input": "=F14-E15"
+  },
+  "Préstamo!B16": {
+   "value": {
+    "type": "number",
+    "value": 45808.0
+   },
+   "display": "31/05/2025",
+   "input": "=EOMONTH($B$6,A16-1)"
+  },
+  "Préstamo!C16": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D16": {
+   "value": {
+    "type": "number",
+    "value": 547.5349421438422
+   },
+   "display": "547,53 €",
+   "input": "=F15*$B$4/12"
+  },
+  "Préstamo!E16": {
+   "value": {
+    "type": "number",
+    "value": 1007.0411892114133
+   },
+   "display": "1.007,04 €",
+   "input": "=C16-D16"
+  },
+  "Préstamo!F16": {
+   "value": {
+    "type": "number",
+    "value": 145002.27671581315
+   },
+   "display": "145.002,28 €",
+   "input": "=F15-E16"
+  },
+  "Préstamo!B17": {
+   "value": {
+    "type": "number",
+    "value": 45838.0
+   },
+   "display": "30/06/2025",
+   "input": "=EOMONTH($B$6,A17-1)"
+  },
+  "Préstamo!C17": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D17": {
+   "value": {
+    "type": "number",
+    "value": 543.7585376842993
+   },
+   "display": "543,76 €",
+   "input": "=F16*$B$4/12"
+  },
+  "Préstamo!E17": {
+   "value": {
+    "type": "number",
+    "value": 1010.8175936709562
+   },
+   "display": "1.010,82 €",
+   "input": "=C17-D17"
+  },
+  "Préstamo!F17": {
+   "value": {
+    "type": "number",
+    "value": 143991.4591221422
+   },
+   "display": "143.991,46 €",
+   "input": "=F16-E17"
+  },
+  "Préstamo!B18": {
+   "value": {
+    "type": "number",
+    "value": 45869.0
+   },
+   "display": "31/07/2025",
+   "input": "=EOMONTH($B$6,A18-1)"
+  },
+  "Préstamo!C18": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D18": {
+   "value": {
+    "type": "number",
+    "value": 539.9679717080332
+   },
+   "display": "539,97 €",
+   "input": "=F17*$B$4/12"
+  },
+  "Préstamo!E18": {
+   "value": {
+    "type": "number",
+    "value": 1014.6081596472222
+   },
+   "display": "1.014,61 €",
+   "input": "=C18-D18"
+  },
+  "Préstamo!F18": {
+   "value": {
+    "type": "number",
+    "value": 142976.85096249497
+   },
+   "display": "142.976,85 €",
+   "input": "=F17-E18"
+  },
+  "Préstamo!B19": {
+   "value": {
+    "type": "number",
+    "value": 45900.0
+   },
+   "display": "31/08/2025",
+   "input": "=EOMONTH($B$6,A19-1)"
+  },
+  "Préstamo!C19": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D19": {
+   "value": {
+    "type": "number",
+    "value": 536.163191109356
+   },
+   "display": "536,16 €",
+   "input": "=F18*$B$4/12"
+  },
+  "Préstamo!E19": {
+   "value": {
+    "type": "number",
+    "value": 1018.4129402458994
+   },
+   "display": "1.018,41 €",
+   "input": "=C19-D19"
+  },
+  "Préstamo!F19": {
+   "value": {
+    "type": "number",
+    "value": 141958.43802224906
+   },
+   "display": "141.958,44 €",
+   "input": "=F18-E19"
+  },
+  "Préstamo!B20": {
+   "value": {
+    "type": "number",
+    "value": 45930.0
+   },
+   "display": "30/09/2025",
+   "input": "=EOMONTH($B$6,A20-1)"
+  },
+  "Préstamo!C20": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D20": {
+   "value": {
+    "type": "number",
+    "value": 532.344142583434
+   },
+   "display": "532,34 €",
+   "input": "=F19*$B$4/12"
+  },
+  "Préstamo!E20": {
+   "value": {
+    "type": "number",
+    "value": 1022.2319887718215
+   },
+   "display": "1.022,23 €",
+   "input": "=C20-D20"
+  },
+  "Préstamo!F20": {
+   "value": {
+    "type": "number",
+    "value": 140936.20603347724
+   },
+   "display": "140.936,21 €",
+   "input": "=F19-E20"
+  },
+  "Préstamo!B21": {
+   "value": {
+    "type": "number",
+    "value": 45961.0
+   },
+   "display": "31/10/2025",
+   "input": "=EOMONTH($B$6,A21-1)"
+  },
+  "Préstamo!C21": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D21": {
+   "value": {
+    "type": "number",
+    "value": 528.5107726255396
+   },
+   "display": "528,51 €",
+   "input": "=F20*$B$4/12"
+  },
+  "Préstamo!E21": {
+   "value": {
+    "type": "number",
+    "value": 1026.0653587297159
+   },
+   "display": "1.026,07 €",
+   "input": "=C21-D21"
+  },
+  "Préstamo!F21": {
+   "value": {
+    "type": "number",
+    "value": 139910.14067474753
+   },
+   "display": "139.910,14 €",
+   "input": "=F20-E21"
+  },
+  "Préstamo!B22": {
+   "value": {
+    "type": "number",
+    "value": 45991.0
+   },
+   "display": "30/11/2025",
+   "input": "=EOMONTH($B$6,A22-1)"
+  },
+  "Préstamo!C22": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D22": {
+   "value": {
+    "type": "number",
+    "value": 524.6630275303032
+   },
+   "display": "524,66 €",
+   "input": "=F21*$B$4/12"
+  },
+  "Préstamo!E22": {
+   "value": {
+    "type": "number",
+    "value": 1029.9131038249523
+   },
+   "display": "1.029,91 €",
+   "input": "=C22-D22"
+  },
+  "Préstamo!F22": {
+   "value": {
+    "type": "number",
+    "value": 138880.22757092258
+   },
+   "display": "138.880,23 €",
+   "input": "=F21-E22"
+  },
+  "Préstamo!B23": {
+   "value": {
+    "type": "number",
+    "value": 46022.0
+   },
+   "display": "31/12/2025",
+   "input": "=EOMONTH($B$6,A23-1)"
+  },
+  "Préstamo!C23": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D23": {
+   "value": {
+    "type": "number",
+    "value": 520.8008533909597
+   },
+   "display": "520,80 €",
+   "input": "=F22*$B$4/12"
+  },
+  "Préstamo!E23": {
+   "value": {
+    "type": "number",
+    "value": 1033.7752779642958
+   },
+   "display": "1.033,78 €",
+   "input": "=C23-D23"
+  },
+  "Préstamo!F23": {
+   "value": {
+    "type": "number",
+    "value": 137846.45229295827
+   },
+   "display": "137.846,45 €",
+   "input": "=F22-E23"
+  },
+  "Préstamo!B24": {
+   "value": {
+    "type": "number",
+    "value": 46053.0
+   },
+   "display": "31/01/2026",
+   "input": "=EOMONTH($B$6,A24-1)"
+  },
+  "Préstamo!C24": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D24": {
+   "value": {
+    "type": "number",
+    "value": 516.9241960985935
+   },
+   "display": "516,92 €",
+   "input": "=F23*$B$4/12"
+  },
+  "Préstamo!E24": {
+   "value": {
+    "type": "number",
+    "value": 1037.651935256662
+   },
+   "display": "1.037,65 €",
+   "input": "=C24-D24"
+  },
+  "Préstamo!F24": {
+   "value": {
+    "type": "number",
+    "value": 136808.8003577016
+   },
+   "display": "136.808,80 €",
+   "input": "=F23-E24"
+  },
+  "Préstamo!B25": {
+   "value": {
+    "type": "number",
+    "value": 46081.0
+   },
+   "display": "28/02/2026",
+   "input": "=EOMONTH($B$6,A25-1)"
+  },
+  "Préstamo!C25": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D25": {
+   "value": {
+    "type": "number",
+    "value": 513.033001341381
+   },
+   "display": "513,03 €",
+   "input": "=F24*$B$4/12"
+  },
+  "Préstamo!E25": {
+   "value": {
+    "type": "number",
+    "value": 1041.5431300138744
+   },
+   "display": "1.041,54 €",
+   "input": "=C25-D25"
+  },
+  "Préstamo!F25": {
+   "value": {
+    "type": "number",
+    "value": 135767.25722768772
+   },
+   "display": "135.767,26 €",
+   "input": "=F24-E25"
+  },
+  "Préstamo!B26": {
+   "value": {
+    "type": "number",
+    "value": 46112.0
+   },
+   "display": "31/03/2026",
+   "input": "=EOMONTH($B$6,A26-1)"
+  },
+  "Préstamo!C26": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D26": {
+   "value": {
+    "type": "number",
+    "value": 509.1272146038289
+   },
+   "display": "509,13 €",
+   "input": "=F25*$B$4/12"
+  },
+  "Préstamo!E26": {
+   "value": {
+    "type": "number",
+    "value": 1045.4489167514266
+   },
+   "display": "1.045,45 €",
+   "input": "=C26-D26"
+  },
+  "Préstamo!F26": {
+   "value": {
+    "type": "number",
+    "value": 134721.8083109363
+   },
+   "display": "134.721,81 €",
+   "input": "=F25-E26"
+  },
+  "Préstamo!B27": {
+   "value": {
+    "type": "number",
+    "value": 46142.0
+   },
+   "display": "30/04/2026",
+   "input": "=EOMONTH($B$6,A27-1)"
+  },
+  "Préstamo!C27": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D27": {
+   "value": {
+    "type": "number",
+    "value": 505.20678116601107
+   },
+   "display": "505,21 €",
+   "input": "=F26*$B$4/12"
+  },
+  "Préstamo!E27": {
+   "value": {
+    "type": "number",
+    "value": 1049.3693501892444
+   },
+   "display": "1.049,37 €",
+   "input": "=C27-D27"
+  },
+  "Préstamo!F27": {
+   "value": {
+    "type": "number",
+    "value": 133672.43896074704
+   },
+   "display": "133.672,44 €",
+   "input": "=F26-E27"
+  },
+  "Préstamo!B28": {
+   "value": {
+    "type": "number",
+    "value": 46173.0
+   },
+   "display": "31/05/2026",
+   "input": "=EOMONTH($B$6,A28-1)"
+  },
+  "Préstamo!C28": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D28": {
+   "value": {
+    "type": "number",
+    "value": 501.2716461028014
+   },
+   "display": "501,27 €",
+   "input": "=F27*$B$4/12"
+  },
+  "Préstamo!E28": {
+   "value": {
+    "type": "number",
+    "value": 1053.304485252454
+   },
+   "display": "1.053,30 €",
+   "input": "=C28-D28"
+  },
+  "Préstamo!F28": {
+   "value": {
+    "type": "number",
+    "value": 132619.1344754946
+   },
+   "display": "132.619,13 €",
+   "input": "=F27-E28"
+  },
+  "Préstamo!B29": {
+   "value": {
+    "type": "number",
+    "value": 46203.0
+   },
+   "display": "30/06/2026",
+   "input": "=EOMONTH($B$6,A29-1)"
+  },
+  "Préstamo!C29": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D29": {
+   "value": {
+    "type": "number",
+    "value": 497.32175428310467
+   },
+   "display": "497,32 €",
+   "input": "=F28*$B$4/12"
+  },
+  "Préstamo!E29": {
+   "value": {
+    "type": "number",
+    "value": 1057.2543770721509
+   },
+   "display": "1.057,25 €",
+   "input": "=C29-D29"
+  },
+  "Préstamo!F29": {
+   "value": {
+    "type": "number",
+    "value": 131561.88009842244
+   },
+   "display": "131.561,88 €",
+   "input": "=F28-E29"
+  },
+  "Préstamo!B30": {
+   "value": {
+    "type": "number",
+    "value": 46234.0
+   },
+   "display": "31/07/2026",
+   "input": "=EOMONTH($B$6,A30-1)"
+  },
+  "Préstamo!C30": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D30": {
+   "value": {
+    "type": "number",
+    "value": 493.3570503690841
+   },
+   "display": "493,36 €",
+   "input": "=F29*$B$4/12"
+  },
+  "Préstamo!E30": {
+   "value": {
+    "type": "number",
+    "value": 1061.2190809861713
+   },
+   "display": "1.061,22 €",
+   "input": "=C30-D30"
+  },
+  "Préstamo!F30": {
+   "value": {
+    "type": "number",
+    "value": 130500.66101743627
+   },
+   "display": "130.500,66 €",
+   "input": "=F29-E30"
+  },
+  "Préstamo!B31": {
+   "value": {
+    "type": "number",
+    "value": 46265.0
+   },
+   "display": "31/08/2026",
+   "input": "=EOMONTH($B$6,A31-1)"
+  },
+  "Préstamo!C31": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D31": {
+   "value": {
+    "type": "number",
+    "value": 489.377478815386
+   },
+   "display": "489,38 €",
+   "input": "=F30*$B$4/12"
+  },
+  "Préstamo!E31": {
+   "value": {
+    "type": "number",
+    "value": 1065.1986525398695
+   },
+   "display": "1.065,20 €",
+   "input": "=C31-D31"
+  },
+  "Préstamo!F31": {
+   "value": {
+    "type": "number",
+    "value": 129435.4623648964
+   },
+   "display": "129.435,46 €",
+   "input": "=F30-E31"
+  },
+  "Préstamo!B32": {
+   "value": {
+    "type": "number",
+    "value": 46295.0
+   },
+   "display": "30/09/2026",
+   "input": "=EOMONTH($B$6,A32-1)"
+  },
+  "Préstamo!C32": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D32": {
+   "value": {
+    "type": "number",
+    "value": 485.38298386836146
+   },
+   "display": "485,38 €",
+   "input": "=F31*$B$4/12"
+  },
+  "Préstamo!E32": {
+   "value": {
+    "type": "number",
+    "value": 1069.193147486894
+   },
+   "display": "1.069,19 €",
+   "input": "=C32-D32"
+  },
+  "Préstamo!F32": {
+   "value": {
+    "type": "number",
+    "value": 128366.26921740951
+   },
+   "display": "128.366,27 €",
+   "input": "=F31-E32"
+  },
+  "Préstamo!B33": {
+   "value": {
+    "type": "number",
+    "value": 46326.0
+   },
+   "display": "31/10/2026",
+   "input": "=EOMONTH($B$6,A33-1)"
+  },
+  "Préstamo!C33": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D33": {
+   "value": {
+    "type": "number",
+    "value": 481.3735095652857
+   },
+   "display": "481,37 €",
+   "input": "=F32*$B$4/12"
+  },
+  "Préstamo!E33": {
+   "value": {
+    "type": "number",
+    "value": 1073.2026217899697
+   },
+   "display": "1.073,20 €",
+   "input": "=C33-D33"
+  },
+  "Préstamo!F33": {
+   "value": {
+    "type": "number",
+    "value": 127293.06659561954
+   },
+   "display": "127.293,07 €",
+   "input": "=F32-E33"
+  },
+  "Préstamo!B34": {
+   "value": {
+    "type": "number",
+    "value": 46356.0
+   },
+   "display": "30/11/2026",
+   "input": "=EOMONTH($B$6,A34-1)"
+  },
+  "Préstamo!C34": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D34": {
+   "value": {
+    "type": "number",
+    "value": 477.34899973357324
+   },
+   "display": "477,35 €",
+   "input": "=F33*$B$4/12"
+  },
+  "Préstamo!E34": {
+   "value": {
+    "type": "number",
+    "value": 1077.2271316216822
+   },
+   "display": "1.077,23 €",
+   "input": "=C34-D34"
+  },
+  "Préstamo!F34": {
+   "value": {
+    "type": "number",
+    "value": 126215.83946399787
+   },
+   "display": "126.215,84 €",
+   "input": "=F33-E34"
+  },
+  "Préstamo!B35": {
+   "value": {
+    "type": "number",
+    "value": 46387.0
+   },
+   "display": "31/12/2026",
+   "input": "=EOMONTH($B$6,A35-1)"
+  },
+  "Préstamo!C35": {
+   "value": {
+    "type": "number",
+    "value": 1554.5761313552555
+   },
+   "display": "1.554,58 €",
+   "input": "=$B$7"
+  },
+  "Préstamo!D35": {
+   "value": {
+    "type": "number",
+    "value": 473.30939798999196
+   },
+   "display": "473,31 €",
+   "input": "=F34*$B$4/12"
+  },
+  "Préstamo!E35": {
+   "value": {
+    "type": "number",
+    "value": 1081.2667333652635
+   },
+   "display": "1.081,27 €",
+   "input": "=C35-D35"
+  },
+  "Préstamo!F35": {
+   "value": {
+    "type": "number",
+    "value": 125134.5727306326
+   },
+   "display": "125.134,57 €",
+   "input": "=F34-E35"
+  },
+  "Préstamo!C36": {
+   "value": {
+    "type": "number",
+    "value": 37309.82715252612
+   },
+   "display": "37.309,83 €",
+   "input": "=SUM(C12:C35)"
+  },
+  "Préstamo!D36": {
+   "value": {
+    "type": "number",
+    "value": 12444.399883158774
+   },
+   "display": "12.444,40 €",
+   "input": "=SUM(D12:D35)"
+  },
+  "Préstamo!E36": {
+   "value": {
+    "type": "number",
+    "value": 24865.427269367356
+   },
+   "display": "24.865,43 €",
+   "input": "=SUM(E12:E35)"
+  },
+  "Inversión!B3": {
+   "value": {
+    "type": "number",
+    "value": 0.08
+   },
+   "display": "8,0%"
+  },
+  "Inversión!B13": {
+   "value": {
+    "type": "number",
+    "value": 17933.601144672546
+   },
+   "display": "17.933,60 €",
+   "input": "=NPV(B3,B7:B11)+B6"
+  },
+  "Inversión!B14": {
+   "value": {
+    "type": "number",
+    "value": 0.19442495225528997
+   },
+   "display": "19,44%",
+   "input": "=IRR(B6:B11)"
+  },
+  "Inversión!B15": {
+   "value": {
+    "type": "number",
+    "value": 19394.01378663246
+   },
+   "display": "19.394,01 €",
+   "input": "=FV(0.03/12,60,-300,0,0)"
+  },
+  "Inversión!B16": {
+   "value": {
+    "type": "number",
+    "value": 3.25
+   },
+   "display": "3,25",
+   "input": "=ROUND(3+(-(B6+B7+B8+B9))/B10,2)"
+  }
+ }
+}

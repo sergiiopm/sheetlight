@@ -1,0 +1,251 @@
+{
+ "file": "unicode_utf16le.csv",
+ "kind": "csv",
+ "description": "Exportación «Texto Unicode» de Excel: UTF-16LE con BOM, tabuladores, CRLF; griego, japonés, cirílico, símbolos de moneda y un emoji (par sustituto).",
+ "sheets": [
+  "unicode_utf16le"
+ ],
+ "activeSheet": "unicode_utf16le",
+ "csv": {
+  "delimiter": "\t",
+  "encoding": "utf-16le",
+  "decimal": "."
+ },
+ "bom": true,
+ "lineEnding": "crlf",
+ "rows": 9,
+ "cols": 4,
+ "cells": {
+  "A1": {
+   "value": {
+    "type": "text",
+    "value": "País"
+   },
+   "display": "País"
+  },
+  "A2": {
+   "value": {
+    "type": "text",
+    "value": "España"
+   },
+   "display": "España"
+  },
+  "B2": {
+   "value": {
+    "type": "text",
+    "value": "Madrid"
+   },
+   "display": "Madrid"
+  },
+  "C2": {
+   "value": {
+    "type": "text",
+    "value": "€"
+   },
+   "display": "€"
+  },
+  "D2": {
+   "value": {
+    "type": "number",
+    "value": 48600000.0
+   },
+   "display": "48600000"
+  },
+  "A3": {
+   "value": {
+    "type": "text",
+    "value": "Ελλάδα"
+   },
+   "display": "Ελλάδα"
+  },
+  "B3": {
+   "value": {
+    "type": "text",
+    "value": "Αθήνα"
+   },
+   "display": "Αθήνα"
+  },
+  "C3": {
+   "value": {
+    "type": "text",
+    "value": "€"
+   },
+   "display": "€"
+  },
+  "D3": {
+   "value": {
+    "type": "number",
+    "value": 10400000.0
+   },
+   "display": "10400000"
+  },
+  "A4": {
+   "value": {
+    "type": "text",
+    "value": "日本"
+   },
+   "display": "日本"
+  },
+  "B4": {
+   "value": {
+    "type": "text",
+    "value": "東京"
+   },
+   "display": "東京"
+  },
+  "C4": {
+   "value": {
+    "type": "text",
+    "value": "¥"
+   },
+   "display": "¥"
+  },
+  "D4": {
+   "value": {
+    "type": "number",
+    "value": 124500000.0
+   },
+   "display": "124500000"
+  },
+  "A5": {
+   "value": {
+    "type": "text",
+    "value": "Paraguay"
+   },
+   "display": "Paraguay"
+  },
+  "B5": {
+   "value": {
+    "type": "text",
+    "value": "Asunción"
+   },
+   "display": "Asunción"
+  },
+  "C5": {
+   "value": {
+    "type": "text",
+    "value": "₲"
+   },
+   "display": "₲"
+  },
+  "D5": {
+   "value": {
+    "type": "number",
+    "value": 6900000.0
+   },
+   "display": "6900000"
+  },
+  "A6": {
+   "value": {
+    "type": "text",
+    "value": "Polska"
+   },
+   "display": "Polska"
+  },
+  "B6": {
+   "value": {
+    "type": "text",
+    "value": "Warszawa"
+   },
+   "display": "Warszawa"
+  },
+  "C6": {
+   "value": {
+    "type": "text",
+    "value": "zł"
+   },
+   "display": "zł"
+  },
+  "D6": {
+   "value": {
+    "type": "number",
+    "value": 36700000.0
+   },
+   "display": "36700000"
+  },
+  "A7": {
+   "value": {
+    "type": "text",
+    "value": "Türkiye"
+   },
+   "display": "Türkiye"
+  },
+  "B7": {
+   "value": {
+    "type": "text",
+    "value": "Ankara"
+   },
+   "display": "Ankara"
+  },
+  "C7": {
+   "value": {
+    "type": "text",
+    "value": "₺"
+   },
+   "display": "₺"
+  },
+  "D7": {
+   "value": {
+    "type": "number",
+    "value": 85300000.0
+   },
+   "display": "85300000"
+  },
+  "A8": {
+   "value": {
+    "type": "text",
+    "value": "Россия"
+   },
+   "display": "Россия"
+  },
+  "B8": {
+   "value": {
+    "type": "text",
+    "value": "Москва"
+   },
+   "display": "Москва"
+  },
+  "C8": {
+   "value": {
+    "type": "text",
+    "value": "₽"
+   },
+   "display": "₽"
+  },
+  "D8": {
+   "value": {
+    "type": "number",
+    "value": 146000000.0
+   },
+   "display": "146000000"
+  },
+  "A9": {
+   "value": {
+    "type": "text",
+    "value": "Ñandú Land 🐦"
+   },
+   "display": "Ñandú Land 🐦"
+  },
+  "B9": {
+   "value": {
+    "type": "text",
+    "value": "Ñu"
+   },
+   "display": "Ñu"
+  },
+  "C9": {
+   "value": {
+    "type": "text",
+    "value": "₿"
+   },
+   "display": "₿"
+  },
+  "D9": {
+   "value": {
+    "type": "number",
+    "value": 1.0
+   },
+   "display": "1"
+  }
+ }
+}

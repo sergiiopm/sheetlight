@@ -1,0 +1,61 @@
+﻿Fecha operación;Fecha valor;Concepto;Importe;Saldo;Divisa
+06/01/2025;06/01/2025;Cajero automático;-115,92;3.134,08;EUR
+11/01/2025;11/01/2025;Transferencia de José Muñoz;829,90;3.963,98;EUR
+14/01/2025;14/01/2025;Cajero automático;-25,20;3.938,78;EUR
+14/01/2025;15/01/2025;Transferencia de José Muñoz;186,91;4.125,69;EUR
+17/01/2025;18/01/2025;Transferencia de José Muñoz;450,93;4.576,62;EUR
+19/01/2025;19/01/2025;Recibo comunidad;-65,00;4.511,62;EUR
+19/01/2025;20/01/2025;Compra tarjeta 4512, El Corte Inglés;-230,23;4.281,39;EUR
+19/01/2025;20/01/2025;Bizum a Lucía;-38,29;4.243,10;EUR
+22/01/2025;22/01/2025;Recibo comunidad;-65,00;4.178,10;EUR
+27/01/2025;28/01/2025;Nómina Talleres Martínez S.L.;2450,00;6.628,10;EUR
+28/01/2025;28/01/2025;Cajero automático;-56,79;6.571,31;EUR
+30/01/2025;31/01/2025;Nómina Talleres Martínez S.L.;2450,00;9.021,31;EUR
+31/01/2025;31/01/2025;Recibo comunidad;-65,00;8.956,31;EUR
+31/01/2025;31/01/2025;Recibo comunidad;-65,00;8.891,31;EUR
+05/02/2025;06/02/2025;Compra tarjeta 4512, El Corte Inglés;-270,93;8.620,38;EUR
+09/02/2025;10/02/2025;Compra tarjeta 4512, Mercadona;-58,78;8.561,60;EUR
+14/02/2025;14/02/2025;Recibo Iberdrola Clientes, S.A.U.;-107,78;8.453,82;EUR
+18/02/2025;19/02/2025;Compra tarjeta 4512, El Corte Inglés;-72,62;8.381,20;EUR
+18/02/2025;19/02/2025;Compra tarjeta 4512, Mercadona;-59,48;8.321,72;EUR
+19/02/2025;20/02/2025;Compra tarjeta 4512, Mercadona;-139,28;8.182,44;EUR
+20/02/2025;21/02/2025;Cajero automático;-132,50;8.049,94;EUR
+20/02/2025;21/02/2025;Compra tarjeta 4512, El Corte Inglés;-303,04;7.746,90;EUR
+22/02/2025;23/02/2025;Recibo Iberdrola Clientes, S.A.U.;-94,07;7.652,83;EUR
+23/02/2025;24/02/2025;Compra tarjeta 4512, El Corte Inglés;-259,69;7.393,14;EUR
+23/02/2025;24/02/2025;Transferencia de José Muñoz;131,28;7.524,42;EUR
+28/02/2025;28/02/2025;Nómina Talleres Martínez S.L.;2450,00;9.974,42;EUR
+03/03/2025;04/03/2025;Nómina Talleres Martínez S.L.;2450,00;12.424,42;EUR
+04/03/2025;05/03/2025;Compra tarjeta 4512, El Corte Inglés;-125,18;12.299,24;EUR
+08/03/2025;09/03/2025;Cajero automático;-196,67;12.102,57;EUR
+09/03/2025;10/03/2025;Cajero automático;-77,80;12.024,77;EUR
+12/03/2025;13/03/2025;Nómina Talleres Martínez S.L.;2450,00;14.474,77;EUR
+16/03/2025;16/03/2025;Transferencia de José Muñoz;175,91;14.650,68;EUR
+16/03/2025;16/03/2025;Cajero automático;-178,14;14.472,54;EUR
+16/03/2025;17/03/2025;Transferencia de José Muñoz;625,20;15.097,74;EUR
+21/03/2025;22/03/2025;Transferencia de José Muñoz;158,39;15.256,13;EUR
+25/03/2025;26/03/2025;Bizum a Lucía;-22,83;15.233,30;EUR
+30/03/2025;31/03/2025;Transferencia de José Muñoz;799,80;16.033,10;EUR
+31/03/2025;01/04/2025;Bizum a Lucía;-18,68;16.014,42;EUR
+01/04/2025;01/04/2025;Cajero automático;-66,81;15.947,61;EUR
+04/04/2025;05/04/2025;Nómina Talleres Martínez S.L.;2450,00;18.397,61;EUR
+09/04/2025;09/04/2025;Nómina Talleres Martínez S.L.;2450,00;20.847,61;EUR
+12/04/2025;12/04/2025;Nómina Talleres Martínez S.L.;2450,00;23.297,61;EUR
+15/04/2025;16/04/2025;Compra tarjeta 4512, Mercadona;-85,66;23.211,95;EUR
+20/04/2025;20/04/2025;Nómina Talleres Martínez S.L.;2450,00;25.661,95;EUR
+22/04/2025;22/04/2025;Recibo Iberdrola Clientes, S.A.U.;-49,49;25.612,46;EUR
+25/04/2025;26/04/2025;Recibo Iberdrola Clientes, S.A.U.;-102,60;25.509,86;EUR
+30/04/2025;01/05/2025;Recibo Iberdrola Clientes, S.A.U.;-95,03;25.414,83;EUR
+01/05/2025;02/05/2025;Transferencia de José Muñoz;597,61;26.012,44;EUR
+05/05/2025;05/05/2025;Transferencia de José Muñoz;673,50;26.685,94;EUR
+10/05/2025;10/05/2025;Compra tarjeta 4512, Mercadona;-53,64;26.632,30;EUR
+14/05/2025;14/05/2025;Compra tarjeta 4512, El Corte Inglés;-279,59;26.352,71;EUR
+15/05/2025;15/05/2025;Recibo Iberdrola Clientes, S.A.U.;-74,07;26.278,64;EUR
+15/05/2025;16/05/2025;Compra tarjeta 4512, Mercadona;-73,85;26.204,79;EUR
+18/05/2025;18/05/2025;Recibo Iberdrola Clientes, S.A.U.;-104,93;26.099,86;EUR
+18/05/2025;19/05/2025;Recibo Iberdrola Clientes, S.A.U.;-48,40;26.051,46;EUR
+21/05/2025;21/05/2025;Nómina Talleres Martínez S.L.;2450,00;28.501,46;EUR
+26/05/2025;26/05/2025;Recibo Iberdrola Clientes, S.A.U.;-92,98;28.408,48;EUR
+27/05/2025;27/05/2025;Recibo comunidad;-65,00;28.343,48;EUR
+30/05/2025;30/05/2025;Cajero automático;-74,53;28.268,95;EUR
+31/05/2025;01/06/2025;Recibo comunidad;-65,00;28.203,95;EUR

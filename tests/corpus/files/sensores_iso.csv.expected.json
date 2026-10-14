@@ -1,0 +1,140 @@
+{
+ "file": "sensores_iso.csv",
+ "kind": "csv",
+ "description": "Datos de sensores con fechas ISO (aaaa-mm-dd), fecha-hora ISO con espacio, negativos, notación científica; `,` y punto decimal, UTF-8 sin BOM, LF.",
+ "sheets": [
+  "sensores_iso"
+ ],
+ "activeSheet": "sensores_iso",
+ "csv": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "decimal": "."
+ },
+ "bom": false,
+ "lineEnding": "lf",
+ "rows": 201,
+ "cols": 7,
+ "cells": {
+  "A2": {
+   "value": {
+    "type": "number",
+    "value": 45702.0
+   },
+   "display": "14/02/2025"
+  },
+  "B2": {
+   "value": {
+    "type": "number",
+    "value": 45702.354166666664
+   }
+  },
+  "C2": {
+   "value": {
+    "type": "text",
+    "value": "S-01"
+   },
+   "display": "S-01"
+  },
+  "D2": {
+   "value": {
+    "type": "number",
+    "value": 17.08
+   },
+   "display": "17,08"
+  },
+  "E2": {
+   "value": {
+    "type": "number",
+    "value": 86.7
+   },
+   "display": "86,7"
+  },
+  "G2": {
+   "value": {
+    "type": "number",
+    "value": 0.0225
+   }
+  },
+  "A3": {
+   "value": {
+    "type": "number",
+    "value": 45702.0
+   },
+   "display": "14/02/2025"
+  },
+  "B3": {
+   "value": {
+    "type": "number",
+    "value": 45702.364583333336
+   }
+  },
+  "C3": {
+   "value": {
+    "type": "text",
+    "value": "S-02"
+   },
+   "display": "S-02"
+  },
+  "D3": {
+   "value": {
+    "type": "number",
+    "value": 3.99
+   },
+   "display": "3,99"
+  },
+  "E3": {
+   "value": {
+    "type": "number",
+    "value": 30.4
+   },
+   "display": "30,4"
+  },
+  "G3": {
+   "value": {
+    "type": "number",
+    "value": 0.0015
+   }
+  },
+  "A4": {
+   "value": {
+    "type": "number",
+    "value": 45702.0
+   },
+   "display": "14/02/2025"
+  },
+  "B4": {
+   "value": {
+    "type": "number",
+    "value": 45702.375
+   }
+  },
+  "C4": {
+   "value": {
+    "type": "text",
+    "value": "S-03"
+   },
+   "display": "S-03"
+  },
+  "D4": {
+   "value": {
+    "type": "number",
+    "value": 15.99
+   },
+   "display": "15,99"
+  },
+  "E4": {
+   "value": {
+    "type": "number",
+    "value": 36.8
+   },
+   "display": "36,8"
+  },
+  "G4": {
+   "value": {
+    "type": "number",
+    "value": 0.0015
+   }
+  }
+ }
+}

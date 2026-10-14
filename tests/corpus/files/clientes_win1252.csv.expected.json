@@ -1,0 +1,318 @@
+{
+ "file": "clientes_win1252.csv",
+ "kind": "csv",
+ "description": "Clientes exportados desde un programa antiguo: Windows-1252 con acentos, ñ, ç, º, ª, €, — y «»; `;`; comillas dobles escapadas, `;` y saltos de línea dentro de campos entrecomillados; coma decimal.",
+ "sheets": [
+  "clientes_win1252"
+ ],
+ "activeSheet": "clientes_win1252",
+ "csv": {
+  "delimiter": ";",
+  "encoding": "windows-1252",
+  "decimal": ","
+ },
+ "bom": false,
+ "lineEnding": "crlf",
+ "rows": 26,
+ "cols": 5,
+ "cells": {
+  "A1": {
+   "value": {
+    "type": "text",
+    "value": "Código"
+   },
+   "display": "Código"
+  },
+  "C1": {
+   "value": {
+    "type": "text",
+    "value": "Población"
+   },
+   "display": "Población"
+  },
+  "A2": {
+   "value": {
+    "type": "text",
+    "value": "C001"
+   },
+   "display": "C001"
+  },
+  "B2": {
+   "value": {
+    "type": "text",
+    "value": "Peña e Hijos, S.L."
+   },
+   "display": "Peña e Hijos, S.L."
+  },
+  "C2": {
+   "value": {
+    "type": "text",
+    "value": "Logroño"
+   },
+   "display": "Logroño"
+  },
+  "D2": {
+   "value": {
+    "type": "text",
+    "value": "Cliente preferente"
+   },
+   "display": "Cliente preferente"
+  },
+  "E2": {
+   "value": {
+    "type": "number",
+    "value": 1234.5
+   },
+   "display": "1234,5"
+  },
+  "A3": {
+   "value": {
+    "type": "text",
+    "value": "C002"
+   },
+   "display": "C002"
+  },
+  "B3": {
+   "value": {
+    "type": "text",
+    "value": "Bar \"El Rincón\""
+   },
+   "display": "Bar \"El Rincón\""
+  },
+  "C3": {
+   "value": {
+    "type": "text",
+    "value": "A Coruña"
+   },
+   "display": "A Coruña"
+  },
+  "D3": {
+   "value": {
+    "type": "text",
+    "value": "Paga en efectivo; avisar al encargado"
+   },
+   "display": "Paga en efectivo; avisar al encargado"
+  },
+  "E3": {
+   "value": {
+    "type": "number",
+    "value": -89.9
+   },
+   "display": "-89,9"
+  },
+  "A4": {
+   "value": {
+    "type": "text",
+    "value": "C003"
+   },
+   "display": "C003"
+  },
+  "B4": {
+   "value": {
+    "type": "text",
+    "value": "Ferretería Agüero"
+   },
+   "display": "Ferretería Agüero"
+  },
+  "C4": {
+   "value": {
+    "type": "text",
+    "value": "Ávila"
+   },
+   "display": "Ávila"
+  },
+  "D4": {
+   "anyOf": [
+    {
+     "type": "text",
+     "value": "Entregar por la mañana\r\nLlamar antes: 920 123 456"
+    },
+    {
+     "type": "text",
+     "value": "Entregar por la mañana\nLlamar antes: 920 123 456"
+    }
+   ]
+  },
+  "E4": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0"
+  },
+  "A5": {
+   "value": {
+    "type": "text",
+    "value": "C004"
+   },
+   "display": "C004"
+  },
+  "B5": {
+   "value": {
+    "type": "text",
+    "value": "Lavandería Ça Va"
+   },
+   "display": "Lavandería Ça Va"
+  },
+  "C5": {
+   "value": {
+    "type": "text",
+    "value": "Girona"
+   },
+   "display": "Girona"
+  },
+  "D5": {
+   "value": {
+    "type": "text",
+    "value": "Factura con 2º apellido"
+   },
+   "display": "Factura con 2º apellido"
+  },
+  "E5": {
+   "value": {
+    "type": "number",
+    "value": 15.75
+   },
+   "display": "15,75"
+  },
+  "A6": {
+   "value": {
+    "type": "text",
+    "value": "C005"
+   },
+   "display": "C005"
+  },
+  "B6": {
+   "value": {
+    "type": "text",
+    "value": "Óptica Núñez"
+   },
+   "display": "Óptica Núñez"
+  },
+  "C6": {
+   "value": {
+    "type": "text",
+    "value": "Cádiz"
+   },
+   "display": "Cádiz"
+  },
+  "D6": {
+   "value": {
+    "type": "text",
+    "value": "¿Descuento? ¡Sí! 5 % — revisar «tarifa»"
+   },
+   "display": "¿Descuento? ¡Sí! 5 % — revisar «tarifa»"
+  },
+  "E6": {
+   "value": {
+    "type": "number",
+    "value": 2500.0
+   },
+   "display": "2500"
+  },
+  "A7": {
+   "value": {
+    "type": "text",
+    "value": "C006"
+   },
+   "display": "C006"
+  },
+  "B7": {
+   "value": {
+    "type": "text",
+    "value": "Mª José Ibáñez"
+   },
+   "display": "Mª José Ibáñez"
+  },
+  "C7": {
+   "value": {
+    "type": "text",
+    "value": "Córdoba"
+   },
+   "display": "Córdoba"
+  },
+  "D7": {
+   "value": {
+    "type": "text",
+    "value": "Importe en €"
+   },
+   "display": "Importe en €"
+  },
+  "E7": {
+   "value": {
+    "type": "number",
+    "value": 99.99
+   },
+   "display": "99,99"
+  },
+  "A8": {
+   "value": {
+    "type": "text",
+    "value": "C007"
+   },
+   "display": "C007"
+  },
+  "B8": {
+   "value": {
+    "type": "text",
+    "value": "ÑAM Comidas"
+   },
+   "display": "ÑAM Comidas"
+  },
+  "C8": {
+   "value": {
+    "type": "text",
+    "value": "Málaga"
+   },
+   "display": "Málaga"
+  },
+  "D8": {
+   "value": {
+    "type": "empty"
+   },
+   "display": ""
+  },
+  "E8": {
+   "value": {
+    "type": "number",
+    "value": 10.0
+   },
+   "display": "10"
+  },
+  "A9": {
+   "value": {
+    "type": "text",
+    "value": "C008"
+   },
+   "display": "C008"
+  },
+  "B9": {
+   "value": {
+    "type": "text",
+    "value": "Pérez & Asociados"
+   },
+   "display": "Pérez & Asociados"
+  },
+  "C9": {
+   "value": {
+    "type": "text",
+    "value": "L'Hospitalet de Llobregat"
+   },
+   "display": "L'Hospitalet de Llobregat"
+  },
+  "D9": {
+   "value": {
+    "type": "text",
+    "value": "Dirección: C/ Mayor, 1; 2º B"
+   },
+   "display": "Dirección: C/ Mayor, 1; 2º B"
+  },
+  "E9": {
+   "value": {
+    "type": "number",
+    "value": -1500.25
+   },
+   "display": "-1500,25"
+  }
+ }
+}

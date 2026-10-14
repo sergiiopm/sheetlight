@@ -83,4 +83,18 @@ export interface GridHandle {
   setCursorMode(mode: "default" | "formatPainter"): void;
   /** Measures text and returns the best width for columns (CSS px @100%), for autofit commands. */
   measureAutofit(cols: ReadonlyArray<number>): Promise<ReadonlyArray<number>>;
+  /**
+   * Rectangle of a range in overlay-host coordinates (see `getOverlayHost`),
+   * also for ranges outside the viewport. Used to place floating objects
+   * (charts) anchored to cells.
+   */
+  getRangeRect(range: CellRange): DOMRect;
+  /**
+   * Element above the cell canvases (below scrollbars) for floating objects.
+   * Children are positioned with `getRangeRect` and clipped to the scrollable
+   * pane; the grid does not touch them.
+   */
+  getOverlayHost(): HTMLElement;
+  /** Fires after every scroll/zoom/geometry change (once per frame at most). */
+  subscribeViewport(listener: (view: GridViewport) => void): () => void;
 }

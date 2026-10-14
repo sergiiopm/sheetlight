@@ -5,6 +5,7 @@ import type { CellAddress, CellRange, DocumentId, SheetId } from "@/engine/types
 import { createSelectionStore, singleCellSelection, type SelectionStore } from "@/model/selection";
 import { EditSession, type CommitMove, type EditKeyEvent } from "@/editor/session";
 import { FakeGrid } from "./fake-grid";
+import { editModeLabel } from "@/editor";
 
 const flush = () => new Promise((resolve) => setTimeout(resolve, 0));
 
@@ -454,5 +455,88 @@ describe("EditSession — formula bar, name box and value autocomplete", () => {
     expect(h.session.getState().suggestion).toBe("lbao");
     h.session.setText("Bi", 2, 2, "deleteContentBackward");
     expect(h.session.getState()).toMatchObject({ text: "Bi", suggestion: "" });
+  });
+});
+
+describe("EditSession — Excel edge cases", () => {
+  let h: Harness;
+  beforeEach(async () => {
+    navigations = [];
+    h = await setup();
+  });
+
+  it("F2 in a formula switches to Edit mode, where arrows move the caret instead of picking", () => {
+    type(h, "=");
+    expect(h.session.getState().canPick).toBe(true);
+    h.session.handleKey(key("F2"));
+    expect(h.session.getState().mode).toBe("edit");
+    expect(h.session.handleKey(key("ArrowRight"))).toBe(false);
+    expect(h.session.getState().text).toBe("=");
+    h.session.handleKey(key("F2"));
+    expect(h.session.getState().mode).toBe("enter");
+    expect(h.session.handleKey(key("ArrowRight"))).toBe(true);
+    expect(h.session.getState().text).toBe("=B1");
+  });
+
+  it("F4 right after picking cycles the picked reference", () => {
+    type(h, "=");
+    h.session.handleKey(key("ArrowDown"));
+    h.session.handleKey(key("F4"));
+    expect(h.session.getState().text).toBe("=$A$2");
+  });
+
+  it("F4 outside a formula does nothing", () => {
+    type(h, "A1");
+    expect(h.session.handleKey(key("F4"))).toBe(true);
+    expect(h.session.getState().text).toBe("A1");
+  });
+
+  it("Ctrl+Enter on a single cell commits in place", () => {
+    type(h, "7");
+    h.session.handleKey(key("Enter", { ctrlKey: true }));
+    expect(cellsOf(h)).toEqual([{ row: 0, col: 0, input: "7" }]);
+    expect(h.selection.get().active).toEqual(A1);
+  });
+
+  it("F2 + Enter without changes sends no ops", async () => {
+    await h.engine.apply(h.doc, [{ type: "setCells", sheet: h.sheet, cells: [{ row: 0, col: 0, input: "5" }] }]);
+    h.session.start({ cell: A1, source: "f2" });
+    await flush();
+    expect(h.session.getState().text).toBe("5");
+    h.session.handleKey(key("Enter"));
+    expect(h.commits).toHaveLength(0);
+    expect(h.selection.get().active).toEqual({ row: 1, col: 0 });
+  });
+
+  it("the ✓ button commits without moving and ✕ cancels", () => {
+    type(h, "x");
+    h.session.commit("none", "button");
+    expect(cellsOf(h)).toEqual([{ row: 0, col: 0, input: "x" }]);
+    expect(h.selection.get().active).toEqual(A1);
+    type(h, "y");
+    h.session.cancel();
+    expect(h.commits).toHaveLength(1);
+  });
+
+  it("formula bar and in-cell editor share one session", () => {
+    type(h, "=SUM(A1");
+    h.session.setSurface("bar");
+    expect(h.session.getState()).toMatchObject({ surface: "bar", mode: "edit", text: "=SUM(A1" });
+    h.session.handleKey(key("Enter"));
+    expect(cellsOf(h)[0].input).toBe("=SUM(A1)");
+  });
+
+  it("exposes the selection store and returns focus to the grid", () => {
+    expect(h.session.selection).toBe(h.selection);
+    const before = h.grid.focused;
+    h.session.focusGrid();
+    expect(h.grid.focused).toBe(before + 1);
+  });
+
+  it("labels edit modes in Spanish", () => {
+    expect(editModeLabel("idle", "enter")).toBe("Listo");
+    expect(editModeLabel("editing", "enter")).toBe("Introducir");
+    expect(editModeLabel("editing", "edit")).toBe("Modificar");
+    expect(editModeLabel("editing", "point")).toBe("Señalar");
   });
 });

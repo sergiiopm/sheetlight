@@ -160,7 +160,7 @@ function NumberTab({ draft, sample, onChange }: { draft: NumberDraft; sample: nu
     </Field>
   );
   const negativeField = (
-    <Field label="Números negativos">
+    <Field label="Números negativos" group>
       <div className="flex flex-col rounded-md border border-border p-1">
         {NEGATIVE_STYLES.map((style) => (
           <button
@@ -245,9 +245,9 @@ function NumberTab({ draft, sample, onChange }: { draft: NumberDraft; sample: nu
           </div>
         ) : null}
         {draft.category === "percent" || draft.category === "scientific" ? decimalsField : null}
-        {draft.category === "date" ? <Field label="Tipo">{codeList(withPreview(DATE_CODES), draft.dateCode, (dateCode) => set({ dateCode }))}</Field> : null}
-        {draft.category === "time" ? <Field label="Tipo">{codeList(withPreview(TIME_CODES), draft.timeCode, (timeCode) => set({ timeCode }))}</Field> : null}
-        {draft.category === "fraction" ? <Field label="Tipo">{codeList(FRACTION_CODES, draft.fractionCode, (fractionCode) => set({ fractionCode }))}</Field> : null}
+        {draft.category === "date" ? <Field label="Tipo" group>{codeList(withPreview(DATE_CODES), draft.dateCode, (dateCode) => set({ dateCode }))}</Field> : null}
+        {draft.category === "time" ? <Field label="Tipo" group>{codeList(withPreview(TIME_CODES), draft.timeCode, (timeCode) => set({ timeCode }))}</Field> : null}
+        {draft.category === "fraction" ? <Field label="Tipo" group>{codeList(FRACTION_CODES, draft.fractionCode, (fractionCode) => set({ fractionCode }))}</Field> : null}
         {draft.category === "custom" ? (
           <>
             <Field label="Tipo">
@@ -417,7 +417,7 @@ function FontTab({ draft, onChange }: { draft: FormatDraft; onChange: (draft: Fo
 
 function Preview({ children }: { children: ReactNode }) {
   return (
-    <Field label="Vista previa">
+    <Field label="Vista previa" group>
       <div className="flex h-16 items-center justify-center overflow-hidden rounded-md border border-border bg-white text-black">{children}</div>
     </Field>
   );
@@ -470,11 +470,10 @@ function BorderTab({ draft, onChange }: { draft: FormatDraft; onChange: (draft: 
 function FillTab({ draft, onChange }: { draft: FormatDraft; onChange: (draft: FormatDraft) => void }) {
   return (
     <div className="grid grid-cols-[14rem_1fr] gap-4">
-      <Field label="Color de fondo">
-        <div className="pt-1">
-          <ColorPalette noneLabel="Sin color" value={draft.fill} onPick={(fill) => onChange({ ...draft, fill })} />
-        </div>
-      </Field>
+      <div role="group" aria-label="Color de fondo" className="flex flex-col gap-1">
+        <span className="text-xs text-muted-foreground">Color de fondo</span>
+        <ColorPalette noneLabel="Sin color" value={draft.fill} onPick={(fill) => onChange({ ...draft, fill })} />
+      </div>
       <Preview>
         <div className="h-full w-full" style={{ backgroundColor: draft.fill ?? "transparent" }} />
       </Preview>

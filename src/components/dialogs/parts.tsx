@@ -65,7 +65,19 @@ export function OkCancel({ onCancel, okLabel = "Aceptar", disabled }: { onCancel
   );
 }
 
-export function Field({ label, children, className }: { label: string; children: ReactNode; className?: string }) {
+/**
+ * Labelled field. Use `group` when the content is not a single control
+ * (lists of buttons, previews): a <label> would lend its name to the first button.
+ */
+export function Field({ label, children, className, group = false }: { label: string; children: ReactNode; className?: string; group?: boolean }) {
+  if (group) {
+    return (
+      <div role="group" aria-label={label} className={cn("flex flex-col gap-1 text-xs text-muted-foreground", className)}>
+        <span>{label}</span>
+        <div className="text-sm text-foreground">{children}</div>
+      </div>
+    );
+  }
   return (
     <label className={cn("flex flex-col gap-1 text-xs text-muted-foreground", className)}>
       <span>{label}</span>

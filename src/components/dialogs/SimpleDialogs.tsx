@@ -217,7 +217,7 @@ export function UnhideSheetsDialog({ onClose }: CloseProps) {
       }}
       footer={<OkCancel onCancel={onClose} disabled={selected.size === 0} />}
     >
-      <Field label="Mostrar una o más hojas">
+      <Field label="Mostrar una o más hojas" group>
         <div className="max-h-48 overflow-y-auto rounded-md border border-border p-1">
           {hidden.length === 0 ? <p className="p-2 text-xs text-muted-foreground">No hay hojas ocultas.</p> : null}
           {hidden.map((sheet) => (

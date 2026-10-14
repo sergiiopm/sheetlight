@@ -23,7 +23,7 @@ use sheetlight_lib::engine::types::{BackendKind, CsvOptions, EngineEvent, Fideli
 #[test]
 fn corpus_manifest_is_consistent() {
     let files = corpus_files();
-    assert!(files.len() >= 12, "expected at least 12 corpus files, found {}", files.len());
+    assert!(files.len() >= 13, "expected at least 13 corpus files, found {}", files.len());
     for (path, exp) in &files {
         let name = path.file_name().unwrap().to_string_lossy();
         assert_eq!(exp.file, name, "expected.json `file` field");
@@ -43,6 +43,10 @@ fn corpus_manifest_is_consistent() {
             "xlsx" => {
                 let bytes = std::fs::read(path).unwrap();
                 assert_eq!(&bytes[..4], b"PK\x03\x04", "{name} is not a zip package");
+            }
+            "xls" => {
+                let bytes = std::fs::read(path).unwrap();
+                assert_eq!(&bytes[..4], b"\xD0\xCF\x11\xE0", "{name} is not an OLE2 compound document");
             }
             "csv" => {
                 let csv = exp.csv.as_ref().unwrap_or_else(|| panic!("{name}: csv options missing"));

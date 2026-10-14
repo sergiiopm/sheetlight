@@ -1,0 +1,350 @@
+{
+ "file": "nominas_legacy.xls",
+ "kind": "xls",
+ "description": "Nóminas en formato Excel 97-2003 (.xls, BIFF8): acentos y ñ, DNI como texto, fechas dd/mm/aaaa, fórmulas ROUND/SUMIF/COUNTIF/MAX entre hojas sin valores en caché, título combinado. Solo lectura: se guarda como .xlsx.",
+ "sheets": [
+  "Empleados",
+  "Resumen"
+ ],
+ "activeSheet": "Empleados",
+ "features": {
+  "Resumen": {
+   "merges": [
+    "A1:D1"
+   ]
+  }
+ },
+ "cells": {
+  "Empleados!A2": {
+   "value": {
+    "type": "text",
+    "value": "Pilar Fernández López"
+   },
+   "display": "Pilar Fernández López"
+  },
+  "Empleados!B2": {
+   "value": {
+    "type": "text",
+    "value": "42336094C"
+   },
+   "display": "42336094C"
+  },
+  "Empleados!D2": {
+   "value": {
+    "type": "number",
+    "value": 37386.0
+   },
+   "display": "10/05/2002"
+  },
+  "Empleados!E2": {
+   "value": {
+    "type": "number",
+    "value": 1672.44
+   },
+   "display": "1.672,44 €"
+  },
+  "Empleados!G2": {
+   "value": {
+    "type": "number",
+    "value": 1747.44
+   },
+   "display": "1.747,44 €",
+   "input": "=E2+F2"
+  },
+  "Empleados!H2": {
+   "value": {
+    "type": "number",
+    "value": 110.96
+   },
+   "display": "110,96 €",
+   "input": "=ROUND(G2*0.0635,2)"
+  },
+  "Empleados!I2": {
+   "value": {
+    "type": "number",
+    "value": 0.12
+   },
+   "display": "12,0%"
+  },
+  "Empleados!J2": {
+   "value": {
+    "type": "number",
+    "value": 1426.79
+   },
+   "display": "1.426,79 €",
+   "input": "=ROUND(G2-H2-G2*I2,2)"
+  },
+  "Empleados!A3": {
+   "value": {
+    "type": "text",
+    "value": "Ramón López López"
+   },
+   "display": "Ramón López López"
+  },
+  "Empleados!B3": {
+   "value": {
+    "type": "text",
+    "value": "70511200Z"
+   },
+   "display": "70511200Z"
+  },
+  "Empleados!D3": {
+   "value": {
+    "type": "number",
+    "value": 34785.0
+   },
+   "display": "27/03/1995"
+  },
+  "Empleados!E3": {
+   "value": {
+    "type": "number",
+    "value": 1740.01
+   },
+   "display": "1.740,01 €"
+  },
+  "Empleados!G3": {
+   "value": {
+    "type": "number",
+    "value": 1740.01
+   },
+   "display": "1.740,01 €",
+   "input": "=E3+F3"
+  },
+  "Empleados!H3": {
+   "value": {
+    "type": "number",
+    "value": 110.49
+   },
+   "display": "110,49 €",
+   "input": "=ROUND(G3*0.0635,2)"
+  },
+  "Empleados!I3": {
+   "value": {
+    "type": "number",
+    "value": 0.15
+   },
+   "display": "15,0%"
+  },
+  "Empleados!J3": {
+   "value": {
+    "type": "number",
+    "value": 1368.52
+   },
+   "display": "1.368,52 €",
+   "input": "=ROUND(G3-H3-G3*I3,2)"
+  },
+  "Empleados!A25": {
+   "value": {
+    "type": "text",
+    "value": "Begoña Muñoz García"
+   },
+   "display": "Begoña Muñoz García"
+  },
+  "Empleados!B25": {
+   "value": {
+    "type": "text",
+    "value": "42675299C"
+   },
+   "display": "42675299C"
+  },
+  "Empleados!D25": {
+   "value": {
+    "type": "number",
+    "value": 38480.0
+   },
+   "display": "08/05/2005"
+  },
+  "Empleados!E25": {
+   "value": {
+    "type": "number",
+    "value": 2162.04
+   },
+   "display": "2.162,04 €"
+  },
+  "Empleados!G25": {
+   "value": {
+    "type": "number",
+    "value": 2282.04
+   },
+   "display": "2.282,04 €",
+   "input": "=E25+F25"
+  },
+  "Empleados!H25": {
+   "value": {
+    "type": "number",
+    "value": 144.91
+   },
+   "display": "144,91 €",
+   "input": "=ROUND(G25*0.0635,2)"
+  },
+  "Empleados!I25": {
+   "value": {
+    "type": "number",
+    "value": 0.08
+   },
+   "display": "8,0%"
+  },
+  "Empleados!J25": {
+   "value": {
+    "type": "number",
+    "value": 1954.57
+   },
+   "display": "1.954,57 €",
+   "input": "=ROUND(G25-H25-G25*I25,2)"
+  },
+  "Empleados!A1": {
+   "value": {
+    "type": "text",
+    "value": "Empleado"
+   },
+   "display": "Empleado"
+  },
+  "Resumen!A4": {
+   "value": {
+    "type": "text",
+    "value": "Administración"
+   },
+   "display": "Administración"
+  },
+  "Resumen!B4": {
+   "value": {
+    "type": "number",
+    "value": 6.0
+   },
+   "display": "6"
+  },
+  "Resumen!C4": {
+   "value": {
+    "type": "number",
+    "value": 9796.03
+   },
+   "display": "9.796,03 €"
+  },
+  "Resumen!D4": {
+   "value": {
+    "type": "number",
+    "value": 1632.67
+   },
+   "display": "1.632,67 €"
+  },
+  "Resumen!A5": {
+   "value": {
+    "type": "text",
+    "value": "Almacén"
+   },
+   "display": "Almacén"
+  },
+  "Resumen!B5": {
+   "value": {
+    "type": "number",
+    "value": 6.0
+   },
+   "display": "6"
+  },
+  "Resumen!C5": {
+   "value": {
+    "type": "number",
+    "value": 10776.68
+   },
+   "display": "10.776,68 €"
+  },
+  "Resumen!D5": {
+   "value": {
+    "type": "number",
+    "value": 1796.11
+   },
+   "display": "1.796,11 €"
+  },
+  "Resumen!A6": {
+   "value": {
+    "type": "text",
+    "value": "Ventas"
+   },
+   "display": "Ventas"
+  },
+  "Resumen!B6": {
+   "value": {
+    "type": "number",
+    "value": 6.0
+   },
+   "display": "6"
+  },
+  "Resumen!C6": {
+   "value": {
+    "type": "number",
+    "value": 10392.66
+   },
+   "display": "10.392,66 €"
+  },
+  "Resumen!D6": {
+   "value": {
+    "type": "number",
+    "value": 1732.11
+   },
+   "display": "1.732,11 €"
+  },
+  "Resumen!A7": {
+   "value": {
+    "type": "text",
+    "value": "Taller"
+   },
+   "display": "Taller"
+  },
+  "Resumen!B7": {
+   "value": {
+    "type": "number",
+    "value": 6.0
+   },
+   "display": "6"
+  },
+  "Resumen!C7": {
+   "value": {
+    "type": "number",
+    "value": 9460.62
+   },
+   "display": "9.460,62 €"
+  },
+  "Resumen!D7": {
+   "value": {
+    "type": "number",
+    "value": 1576.77
+   },
+   "display": "1.576,77 €"
+  },
+  "Resumen!B8": {
+   "value": {
+    "type": "number",
+    "value": 24.0
+   },
+   "display": "24"
+  },
+  "Resumen!C8": {
+   "value": {
+    "type": "number",
+    "value": 40425.99
+   },
+   "display": "40.425,99 €"
+  },
+  "Resumen!C9": {
+   "value": {
+    "type": "number",
+    "value": 2304.96
+   },
+   "display": "2.304,96 €"
+  },
+  "Resumen!C10": {
+   "value": {
+    "type": "text",
+    "value": "Pilar Fernández López"
+   },
+   "display": "Pilar Fernández López"
+  },
+  "Resumen!A1": {
+   "value": {
+    "type": "text",
+    "value": "Resumen de nóminas"
+   },
+   "display": "Resumen de nóminas"
+  }
+ }
+}

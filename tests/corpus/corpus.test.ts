@@ -24,7 +24,7 @@ interface ExpectedCell {
 
 interface Expected {
   readonly file: string;
-  readonly kind: "xlsx" | "csv";
+  readonly kind: "xlsx" | "xls" | "csv";
   readonly description: string;
   readonly sheets: ReadonlyArray<string>;
   readonly activeSheet: string;
@@ -76,6 +76,7 @@ describe("test corpus (tests/corpus/files)", () => {
   it("has the realistic Spanish files with expectations", () => {
     expect(dataFiles.filter((n) => n.endsWith(".xlsx")).length).toBeGreaterThanOrEqual(6);
     expect(dataFiles.filter((n) => n.endsWith(".csv")).length).toBeGreaterThanOrEqual(6);
+    expect(dataFiles.filter((n) => n.endsWith(".xls")).length).toBeGreaterThanOrEqual(1);
     const orphans = readdirSync(filesDir)
       .filter((n) => n.endsWith(".expected.json"))
       .filter((n) => !dataFiles.includes(n.replace(/\.expected\.json$/, "")));
@@ -85,6 +86,7 @@ describe("test corpus (tests/corpus/files)", () => {
   it.each(dataFiles)("%s: expected JSON follows the schema", (name) => {
     const exp = loadExpected(name);
     expect(exp.file).toBe(name);
+    expect(path.extname(name).slice(1)).toBe(exp.kind);
     expect(statSync(path.join(filesDir, name)).size).toBeLessThan(1_000_000);
     expect(exp.description.length).toBeGreaterThan(20);
     expect(exp.sheets).toContain(exp.activeSheet);
@@ -121,6 +123,13 @@ describe("test corpus (tests/corpus/files)", () => {
     const header = text.replace(/^﻿/, "").split(/\r?\n/, 1)[0];
     expect(header.split(csv.delimiter).length).toBeGreaterThanOrEqual(Math.min(exp.cols ?? 1, 5));
     if (csv.encoding === "windows-1252") expect(text).toMatch(/[ñáéíóú]/);
+  });
+
+  it.each(dataFiles.filter((n) => !n.endsWith(".csv")))("%s: has the container magic bytes of its kind", (name) => {
+    const head = readFileSync(path.join(filesDir, name)).subarray(0, 4);
+    // xlsx = zip package; xls = OLE2 compound document (BIFF8).
+    const magic = name.endsWith(".xls") ? [0xd0, 0xcf, 0x11, 0xe0] : [0x50, 0x4b, 0x03, 0x04];
+    expect([...head]).toEqual(magic);
   });
 
   it("known-gaps.json only references corpus files and cells", () => {

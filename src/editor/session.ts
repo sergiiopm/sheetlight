@@ -214,6 +214,16 @@ export class EditSession {
     };
   };
 
+  /** Selection store of the document (the formula bar and name box read the active cell). */
+  get selection(): SelectionStore {
+    return this.opts.selection;
+  }
+
+  /** Returns keyboard focus to the grid (name box Esc, ✕ button). */
+  focusGrid(): void {
+    this.opts.getGrid()?.focus();
+  }
+
   isEditing(): boolean {
     return this.state.status === "editing";
   }

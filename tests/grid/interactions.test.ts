@@ -253,6 +253,39 @@ describe("keyboard", () => {
     expect(host.fake.y).toBeGreaterThan(400);
   });
 
+  it("End mode: End then an arrow jumps like Ctrl+arrow; End, Home goes to the last used cell", async () => {
+    const engine = new MemoryEngine();
+    const info = await engine.newDocument();
+    const cells = [];
+    for (let r = 0; r < 8; r++) cells.push({ row: r, col: 0, input: String(r) });
+    cells.push({ row: 20, col: 4, input: "x" });
+    await engine.apply(info.doc, [{ type: "setCells", sheet: info.activeSheet, cells }]);
+    const ds = new EngineDataSource(engine, info.doc, info.activeSheet, {
+      onBlocksLoaded: () => undefined,
+      onDataInvalidated: () => undefined,
+      onSheetInfo: () => undefined,
+      onStructure: () => undefined,
+      onStylesChanged: () => undefined,
+    });
+    await ds.load();
+    host.dataSource = ds;
+    expect(handleKeyDown(kb, key("End"))).toBe("handled");
+    expect(g.endMode).toBe(true);
+    handleKeyDown(kb, key("Shift"));
+    expect(g.endMode).toBe(true);
+    handleKeyDown(kb, key("ArrowDown"));
+    expect(g.endMode).toBe(false);
+    for (let i = 0; i < 5; i++) await new Promise((r) => setTimeout(r, 0));
+    expect(sel().active).toEqual({ row: 7, col: 0 });
+    handleKeyDown(kb, key("End"));
+    handleKeyDown(kb, key("Home"));
+    expect(sel().active).toEqual({ row: 20, col: 4 });
+    handleKeyDown(kb, key("End"));
+    handleKeyDown(kb, key("x"));
+    expect(g.endMode).toBe(false);
+    ds.dispose();
+  });
+
   it("typing keys: printable characters and AltGr, not shortcuts", () => {
     expect(isTypingKey(key("a"))).toBe(true);
     expect(isTypingKey(key("€", { ctrl: true, alt: true }))).toBe(true);

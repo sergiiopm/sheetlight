@@ -68,7 +68,7 @@ calls `apply`.
 
 ## Known gaps
 
-- Excel "End mode" (End, then an arrow) is not implemented (Ctrl+arrows is).
+- "End mode" works for navigation but is not reported to the status bar.
 - Rotated text is clipped to its cell (no overflow); auto row height for
   wrapped text is not computed by the grid.
 - Text overflowing into view is scanned up to 256 columns beyond the pane.

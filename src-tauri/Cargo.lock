@@ -3412,6 +3412,8 @@ version = "0.0.1"
 dependencies = [
  "base64 0.22.1",
  "calamine",
+ "chrono",
+ "csv",
  "encoding_rs",
  "ironcalc",
  "ironcalc_base",
@@ -3423,6 +3425,7 @@ dependencies = [
  "tauri-plugin-dialog",
  "tauri-plugin-opener",
  "tauri-plugin-single-instance",
+ "tokio",
  "zip 0.6.6",
 ]
 

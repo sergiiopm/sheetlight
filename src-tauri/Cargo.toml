@@ -25,12 +25,11 @@ tauri-plugin-single-instance = "2"
 # Formula engine, pinned to IronCalc main (see docs/spikes/ironcalc-engine.md).
 ironcalc = { git = "https://github.com/ironcalc/IronCalc", rev = "341ec870afa5c898479ca92ab03800cf86dee2f1" }
 ironcalc_base = { git = "https://github.com/ironcalc/IronCalc", rev = "341ec870afa5c898479ca92ab03800cf86dee2f1" }
-# Files (WS3). zip/quick-xml: same versions IronCalc already links (no size cost),
-# used by the xlsx fidelity layer. calamine: legacy .xls import only (LTO strips
-# its xlsx/ods readers). encoding_rs: CSV Windows-1252/UTF-16 decode+encode.
-# memchr: SIMD byte scanning in the CSV parser.
+# Files (WS3). zip: same version IronCalc already links (no size cost), used by
+# the xlsx fidelity layer. calamine: legacy .xls import only (LTO strips its
+# xlsx/ods readers). encoding_rs: CSV Windows-1252/UTF-16 decode+encode.
+# memchr: SIMD byte scanning in the CSV parser and the package XML scanner.
 zip = { version = "0.6.6", default-features = false, features = ["deflate"] }
-quick-xml = "0.42"
 calamine = { version = "0.36", default-features = false }
 encoding_rs = "0.8"
 memchr = "2"

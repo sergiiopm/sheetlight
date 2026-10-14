@@ -19,7 +19,9 @@ import {
   type ClipboardContents,
   type SystemClipboard,
 } from "@/hooks/clipboard";
+import { ChartIntegration } from "@/hooks/chart-integration";
 import type { FileGateway } from "@/hooks/file-gateway";
+import { SelectionStatsTracker } from "@/hooks/selection-stats";
 import { activeRangeOf, rangeSelection, selectionForContextClick } from "@/hooks/selection-ops";
 import { SessionManager, errorMessage } from "@/hooks/session-manager";
 import { GLOBAL_COMMANDS, isEditableTarget, matchCommand, type KeyLike } from "@/hooks/shortcuts";
@@ -102,6 +104,8 @@ export interface AppControllerDeps {
   readonly refreshDelayMs?: number;
   /** Fallback delay before a Ctrl+V without DOM paste event reads the clipboard API. */
   readonly pasteFallbackMs?: number;
+  /** Debounce for status bar statistics (ms). */
+  readonly statsDelayMs?: number;
 }
 
 let nextNoticeId = 1;
@@ -112,6 +116,10 @@ export class AppController {
   readonly registry = new CommandRegistry();
   readonly settings: SettingsStore;
   readonly clipboard: ClipboardState;
+  /** Status bar statistics of the active selection. */
+  readonly stats: SelectionStatsTracker;
+  /** Injection point for charts (WS6); see `chart-integration.ts`. */
+  readonly charts = new ChartIntegration();
 
   readonly dialog = createStore<DialogState | null>(null);
   readonly filterMenu = createStore<FilterMenuState | null>(null);
@@ -155,8 +163,11 @@ export class AppController {
       },
       csvSaveDelimiter: () => this.settings.get().csv.saveDelimiter,
     });
+    this.stats = new SelectionStatsTracker(deps.engine, this.manager, deps.statsDelayMs ?? 120);
     this.disposers.push(
+      () => this.stats.dispose(),
       this.manager.state.subscribe(() => this.bindActiveSession()),
+      this.charts.insertHandler.subscribe(() => this.registry.changed()),
       this.clipboard.clip.subscribe(() => {
         this.updateMarquee();
         this.registry.changed();
@@ -367,7 +378,8 @@ export class AppController {
       return true;
     }
     event.preventDefault?.();
-    void this.registry.run(command.id, { source: "shortcut" });
+    if (global && !this.settleEdit(command.id)) return true;
+    void this.registry.run(command.id, { source: "shortcut" }).catch((error: unknown) => this.notify(errorMessage(error), "error"));
     return true;
   }
 
@@ -390,7 +402,23 @@ export class AppController {
     return true;
   }
 
+  /**
+   * Finishes a pending cell edit before a command from the toolbar, a menu or
+   * a global shortcut runs (Excel commits the entry first). Returns false
+   * when the entry is invalid and the editor stays open.
+   */
+  settleEdit(id: CommandId): boolean {
+    const editor = this.session?.editor;
+    if (!editor?.isEditing()) return true;
+    if (id === "edit.undo") {
+      editor.cancel();
+      return false;
+    }
+    return editor.commit("none");
+  }
+
   async runCommand(id: CommandId, source: "toolbar" | "menu" | "contextMenu" | "palette" | "api" = "toolbar"): Promise<boolean> {
+    if (source !== "api" && !this.settleEdit(id)) return false;
     try {
       return await this.registry.run(id, { source });
     } catch (error) {
@@ -461,6 +489,27 @@ export class AppController {
   clearMarquee(): void {
     this.clipboard.clear();
     this.stopFormatPainter();
+  }
+
+  // ----- charts --------------------------------------------------------------------
+
+  /** "Insertar > Gráfico": hands the selection to the injected chart handler. */
+  async insertChart(): Promise<void> {
+    const handler = this.charts.insertHandler.get();
+    const session = this.session;
+    if (!session) return;
+    if (!handler) {
+      this.notify("Los gráficos todavía no están disponibles en esta versión.", "info");
+      return;
+    }
+    await handler({
+      engine: this.engine,
+      doc: session.doc,
+      sheet: session.activeSheet,
+      selection: session.selection.get(),
+      grid: session.grid,
+      apply: (ops) => this.apply(ops),
+    });
   }
 
   // ----- format painter ------------------------------------------------------------

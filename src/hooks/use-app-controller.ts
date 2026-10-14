@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getEngine } from "@/engine";
-import { getFileFormat } from "@/hooks/file-format";
+import { getFormatFromPath } from "@/files/path";
 import { AppController } from "@/hooks/app-controller";
 import { registerShellCommands } from "@/hooks/app-commands";
 import { browserClipboard, contentsFromDataTransfer } from "@/hooks/clipboard";
@@ -148,7 +148,7 @@ function useWindowIntegration(controller: AppController | null): void {
         }),
         listen<string[]>("open-files", (event) => void c.manager.openPaths(event.payload)),
         getCurrentWebview().onDragDropEvent((event) => {
-          if (event.payload.type === "drop") void c.manager.openPaths(event.payload.paths.filter((p) => getFileFormat(p) !== null));
+          if (event.payload.type === "drop") void c.manager.openPaths(event.payload.paths.filter((p) => getFormatFromPath(p) !== null));
         }),
       ]);
       if (cancelled) handlers.forEach((unlisten) => unlisten());

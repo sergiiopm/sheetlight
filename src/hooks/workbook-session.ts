@@ -53,6 +53,13 @@ export interface LoadState {
   readonly error: string | null;
 }
 
+/** What the shell needs from the editor session (`EditSession` satisfies it). */
+export interface ShellEditor {
+  isEditing(): boolean;
+  commit(move: "none"): boolean;
+  cancel(): void;
+}
+
 export const DEFAULT_VIEW: GridViewport = { topLeft: { row: 0, col: 0 }, zoom: 1 };
 
 let nextSessionNumber = 1;
@@ -65,8 +72,13 @@ export class WorkbookSession {
   readonly load: Store<LoadState | null>;
   /** Zoom of the active sheet (status bar, Vista menu). */
   readonly zoom: Store<number>;
-  /** True while the in-cell editor / formula bar is editing (status bar "Editando"). */
-  readonly editing = createStore(false);
+  /** Excel status-bar mode of the editor: "Listo", "Introducir", "Modificar" or "Señalar". */
+  readonly editMode = createStore("Listo");
+  /**
+   * The mounted editor of this document (set by the workbook view). The
+   * shell commits a pending edit before running toolbar/menu commands.
+   */
+  editor: ShellEditor | null = null;
   /** Engine data events of this document (cells, sheetData, sheetInfo, structure, charts…). */
   readonly dataEvents = new Emitter<EngineEvent>();
   source: OpenSource;

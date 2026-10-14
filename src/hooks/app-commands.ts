@@ -10,8 +10,9 @@ import * as view from "@/hooks/actions/view-actions";
 /**
  * Every shell action as a `Command` with a stable id and its Excel shortcut.
  * Toolbar buttons, menus, context menus and the keyboard all go through
- * these. Ids are a public contract for other modules (e.g. WS6 registers
- * `chart.insert`, which the toolbar shows when present).
+ * these. Ids are a public contract for other modules. Charts (WS6) plug in
+ * through `controller.charts` (see chart-integration.ts): `insert.chart` is
+ * enabled once an insert handler is set.
  */
 
 type Run = (context: CommandContext) => void | Promise<void>;
@@ -309,6 +310,15 @@ export function shellCommandDefs(c: AppController): Def[] {
     { id: "format.unhideRows", label: "Mostrar filas", group: "Celdas", shortcut: "Mod+Shift+(", enabled: has, run: run(() => data.setHidden(c, "row", false)) },
     { id: "format.hideCols", label: "Ocultar columnas", group: "Celdas", shortcut: "Mod+0", enabled: has, run: run(() => data.setHidden(c, "col", true)) },
     { id: "format.unhideCols", label: "Mostrar columnas", group: "Celdas", enabled: has, run: run(() => data.setHidden(c, "col", false)) },
+
+    {
+      id: "insert.chart",
+      label: "Gráfico",
+      group: "Insertar",
+      shortcut: "Alt+F1",
+      enabled: () => has() && c.charts.insertHandler.get() !== null,
+      run: run(() => c.insertChart()),
+    },
 
     // ----- Datos
     { id: "data.sortAsc", label: "Ordenar de A a Z", group: "Datos", enabled: has, run: run(() => data.sortQuick(c, true)) },

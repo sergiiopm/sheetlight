@@ -128,7 +128,7 @@ export async function controllerSetup() {
   const memory = new Map<string, string>();
   const settings = createSettingsStore({ getItem: (k) => memory.get(k) ?? null, setItem: (k, v) => void memory.set(k, v) });
   const files = testGateway(true);
-  const controller = new AppController({ engine, files, clipboard, settings, refreshDelayMs: 0, pasteFallbackMs: 0 });
+  const controller = new AppController({ engine, files, clipboard, settings, refreshDelayMs: 0, pasteFallbackMs: 0, statsDelayMs: 0 });
   registerShellCommands(controller);
   await controller.manager.ensureOne();
   await controller.refresh();

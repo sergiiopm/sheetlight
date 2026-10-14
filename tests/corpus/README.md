@@ -7,8 +7,8 @@ never read back from a spreadsheet engine.
 
 | Path | In git | Content |
 |---|---|---|
-| `files/` | yes (each file < 1 MB) | 6 `.xlsx` + 6 `.csv` with `<file>.expected.json` |
-| `generated/` | no (`.gitignore`) | large benchmark files (~200 MB) |
+| `files/` | yes (each file < 1 MB) | 6 `.xlsx` + 1 `.xls` + 6 `.csv` with `<file>.expected.json` |
+| `generated/` | no (`.gitignore`) | large files from `gen_corpus.py big` (~200 MB; the Rust benches generate their own) |
 | `private/` | no | your own real files for manual checks (never commit) |
 | `known-gaps.json` | yes | accepted deviations per test section, with the reason |
 
@@ -32,21 +32,34 @@ fails otherwise.
 | Test | Where | Status |
 |---|---|---|
 | Schema / bytes guard | `tests/corpus/corpus.test.ts` (Vitest, `npm test`) | runs |
+| Generator reproducibility | `python tests/corpus/gen_corpus.py check` | runs in CI |
 | Manifest + `xlsx_package::inspect` accepts every workbook | `src-tauri/tests/corpus_files.rs` | runs |
-| IronCalc baseline: values, es display, formula text, frozen panes, merges | `src-tauri/tests/ironcalc_baseline.rs` | runs (gaps in `known-gaps.json`) |
-| Fidelity warnings, chart/autofilter extraction | `corpus_files.rs` `xlsx_inspect_reports_every_fidelity_feature` | `#[ignore]` until WS3 |
-| CSV detection (delimiter/encoding/decimal), rows, values | `corpus_files.rs` `csv_store_*` | `#[ignore]` until WS3 |
-| Workbook backend values/display/input + sheet structure | `src-tauri/tests/engine_corpus.rs` | `#[ignore]` until WS2 (`open_workbook` TODO) |
-| Benchmarks | `tests/bench/` | see its README |
+| Fidelity warnings, chart/autofilter extraction (`inspect`) | `corpus_files.rs` `xlsx_inspect_reports_every_fidelity_feature` | runs (gaps: `inspect`) |
+| CSV detection (delimiter/encoding/decimal), rows, values | `corpus_files.rs` `csv_store_detects_options_and_reads_expected_cells` | runs (gaps: `csv_store`) |
+| IronCalc baseline: values, es display, formula text, frozen panes, merges | `src-tauri/tests/ironcalc_baseline.rs` | runs (gaps: `ironcalc`) |
+| Engine actor: values/display/input, sheet structure, open-banner warnings (xlsx + xls) | `src-tauri/tests/engine_corpus.rs` | runs (gaps: `workbook`, `fidelity`) |
+| Open → edit → save → reopen (xlsx, xls→xlsx, csv→csv, csv→xlsx) | `src-tauri/tests/engine_roundtrip.rs` | runs (gaps: `roundtrip`, `roundtrip_csv`) |
+| Benchmarks | `src-tauri/benches/engine.rs` (generates its own big files) | see `docs/qa/benchmarks.md` |
 
-Run the ignored ones with `cd src-tauri && cargo test --tests -- --ignored`.
+Every section of `known-gaps.json` has an `#[ignore]`d `*_strict` twin that
+fails while the section still lists open bugs:
+`cd src-tauri && cargo test --tests -- --ignored strict`.
+
+### `known-gaps.json`
+
+Keys are `<file>|<Sheet>!<A1>` for a cell, `<file>|<Sheet>!@<check>` or
+`<file>|@<check>` for a non-cell check (structure, warnings, CSV options,
+round-trip steps) and `<file>|*` for a whole file. Every value says why, and
+starts with **BUG** when it is a defect (owner in parentheses), **Pending**
+when it waits for another workstream, or **Limitation** for a documented
+limit. The tests print `now passing` for entries that no longer fail.
 
 ## Expected JSON schema
 
 ```jsonc
 {
   "file": "presupuesto_familiar.xlsx",
-  "kind": "xlsx",                         // or "csv"
+  "kind": "xlsx",                         // "xlsx" | "xls" | "csv"
   "description": "...",
   "sheets": ["Presupuesto 2025", "Movimientos", "Categorías"],   // in order
   "activeSheet": "Presupuesto 2025",
@@ -140,6 +153,18 @@ Sheets *PyG*, *Diario* (~370 journal lines), *Plan contable*, *Préstamo*, *Inve
   formats, formula-based conditional formats, Spanish national holidays,
   `NETWORKDAYS`, `WORKDAY` with a holiday range, `SUMPRODUCT`, `dddd`.
 
+### `nominas_legacy.xls` — legacy Excel 97-2003 payroll
+Written with xlwt (BIFF8), so formulas have **no cached results**: values only
+appear if the engine recalculates the imported formulas.
+- *Empleados* (active): 24 employees with accents and ñ, DNI as text,
+  `dd/mm/yyyy` hire dates, `#,##0.00 "€"` and `0.0%` formats, per-row
+  `ROUND` formulas.
+- *Resumen*: merged title, `COUNTIF` / `SUMIF` / `MAX` over 3-D ranges into
+  *Empleados*, a single-cell cross-sheet reference.
+- The importer keeps values, formulas, date formats and merges only (see
+  `src-tauri/src/xlsx_package/xls.rs`); frozen panes and other formats are not
+  expected.
+
 ### CSV files
 
 | File | Encoding | Delimiter | Decimal | EOL | Exercises |
@@ -184,3 +209,25 @@ Listed cell by cell in `known-gaps.json` (section `ironcalc`); WS2 owns the fixe
 Booleans and errors are not display-checked in the baseline: the es display
 (`VERDADERO`/`FALSO`, error text) is a Sheetlight decision checked at the
 backend level (`engine_corpus.rs`); see `docs/qa/excel-behavior.md`.
+
+## Bugs found through the engine actor (2026-10-14, WS5)
+
+Recorded in `known-gaps.json` (and as ignored tests); owners in parentheses.
+
+1. **CSV save double-encodes** (WS2/WS3): `csv_store::write_csv` already
+   encodes and adds the BOM, then `save_document` decodes it lossily and
+   encodes again. Windows-1252 accents become `?`, UTF-16 output is garbage,
+   UTF-8 gets two BOMs (section `roundtrip_csv`).
+2. **Detected encoding `utf-8-bom`** is not a `CsvOptions.encoding` value
+   (WS3, contract) (sections `csv_store`, `roundtrip_csv`).
+3. **`.xls` 3-D area references** to another sheet are rewritten to the
+   formula's own sheet (`Empleados!$C$2:$C$25` → `Resumen!$C$2:$C$25`), so
+   `COUNTIF`/`SUMIF`/`MAX` read the wrong data (WS3) (section `workbook`).
+4. **Active autofilter criteria of a file are not imported**: range and hidden
+   rows are, `filteredCols` is empty (WS2/WS3) (section `workbook`).
+5. **Transpose paste** shifts formula references instead of transposing them
+   (WS2) (`excel_behavior.rs`, ignored).
+6. **Reference intersection / union operators** are rejected on input
+   (IronCalc parser) (`engine_functions.rs` `KNOWN`).
+7. Charts are not extracted until WS6 replaces the `parse_chart_xml` stub
+   (sections `inspect`, `fidelity`; pending, not a bug).

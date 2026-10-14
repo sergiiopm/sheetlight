@@ -56,6 +56,8 @@ const MAX_HEADER_OP_INDICES = 65_536;
  */
 export class GridInteractions {
   private navQueue: Promise<void> = Promise.resolve();
+  /** Excel "End mode" (End pressed; the next arrow jumps to the data edge). */
+  endMode = false;
 
   constructor(private readonly host: InteractionHost) {}
 
@@ -172,6 +174,7 @@ export class GridInteractions {
   // ---------------------------------------------------------- pointer API
 
   clickCell(cell: CellAddress, mode: SelectMode): void {
+    this.endMode = false;
     const s = this.sel();
     const m = this.geom.merges;
     this.commit(mode === "extend" ? extendTo(s, cell, m) : mode === "add" ? addCell(s, cell, m) : selectCell(this.host.sheet, cell, m), null);

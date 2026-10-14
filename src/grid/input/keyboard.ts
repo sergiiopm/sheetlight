@@ -11,6 +11,8 @@ const ARROWS: Record<string, Direction> = {
   ArrowRight: "right",
 };
 
+const MODIFIERS = new Set(["Shift", "Control", "Alt", "AltGraph", "Meta", "CapsLock"]);
+
 export interface KeyboardContext {
   readonly geom: SheetGeometry;
   readonly actions: GridInteractions;
@@ -45,10 +47,13 @@ export function handleKeyDown(k: KeyboardContext, e: KeyboardEvent): KeyResult {
     g.requestEdit("type");
     return "ime";
   }
+  // Excel "End mode": End, then an arrow, behaves like Ctrl+arrow (End, Home = Ctrl+End).
+  const endMode = g.endMode;
+  if (!MODIFIERS.has(e.key)) g.endMode = false;
   const dir = ARROWS[e.key];
   if (dir) {
     if (e.altKey) return "unhandled";
-    if (ctrl) void g.jumpToEdge(dir, shift);
+    if (ctrl || endMode) void g.jumpToEdge(dir, shift);
     else g.moveSelection(dir, shift);
     return "handled";
   }
@@ -63,6 +68,10 @@ export function handleKeyDown(k: KeyboardContext, e: KeyboardEvent): KeyResult {
       return "handled";
     case "Home": {
       const { geom } = k;
+      if (endMode && !ctrl) {
+        g.goTo(g.lastUsedCell(), shift);
+        return "handled";
+      }
       if (ctrl) g.goTo({ row: geom.frozenRows, col: geom.frozenCols }, shift);
       else g.goTo({ row: (shift ? focusOf(k.selection()) : k.selection().active).row, col: geom.frozenCols }, shift);
       return "handled";
@@ -72,7 +81,9 @@ export function handleKeyDown(k: KeyboardContext, e: KeyboardEvent): KeyResult {
         g.goTo(g.lastUsedCell(), shift);
         return "handled";
       }
-      return "unhandled";
+      if (e.altKey) return "unhandled";
+      g.endMode = !endMode;
+      return "handled";
     case "Tab":
       if (ctrl || e.altKey) return "unhandled";
       g.advance(true, shift);

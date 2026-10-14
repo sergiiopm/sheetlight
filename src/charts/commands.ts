@@ -48,6 +48,18 @@ export function requestChartInsert(request: ChartInsertRequest): boolean {
 export const CHART_INSERT_COMMAND = "chart.insert";
 
 /**
+ * "Insertar > Gráfico" handler for the shell: opens the "Crear gráfico"
+ * dialog of the document's mounted `ChartLayer` with the current selection
+ * (a single cell expands to its current region, like Excel). Returns false
+ * when the document is read-only or no chart layer is mounted for it.
+ */
+export function createChartFromSelection(ctx: ChartCommandContext): boolean {
+  if (ctx.readOnly) return false;
+  const sel = ctx.selection.get();
+  return requestChartInsert({ doc: ctx.doc, sheet: ctx.sheet, ranges: sel.ranges, active: sel.active });
+}
+
+/**
  * Registers chart commands (`chart.insert`, "Insertar gráfico"). The command
  * opens the create-chart dialog of the mounted `ChartLayer` with the current
  * selection. Returns the unregister function.
@@ -66,9 +78,7 @@ export function registerChartCommands(
     },
     run: () => {
       const ctx = getContext();
-      if (!ctx || ctx.readOnly) return;
-      const sel = ctx.selection.get();
-      requestChartInsert({ doc: ctx.doc, sheet: ctx.sheet, ranges: sel.ranges, active: sel.active });
+      if (ctx) createChartFromSelection(ctx);
     },
   });
 }

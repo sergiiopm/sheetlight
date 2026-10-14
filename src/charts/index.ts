@@ -4,7 +4,15 @@
  */
 export { ChartLayer, type ChartLayerProps } from "@/charts/ChartLayer";
 export {
+  ChartDialog as CreateChartDialog,
+  type ChartDialogProps as CreateChartDialogProps,
+  type ChartDialogInsert,
+  type ChartDialogEdit,
+  type ChartDraftFields,
+} from "@/charts/ChartDialog";
+export {
   registerChartCommands,
+  createChartFromSelection,
   requestChartInsert,
   onChartInsertRequest,
   CHART_INSERT_COMMAND,

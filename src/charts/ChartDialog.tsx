@@ -232,7 +232,7 @@ export function ChartDialog({ engine, doc, sheet, sheets, request, onCancel, onS
         }}
       >
         <DialogHeader>
-          <DialogTitle>{isInsert ? "Insertar gráfico" : "Editar gráfico"}</DialogTitle>
+          <DialogTitle>{isInsert ? "Crear gráfico" : "Editar gráfico"}</DialogTitle>
           <DialogDescription>Elija el tipo de gráfico, los datos y los títulos.</DialogDescription>
         </DialogHeader>
 
@@ -406,7 +406,7 @@ export function ChartDialog({ engine, doc, sheet, sheets, request, onCancel, onS
             Cancelar
           </Button>
           <Button type="button" onClick={submit} disabled={!canSubmit}>
-            {isInsert ? "Insertar" : "Aceptar"}
+            {isInsert ? "Crear" : "Aceptar"}
           </Button>
         </DialogFooter>
       </DialogContent>

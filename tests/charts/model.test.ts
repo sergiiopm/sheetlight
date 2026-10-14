@@ -4,7 +4,13 @@ import { MemoryEngine } from "@/engine/memory-engine";
 import type { CellRange } from "@/engine/types";
 import { CommandRegistry } from "@/model/commands";
 import { createSelectionStore, singleCellSelection } from "@/model/selection";
-import { CHART_INSERT_COMMAND, onChartInsertRequest, registerChartCommands, type ChartInsertRequest } from "@/charts/commands";
+import {
+  CHART_INSERT_COMMAND,
+  createChartFromSelection,
+  onChartInsertRequest,
+  registerChartCommands,
+  type ChartInsertRequest,
+} from "@/charts/commands";
 import { dragBox, lookOf, toUpdate } from "@/charts/controller";
 import { chartDependencies, resolveChartData } from "@/charts/data";
 import { anchorNextTo, anchorToBox, boxToAnchor, pointToCell, type GridGeometry } from "@/charts/geometry";
@@ -295,6 +301,21 @@ describe("chart commands", () => {
     expect(got[0]).toMatchObject({ doc: info.doc, sheet: info.activeSheet, active: { row: 3, col: 1 } });
     readOnly = true;
     expect(await registry.run(CHART_INSERT_COMMAND)).toBe(false);
+    off();
+  });
+
+  it("createChartFromSelection reports whether a chart layer took the request", async () => {
+    const engine = new MemoryEngine();
+    const info = await engine.newDocument();
+    const selection = createSelectionStore(singleCellSelection(info.activeSheet, { row: 0, col: 0 }));
+    const ctx = { engine, doc: info.doc, sheet: info.activeSheet, selection };
+    expect(createChartFromSelection(ctx)).toBe(false);
+    const got: ChartInsertRequest[] = [];
+    const off = onChartInsertRequest(info.doc, (r) => got.push(r));
+    expect(createChartFromSelection(ctx)).toBe(true);
+    expect(createChartFromSelection({ ...ctx, readOnly: true })).toBe(false);
+    expect(got).toHaveLength(1);
+    expect(got[0].ranges).toEqual([{ r0: 0, c0: 0, r1: 0, c1: 0 }]);
     off();
   });
 

@@ -51,6 +51,10 @@ pub trait DocumentBackend: Send {
     fn kind(&self) -> BackendKind;
     fn sheets(&self) -> Vec<SheetMeta>;
     fn active_sheet(&self) -> SheetId;
+    /// True while rows are still streaming in (CSV store). `DocumentInfo.loading`.
+    fn loading(&self) -> bool {
+        false
+    }
 
     // ----- grid data ---------------------------------------------------------
     fn sheet_info(&self, sheet: SheetId) -> EngineResult<SheetInfo>;
@@ -83,6 +87,13 @@ pub trait DocumentBackend: Send {
     /// canonical input (formula or raw value, en-US). Used for promotion and
     /// CSV export of workbooks.
     fn export_cells(&self, sheet: SheetId, visit: &mut dyn FnMut(u32, u32, &str)) -> EngineResult<()>;
+    /// Visits ranges whose cells carry a non-General number format (dates,
+    /// percentages) as `(range, numFmt)`. Used together with `export_cells`
+    /// when promoting the CSV store, so dates stay dates. Default: none.
+    fn export_number_formats(&self, sheet: SheetId, visit: &mut dyn FnMut(CellRange, &str)) -> EngineResult<()> {
+        let _ = (sheet, visit);
+        Ok(())
+    }
     /// Writes one sheet as CSV (display values, `options` resolved by the caller).
     fn write_csv(&self, sheet: SheetId, out: &mut dyn std::io::Write, options: &CsvOptions) -> EngineResult<()>;
 }

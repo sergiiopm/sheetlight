@@ -1,19 +1,17 @@
 // Phase 1 contract stubs: remove the `allow`s once each module is wired in.
 #[allow(dead_code)]
 mod charts;
-#[allow(dead_code)]
 mod csv_store;
 #[allow(dead_code)]
 mod engine;
 mod files;
-#[allow(dead_code)]
 mod xlsx_package;
 
 use std::sync::Mutex;
 use tauri::{Emitter, Manager};
 
 /// Extensions Sheetlight accepts from the command line ("Open with", double click).
-const WORKBOOK_EXTENSIONS: [&str; 3] = [".xlsx", ".xls", ".csv"];
+const WORKBOOK_EXTENSIONS: [&str; 4] = [".xlsx", ".xlsm", ".xls", ".csv"];
 
 struct LaunchState {
     paths: Mutex<Vec<String>>,
@@ -73,8 +71,8 @@ pub fn run() {
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
-            files::read_file_b64,
-            files::write_file_b64,
+            files::read_file_bytes,
+            files::write_file_bytes,
             take_launch_paths,
             engine::commands::engine_new_document,
             engine::commands::engine_open_document,

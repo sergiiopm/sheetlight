@@ -50,6 +50,7 @@ Key decisions (details in `docs/spikes/`):
 | Commands | `src/model/commands.ts` | `CommandRegistry`, stable ids, `Mod+B` shortcut syntax |
 | Grid API | `src/grid/api.ts` | `GridProps`, `GridHandle`, `EditRequest`, `RefHighlight`, `ReferencePicker` |
 | Test fake | `src/engine/memory-engine.ts` | in-memory `WorkbookEngine` (no formulas) for tests and browser dev |
+| Engine adapter | `src/engine/tauri-engine.ts`, `src/engine/index.ts` | `TauriEngine` (invoke + binary blocks + `engine://event`); `getEngine()` picks native or fake |
 
 If a contract is wrong or missing something, **do not work around it**: make
 the smallest additive change in both TS and Rust mirrors, note it in the PR
@@ -67,10 +68,10 @@ resolves conflicts at merge time.
 | WS1 Grid | `ws1/grid` | `src/grid/**`, `tests/grid/**` | spike grid promoted & refactored; `SpreadsheetGrid` + `GridHandle`; engine data source with `BlockCache`; selection on `SelectionStore`; fill-handle drag; ref highlights; reference picker; copy marquee; a11y layer; blit pixel test in CI |
 | WS2 Engine | `ws2/engine` | `src-tauri/src/engine/**`, `src/engine/tauri-engine.ts` | actor; IronCalc workbook backend (all ops incl. sort/find/replace/fill series/autofilter model/clipboard); es display formatting; render style table; binary blocks; undo/redo; promotion from CSV; save via `xlsx_package::post_process`; `TauriEngine` TS adapter |
 | WS3 Files | `ws3/files` | `src-tauri/src/csv_store/**`, `src-tauri/src/xlsx_package/**`, `src-tauri/src/files.rs`, `src/files/**` | CSV store (streaming, typed, detect encoding/delimiter/decimal); fidelity inspect + post_process; `.xls` import; atomic writes |
-| WS4 Shell | `ws4/shell` | `src/components/**`, `src/hooks/**`, `src/App.tsx`, `src/lib/theme.ts`, `src/lib/settings.ts` | app layout; ribbon-lite toolbar; document tabs & sheet tabs (rename/reorder/color…); status bar stats; context menus; dialogs (unsaved, fidelity warnings, format cells, CSV import options, find/replace UI); command registration & shortcuts; settings; recent files; open/save flows |
-| WS5 QA | `ws5/qa` | `tests/corpus/**`, `tests/e2e/**`, `tests/bench/**`, `.github/**`, `docs/qa/**` | corpus generator + real-world-like files; Excel behavior spec; GitHub Actions CI (Windows: tsc, vitest, cargo test, clippy); engine benchmarks vs PLAN targets; e2e harness |
+| WS4 Shell | `ws4/shell` | `src/components/**`, `src/hooks/**`, `src/App.tsx`, `src/lib/theme.ts`, `src/lib/settings.ts`, `src/lib/number-formats.ts` | app layout; ribbon-lite toolbar; document tabs & sheet tabs (rename/reorder/color…); status bar stats; context menus; dialogs (unsaved, fidelity warnings, format cells, CSV import options, find/replace UI); command registration & shortcuts; settings; recent files; open/save flows |
+| WS5 QA | `ws5/qa` | `tests/corpus/**`, `tests/e2e/**`, `tests/bench/**`, `src-tauri/tests/**`, `src-tauri/benches/**`, `.github/**`, `docs/qa/**` | corpus generator + real-world-like files; Excel behavior spec; GitHub Actions CI (Windows: tsc, vitest, cargo test, clippy); engine benchmarks vs PLAN targets; e2e harness |
 | WS6 Charts | `ws6/charts` | `src/charts/**`, `src-tauri/src/charts/**` | chart XML parse/write; chart renderer (canvas) anchored over the grid; create-chart dialog from selection; move/resize/delete |
-| WS7 Editor | `ws7/editor` | `src/editor/**`, `src/lib/locale.ts`, `src/lib/number-formats.ts` | in-cell editor + formula bar (shared edit session); locale input parsing (es) & edit text; function catalog (~150, Spanish descriptions); autocomplete + signature help; colored refs + reference picking; F4 cycling; IME-safe |
+| WS7 Editor | `ws7/editor` | `src/editor/**`, `src/lib/locale.ts` | in-cell editor + formula bar (shared edit session); locale input parsing (es) & edit text; function catalog (~150, Spanish descriptions); autocomplete + signature help; colored refs + reference picking; F4 cycling; IME-safe |
 
 Integration (Phase 3) is done by the orchestrator on `main`.
 

@@ -59,6 +59,14 @@ impl BlockCells {
         }
     }
 
+    /// ORs `flags` into a cell (e.g. a comment on an otherwise empty cell).
+    pub fn add_flags(&mut self, index: usize, flags: u8) {
+        self.flags[index] |= flags;
+        if flags != 0 {
+            self.non_empty = true;
+        }
+    }
+
     pub fn is_empty(&self) -> bool {
         !self.non_empty
     }

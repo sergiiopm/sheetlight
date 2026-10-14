@@ -28,6 +28,7 @@ mod drawing;
 mod inspect;
 mod package;
 mod post;
+mod xls;
 mod xml;
 
 #[cfg(test)]
@@ -84,6 +85,5 @@ pub fn post_process_report(fresh: Vec<u8>, original: Option<&OriginalPackage>, s
 
 /// Legacy `.xls` (BIFF8) -> neutral workbook.
 pub fn import_xls(bytes: &[u8]) -> EngineResult<ImportedWorkbook> {
-    let _ = bytes;
-    Err(crate::engine::types::EngineError::unsupported("abrir archivos .xls"))
+    xls::import_xls(bytes)
 }

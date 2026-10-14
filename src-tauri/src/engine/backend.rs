@@ -45,6 +45,8 @@ pub struct ImportedSheet {
     /// (col, width in CSS px)
     pub col_widths: Vec<(u32, f64)>,
     pub merges: Vec<CellRange>,
+    /// (range, numFmt) for cells with a non-General number format (dates).
+    pub number_formats: Vec<(CellRange, String)>,
 }
 
 pub trait DocumentBackend: Send {

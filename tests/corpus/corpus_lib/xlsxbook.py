@@ -63,7 +63,8 @@ class ErrorValue:
 
 
 def png_bytes(w: int = 96, h: int = 48, seed: int = 0) -> bytes:
-    """A small deterministic RGB PNG (gradient 'logo')."""
+    """A small deterministic RGB PNG (gradient "logo"). Stored (level 0) so the
+    bytes do not depend on the zlib build."""
     raw = b"".join(
         b"\x00" + b"".join(bytes(((x * 3 + seed) % 256, (y * 5) % 256, 160)) for x in range(w))
         for y in range(h)
@@ -74,7 +75,7 @@ def png_bytes(w: int = 96, h: int = 48, seed: int = 0) -> bytes:
         return c + struct.pack(">I", zlib.crc32(t + d) & 0xFFFFFFFF)
 
     return (b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", struct.pack(">IIBBBBB", w, h, 8, 2, 0, 0, 0))
-            + chunk(b"IDAT", zlib.compress(raw, 9)) + chunk(b"IEND", b""))
+            + chunk(b"IDAT", zlib.compress(raw, 0)) + chunk(b"IEND", b""))
 
 
 class Book:

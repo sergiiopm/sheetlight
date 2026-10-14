@@ -5,7 +5,7 @@ Usage (from the repo root; Python 3.11+, deps pinned in tests/corpus/requirement
     python tests/corpus/gen_corpus.py files   # realistic Spanish files -> tests/corpus/files/ (committed)
     python tests/corpus/gen_corpus.py big     # benchmark files -> tests/corpus/generated/ (git-ignored, ~200 MB)
     python tests/corpus/gen_corpus.py all
-    python tests/corpus/gen_corpus.py check   # regenerate files/ in a temp dir and byte-compare (CI)
+    python tests/corpus/gen_corpus.py check   # regenerate files/ in a temp dir and compare (CI)
 
 Every generator is deterministic (fixed seeds, fixed document timestamps), so
 `files` reproduces the committed bytes exactly and `check` fails when someone
@@ -17,6 +17,7 @@ import filecmp
 import os
 import sys
 import tempfile
+import zipfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -43,6 +44,16 @@ def gen_files(out_dir: str) -> list[str]:
     return written
 
 
+def same_content(a: str, b: str) -> bool:
+    """Byte equality, except .xlsx packages compare their uncompressed parts
+    (deflate output may differ between zlib builds on CI and locally)."""
+    if a.endswith(".xlsx"):
+        with zipfile.ZipFile(a) as za, zipfile.ZipFile(b) as zb:
+            names = za.namelist()
+            return names == zb.namelist() and all(za.read(n) == zb.read(n) for n in names)
+    return filecmp.cmp(a, b, shallow=False)
+
+
 def check() -> int:
     with tempfile.TemporaryDirectory() as tmp:
         names = gen_files(tmp)
@@ -51,7 +62,7 @@ def check() -> int:
         for n in names:
             if not os.path.exists(os.path.join(FILES_DIR, n)):
                 problems.append(f"missing in tests/corpus/files: {n}")
-            elif not filecmp.cmp(os.path.join(tmp, n), os.path.join(FILES_DIR, n), shallow=False):
+            elif not same_content(os.path.join(tmp, n), os.path.join(FILES_DIR, n)):
                 problems.append(f"differs from generator output: {n}")
         for n in committed:
             if n not in names:

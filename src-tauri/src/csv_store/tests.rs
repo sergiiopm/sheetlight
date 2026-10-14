@@ -376,15 +376,26 @@ fn sheet_names_from_paths() {
     assert_eq!(sheet_name_from_path("x/[raro]?.csv"), "_raro__");
 }
 
-/// Manual benchmark against the spike corpus (1M x 10, 79 MB):
-/// `cargo test --release big_csv_bench -- --ignored --nocapture`.
+/// Manual benchmark (1M x 10 rows, PLAN target: open < 5 s, browsable at once):
+/// `cargo test --release big_csv_bench -- --ignored --nocapture` (debug
+/// builds are ~10x slower).
 #[test]
 #[ignore]
 fn big_csv_bench() {
-    let path = "C:/Dev/Proyectos/sheetlight-spikes/ironcalc/corpus/big_1M.csv";
-    if !std::path::Path::new(path).exists() {
-        return;
+    // `SHEETLIGHT_BENCH_CSV` points at a real file; otherwise a 1M-row x
+    // 10-column Spanish CSV (`;`, decimal comma, ~70 MB) is generated in the
+    // temp folder once.
+    let generated = std::env::temp_dir().join("sheetlight-bench-1M.csv");
+    let path_buf = std::env::var("SHEETLIGHT_BENCH_CSV").map(std::path::PathBuf::from).unwrap_or_else(|_| generated.clone());
+    if !path_buf.exists() && path_buf == generated {
+        use std::io::Write as _;
+        let mut out = std::io::BufWriter::new(std::fs::File::create(&generated).unwrap());
+        writeln!(out, "id;cliente;ciudad;fecha;activo;cantidad;precio;codigo;nota;total").unwrap();
+        for i in 1..=1_000_000u32 {
+            writeln!(out, "{i};Cliente {};Madrid;2026-01-{:02};true;{};{},5;C{i:07};texto libre;{}", i % 5000, i % 28 + 1, i % 100, i % 1000, i * 3).unwrap();
+        }
     }
+    let path = path_buf.to_str().unwrap();
     let first_cells = Arc::new(Mutex::new(None::<std::time::Duration>));
     let started = std::time::Instant::now();
     let fc = first_cells.clone();

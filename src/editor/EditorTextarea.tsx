@@ -22,6 +22,7 @@ export interface EditorTextareaProps {
   readonly rows?: number;
   /** Idle-only focus (formula bar starts editing on focus). */
   readonly onIdleFocus?: () => void;
+  readonly readOnly?: boolean;
 }
 
 export interface EditorTextareaHandle {
@@ -29,7 +30,7 @@ export interface EditorTextareaHandle {
 }
 
 export const EditorTextarea = forwardRef<EditorTextareaHandle, EditorTextareaProps>(function EditorTextarea(props, ref) {
-  const { session, state, surface, idleText = "", className, style, wrap, ariaLabel, rows, onIdleFocus } = props;
+  const { session, state, surface, idleText = "", className, style, wrap, ariaLabel, rows, onIdleFocus, readOnly = false } = props;
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const mirrorRef = useRef<HTMLDivElement | null>(null);
   const composing = useRef(false);
@@ -93,6 +94,7 @@ export const EditorTextarea = forwardRef<EditorTextareaHandle, EditorTextareaPro
         autoCorrect="off"
         autoCapitalize="off"
         rows={rows ?? 1}
+        readOnly={readOnly || (!editing && onIdleFocus === undefined)}
         value={value}
         className="relative block h-full w-full resize-none overflow-hidden border-0 bg-transparent p-0 outline-none"
         style={{

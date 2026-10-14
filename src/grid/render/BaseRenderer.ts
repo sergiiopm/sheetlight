@@ -467,6 +467,10 @@ export class BaseRenderer {
       const avail = availR - availL;
       const baseline = baselineY(st, fm.ascent, fm.descent, y0, y1 - lw, padY);
 
+      if (st.rotation !== 0) {
+        if (visible) this.drawRotated(ctx, st, text, align, cx0, cx1 - lw, y0, y1 - lw, padX, padY);
+        continue;
+      }
       if (st.wrap) {
         if (visible) this.drawWrapped(ctx, st, text, align, cx0, cx1 - lw, y0, y1 - lw, padX, padY, fm.ascent, fm.descent);
         continue;
@@ -481,6 +485,10 @@ export class BaseRenderer {
       if (quickFit || w <= avail) {
         if (!visible) continue;
         this.drawText(ctx, st, text, align, availL, availR, baseline, w);
+        continue;
+      }
+      if (st.shrink) {
+        if (visible) this.drawShrunk(ctx, st, text, align, availL, availR, baseline, w, cx0, cx1 - lw, y0, y1 - lw);
         continue;
       }
       if (kind === CellKind.Number) {
@@ -559,11 +567,13 @@ export class BaseRenderer {
     ctx.fillText(text, x, baseline);
     if (st.underline !== 0 || st.strike) {
       const w = knownWidth > 0 ? knownWidth : this.deps.measurer.measure(st.font, text);
-      const lx = align === "left" ? x : align === "right" ? x - w : x - w / 2;
+      // Snapped to whole device pixels: crisp lines and no anti-aliased ends.
+      const lx = Math.round(align === "left" ? x : align === "right" ? x - w : x - w / 2);
+      const lw = Math.max(1, Math.round(w));
       const t = Math.max(1, Math.round(st.fontPx / 14));
-      if (st.underline !== 0) ctx.fillRect(lx, Math.round(baseline + t), w, t);
-      if (st.underline === 2) ctx.fillRect(lx, Math.round(baseline + 3 * t), w, t);
-      if (st.strike) ctx.fillRect(lx, Math.round(baseline - st.fontPx * 0.3), w, t);
+      if (st.underline !== 0) ctx.fillRect(lx, Math.round(baseline + t), lw, t);
+      if (st.underline === 2) ctx.fillRect(lx, Math.round(baseline + 3 * t), lw, t);
+      if (st.strike) ctx.fillRect(lx, Math.round(baseline - st.fontPx * 0.3), lw, t);
     }
   }
 
@@ -586,6 +596,87 @@ export class BaseRenderer {
     ctx.rect(clipL, clipT, clipR - clipL, clipB - clipT);
     ctx.clip();
     this.drawText(ctx, st, text, align, availL, availR, baseline, 0);
+    this.restore(ctx);
+  }
+
+  /** Shrink to fit: draw the text scaled down (both axes, like a smaller font) to the available width. */
+  private drawShrunk(
+    ctx: CanvasRenderingContext2D,
+    st: ResolvedStyle,
+    text: string,
+    align: Align,
+    availL: number,
+    availR: number,
+    baseline: number,
+    width: number,
+    clipL: number,
+    clipR: number,
+    clipT: number,
+    clipB: number,
+  ): void {
+    const k = width > 0 ? Math.max(0.05, (availR - availL) / width) : 1;
+    const ax = align === "left" ? availL : align === "right" ? availR : (availL + availR) / 2;
+    this.stats.clips++;
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(clipL, clipT, clipR - clipL, clipB - clipT);
+    ctx.clip();
+    ctx.translate(ax, baseline);
+    ctx.scale(k, k);
+    this.drawText(ctx, st, text, align, 0, 0, 0, width);
+    this.restore(ctx);
+  }
+
+  /**
+   * Rotated text (`rotation` -90..90 degrees counter-clockwise) or vertical
+   * stacked text (255), clipped to the cell. The rotated text box is placed
+   * by the horizontal / vertical alignment inside the padding.
+   */
+  private drawRotated(
+    ctx: CanvasRenderingContext2D,
+    st: ResolvedStyle,
+    text: string,
+    align: Align,
+    x0: number,
+    x1: number,
+    y0: number,
+    y1: number,
+    padX: number,
+    padY: number,
+  ): void {
+    const { measurer } = this.deps;
+    const fm = measurer.fontMetrics(st.font);
+    const fh = fm.ascent + fm.descent;
+    this.stats.clips++;
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(x0, y0, x1 - x0, y1 - y0);
+    ctx.clip();
+    if (st.rotation === 255) {
+      const lineH = Math.max(1, Math.round(fh));
+      let n = 0;
+      for (const _ of text) n++;
+      const total = n * lineH;
+      let y = st.vAlign === "top" ? y0 + padY : st.vAlign === "middle" ? Math.round((y0 + y1 - total) / 2) : y1 - padY - total;
+      const x = align === "left" ? x0 + padX + lineH / 2 : align === "right" ? x1 - padX - lineH / 2 : (x0 + x1) / 2;
+      for (const ch of text) {
+        if (y > y1) break;
+        if (y + lineH >= y0) this.drawText(ctx, st, ch, "center", x, x, y + fm.ascent, 0);
+        y += lineH;
+      }
+    } else {
+      const th = (st.rotation * Math.PI) / 180;
+      const w = measurer.measure(st.font, text);
+      const c = Math.abs(Math.cos(th));
+      const s = Math.abs(Math.sin(th));
+      const bw = w * c + fh * s;
+      const bh = w * s + fh * c;
+      const cx = align === "left" ? x0 + padX + bw / 2 : align === "right" ? x1 - padX - bw / 2 : (x0 + x1) / 2;
+      const cy = st.vAlign === "top" ? y0 + padY + bh / 2 : st.vAlign === "middle" ? (y0 + y1) / 2 : y1 - padY - bh / 2;
+      ctx.translate(cx, cy);
+      ctx.rotate(-th);
+      this.drawText(ctx, st, text, "center", 0, 0, (fm.ascent - fm.descent) / 2, w);
+    }
     this.restore(ctx);
   }
 
@@ -706,10 +797,14 @@ export class BaseRenderer {
         const fm = measurer.fontMetrics(st.font);
         const align = effectiveAlign(st.hAlign, block ? block.kinds[i] : CellKind.Text);
         const baseline = baselineY(st, fm.ascent, fm.descent, my0, my1 - lw, padY);
-        if (st.wrap) {
+        if (st.rotation !== 0) {
+          this.drawRotated(ctx, st, text, align, mx0, mx1 - lw, my0, my1 - lw, padX, padY);
+        } else if (st.wrap) {
           this.drawWrapped(ctx, st, text, align, mx0, mx1 - lw, my0, my1 - lw, padX, padY, fm.ascent, fm.descent);
         } else {
-          this.drawClipped(ctx, st, text, align, mx0 + padX, mx1 - lw - padX, baseline, mx0, mx1 - lw, my0, my1 - lw);
+          const w = st.shrink ? measurer.measure(st.font, text) : 0;
+          if (w > mx1 - lw - 2 * padX - mx0) this.drawShrunk(ctx, st, text, align, mx0 + padX, mx1 - lw - padX, baseline, w, mx0, mx1 - lw, my0, my1 - lw);
+          else this.drawClipped(ctx, st, text, align, mx0 + padX, mx1 - lw - padX, baseline, mx0, mx1 - lw, my0, my1 - lw);
         }
       }
       if (st.hasBorders) {
@@ -751,30 +846,19 @@ export class BaseRenderer {
       this.setFill(ctx, theme.filterButtonBg);
       ctx.fillRect(b.x + lw, b.y + lw, b.size - 2 * lw, b.size - 2 * lw);
       this.setFill(ctx, filtered ? theme.filterActiveGlyph : theme.filterButtonGlyph);
-      const cx = b.x + b.size / 2;
-      const cy = b.y + b.size / 2;
-      const u = b.size / 16;
-      ctx.beginPath();
+      // Glyphs built from whole-pixel rects: crisp, and identical however the pane clips them.
+      const u = Math.max(1, Math.round(b.size / 16));
+      const cx = b.x + Math.floor(b.size / 2);
+      const cy = b.y + Math.floor(b.size / 2);
       if (filtered) {
-        // Funnel + small arrow (Excel's "filter applied" glyph).
-        ctx.moveTo(cx - 6 * u, cy - 5 * u);
-        ctx.lineTo(cx + 2 * u, cy - 5 * u);
-        ctx.lineTo(cx - 1 * u, cy - 1 * u);
-        ctx.lineTo(cx - 1 * u, cy + 4 * u);
-        ctx.lineTo(cx - 3 * u, cy + 5 * u);
-        ctx.lineTo(cx - 3 * u, cy - 1 * u);
-        ctx.closePath();
-        ctx.moveTo(cx + 2 * u, cy + 1 * u);
-        ctx.lineTo(cx + 7 * u, cy + 1 * u);
-        ctx.lineTo(cx + 4.5 * u, cy + 4 * u);
-        ctx.closePath();
+        // Funnel (Excel's "filter applied" glyph) + small arrow.
+        const fx = cx - 6 * u;
+        for (let k = 0; k < 4; k++) ctx.fillRect(fx + k * u, cy - 5 * u + k * u, (8 - 2 * k) * u, u);
+        ctx.fillRect(fx + 3 * u, cy - u, 2 * u, 5 * u);
+        for (let k = 0; k < 3; k++) ctx.fillRect(cx + 2 * u + k * u, cy + u + k * u, (5 - 2 * k) * u, u);
       } else {
-        ctx.moveTo(cx - 4 * u, cy - 2 * u);
-        ctx.lineTo(cx + 4 * u, cy - 2 * u);
-        ctx.lineTo(cx, cy + 3 * u);
-        ctx.closePath();
+        for (let k = 0; k < 4; k++) ctx.fillRect(cx - 4 * u + k * u, cy - 2 * u + k * u, (8 - 2 * k) * u, u);
       }
-      ctx.fill();
     }
   }
 

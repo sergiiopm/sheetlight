@@ -16,6 +16,10 @@ export interface ResolvedStyle {
   readonly underline: 0 | 1 | 2;
   readonly strike: boolean;
   readonly indent: number;
+  /** Shrink the text to fit the cell width (never with wrap). */
+  readonly shrink: boolean;
+  /** Degrees counter-clockwise, -90..90; 255 = vertical stacked text; 0 = horizontal. */
+  readonly rotation: number;
   readonly borderTop: BorderSpec | null;
   readonly borderRight: BorderSpec | null;
   readonly borderBottom: BorderSpec | null;
@@ -93,6 +97,8 @@ export class StyleResolver {
       underline: s.underline === "double" ? 2 : s.underline ? 1 : 0,
       strike: s.strike ?? false,
       indent: s.indent ?? 0,
+      shrink: s.shrinkToFit === true && s.wrap !== true,
+      rotation: normalizeRotation(s.rotation),
       borderTop,
       borderRight,
       borderBottom,
@@ -100,4 +106,12 @@ export class StyleResolver {
       hasBorders: !!(borderTop || borderRight || borderBottom || borderLeft),
     };
   }
+}
+
+/** Excel stores 91..180 for downward angles in some files: map them to -1..-90. */
+function normalizeRotation(r: number | undefined): number {
+  if (r === undefined || !Number.isFinite(r)) return 0;
+  if (r === 255) return 255;
+  if (r > 90 && r <= 180) return 90 - r;
+  return Math.max(-90, Math.min(90, Math.round(r)));
 }

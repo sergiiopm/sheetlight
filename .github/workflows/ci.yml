@@ -97,4 +97,4 @@ jobs:
         continue-on-error: true
         working-directory: src-tauri
         run: |
-          cargo test --locked --tests -- --ignored strict 2>&1 | grep -E "^test |known gap\(s\) still open|test result" || true
+          cargo test --locked --no-fail-fast --tests -- --ignored strict 2>&1 | grep -E "^test |known gap\(s\) still open|test result" || true

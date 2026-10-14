@@ -42,6 +42,9 @@ struct Row {
 
 impl Row {
     fn verdict(&self) -> &'static str {
+        if cfg!(debug_assertions) {
+            return "n/a (debug)";
+        }
         match self.target_ms {
             Some(t) if self.median_ms <= t => "PASS",
             Some(_) => "FAIL",

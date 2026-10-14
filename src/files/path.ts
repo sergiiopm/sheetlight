@@ -8,7 +8,8 @@ export function getFileName(path: string): string {
 
 export function getFormatFromPath(path: string): WorkbookFormat | null {
   const name = getFileName(path).toLowerCase();
-  if (name.endsWith(".xlsx")) return "xlsx";
+  // Macro-enabled workbooks open as .xlsx (macros are reported as lost).
+  if (name.endsWith(".xlsx") || name.endsWith(".xlsm")) return "xlsx";
   if (name.endsWith(".xls")) return "xls";
   if (name.endsWith(".csv")) return "csv";
   return null;
@@ -33,4 +34,22 @@ export function untitledFileName(number: number): string {
 export function samePath(a: string, b: string): boolean {
   const normalize = (value: string) => value.replaceAll("/", "\\").toLowerCase();
   return normalize(a) === normalize(b);
+}
+
+/** True for `.xlsm`: opened as a workbook, macros are dropped on save. */
+export function isMacroWorkbook(path: string): boolean {
+  return getFileName(path).toLowerCase().endsWith(".xlsm");
+}
+
+/**
+ * Path offered by "Guardar" for a document opened from `path`: formats
+ * Sheetlight cannot write back as-is (`.xls`, `.xlsm`) get an `.xlsx` name,
+ * like Excel's "Guardar como" for legacy files. CSV stays CSV.
+ */
+export function defaultSavePath(path: string): string {
+  const lower = path.toLowerCase();
+  if (lower.endsWith(".xls") || lower.endsWith(".xlsm")) {
+    return path.replace(/\.xlsm?$/i, ".xlsx");
+  }
+  return path;
 }

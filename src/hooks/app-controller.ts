@@ -224,7 +224,9 @@ export class AppController {
 
   /** True while a modal UI (dialog, unsaved prompt) owns the keyboard. */
   get modalOpen(): boolean {
-    return this.dialog.get() !== null || this.manager.pending.get() !== null;
+    const dialog = this.dialog.get();
+    // "Buscar y reemplazar" is modeless (like Excel): the grid keeps working.
+    return (dialog !== null && dialog.kind !== "find") || this.manager.pending.get() !== null;
   }
 
   // ----- active session tracking -----------------------------------------------

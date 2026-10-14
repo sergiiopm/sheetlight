@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { forwardRef, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
@@ -8,24 +8,22 @@ interface ToolbarButtonProps {
   shortcut?: string;
   pressed?: boolean;
   disabled?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
+  onDoubleClick?: () => void;
   children: ReactNode;
   className?: string;
 }
 
-export function ToolbarButton({
-  label,
-  shortcut,
-  pressed = false,
-  disabled,
-  onClick,
-  children,
-  className,
-}: ToolbarButtonProps) {
+/** Compact ghost icon button with a tooltip ("Negrita · Ctrl+N"). */
+export const ToolbarButton = forwardRef<HTMLButtonElement, ToolbarButtonProps>(function ToolbarButton(
+  { label, shortcut, pressed = false, disabled, onClick, onDoubleClick, children, className, ...rest },
+  ref,
+) {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
         <Button
+          ref={ref}
           type="button"
           variant="ghost"
           size="icon"
@@ -33,7 +31,11 @@ export function ToolbarButton({
           aria-label={label}
           aria-pressed={pressed}
           onClick={onClick}
-          className={cn(pressed && "bg-accent text-accent-foreground", className)}
+          onDoubleClick={onDoubleClick}
+          // Keep the grid (or the cell editor) focused while clicking toolbar buttons.
+          onMouseDown={(event) => event.preventDefault()}
+          className={cn("h-7 w-7", pressed && "bg-accent text-accent-foreground ring-1 ring-border", className)}
+          {...rest}
         >
           {children}
         </Button>
@@ -44,4 +46,4 @@ export function ToolbarButton({
       </TooltipContent>
     </Tooltip>
   );
-}
+});

@@ -421,6 +421,18 @@ export class SessionManager {
     }
   }
 
+  /**
+   * Cell editor commits (`EditSessionOptions.onCommit`): one undo step that
+   * updates dirty/undo state but ignores the selection hint (the editor has
+   * already moved the selection) and rethrows errors so the editor reopens
+   * with the Spanish message.
+   */
+  async applyEdit(session: WorkbookSession, ops: ReadonlyArray<EngineOp>): Promise<ApplyResult> {
+    const result = await this.engine.apply(session.doc, ops);
+    session.patchInfo({ dirty: result.dirty, canUndo: result.canUndo, canRedo: result.canRedo });
+    return result;
+  }
+
   async undo(session: WorkbookSession): Promise<ApplyResult | null> {
     return this.step(session, "undo");
   }

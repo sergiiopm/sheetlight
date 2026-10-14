@@ -4,7 +4,7 @@ import { MemoryEngine } from "@/engine/memory-engine";
 import type { CellAddress, CellRange, DocumentId, SheetId } from "@/engine/types";
 import { createSelectionStore, singleCellSelection, type SelectionStore } from "@/model/selection";
 import { EditSession, type CommitMove, type EditKeyEvent } from "@/editor/session";
-import { FakeGrid } from "@/editor/test-utils";
+import { FakeGrid } from "./fake-grid";
 
 const flush = () => new Promise((resolve) => setTimeout(resolve, 0));
 

@@ -82,6 +82,17 @@ pub fn import_workbook(imported: ImportedWorkbook, name: &str) -> EngineResult<W
         for merge in &sheet.merges {
             let _ = model.merge_cells(&area(index, merge));
         }
+        for (range, fmt) in &sheet.number_formats {
+            let style = ironcalc_base::types::Style {
+                num_fmt: super::styles::normalize_num_fmt(fmt),
+                ..ironcalc_base::types::Style::default()
+            };
+            for row in range.r0..=range.r1.min(MAX_ROWS - 1) {
+                for col in range.c0..=range.c1.min(MAX_COLS - 1) {
+                    let _ = model.set_cell_style(index, row as i32 + 1, col as i32 + 1, &style);
+                }
+            }
+        }
     }
     if imported.sheets.is_empty() {
         return Ok(WorkbookBackend::from_model(model, Vec::new()));
@@ -101,7 +112,7 @@ pub struct CsvImport {
 /// Decodes CSV bytes: UTF-8 (± BOM), UTF-16LE (BOM) or Windows-1252.
 pub fn decode_text(bytes: &[u8], encoding: Option<&str>) -> (String, &'static str) {
     let utf16 = |data: &[u8]| -> String {
-        let units: Vec<u16> = data.chunks_exact(2).map(|c| u16::from_le_bytes([c[0], c[1]])).collect();
+        let units: Vec<u16> = data.as_chunks::<2>().0.iter().map(|c| u16::from_le_bytes(*c)).collect();
         String::from_utf16_lossy(&units)
     };
     match encoding {

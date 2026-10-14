@@ -618,6 +618,7 @@ fn imported_workbook_builds_sheets() {
                 cells: vec![(0, 0, "5".into()), (0, 1, "=A1+1".into())],
                 col_widths: vec![(0, 120.0)],
                 merges: vec![r(2, 0, 2, 1)],
+                ..Default::default()
             },
             crate::engine::backend::ImportedSheet { name: "Otra".into(), ..Default::default() },
         ],
@@ -630,4 +631,21 @@ fn imported_workbook_builds_sheets() {
     let info = b.sheet_info(s).unwrap();
     assert!(info.col_overrides.iter().any(|o| o.index == 0 && o.size == Some(120.0)));
     assert_eq!(info.merges, vec![r(2, 0, 2, 1)]);
+}
+
+#[test]
+fn import_applies_number_formats() {
+    let imported = crate::engine::backend::ImportedWorkbook {
+        sheets: vec![crate::engine::backend::ImportedSheet {
+            name: "Datos".into(),
+            cells: vec![(0, 0, "0.25".into()), (1, 0, "0.5".into()), (2, 0, "7".into())],
+            number_formats: vec![(r(0, 0, 1, 0), "0%".into())],
+            ..Default::default()
+        }],
+    };
+    let b = import_workbook(imported, "csv").unwrap();
+    let s = b.sheets()[0].id;
+    assert_eq!(details(&b, s, 0, 0).format.num_fmt, "0%");
+    assert_eq!(details(&b, s, 1, 0).display, "50%");
+    assert_eq!(details(&b, s, 2, 0).format.num_fmt, "General");
 }

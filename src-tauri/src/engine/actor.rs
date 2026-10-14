@@ -390,7 +390,7 @@ impl EngineState {
     fn promote(&mut self, id: DocumentId) -> EngineResult<bool> {
         let doc = self.doc_mut(id)?;
         let Backend::Other(other) = &doc.backend else { return Ok(false) };
-        if doc.loading.load(Ordering::Relaxed) {
+        if doc.loading.load(Ordering::Relaxed) || other.loading() {
             return Err(EngineError::new(
                 EngineErrorCode::InvalidOp,
                 "Espera a que termine de cargarse el archivo para hacer este cambio.",
@@ -400,6 +400,7 @@ impl EngineState {
         for meta in other.sheets() {
             let mut sheet = ImportedSheet { name: meta.name.clone(), ..ImportedSheet::default() };
             other.export_cells(meta.id, &mut |row, col, input| sheet.cells.push((row, col, input.to_string())))?;
+            other.export_number_formats(meta.id, &mut |range, fmt| sheet.number_formats.push((range, fmt.to_string())))?;
             if let Ok(info) = other.sheet_info(meta.id) {
                 sheet.col_widths = info.col_overrides.iter().filter_map(|o| o.size.map(|s| (o.index, s))).collect();
                 sheet.merges = info.merges.clone();
@@ -738,6 +739,11 @@ mod tests {
         let from_csv = state.open_document(&csv, None).unwrap();
         assert_eq!(from_csv.source_format, SourceFormat::Csv);
         assert_eq!(from_csv.csv.as_ref().and_then(|c| c.delimiter.as_deref()), Some(";"));
+        let deadline = std::time::Instant::now() + std::time::Duration::from_secs(10);
+        while state.document_info(from_csv.doc).unwrap().loading {
+            assert!(std::time::Instant::now() < deadline, "CSV load did not finish");
+            std::thread::sleep(std::time::Duration::from_millis(5));
+        }
         let cell = state.cell(from_csv.doc, from_csv.active_sheet, CellAddress { row: 0, col: 1 }).unwrap();
         assert_eq!(cell.value, CellValue::Number { value: 2.5 });
         state.close_document(from_csv.doc);
@@ -818,6 +824,12 @@ mod tests {
         }
         fn export_cells(&self, sheet: SheetId, visit: &mut dyn FnMut(u32, u32, &str)) -> EngineResult<()> {
             self.0.export_cells(sheet, visit)
+        }
+        fn export_number_formats(&self, sheet: SheetId, visit: &mut dyn FnMut(CellRange, &str)) -> EngineResult<()> {
+            self.0.export_number_formats(sheet, visit)
+        }
+        fn loading(&self) -> bool {
+            self.0.loading()
         }
         fn write_csv(&self, sheet: SheetId, out: &mut dyn std::io::Write, options: &CsvOptions) -> EngineResult<()> {
             self.0.write_csv(sheet, out, options)

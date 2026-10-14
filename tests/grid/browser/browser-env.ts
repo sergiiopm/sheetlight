@@ -64,7 +64,9 @@ export async function startBrowserEnv(executablePath: string): Promise<BrowserEn
   await server.listen();
   const addr = server.httpServer?.address();
   if (!addr || typeof addr === "string") throw new Error("vite server has no port");
-  const browser = await chromium.launch({ executablePath, headless: true, args: ["--font-render-hinting=none", "--disable-lcd-text"] });
+  // Software raster: GPU text rasterization is not bit-stable across repaints
+  // (Windows/Edge), which would make the blit pixel test flaky.
+  const browser = await chromium.launch({ executablePath, headless: true, args: ["--font-render-hinting=none", "--disable-lcd-text", "--disable-gpu"] });
   return {
     browser,
     baseUrl: `http://127.0.0.1:${addr.port}/index.html`,

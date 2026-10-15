@@ -347,6 +347,10 @@ pub struct ChartSeries {
     pub categories_ref: Option<String>,
     pub values_ref: String,
     pub color: Option<String>,
+    /// Combo charts: plot type of this series when it differs from the chart
+    /// type (e.g. a `Line` series in a `Column` chart). `None` = chart type.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub chart_type: Option<ChartType>,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Serialize, Deserialize)]

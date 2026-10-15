@@ -286,6 +286,11 @@ export interface ChartSeries {
   readonly valuesRef: string;
   /** `#rrggbb`; null = palette. */
   readonly color: string | null;
+  /**
+   * Combo charts: plot type of this series when it differs from the chart
+   * type (e.g. a `line` series in a `column` chart). Absent/null = chart type.
+   */
+  readonly chartType?: ChartType | null;
 }
 
 /** Cell-anchored position (like xlsx two-cell anchors). Offsets in CSS px at 100%. */

@@ -263,7 +263,7 @@ fn spec(id: u32, sheet: u32, from_file: bool) -> ChartSpec {
             sheet,
             chart_type: ChartType::Column,
             title: Some("Ventas".into()),
-            series: vec![ChartSeries { name_ref: None, name: None, categories_ref: None, values_ref: "Ventas!$B$2:$B$3".into(), color: None }],
+            series: vec![ChartSeries { name_ref: None, name: None, categories_ref: None, values_ref: "Ventas!$B$2:$B$3".into(), color: None, chart_type: None }],
             anchor: ChartAnchor { from: AnchorPoint { row: 2, col: 4, dx: 0.0, dy: 0.0 }, to: AnchorPoint { row: 12, col: 10, dx: 0.0, dy: 0.0 } },
             legend: LegendPosition::Bottom,
             grouping: ChartGrouping::Clustered,

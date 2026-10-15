@@ -134,7 +134,15 @@ impl WorkbookBackend {
             names.iter().enumerate().filter(|(i, _)| *i != index as usize).map(|(_, n)| n.as_str()),
         )?;
         self.ic(b, |um| um.rename_sheet(index, name))?;
-        // Formulas referencing the sheet are rewritten by IronCalc.
+        // Formulas referencing the sheet are rewritten by IronCalc; chart refs here.
+        for (id, extra) in self.meta.sheets.iter_mut() {
+            for chart in &mut extra.charts {
+                if crate::charts::rename_chart_refs(&mut chart.draft, &current, name) {
+                    chart.from_file = false;
+                    b.scope.charts.insert(*id);
+                }
+            }
+        }
         b.scope.sheets = true;
         for ws in &self.model().workbook.worksheets {
             b.scope.data.insert(ws.sheet_id);

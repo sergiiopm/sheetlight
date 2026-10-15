@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { installCharts } from "@/charts/shell-integration";
 import { getEngine } from "@/engine";
 import { getFormatFromPath } from "@/files/path";
 import { AppController } from "@/hooks/app-controller";
@@ -37,6 +38,7 @@ export function getAppController(): Promise<AppController> {
       destroyWindow,
     });
     registerShellCommands(controller);
+    installCharts(controller);
     await controller.manager.ensureOne();
     return controller;
   });

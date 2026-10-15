@@ -200,7 +200,7 @@ function SheetTab({ sheet, active, renaming, dragging, onPointerDown, onPointerM
       className={cn(
         "relative flex h-7 max-w-48 shrink-0 cursor-default select-none items-center px-4 text-xs",
         active
-          ? "-mt-px rounded-b-md border border-t-0 border-border bg-background font-medium text-brand shadow-[inset_0_-2px_0_var(--brand)]"
+          ? "-mt-px rounded-b-md border border-t-0 border-border bg-background font-medium text-brand after:absolute after:inset-x-1.5 after:bottom-0 after:h-0.5 after:bg-brand"
           : "text-muted-foreground hover:bg-accent/60 hover:text-foreground",
         dragging && "opacity-60",
       )}

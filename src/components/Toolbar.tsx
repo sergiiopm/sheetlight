@@ -681,8 +681,9 @@ export function Toolbar() {
             onMouseDown={(event) => event.preventDefault()}
             onClick={() => setTab(item.id)}
             className={cn(
-              "h-7 rounded-md px-2.5 text-xs text-muted-foreground hover:bg-accent hover:text-foreground",
-              tab === item.id && "font-medium text-brand shadow-[inset_0_-2px_0_var(--brand)]",
+              "relative h-7 rounded-md px-2.5 text-xs text-muted-foreground hover:bg-accent hover:text-foreground",
+              tab === item.id &&
+                "font-medium text-brand after:absolute after:inset-x-1.5 after:bottom-0 after:h-0.5 after:bg-brand",
             )}
           >
             {item.label}

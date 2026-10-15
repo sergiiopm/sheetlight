@@ -1,0 +1,594 @@
+{
+ "file": "facturas.xlsx",
+ "kind": "xlsx",
+ "description": "Factura con bloque de emisor combinado y ajustado, líneas con descuento, bases e IVA por tipo (21/10/4 %) con SUMIF, retención IRPF con literal 15% en la fórmula, cuadre; registro de facturas con referencias entre hojas, SUMIFS con criterios de fecha concatenados, booleanos.",
+ "sheets": [
+  "Factura",
+  "Registro"
+ ],
+ "activeSheet": "Factura",
+ "definedNames": {},
+ "features": {
+  "Factura": {
+   "merges": [
+    "A1:D4"
+   ],
+   "colWidths": 8
+  },
+  "Registro": {
+   "frozen": [
+    1,
+    0
+   ],
+   "colWidths": 11
+  }
+ },
+ "fidelity": {},
+ "cells": {
+  "Factura!G2": {
+   "value": {
+    "type": "text",
+    "value": "2025-0042"
+   },
+   "display": "2025-0042"
+  },
+  "Factura!G3": {
+   "value": {
+    "type": "number",
+    "value": 45702.0
+   },
+   "display": "14/02/2025"
+  },
+  "Factura!G4": {
+   "value": {
+    "type": "number",
+    "value": 45732.0
+   },
+   "display": "16/03/2025",
+   "input": "=G3+30"
+  },
+  "Factura!F11": {
+   "value": {
+    "type": "number",
+    "value": 180.0
+   },
+   "display": "180,00 €",
+   "input": "=ROUND(B11*C11*(1-D11),2)"
+  },
+  "Factura!G11": {
+   "value": {
+    "type": "number",
+    "value": 37.8
+   },
+   "display": "37,80 €",
+   "input": "=ROUND(F11*E11,2)"
+  },
+  "Factura!H11": {
+   "value": {
+    "type": "number",
+    "value": 217.8
+   },
+   "display": "217,80 €",
+   "input": "=F11+G11"
+  },
+  "Factura!F12": {
+   "value": {
+    "type": "number",
+    "value": 55.8
+   },
+   "display": "55,80 €",
+   "input": "=ROUND(B12*C12*(1-D12),2)"
+  },
+  "Factura!G12": {
+   "value": {
+    "type": "number",
+    "value": 11.72
+   },
+   "display": "11,72 €",
+   "input": "=ROUND(F12*E12,2)"
+  },
+  "Factura!H12": {
+   "value": {
+    "type": "number",
+    "value": 67.52
+   },
+   "display": "67,52 €",
+   "input": "=F12+G12"
+  },
+  "Factura!F13": {
+   "value": {
+    "type": "number",
+    "value": 14.95
+   },
+   "display": "14,95 €",
+   "input": "=ROUND(B13*C13*(1-D13),2)"
+  },
+  "Factura!G13": {
+   "value": {
+    "type": "number",
+    "value": 3.14
+   },
+   "display": "3,14 €",
+   "input": "=ROUND(F13*E13,2)"
+  },
+  "Factura!H13": {
+   "value": {
+    "type": "number",
+    "value": 18.09
+   },
+   "display": "18,09 €",
+   "input": "=F13+G13"
+  },
+  "Factura!F14": {
+   "value": {
+    "type": "number",
+    "value": 73.15
+   },
+   "display": "73,15 €",
+   "input": "=ROUND(B14*C14*(1-D14),2)"
+  },
+  "Factura!G14": {
+   "value": {
+    "type": "number",
+    "value": 15.36
+   },
+   "display": "15,36 €",
+   "input": "=ROUND(F14*E14,2)"
+  },
+  "Factura!H14": {
+   "value": {
+    "type": "number",
+    "value": 88.51
+   },
+   "display": "88,51 €",
+   "input": "=F14+G14"
+  },
+  "Factura!F15": {
+   "value": {
+    "type": "number",
+    "value": 147.0
+   },
+   "display": "147,00 €",
+   "input": "=ROUND(B15*C15*(1-D15),2)"
+  },
+  "Factura!G15": {
+   "value": {
+    "type": "number",
+    "value": 30.87
+   },
+   "display": "30,87 €",
+   "input": "=ROUND(F15*E15,2)"
+  },
+  "Factura!H15": {
+   "value": {
+    "type": "number",
+    "value": 177.87
+   },
+   "display": "177,87 €",
+   "input": "=F15+G15"
+  },
+  "Factura!F16": {
+   "value": {
+    "type": "number",
+    "value": 9.9
+   },
+   "display": "9,90 €",
+   "input": "=ROUND(B16*C16*(1-D16),2)"
+  },
+  "Factura!G16": {
+   "value": {
+    "type": "number",
+    "value": 0.4
+   },
+   "display": "0,40 €",
+   "input": "=ROUND(F16*E16,2)"
+  },
+  "Factura!H16": {
+   "value": {
+    "type": "number",
+    "value": 10.3
+   },
+   "display": "10,30 €",
+   "input": "=F16+G16"
+  },
+  "Factura!F17": {
+   "value": {
+    "type": "number",
+    "value": 25.0
+   },
+   "display": "25,00 €",
+   "input": "=ROUND(B17*C17*(1-D17),2)"
+  },
+  "Factura!G17": {
+   "value": {
+    "type": "number",
+    "value": 2.5
+   },
+   "display": "2,50 €",
+   "input": "=ROUND(F17*E17,2)"
+  },
+  "Factura!H17": {
+   "value": {
+    "type": "number",
+    "value": 27.5
+   },
+   "display": "27,50 €",
+   "input": "=F17+G17"
+  },
+  "Factura!F18": {
+   "value": {
+    "type": "number",
+    "value": 15.3
+   },
+   "display": "15,30 €",
+   "input": "=ROUND(B18*C18*(1-D18),2)"
+  },
+  "Factura!G18": {
+   "value": {
+    "type": "number",
+    "value": 3.21
+   },
+   "display": "3,21 €",
+   "input": "=ROUND(F18*E18,2)"
+  },
+  "Factura!H18": {
+   "value": {
+    "type": "number",
+    "value": 18.51
+   },
+   "display": "18,51 €",
+   "input": "=F18+G18"
+  },
+  "Factura!F20": {
+   "value": {
+    "type": "number",
+    "value": 486.2
+   },
+   "display": "486,20 €",
+   "input": "=SUMIF($E$11:$E$18,D20,$F$11:$F$18)"
+  },
+  "Factura!G20": {
+   "value": {
+    "type": "number",
+    "value": 102.1
+   },
+   "display": "102,10 €",
+   "input": "=ROUND(F20*D20,2)"
+  },
+  "Factura!F21": {
+   "value": {
+    "type": "number",
+    "value": 25.0
+   },
+   "display": "25,00 €",
+   "input": "=SUMIF($E$11:$E$18,D21,$F$11:$F$18)"
+  },
+  "Factura!G21": {
+   "value": {
+    "type": "number",
+    "value": 2.5
+   },
+   "display": "2,50 €",
+   "input": "=ROUND(F21*D21,2)"
+  },
+  "Factura!F22": {
+   "value": {
+    "type": "number",
+    "value": 9.9
+   },
+   "display": "9,90 €",
+   "input": "=SUMIF($E$11:$E$18,D22,$F$11:$F$18)"
+  },
+  "Factura!G22": {
+   "value": {
+    "type": "number",
+    "value": 0.4
+   },
+   "display": "0,40 €",
+   "input": "=ROUND(F22*D22,2)"
+  },
+  "Factura!F24": {
+   "value": {
+    "type": "number",
+    "value": 521.1
+   },
+   "display": "521,10 €",
+   "input": "=SUM(F11:F18)"
+  },
+  "Factura!F25": {
+   "value": {
+    "type": "number",
+    "value": 105.0
+   },
+   "display": "105,00 €",
+   "input": "=SUM(G20:G22)"
+  },
+  "Factura!F26": {
+   "value": {
+    "type": "number",
+    "value": -22.05
+   },
+   "display": "-22,05 €",
+   "input": "=-ROUND(F15*15%,2)"
+  },
+  "Factura!F27": {
+   "value": {
+    "type": "number",
+    "value": 604.05
+   },
+   "display": "604,05 €",
+   "input": "=F24+F25+F26"
+  },
+  "Factura!F28": {
+   "value": {
+    "type": "text",
+    "value": "OK"
+   },
+   "display": "OK",
+   "input": "=IF(ABS(SUM(H11:H18)-(F24+F25))<0.05,\"OK\",\"Revisar\")"
+  },
+  "Factura!A31": {
+   "value": {
+    "type": "text",
+    "value": "IBAN: ES91 2100 0418 4502 0005 1332"
+   },
+   "display": "IBAN: ES91 2100 0418 4502 0005 1332"
+  },
+  "Registro!F2": {
+   "value": {
+    "type": "number",
+    "value": 82.19
+   },
+   "display": "82,19 €",
+   "input": "=ROUND(D2*E2,2)"
+  },
+  "Registro!G2": {
+   "value": {
+    "type": "number",
+    "value": 904.05
+   },
+   "display": "904,05 €",
+   "input": "=D2+F2"
+  },
+  "Registro!I2": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0",
+   "input": "=IF(H2,0,MAX(0,$K$1-B2-30))"
+  },
+  "Registro!I3": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0",
+   "input": "=IF(H3,0,MAX(0,$K$1-B3-30))"
+  },
+  "Registro!I4": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0",
+   "input": "=IF(H4,0,MAX(0,$K$1-B4-30))"
+  },
+  "Registro!I5": {
+   "value": {
+    "type": "number",
+    "value": 90.0
+   },
+   "display": "90",
+   "input": "=IF(H5,0,MAX(0,$K$1-B5-30))"
+  },
+  "Registro!I6": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0",
+   "input": "=IF(H6,0,MAX(0,$K$1-B6-30))"
+  },
+  "Registro!I7": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0",
+   "input": "=IF(H7,0,MAX(0,$K$1-B7-30))"
+  },
+  "Registro!B8": {
+   "value": {
+    "type": "number",
+    "value": 45702.0
+   },
+   "display": "14/02/2025",
+   "input": "=Factura!G3"
+  },
+  "Registro!D8": {
+   "value": {
+    "type": "number",
+    "value": 521.1
+   },
+   "display": "521,10 €",
+   "input": "=Factura!F24"
+  },
+  "Registro!F8": {
+   "value": {
+    "type": "number",
+    "value": 109.43
+   },
+   "display": "109,43 €",
+   "input": "=ROUND(D8*E8,2)"
+  },
+  "Registro!G8": {
+   "value": {
+    "type": "number",
+    "value": 630.53
+   },
+   "display": "630,53 €",
+   "input": "=D8+F8"
+  },
+  "Registro!I8": {
+   "value": {
+    "type": "number",
+    "value": 106.0
+   },
+   "display": "106",
+   "input": "=IF(H8,0,MAX(0,$K$1-B8-30))"
+  },
+  "Registro!I9": {
+   "value": {
+    "type": "number",
+    "value": 19.0
+   },
+   "display": "19",
+   "input": "=IF(H9,0,MAX(0,$K$1-B9-30))"
+  },
+  "Registro!I10": {
+   "value": {
+    "type": "number",
+    "value": 4.0
+   },
+   "display": "4",
+   "input": "=IF(H10,0,MAX(0,$K$1-B10-30))"
+  },
+  "Registro!I11": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0",
+   "input": "=IF(H11,0,MAX(0,$K$1-B11-30))"
+  },
+  "Registro!I12": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0",
+   "input": "=IF(H12,0,MAX(0,$K$1-B12-30))"
+  },
+  "Registro!I13": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0",
+   "input": "=IF(H13,0,MAX(0,$K$1-B13-30))"
+  },
+  "Registro!I14": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0",
+   "input": "=IF(H14,0,MAX(0,$K$1-B14-30))"
+  },
+  "Registro!I15": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0",
+   "input": "=IF(H15,0,MAX(0,$K$1-B15-30))"
+  },
+  "Registro!I16": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0",
+   "input": "=IF(H16,0,MAX(0,$K$1-B16-30))"
+  },
+  "Registro!I17": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0",
+   "input": "=IF(H17,0,MAX(0,$K$1-B17-30))"
+  },
+  "Registro!I18": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0",
+   "input": "=IF(H18,0,MAX(0,$K$1-B18-30))"
+  },
+  "Registro!I19": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0",
+   "input": "=IF(H19,0,MAX(0,$K$1-B19-30))"
+  },
+  "Registro!I20": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0",
+   "input": "=IF(H20,0,MAX(0,$K$1-B20-30))"
+  },
+  "Registro!I21": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0",
+   "input": "=IF(H21,0,MAX(0,$K$1-B21-30))"
+  },
+  "Registro!B25": {
+   "value": {
+    "type": "number",
+    "value": 16880.27
+   },
+   "display": "16.880,27 €",
+   "input": "=SUMIFS($G$2:$G$21,$B$2:$B$21,\">=\"&DATE(2025,1,1),$B$2:$B$21,\"<\"&DATE(2025,4,1))"
+  },
+  "Registro!B26": {
+   "value": {
+    "type": "number",
+    "value": 9919.79
+   },
+   "display": "9.919,79 €",
+   "input": "=SUMIFS($G$2:$G$21,$B$2:$B$21,\">=\"&DATE(2025,4,1),$B$2:$B$21,\"<\"&DATE(2025,7,1))"
+  },
+  "Registro!B27": {
+   "value": {
+    "type": "number",
+    "value": 12247.67
+   },
+   "display": "12.247,67 €",
+   "input": "=SUMIFS($G$2:$G$21,$B$2:$B$21,\">=\"&DATE(2025,7,1),$B$2:$B$21,\"<\"&DATE(2025,10,1))"
+  },
+  "Registro!B28": {
+   "value": {
+    "type": "number",
+    "value": 6760.96
+   },
+   "display": "6.760,96 €",
+   "input": "=SUMIFS($G$2:$G$21,$B$2:$B$21,\">=\"&DATE(2025,10,1),$B$2:$B$21,\"<\"&DATE(2026,1,1))"
+  },
+  "Registro!B30": {
+   "value": {
+    "type": "number",
+    "value": 29894.87
+   },
+   "display": "29.894,87 €",
+   "input": "=SUMIF(H2:H21,FALSE,G2:G21)"
+  },
+  "Registro!B31": {
+   "value": {
+    "type": "number",
+    "value": 5.0
+   },
+   "display": "5",
+   "input": "=COUNTIF(H2:H21,TRUE)"
+  }
+ }
+}

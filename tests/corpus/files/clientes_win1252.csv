@@ -1,0 +1,27 @@
+Código;Nombre;Población;Observaciones;Saldo
+C001;Peña e Hijos, S.L.;Logroño;Cliente preferente;1234,50
+C002;"Bar ""El Rincón""";A Coruña;"Paga en efectivo; avisar al encargado";-89,90
+C003;Ferretería Agüero;Ávila;"Entregar por la mañana
+Llamar antes: 920 123 456";0,00
+C004;Lavandería Ça Va;Girona;Factura con 2º apellido;15,75
+C005;Óptica Núñez;Cádiz;¿Descuento? ¡Sí! 5 % — revisar «tarifa»;2500,00
+C006;Mª José Ibáñez;Córdoba;Importe en €;99,99
+C007;ÑAM Comidas;Málaga;;10,00
+C008;Pérez & Asociados;L'Hospitalet de Llobregat;"Dirección: C/ Mayor, 1; 2º B";-1500,25
+C009;Clínica Dental Ruiz;Ourense;;259,96
+C010;Talleres Ramírez;Cáceres;;968,31
+C011;Construcciones Vázquez;Teruel;;1568,63
+C012;Panadería Gómez;Cáceres;;2126,53
+C013;Farmacia Domínguez;Segovia;;448,57
+C014;Clínica Dental Ruiz;León;;2373,67
+C015;Talleres Ramírez;Cáceres;;1710,75
+C016;Farmacia Domínguez;Almería;;2057,10
+C017;Construcciones Vázquez;Cáceres;;1319,58
+C018;Farmacia Domínguez;Segovia;;1911,97
+C019;Clínica Dental Ruiz;León;;2434,01
+C020;Farmacia Domínguez;Almería;;1382,72
+C021;Talleres Ramírez;Teruel;;2472,77
+C022;Clínica Dental Ruiz;Cáceres;;899,38
+C023;Panadería Gómez;Almería;;1783,61
+C024;Farmacia Domínguez;Cáceres;;1541,60
+C025;Farmacia Domínguez;Lleida;;2422,68

@@ -1,0 +1,100 @@
+# CI for every push and PR to main (WS5). Windows only: Sheetlight ships for
+# Windows, and the file-path, CSV encoding and line-ending behavior under test
+# is Windows behavior. Budget: ~15 min with warm caches.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: "0"
+  RUST_BACKTRACE: "0"
+  # Never download browsers: the grid browser tests use the runner's Chrome/Edge.
+  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+
+jobs:
+  build-test:
+    name: build, test, clippy (windows)
+    runs-on: windows-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: tests/corpus/requirements.txt
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+          shared-key: ci
+
+      - name: Pick the preinstalled Chromium (Chrome, else Edge)
+        run: |
+          for c in "C:/Program Files/Google/Chrome/Application/chrome.exe" \
+                   "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" \
+                   "C:/Program Files/Microsoft/Edge/Application/msedge.exe"; do
+            if [ -f "$c" ]; then echo "SHEETLIGHT_CHROMIUM=$c" >> "$GITHUB_ENV"; echo "using $c"; exit 0; fi
+          done
+          echo "::warning::no Chrome/Edge found; browser tests will be skipped"
+
+      - name: npm ci
+        run: npm ci
+
+      - name: Type-check and build (tsc + vite)
+        run: npm run build
+
+      - name: Vitest (unit, corpus guard, grid browser tests)
+        run: npm test
+
+      - name: Corpus generator is reproducible
+        run: |
+          python -m pip install -r tests/corpus/requirements.txt
+          python tests/corpus/gen_corpus.py check
+
+      - name: cargo test
+        working-directory: src-tauri
+        run: cargo test --locked
+
+      - name: Benchmark smoke run (1% scale, debug; numbers not meaningful)
+        working-directory: src-tauri
+        env:
+          SHEETLIGHT_BENCH_SCALE: "0.01"
+          SHEETLIGHT_BENCH_RUNS: "1"
+        run: cargo test --locked --bench engine
+
+      - name: cargo clippy
+        working-directory: src-tauri
+        run: cargo clippy --locked --all-targets -- -D warnings
+
+      - name: Open corpus bugs (strict tests, informational)
+        if: always()
+        continue-on-error: true
+        working-directory: src-tauri
+        run: |
+          cargo test --locked --no-fail-fast --tests -- --ignored strict 2>&1 | grep -E "^test |known gap\(s\) still open|test result" || true

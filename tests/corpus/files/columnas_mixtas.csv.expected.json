@@ -1,0 +1,305 @@
+{
+ "file": "columnas_mixtas.csv",
+ "kind": "csv",
+ "description": "Columnas con tipos mezclados: ceros a la izquierda, IBAN, números de 20 dígitos, porcentajes, booleanos en/es, #N/A, negativos entre paréntesis, celdas vacías, filas con menos y más campos, texto que parece fórmula (inyección CSV), salto de línea dentro de comillas, última línea sin salto final.",
+ "sheets": [
+  "columnas_mixtas"
+ ],
+ "activeSheet": "columnas_mixtas",
+ "csv": {
+  "delimiter": ",",
+  "encoding": "utf-8",
+  "decimal": "."
+ },
+ "bom": false,
+ "lineEnding": "crlf",
+ "rows": 11,
+ "cols": 8,
+ "cells": {
+  "A2": {
+   "value": {
+    "type": "number",
+    "value": 1.0
+   },
+   "display": "1"
+  },
+  "B2": {
+   "anyOf": [
+    {
+     "type": "text",
+     "value": "00123"
+    },
+    {
+     "type": "number",
+     "value": 123.0
+    }
+   ]
+  },
+  "C2": {
+   "value": {
+    "type": "number",
+    "value": 42.0
+   },
+   "display": "42"
+  },
+  "D2": {
+   "anyOf": [
+    {
+     "type": "bool",
+     "value": true
+    },
+    {
+     "type": "text",
+     "value": "TRUE"
+    }
+   ]
+  },
+  "E2": {
+   "anyOf": [
+    {
+     "type": "number",
+     "value": 0.12
+    },
+    {
+     "type": "text",
+     "value": "12%"
+    }
+   ]
+  },
+  "F2": {
+   "value": {
+    "type": "text",
+    "value": "ES7621000418401234567891"
+   },
+   "display": "ES7621000418401234567891"
+  },
+  "G2": {
+   "value": {
+    "type": "text",
+    "value": "  espacios al inicio y al final  "
+   },
+   "display": "  espacios al inicio y al final  "
+  },
+  "B3": {
+   "value": {
+    "type": "text",
+    "value": "A-17"
+   },
+   "display": "A-17"
+  },
+  "C3": {
+   "value": {
+    "type": "text",
+    "value": "texto"
+   },
+   "display": "texto"
+  },
+  "D3": {
+   "anyOf": [
+    {
+     "type": "bool",
+     "value": false
+    },
+    {
+     "type": "text",
+     "value": "FALSE"
+    }
+   ]
+  },
+  "F3": {
+   "anyOf": [
+    {
+     "type": "text",
+     "value": "12345678901234567890"
+    },
+    {
+     "type": "number",
+     "value": 1.2345678901234567e+19
+    }
+   ]
+  },
+  "G3": {
+   "value": {
+    "type": "text",
+    "value": "=SUM(A1:A2)"
+   },
+   "display": "=SUM(A1:A2)"
+  },
+  "C4": {
+   "value": {
+    "type": "empty"
+   },
+   "display": ""
+  },
+  "D4": {
+   "anyOf": [
+    {
+     "type": "bool",
+     "value": true
+    },
+    {
+     "type": "text",
+     "value": "VERDADERO"
+    }
+   ]
+  },
+  "F4": {
+   "anyOf": [
+    {
+     "type": "text",
+     "value": "0012345678"
+    },
+    {
+     "type": "number",
+     "value": 12345678.0
+    }
+   ]
+  },
+  "G4": {
+   "value": {
+    "type": "text",
+    "value": "línea con \"comillas\""
+   },
+   "display": "línea con \"comillas\""
+  },
+  "C5": {
+   "value": {
+    "type": "text",
+    "value": "N/A"
+   },
+   "display": "N/A"
+  },
+  "D5": {
+   "value": {
+    "type": "text",
+    "value": "sí"
+   },
+   "display": "sí"
+  },
+  "G5": {
+   "anyOf": [
+    {
+     "type": "text",
+     "value": "+34 600 123 456"
+    },
+    {
+     "type": "number",
+     "value": 34600123456.0
+    }
+   ]
+  },
+  "C6": {
+   "anyOf": [
+    {
+     "type": "text",
+     "value": "#N/A"
+    },
+    {
+     "type": "error",
+     "value": "#N/A"
+    }
+   ]
+  },
+  "F6": {
+   "anyOf": [
+    {
+     "type": "number",
+     "value": 100000.0
+    },
+    {
+     "type": "text",
+     "value": "1e5"
+    }
+   ]
+  },
+  "G6": {
+   "anyOf": [
+    {
+     "type": "text",
+     "value": "multi\r\nlínea"
+    },
+    {
+     "type": "text",
+     "value": "multi\nlínea"
+    }
+   ]
+  },
+  "B7": {
+   "anyOf": [
+    {
+     "type": "number",
+     "value": -123.0
+    },
+    {
+     "type": "text",
+     "value": "(123)"
+    }
+   ]
+  },
+  "C7": {
+   "value": {
+    "type": "number",
+    "value": 1.234
+   },
+   "display": "1,234"
+  },
+  "G7": {
+   "value": {
+    "type": "text",
+    "value": "✓ ok"
+   },
+   "display": "✓ ok"
+  },
+  "B8": {
+   "anyOf": [
+    {
+     "type": "number",
+     "value": 45702.0
+    },
+    {
+     "type": "text",
+     "value": "2025-02-14"
+    }
+   ]
+  },
+  "C8": {
+   "anyOf": [
+    {
+     "type": "text",
+     "value": "14/02/2025"
+    },
+    {
+     "type": "number",
+     "value": 45702.0
+    }
+   ]
+  },
+  "B9": {
+   "value": {
+    "type": "text",
+    "value": "X"
+   },
+   "display": "X"
+  },
+  "C9": {
+   "value": {
+    "type": "empty"
+   },
+   "display": ""
+  },
+  "H10": {
+   "value": {
+    "type": "text",
+    "value": "EXTRA"
+   },
+   "display": "EXTRA"
+  },
+  "G11": {
+   "value": {
+    "type": "text",
+    "value": "@usuario"
+   },
+   "display": "@usuario"
+  }
+ }
+}

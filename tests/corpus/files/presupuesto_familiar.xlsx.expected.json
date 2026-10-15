@@ -1,0 +1,3356 @@
+{
+ "file": "presupuesto_familiar.xlsx",
+ "kind": "xlsx",
+ "description": "Presupuesto familiar anual: meses x categorías con SUMIFS/SUMIF/VLOOKUP sobre una hoja de movimientos, %, formatos €, formato condicional, paneles inmovilizados, autofiltro.",
+ "sheets": [
+  "Presupuesto 2025",
+  "Movimientos",
+  "Categorías"
+ ],
+ "activeSheet": "Presupuesto 2025",
+ "definedNames": {},
+ "features": {
+  "Presupuesto 2025": {
+   "frozen": [
+    3,
+    1
+   ],
+   "merges": [
+    "A1:T1"
+   ],
+   "colWidths": 20,
+   "conditionalFormats": 3
+  },
+  "Movimientos": {
+   "frozen": [
+    1,
+    0
+   ],
+   "autoFilter": "A1:F312",
+   "colWidths": 6
+  },
+  "Categorías": {
+   "colWidths": 3
+  }
+ },
+ "fidelity": {
+  "conditionalFormatting": 3,
+  "autoFilter": 1
+ },
+ "cells": {
+  "Movimientos!A2": {
+   "value": {
+    "type": "number",
+    "value": 45658.0
+   },
+   "display": "01/01/2025"
+  },
+  "Movimientos!E2": {
+   "value": {
+    "type": "number",
+    "value": 780.0
+   },
+   "display": "780,00 €"
+  },
+  "Movimientos!F2": {
+   "value": {
+    "type": "number",
+    "value": 1.0
+   },
+   "display": "1",
+   "input": "=MONTH(A2)"
+  },
+  "Movimientos!A3": {
+   "value": {
+    "type": "number",
+    "value": 45658.0
+   },
+   "display": "01/01/2025"
+  },
+  "Movimientos!E3": {
+   "value": {
+    "type": "number",
+    "value": 51.79
+   },
+   "display": "51,79 €"
+  },
+  "Movimientos!F3": {
+   "value": {
+    "type": "number",
+    "value": 1.0
+   },
+   "display": "1",
+   "input": "=MONTH(A3)"
+  },
+  "Movimientos!A4": {
+   "value": {
+    "type": "number",
+    "value": 45659.0
+   },
+   "display": "02/01/2025"
+  },
+  "Movimientos!E4": {
+   "value": {
+    "type": "number",
+    "value": 60.0
+   },
+   "display": "60,00 €"
+  },
+  "Movimientos!F4": {
+   "value": {
+    "type": "number",
+    "value": 1.0
+   },
+   "display": "1",
+   "input": "=MONTH(A4)"
+  },
+  "Presupuesto 2025!B5": {
+   "value": {
+    "type": "number",
+    "value": 2450.0
+   },
+   "display": "2.450,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A5,Movimientos!$F$2:$F$312,1)"
+  },
+  "Presupuesto 2025!C5": {
+   "value": {
+    "type": "number",
+    "value": 2450.0
+   },
+   "display": "2.450,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A5,Movimientos!$F$2:$F$312,2)"
+  },
+  "Presupuesto 2025!D5": {
+   "value": {
+    "type": "number",
+    "value": 2450.0
+   },
+   "display": "2.450,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A5,Movimientos!$F$2:$F$312,3)"
+  },
+  "Presupuesto 2025!E5": {
+   "value": {
+    "type": "number",
+    "value": 2450.0
+   },
+   "display": "2.450,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A5,Movimientos!$F$2:$F$312,4)"
+  },
+  "Presupuesto 2025!F5": {
+   "value": {
+    "type": "number",
+    "value": 2450.0
+   },
+   "display": "2.450,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A5,Movimientos!$F$2:$F$312,5)"
+  },
+  "Presupuesto 2025!G5": {
+   "value": {
+    "type": "number",
+    "value": 4900.0
+   },
+   "display": "4.900,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A5,Movimientos!$F$2:$F$312,6)"
+  },
+  "Presupuesto 2025!H5": {
+   "value": {
+    "type": "number",
+    "value": 2450.0
+   },
+   "display": "2.450,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A5,Movimientos!$F$2:$F$312,7)"
+  },
+  "Presupuesto 2025!I5": {
+   "value": {
+    "type": "number",
+    "value": 2450.0
+   },
+   "display": "2.450,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A5,Movimientos!$F$2:$F$312,8)"
+  },
+  "Presupuesto 2025!J5": {
+   "value": {
+    "type": "number",
+    "value": 2450.0
+   },
+   "display": "2.450,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A5,Movimientos!$F$2:$F$312,9)"
+  },
+  "Presupuesto 2025!K5": {
+   "value": {
+    "type": "number",
+    "value": 2450.0
+   },
+   "display": "2.450,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A5,Movimientos!$F$2:$F$312,10)"
+  },
+  "Presupuesto 2025!L5": {
+   "value": {
+    "type": "number",
+    "value": 2450.0
+   },
+   "display": "2.450,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A5,Movimientos!$F$2:$F$312,11)"
+  },
+  "Presupuesto 2025!M5": {
+   "value": {
+    "type": "number",
+    "value": 4900.0
+   },
+   "display": "4.900,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A5,Movimientos!$F$2:$F$312,12)"
+  },
+  "Presupuesto 2025!N5": {
+   "value": {
+    "type": "number",
+    "value": 34300.0
+   },
+   "display": "34.300,00 €",
+   "input": "=SUM(B5:M5)"
+  },
+  "Presupuesto 2025!O5": {
+   "value": {
+    "type": "number",
+    "value": 2858.3333333333335
+   },
+   "display": "2.858,33 €",
+   "input": "=AVERAGE(B5:M5)"
+  },
+  "Presupuesto 2025!P5": {
+   "value": {
+    "type": "number",
+    "value": 0.5426393503388807
+   },
+   "display": "54,3%",
+   "input": "=N5/N$8"
+  },
+  "Presupuesto 2025!Q5": {
+   "value": {
+    "type": "number",
+    "value": 34300.0
+   },
+   "display": "34.300,00 €",
+   "input": "=SUMIF(Movimientos!$C$2:$C$312,$A5,Movimientos!$E$2:$E$312)"
+  },
+  "Presupuesto 2025!R5": {
+   "value": {
+    "type": "number",
+    "value": 29400.0
+   },
+   "display": "29.400,00 €",
+   "input": "=VLOOKUP($A5,Categorías!$A$2:$C$19,3,FALSE)*12"
+  },
+  "Presupuesto 2025!S5": {
+   "value": {
+    "type": "number",
+    "value": 4900.0
+   },
+   "display": "4.900,00 €",
+   "input": "=N5-R5"
+  },
+  "Presupuesto 2025!T5": {
+   "value": {
+    "type": "number",
+    "value": 1.1666666666666667
+   },
+   "display": "116,7%",
+   "input": "=IF(R5=0,0,N5/R5)"
+  },
+  "Presupuesto 2025!B6": {
+   "value": {
+    "type": "number",
+    "value": 1980.0
+   },
+   "display": "1.980,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A6,Movimientos!$F$2:$F$312,1)"
+  },
+  "Presupuesto 2025!C6": {
+   "value": {
+    "type": "number",
+    "value": 1980.0
+   },
+   "display": "1.980,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A6,Movimientos!$F$2:$F$312,2)"
+  },
+  "Presupuesto 2025!D6": {
+   "value": {
+    "type": "number",
+    "value": 1980.0
+   },
+   "display": "1.980,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A6,Movimientos!$F$2:$F$312,3)"
+  },
+  "Presupuesto 2025!E6": {
+   "value": {
+    "type": "number",
+    "value": 1980.0
+   },
+   "display": "1.980,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A6,Movimientos!$F$2:$F$312,4)"
+  },
+  "Presupuesto 2025!F6": {
+   "value": {
+    "type": "number",
+    "value": 1980.0
+   },
+   "display": "1.980,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A6,Movimientos!$F$2:$F$312,5)"
+  },
+  "Presupuesto 2025!G6": {
+   "value": {
+    "type": "number",
+    "value": 1980.0
+   },
+   "display": "1.980,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A6,Movimientos!$F$2:$F$312,6)"
+  },
+  "Presupuesto 2025!H6": {
+   "value": {
+    "type": "number",
+    "value": 3960.0
+   },
+   "display": "3.960,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A6,Movimientos!$F$2:$F$312,7)"
+  },
+  "Presupuesto 2025!I6": {
+   "value": {
+    "type": "number",
+    "value": 1980.0
+   },
+   "display": "1.980,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A6,Movimientos!$F$2:$F$312,8)"
+  },
+  "Presupuesto 2025!J6": {
+   "value": {
+    "type": "number",
+    "value": 1980.0
+   },
+   "display": "1.980,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A6,Movimientos!$F$2:$F$312,9)"
+  },
+  "Presupuesto 2025!K6": {
+   "value": {
+    "type": "number",
+    "value": 1980.0
+   },
+   "display": "1.980,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A6,Movimientos!$F$2:$F$312,10)"
+  },
+  "Presupuesto 2025!L6": {
+   "value": {
+    "type": "number",
+    "value": 1980.0
+   },
+   "display": "1.980,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A6,Movimientos!$F$2:$F$312,11)"
+  },
+  "Presupuesto 2025!M6": {
+   "value": {
+    "type": "number",
+    "value": 3960.0
+   },
+   "display": "3.960,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A6,Movimientos!$F$2:$F$312,12)"
+  },
+  "Presupuesto 2025!N6": {
+   "value": {
+    "type": "number",
+    "value": 27720.0
+   },
+   "display": "27.720,00 €",
+   "input": "=SUM(B6:M6)"
+  },
+  "Presupuesto 2025!O6": {
+   "value": {
+    "type": "number",
+    "value": 2310.0
+   },
+   "display": "2.310,00 €",
+   "input": "=AVERAGE(B6:M6)"
+  },
+  "Presupuesto 2025!P6": {
+   "value": {
+    "type": "number",
+    "value": 0.43854118925346275
+   },
+   "display": "43,9%",
+   "input": "=N6/N$8"
+  },
+  "Presupuesto 2025!Q6": {
+   "value": {
+    "type": "number",
+    "value": 27720.0
+   },
+   "display": "27.720,00 €",
+   "input": "=SUMIF(Movimientos!$C$2:$C$312,$A6,Movimientos!$E$2:$E$312)"
+  },
+  "Presupuesto 2025!R6": {
+   "value": {
+    "type": "number",
+    "value": 23760.0
+   },
+   "display": "23.760,00 €",
+   "input": "=VLOOKUP($A6,Categorías!$A$2:$C$19,3,FALSE)*12"
+  },
+  "Presupuesto 2025!S6": {
+   "value": {
+    "type": "number",
+    "value": 3960.0
+   },
+   "display": "3.960,00 €",
+   "input": "=N6-R6"
+  },
+  "Presupuesto 2025!T6": {
+   "value": {
+    "type": "number",
+    "value": 1.1666666666666667
+   },
+   "display": "116,7%",
+   "input": "=IF(R6=0,0,N6/R6)"
+  },
+  "Presupuesto 2025!B7": {
+   "value": {
+    "type": "number",
+    "value": 193.62
+   },
+   "display": "193,62 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A7,Movimientos!$F$2:$F$312,1)"
+  },
+  "Presupuesto 2025!C7": {
+   "value": {
+    "type": "number",
+    "value": 278.96
+   },
+   "display": "278,96 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A7,Movimientos!$F$2:$F$312,2)"
+  },
+  "Presupuesto 2025!D7": {
+   "value": {
+    "type": "number",
+    "value": 171.3
+   },
+   "display": "171,30 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A7,Movimientos!$F$2:$F$312,3)"
+  },
+  "Presupuesto 2025!E7": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A7,Movimientos!$F$2:$F$312,4)"
+  },
+  "Presupuesto 2025!F7": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A7,Movimientos!$F$2:$F$312,5)"
+  },
+  "Presupuesto 2025!G7": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A7,Movimientos!$F$2:$F$312,6)"
+  },
+  "Presupuesto 2025!H7": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A7,Movimientos!$F$2:$F$312,7)"
+  },
+  "Presupuesto 2025!I7": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A7,Movimientos!$F$2:$F$312,8)"
+  },
+  "Presupuesto 2025!J7": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A7,Movimientos!$F$2:$F$312,9)"
+  },
+  "Presupuesto 2025!K7": {
+   "value": {
+    "type": "number",
+    "value": 165.87
+   },
+   "display": "165,87 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A7,Movimientos!$F$2:$F$312,10)"
+  },
+  "Presupuesto 2025!L7": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A7,Movimientos!$F$2:$F$312,11)"
+  },
+  "Presupuesto 2025!M7": {
+   "value": {
+    "type": "number",
+    "value": 379.82
+   },
+   "display": "379,82 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A7,Movimientos!$F$2:$F$312,12)"
+  },
+  "Presupuesto 2025!N7": {
+   "value": {
+    "type": "number",
+    "value": 1189.57
+   },
+   "display": "1.189,57 €",
+   "input": "=SUM(B7:M7)"
+  },
+  "Presupuesto 2025!O7": {
+   "value": {
+    "type": "number",
+    "value": 99.13083333333333
+   },
+   "display": "99,13 €",
+   "input": "=AVERAGE(B7:M7)"
+  },
+  "Presupuesto 2025!P7": {
+   "value": {
+    "type": "number",
+    "value": 0.018819460407656623
+   },
+   "display": "1,9%",
+   "input": "=N7/N$8"
+  },
+  "Presupuesto 2025!Q7": {
+   "value": {
+    "type": "number",
+    "value": 1189.57
+   },
+   "display": "1.189,57 €",
+   "input": "=SUMIF(Movimientos!$C$2:$C$312,$A7,Movimientos!$E$2:$E$312)"
+  },
+  "Presupuesto 2025!R7": {
+   "value": {
+    "type": "number",
+    "value": 1800.0
+   },
+   "display": "1.800,00 €",
+   "input": "=VLOOKUP($A7,Categorías!$A$2:$C$19,3,FALSE)*12"
+  },
+  "Presupuesto 2025!S7": {
+   "value": {
+    "type": "number",
+    "value": -610.4300000000001
+   },
+   "display": "-610,43 €",
+   "input": "=N7-R7"
+  },
+  "Presupuesto 2025!T7": {
+   "value": {
+    "type": "number",
+    "value": 0.6608722222222222
+   },
+   "display": "66,1%",
+   "input": "=IF(R7=0,0,N7/R7)"
+  },
+  "Presupuesto 2025!B8": {
+   "value": {
+    "type": "number",
+    "value": 4623.62
+   },
+   "display": "4.623,62 €",
+   "input": "=SUM(B5:B7)"
+  },
+  "Presupuesto 2025!C8": {
+   "value": {
+    "type": "number",
+    "value": 4708.96
+   },
+   "display": "4.708,96 €",
+   "input": "=SUM(C5:C7)"
+  },
+  "Presupuesto 2025!D8": {
+   "value": {
+    "type": "number",
+    "value": 4601.3
+   },
+   "display": "4.601,30 €",
+   "input": "=SUM(D5:D7)"
+  },
+  "Presupuesto 2025!E8": {
+   "value": {
+    "type": "number",
+    "value": 4430.0
+   },
+   "display": "4.430,00 €",
+   "input": "=SUM(E5:E7)"
+  },
+  "Presupuesto 2025!F8": {
+   "value": {
+    "type": "number",
+    "value": 4430.0
+   },
+   "display": "4.430,00 €",
+   "input": "=SUM(F5:F7)"
+  },
+  "Presupuesto 2025!G8": {
+   "value": {
+    "type": "number",
+    "value": 6880.0
+   },
+   "display": "6.880,00 €",
+   "input": "=SUM(G5:G7)"
+  },
+  "Presupuesto 2025!H8": {
+   "value": {
+    "type": "number",
+    "value": 6410.0
+   },
+   "display": "6.410,00 €",
+   "input": "=SUM(H5:H7)"
+  },
+  "Presupuesto 2025!I8": {
+   "value": {
+    "type": "number",
+    "value": 4430.0
+   },
+   "display": "4.430,00 €",
+   "input": "=SUM(I5:I7)"
+  },
+  "Presupuesto 2025!J8": {
+   "value": {
+    "type": "number",
+    "value": 4430.0
+   },
+   "display": "4.430,00 €",
+   "input": "=SUM(J5:J7)"
+  },
+  "Presupuesto 2025!K8": {
+   "value": {
+    "type": "number",
+    "value": 4595.87
+   },
+   "display": "4.595,87 €",
+   "input": "=SUM(K5:K7)"
+  },
+  "Presupuesto 2025!L8": {
+   "value": {
+    "type": "number",
+    "value": 4430.0
+   },
+   "display": "4.430,00 €",
+   "input": "=SUM(L5:L7)"
+  },
+  "Presupuesto 2025!M8": {
+   "value": {
+    "type": "number",
+    "value": 9239.82
+   },
+   "display": "9.239,82 €",
+   "input": "=SUM(M5:M7)"
+  },
+  "Presupuesto 2025!N8": {
+   "value": {
+    "type": "number",
+    "value": 63209.57
+   },
+   "display": "63.209,57 €",
+   "input": "=SUM(N5:N7)"
+  },
+  "Presupuesto 2025!O8": {
+   "value": {
+    "type": "number",
+    "value": 5267.464166666667
+   },
+   "display": "5.267,46 €",
+   "input": "=AVERAGE(B8:M8)"
+  },
+  "Presupuesto 2025!P8": {
+   "value": {
+    "type": "number",
+    "value": 1.0
+   },
+   "display": "100,0%",
+   "input": "=SUM(P5:P7)"
+  },
+  "Presupuesto 2025!Q8": {
+   "value": {
+    "type": "number",
+    "value": 63209.57
+   },
+   "display": "63.209,57 €",
+   "input": "=SUM(Q5:Q7)"
+  },
+  "Presupuesto 2025!R8": {
+   "value": {
+    "type": "number",
+    "value": 54960.0
+   },
+   "display": "54.960,00 €",
+   "input": "=SUM(R5:R7)"
+  },
+  "Presupuesto 2025!S8": {
+   "value": {
+    "type": "number",
+    "value": 8249.57
+   },
+   "display": "8.249,57 €",
+   "input": "=N8-R8"
+  },
+  "Presupuesto 2025!T8": {
+   "value": {
+    "type": "number",
+    "value": 1.15010134643377
+   },
+   "display": "115,0%",
+   "input": "=IF(R8=0,0,N8/R8)"
+  },
+  "Presupuesto 2025!B11": {
+   "value": {
+    "type": "number",
+    "value": 780.0
+   },
+   "display": "780,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A11,Movimientos!$F$2:$F$312,1)"
+  },
+  "Presupuesto 2025!C11": {
+   "value": {
+    "type": "number",
+    "value": 780.0
+   },
+   "display": "780,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A11,Movimientos!$F$2:$F$312,2)"
+  },
+  "Presupuesto 2025!D11": {
+   "value": {
+    "type": "number",
+    "value": 780.0
+   },
+   "display": "780,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A11,Movimientos!$F$2:$F$312,3)"
+  },
+  "Presupuesto 2025!E11": {
+   "value": {
+    "type": "number",
+    "value": 780.0
+   },
+   "display": "780,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A11,Movimientos!$F$2:$F$312,4)"
+  },
+  "Presupuesto 2025!F11": {
+   "value": {
+    "type": "number",
+    "value": 780.0
+   },
+   "display": "780,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A11,Movimientos!$F$2:$F$312,5)"
+  },
+  "Presupuesto 2025!G11": {
+   "value": {
+    "type": "number",
+    "value": 780.0
+   },
+   "display": "780,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A11,Movimientos!$F$2:$F$312,6)"
+  },
+  "Presupuesto 2025!H11": {
+   "value": {
+    "type": "number",
+    "value": 780.0
+   },
+   "display": "780,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A11,Movimientos!$F$2:$F$312,7)"
+  },
+  "Presupuesto 2025!I11": {
+   "value": {
+    "type": "number",
+    "value": 780.0
+   },
+   "display": "780,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A11,Movimientos!$F$2:$F$312,8)"
+  },
+  "Presupuesto 2025!J11": {
+   "value": {
+    "type": "number",
+    "value": 780.0
+   },
+   "display": "780,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A11,Movimientos!$F$2:$F$312,9)"
+  },
+  "Presupuesto 2025!K11": {
+   "value": {
+    "type": "number",
+    "value": 780.0
+   },
+   "display": "780,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A11,Movimientos!$F$2:$F$312,10)"
+  },
+  "Presupuesto 2025!L11": {
+   "value": {
+    "type": "number",
+    "value": 780.0
+   },
+   "display": "780,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A11,Movimientos!$F$2:$F$312,11)"
+  },
+  "Presupuesto 2025!M11": {
+   "value": {
+    "type": "number",
+    "value": 780.0
+   },
+   "display": "780,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A11,Movimientos!$F$2:$F$312,12)"
+  },
+  "Presupuesto 2025!N11": {
+   "value": {
+    "type": "number",
+    "value": 9360.0
+   },
+   "display": "9.360,00 €",
+   "input": "=SUM(B11:M11)"
+  },
+  "Presupuesto 2025!O11": {
+   "value": {
+    "type": "number",
+    "value": 780.0
+   },
+   "display": "780,00 €",
+   "input": "=AVERAGE(B11:M11)"
+  },
+  "Presupuesto 2025!P11": {
+   "value": {
+    "type": "number",
+    "value": 0.3564834280908941
+   },
+   "display": "35,6%",
+   "input": "=N11/N$26"
+  },
+  "Presupuesto 2025!Q11": {
+   "value": {
+    "type": "number",
+    "value": 9360.0
+   },
+   "display": "9.360,00 €",
+   "input": "=SUMIF(Movimientos!$C$2:$C$312,$A11,Movimientos!$E$2:$E$312)"
+  },
+  "Presupuesto 2025!R11": {
+   "value": {
+    "type": "number",
+    "value": 9360.0
+   },
+   "display": "9.360,00 €",
+   "input": "=VLOOKUP($A11,Categorías!$A$2:$C$19,3,FALSE)*12"
+  },
+  "Presupuesto 2025!S11": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=N11-R11"
+  },
+  "Presupuesto 2025!T11": {
+   "value": {
+    "type": "number",
+    "value": 1.0
+   },
+   "display": "100,0%",
+   "input": "=IF(R11=0,0,N11/R11)"
+  },
+  "Presupuesto 2025!B12": {
+   "value": {
+    "type": "number",
+    "value": 65.0
+   },
+   "display": "65,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A12,Movimientos!$F$2:$F$312,1)"
+  },
+  "Presupuesto 2025!C12": {
+   "value": {
+    "type": "number",
+    "value": 65.0
+   },
+   "display": "65,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A12,Movimientos!$F$2:$F$312,2)"
+  },
+  "Presupuesto 2025!D12": {
+   "value": {
+    "type": "number",
+    "value": 65.0
+   },
+   "display": "65,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A12,Movimientos!$F$2:$F$312,3)"
+  },
+  "Presupuesto 2025!E12": {
+   "value": {
+    "type": "number",
+    "value": 65.0
+   },
+   "display": "65,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A12,Movimientos!$F$2:$F$312,4)"
+  },
+  "Presupuesto 2025!F12": {
+   "value": {
+    "type": "number",
+    "value": 65.0
+   },
+   "display": "65,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A12,Movimientos!$F$2:$F$312,5)"
+  },
+  "Presupuesto 2025!G12": {
+   "value": {
+    "type": "number",
+    "value": 65.0
+   },
+   "display": "65,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A12,Movimientos!$F$2:$F$312,6)"
+  },
+  "Presupuesto 2025!H12": {
+   "value": {
+    "type": "number",
+    "value": 65.0
+   },
+   "display": "65,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A12,Movimientos!$F$2:$F$312,7)"
+  },
+  "Presupuesto 2025!I12": {
+   "value": {
+    "type": "number",
+    "value": 65.0
+   },
+   "display": "65,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A12,Movimientos!$F$2:$F$312,8)"
+  },
+  "Presupuesto 2025!J12": {
+   "value": {
+    "type": "number",
+    "value": 65.0
+   },
+   "display": "65,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A12,Movimientos!$F$2:$F$312,9)"
+  },
+  "Presupuesto 2025!K12": {
+   "value": {
+    "type": "number",
+    "value": 65.0
+   },
+   "display": "65,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A12,Movimientos!$F$2:$F$312,10)"
+  },
+  "Presupuesto 2025!L12": {
+   "value": {
+    "type": "number",
+    "value": 65.0
+   },
+   "display": "65,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A12,Movimientos!$F$2:$F$312,11)"
+  },
+  "Presupuesto 2025!M12": {
+   "value": {
+    "type": "number",
+    "value": 65.0
+   },
+   "display": "65,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A12,Movimientos!$F$2:$F$312,12)"
+  },
+  "Presupuesto 2025!N12": {
+   "value": {
+    "type": "number",
+    "value": 780.0
+   },
+   "display": "780,00 €",
+   "input": "=SUM(B12:M12)"
+  },
+  "Presupuesto 2025!O12": {
+   "value": {
+    "type": "number",
+    "value": 65.0
+   },
+   "display": "65,00 €",
+   "input": "=AVERAGE(B12:M12)"
+  },
+  "Presupuesto 2025!P12": {
+   "value": {
+    "type": "number",
+    "value": 0.029706952340907845
+   },
+   "display": "3,0%",
+   "input": "=N12/N$26"
+  },
+  "Presupuesto 2025!Q12": {
+   "value": {
+    "type": "number",
+    "value": 780.0
+   },
+   "display": "780,00 €",
+   "input": "=SUMIF(Movimientos!$C$2:$C$312,$A12,Movimientos!$E$2:$E$312)"
+  },
+  "Presupuesto 2025!R12": {
+   "value": {
+    "type": "number",
+    "value": 780.0
+   },
+   "display": "780,00 €",
+   "input": "=VLOOKUP($A12,Categorías!$A$2:$C$19,3,FALSE)*12"
+  },
+  "Presupuesto 2025!S12": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=N12-R12"
+  },
+  "Presupuesto 2025!T12": {
+   "value": {
+    "type": "number",
+    "value": 1.0
+   },
+   "display": "100,0%",
+   "input": "=IF(R12=0,0,N12/R12)"
+  },
+  "Presupuesto 2025!B13": {
+   "value": {
+    "type": "number",
+    "value": 60.15
+   },
+   "display": "60,15 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A13,Movimientos!$F$2:$F$312,1)"
+  },
+  "Presupuesto 2025!C13": {
+   "value": {
+    "type": "number",
+    "value": 73.44
+   },
+   "display": "73,44 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A13,Movimientos!$F$2:$F$312,2)"
+  },
+  "Presupuesto 2025!D13": {
+   "value": {
+    "type": "number",
+    "value": 53.77
+   },
+   "display": "53,77 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A13,Movimientos!$F$2:$F$312,3)"
+  },
+  "Presupuesto 2025!E13": {
+   "value": {
+    "type": "number",
+    "value": 71.18
+   },
+   "display": "71,18 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A13,Movimientos!$F$2:$F$312,4)"
+  },
+  "Presupuesto 2025!F13": {
+   "value": {
+    "type": "number",
+    "value": 86.48
+   },
+   "display": "86,48 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A13,Movimientos!$F$2:$F$312,5)"
+  },
+  "Presupuesto 2025!G13": {
+   "value": {
+    "type": "number",
+    "value": 99.0
+   },
+   "display": "99,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A13,Movimientos!$F$2:$F$312,6)"
+  },
+  "Presupuesto 2025!H13": {
+   "value": {
+    "type": "number",
+    "value": 76.22
+   },
+   "display": "76,22 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A13,Movimientos!$F$2:$F$312,7)"
+  },
+  "Presupuesto 2025!I13": {
+   "value": {
+    "type": "number",
+    "value": 77.37
+   },
+   "display": "77,37 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A13,Movimientos!$F$2:$F$312,8)"
+  },
+  "Presupuesto 2025!J13": {
+   "value": {
+    "type": "number",
+    "value": 56.48
+   },
+   "display": "56,48 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A13,Movimientos!$F$2:$F$312,9)"
+  },
+  "Presupuesto 2025!K13": {
+   "value": {
+    "type": "number",
+    "value": 86.71
+   },
+   "display": "86,71 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A13,Movimientos!$F$2:$F$312,10)"
+  },
+  "Presupuesto 2025!L13": {
+   "value": {
+    "type": "number",
+    "value": 55.66
+   },
+   "display": "55,66 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A13,Movimientos!$F$2:$F$312,11)"
+  },
+  "Presupuesto 2025!M13": {
+   "value": {
+    "type": "number",
+    "value": 58.02
+   },
+   "display": "58,02 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A13,Movimientos!$F$2:$F$312,12)"
+  },
+  "Presupuesto 2025!N13": {
+   "value": {
+    "type": "number",
+    "value": 854.48
+   },
+   "display": "854,48 €",
+   "input": "=SUM(B13:M13)"
+  },
+  "Presupuesto 2025!O13": {
+   "value": {
+    "type": "number",
+    "value": 71.20666666666666
+   },
+   "display": "71,21 €",
+   "input": "=AVERAGE(B13:M13)"
+  },
+  "Presupuesto 2025!P13": {
+   "value": {
+    "type": "number",
+    "value": 0.0325435854311012
+   },
+   "display": "3,3%",
+   "input": "=N13/N$26"
+  },
+  "Presupuesto 2025!Q13": {
+   "value": {
+    "type": "number",
+    "value": 854.48
+   },
+   "display": "854,48 €",
+   "input": "=SUMIF(Movimientos!$C$2:$C$312,$A13,Movimientos!$E$2:$E$312)"
+  },
+  "Presupuesto 2025!R13": {
+   "value": {
+    "type": "number",
+    "value": 864.0
+   },
+   "display": "864,00 €",
+   "input": "=VLOOKUP($A13,Categorías!$A$2:$C$19,3,FALSE)*12"
+  },
+  "Presupuesto 2025!S13": {
+   "value": {
+    "type": "number",
+    "value": -9.519999999999982
+   },
+   "display": "-9,52 €",
+   "input": "=N13-R13"
+  },
+  "Presupuesto 2025!T13": {
+   "value": {
+    "type": "number",
+    "value": 0.9889814814814815
+   },
+   "display": "98,9%",
+   "input": "=IF(R13=0,0,N13/R13)"
+  },
+  "Presupuesto 2025!B14": {
+   "value": {
+    "type": "number",
+    "value": 60.51
+   },
+   "display": "60,51 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A14,Movimientos!$F$2:$F$312,1)"
+  },
+  "Presupuesto 2025!C14": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A14,Movimientos!$F$2:$F$312,2)"
+  },
+  "Presupuesto 2025!D14": {
+   "value": {
+    "type": "number",
+    "value": 54.32
+   },
+   "display": "54,32 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A14,Movimientos!$F$2:$F$312,3)"
+  },
+  "Presupuesto 2025!E14": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A14,Movimientos!$F$2:$F$312,4)"
+  },
+  "Presupuesto 2025!F14": {
+   "value": {
+    "type": "number",
+    "value": 51.47
+   },
+   "display": "51,47 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A14,Movimientos!$F$2:$F$312,5)"
+  },
+  "Presupuesto 2025!G14": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A14,Movimientos!$F$2:$F$312,6)"
+  },
+  "Presupuesto 2025!H14": {
+   "value": {
+    "type": "number",
+    "value": 53.41
+   },
+   "display": "53,41 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A14,Movimientos!$F$2:$F$312,7)"
+  },
+  "Presupuesto 2025!I14": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A14,Movimientos!$F$2:$F$312,8)"
+  },
+  "Presupuesto 2025!J14": {
+   "value": {
+    "type": "number",
+    "value": 40.47
+   },
+   "display": "40,47 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A14,Movimientos!$F$2:$F$312,9)"
+  },
+  "Presupuesto 2025!K14": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A14,Movimientos!$F$2:$F$312,10)"
+  },
+  "Presupuesto 2025!L14": {
+   "value": {
+    "type": "number",
+    "value": 49.07
+   },
+   "display": "49,07 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A14,Movimientos!$F$2:$F$312,11)"
+  },
+  "Presupuesto 2025!M14": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A14,Movimientos!$F$2:$F$312,12)"
+  },
+  "Presupuesto 2025!N14": {
+   "value": {
+    "type": "number",
+    "value": 309.25
+   },
+   "display": "309,25 €",
+   "input": "=SUM(B14:M14)"
+  },
+  "Presupuesto 2025!O14": {
+   "value": {
+    "type": "number",
+    "value": 25.770833333333332
+   },
+   "display": "25,77 €",
+   "input": "=AVERAGE(B14:M14)"
+  },
+  "Presupuesto 2025!P14": {
+   "value": {
+    "type": "number",
+    "value": 0.011778044886443271
+   },
+   "display": "1,2%",
+   "input": "=N14/N$26"
+  },
+  "Presupuesto 2025!Q14": {
+   "value": {
+    "type": "number",
+    "value": 309.25
+   },
+   "display": "309,25 €",
+   "input": "=SUMIF(Movimientos!$C$2:$C$312,$A14,Movimientos!$E$2:$E$312)"
+  },
+  "Presupuesto 2025!R14": {
+   "value": {
+    "type": "number",
+    "value": 336.0
+   },
+   "display": "336,00 €",
+   "input": "=VLOOKUP($A14,Categorías!$A$2:$C$19,3,FALSE)*12"
+  },
+  "Presupuesto 2025!S14": {
+   "value": {
+    "type": "number",
+    "value": -26.75
+   },
+   "display": "-26,75 €",
+   "input": "=N14-R14"
+  },
+  "Presupuesto 2025!T14": {
+   "value": {
+    "type": "number",
+    "value": 0.9203869047619048
+   },
+   "display": "92,0%",
+   "input": "=IF(R14=0,0,N14/R14)"
+  },
+  "Presupuesto 2025!B15": {
+   "value": {
+    "type": "number",
+    "value": 93.79
+   },
+   "display": "93,79 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A15,Movimientos!$F$2:$F$312,1)"
+  },
+  "Presupuesto 2025!C15": {
+   "value": {
+    "type": "number",
+    "value": 73.65
+   },
+   "display": "73,65 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A15,Movimientos!$F$2:$F$312,2)"
+  },
+  "Presupuesto 2025!D15": {
+   "value": {
+    "type": "number",
+    "value": 82.15
+   },
+   "display": "82,15 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A15,Movimientos!$F$2:$F$312,3)"
+  },
+  "Presupuesto 2025!E15": {
+   "value": {
+    "type": "number",
+    "value": 33.15
+   },
+   "display": "33,15 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A15,Movimientos!$F$2:$F$312,4)"
+  },
+  "Presupuesto 2025!F15": {
+   "value": {
+    "type": "number",
+    "value": 21.91
+   },
+   "display": "21,91 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A15,Movimientos!$F$2:$F$312,5)"
+  },
+  "Presupuesto 2025!G15": {
+   "value": {
+    "type": "number",
+    "value": 34.73
+   },
+   "display": "34,73 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A15,Movimientos!$F$2:$F$312,6)"
+  },
+  "Presupuesto 2025!H15": {
+   "value": {
+    "type": "number",
+    "value": 31.06
+   },
+   "display": "31,06 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A15,Movimientos!$F$2:$F$312,7)"
+  },
+  "Presupuesto 2025!I15": {
+   "value": {
+    "type": "number",
+    "value": 33.65
+   },
+   "display": "33,65 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A15,Movimientos!$F$2:$F$312,8)"
+  },
+  "Presupuesto 2025!J15": {
+   "value": {
+    "type": "number",
+    "value": 24.59
+   },
+   "display": "24,59 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A15,Movimientos!$F$2:$F$312,9)"
+  },
+  "Presupuesto 2025!K15": {
+   "value": {
+    "type": "number",
+    "value": 19.61
+   },
+   "display": "19,61 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A15,Movimientos!$F$2:$F$312,10)"
+  },
+  "Presupuesto 2025!L15": {
+   "value": {
+    "type": "number",
+    "value": 98.75
+   },
+   "display": "98,75 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A15,Movimientos!$F$2:$F$312,11)"
+  },
+  "Presupuesto 2025!M15": {
+   "value": {
+    "type": "number",
+    "value": 107.73
+   },
+   "display": "107,73 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A15,Movimientos!$F$2:$F$312,12)"
+  },
+  "Presupuesto 2025!N15": {
+   "value": {
+    "type": "number",
+    "value": 654.77
+   },
+   "display": "654,77 €",
+   "input": "=SUM(B15:M15)"
+  },
+  "Presupuesto 2025!O15": {
+   "value": {
+    "type": "number",
+    "value": 54.564166666666665
+   },
+   "display": "54,56 €",
+   "input": "=AVERAGE(B15:M15)"
+  },
+  "Presupuesto 2025!P15": {
+   "value": {
+    "type": "number",
+    "value": 0.024937463056738756
+   },
+   "display": "2,5%",
+   "input": "=N15/N$26"
+  },
+  "Presupuesto 2025!Q15": {
+   "value": {
+    "type": "number",
+    "value": 654.77
+   },
+   "display": "654,77 €",
+   "input": "=SUMIF(Movimientos!$C$2:$C$312,$A15,Movimientos!$E$2:$E$312)"
+  },
+  "Presupuesto 2025!R15": {
+   "value": {
+    "type": "number",
+    "value": 540.0
+   },
+   "display": "540,00 €",
+   "input": "=VLOOKUP($A15,Categorías!$A$2:$C$19,3,FALSE)*12"
+  },
+  "Presupuesto 2025!S15": {
+   "value": {
+    "type": "number",
+    "value": 114.76999999999998
+   },
+   "display": "114,77 €",
+   "input": "=N15-R15"
+  },
+  "Presupuesto 2025!T15": {
+   "value": {
+    "type": "number",
+    "value": 1.212537037037037
+   },
+   "display": "121,3%",
+   "input": "=IF(R15=0,0,N15/R15)"
+  },
+  "Presupuesto 2025!B16": {
+   "value": {
+    "type": "number",
+    "value": 59.9
+   },
+   "display": "59,90 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A16,Movimientos!$F$2:$F$312,1)"
+  },
+  "Presupuesto 2025!C16": {
+   "value": {
+    "type": "number",
+    "value": 59.9
+   },
+   "display": "59,90 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A16,Movimientos!$F$2:$F$312,2)"
+  },
+  "Presupuesto 2025!D16": {
+   "value": {
+    "type": "number",
+    "value": 59.9
+   },
+   "display": "59,90 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A16,Movimientos!$F$2:$F$312,3)"
+  },
+  "Presupuesto 2025!E16": {
+   "value": {
+    "type": "number",
+    "value": 59.9
+   },
+   "display": "59,90 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A16,Movimientos!$F$2:$F$312,4)"
+  },
+  "Presupuesto 2025!F16": {
+   "value": {
+    "type": "number",
+    "value": 59.9
+   },
+   "display": "59,90 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A16,Movimientos!$F$2:$F$312,5)"
+  },
+  "Presupuesto 2025!G16": {
+   "value": {
+    "type": "number",
+    "value": 59.9
+   },
+   "display": "59,90 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A16,Movimientos!$F$2:$F$312,6)"
+  },
+  "Presupuesto 2025!H16": {
+   "value": {
+    "type": "number",
+    "value": 59.9
+   },
+   "display": "59,90 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A16,Movimientos!$F$2:$F$312,7)"
+  },
+  "Presupuesto 2025!I16": {
+   "value": {
+    "type": "number",
+    "value": 59.9
+   },
+   "display": "59,90 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A16,Movimientos!$F$2:$F$312,8)"
+  },
+  "Presupuesto 2025!J16": {
+   "value": {
+    "type": "number",
+    "value": 59.9
+   },
+   "display": "59,90 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A16,Movimientos!$F$2:$F$312,9)"
+  },
+  "Presupuesto 2025!K16": {
+   "value": {
+    "type": "number",
+    "value": 59.9
+   },
+   "display": "59,90 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A16,Movimientos!$F$2:$F$312,10)"
+  },
+  "Presupuesto 2025!L16": {
+   "value": {
+    "type": "number",
+    "value": 59.9
+   },
+   "display": "59,90 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A16,Movimientos!$F$2:$F$312,11)"
+  },
+  "Presupuesto 2025!M16": {
+   "value": {
+    "type": "number",
+    "value": 59.9
+   },
+   "display": "59,90 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A16,Movimientos!$F$2:$F$312,12)"
+  },
+  "Presupuesto 2025!N16": {
+   "value": {
+    "type": "number",
+    "value": 718.8
+   },
+   "display": "718,80 €",
+   "input": "=SUM(B16:M16)"
+  },
+  "Presupuesto 2025!O16": {
+   "value": {
+    "type": "number",
+    "value": 59.9
+   },
+   "display": "59,90 €",
+   "input": "=AVERAGE(B16:M16)"
+  },
+  "Presupuesto 2025!P16": {
+   "value": {
+    "type": "number",
+    "value": 0.027376099157236614
+   },
+   "display": "2,7%",
+   "input": "=N16/N$26"
+  },
+  "Presupuesto 2025!Q16": {
+   "value": {
+    "type": "number",
+    "value": 718.8
+   },
+   "display": "718,80 €",
+   "input": "=SUMIF(Movimientos!$C$2:$C$312,$A16,Movimientos!$E$2:$E$312)"
+  },
+  "Presupuesto 2025!R16": {
+   "value": {
+    "type": "number",
+    "value": 718.8
+   },
+   "display": "718,80 €",
+   "input": "=VLOOKUP($A16,Categorías!$A$2:$C$19,3,FALSE)*12"
+  },
+  "Presupuesto 2025!S16": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=N16-R16"
+  },
+  "Presupuesto 2025!T16": {
+   "value": {
+    "type": "number",
+    "value": 1.0
+   },
+   "display": "100,0%",
+   "input": "=IF(R16=0,0,N16/R16)"
+  },
+  "Presupuesto 2025!B17": {
+   "value": {
+    "type": "number",
+    "value": 415.06
+   },
+   "display": "415,06 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A17,Movimientos!$F$2:$F$312,1)"
+  },
+  "Presupuesto 2025!C17": {
+   "value": {
+    "type": "number",
+    "value": 290.33
+   },
+   "display": "290,33 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A17,Movimientos!$F$2:$F$312,2)"
+  },
+  "Presupuesto 2025!D17": {
+   "value": {
+    "type": "number",
+    "value": 559.03
+   },
+   "display": "559,03 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A17,Movimientos!$F$2:$F$312,3)"
+  },
+  "Presupuesto 2025!E17": {
+   "value": {
+    "type": "number",
+    "value": 516.1
+   },
+   "display": "516,10 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A17,Movimientos!$F$2:$F$312,4)"
+  },
+  "Presupuesto 2025!F17": {
+   "value": {
+    "type": "number",
+    "value": 536.39
+   },
+   "display": "536,39 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A17,Movimientos!$F$2:$F$312,5)"
+  },
+  "Presupuesto 2025!G17": {
+   "value": {
+    "type": "number",
+    "value": 345.82
+   },
+   "display": "345,82 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A17,Movimientos!$F$2:$F$312,6)"
+  },
+  "Presupuesto 2025!H17": {
+   "value": {
+    "type": "number",
+    "value": 531.82
+   },
+   "display": "531,82 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A17,Movimientos!$F$2:$F$312,7)"
+  },
+  "Presupuesto 2025!I17": {
+   "value": {
+    "type": "number",
+    "value": 372.6
+   },
+   "display": "372,60 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A17,Movimientos!$F$2:$F$312,8)"
+  },
+  "Presupuesto 2025!J17": {
+   "value": {
+    "type": "number",
+    "value": 432.01
+   },
+   "display": "432,01 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A17,Movimientos!$F$2:$F$312,9)"
+  },
+  "Presupuesto 2025!K17": {
+   "value": {
+    "type": "number",
+    "value": 379.44
+   },
+   "display": "379,44 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A17,Movimientos!$F$2:$F$312,10)"
+  },
+  "Presupuesto 2025!L17": {
+   "value": {
+    "type": "number",
+    "value": 355.86
+   },
+   "display": "355,86 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A17,Movimientos!$F$2:$F$312,11)"
+  },
+  "Presupuesto 2025!M17": {
+   "value": {
+    "type": "number",
+    "value": 537.42
+   },
+   "display": "537,42 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A17,Movimientos!$F$2:$F$312,12)"
+  },
+  "Presupuesto 2025!N17": {
+   "value": {
+    "type": "number",
+    "value": 5271.88
+   },
+   "display": "5.271,88 €",
+   "input": "=SUM(B17:M17)"
+  },
+  "Presupuesto 2025!O17": {
+   "value": {
+    "type": "number",
+    "value": 439.3233333333333
+   },
+   "display": "439,32 €",
+   "input": "=AVERAGE(B17:M17)"
+  },
+  "Presupuesto 2025!P17": {
+   "value": {
+    "type": "number",
+    "value": 0.2007839588551093
+   },
+   "display": "20,1%",
+   "input": "=N17/N$26"
+  },
+  "Presupuesto 2025!Q17": {
+   "value": {
+    "type": "number",
+    "value": 5271.88
+   },
+   "display": "5.271,88 €",
+   "input": "=SUMIF(Movimientos!$C$2:$C$312,$A17,Movimientos!$E$2:$E$312)"
+  },
+  "Presupuesto 2025!R17": {
+   "value": {
+    "type": "number",
+    "value": 6240.0
+   },
+   "display": "6.240,00 €",
+   "input": "=VLOOKUP($A17,Categorías!$A$2:$C$19,3,FALSE)*12"
+  },
+  "Presupuesto 2025!S17": {
+   "value": {
+    "type": "number",
+    "value": -968.1199999999999
+   },
+   "display": "-968,12 €",
+   "input": "=N17-R17"
+  },
+  "Presupuesto 2025!T17": {
+   "value": {
+    "type": "number",
+    "value": 0.8448525641025642
+   },
+   "display": "84,5%",
+   "input": "=IF(R17=0,0,N17/R17)"
+  },
+  "Presupuesto 2025!B18": {
+   "value": {
+    "type": "number",
+    "value": 72.15
+   },
+   "display": "72,15 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A18,Movimientos!$F$2:$F$312,1)"
+  },
+  "Presupuesto 2025!C18": {
+   "value": {
+    "type": "number",
+    "value": 66.33
+   },
+   "display": "66,33 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A18,Movimientos!$F$2:$F$312,2)"
+  },
+  "Presupuesto 2025!D18": {
+   "value": {
+    "type": "number",
+    "value": 156.27
+   },
+   "display": "156,27 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A18,Movimientos!$F$2:$F$312,3)"
+  },
+  "Presupuesto 2025!E18": {
+   "value": {
+    "type": "number",
+    "value": 122.95
+   },
+   "display": "122,95 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A18,Movimientos!$F$2:$F$312,4)"
+  },
+  "Presupuesto 2025!F18": {
+   "value": {
+    "type": "number",
+    "value": 122.41
+   },
+   "display": "122,41 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A18,Movimientos!$F$2:$F$312,5)"
+  },
+  "Presupuesto 2025!G18": {
+   "value": {
+    "type": "number",
+    "value": 63.59
+   },
+   "display": "63,59 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A18,Movimientos!$F$2:$F$312,6)"
+  },
+  "Presupuesto 2025!H18": {
+   "value": {
+    "type": "number",
+    "value": 187.92
+   },
+   "display": "187,92 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A18,Movimientos!$F$2:$F$312,7)"
+  },
+  "Presupuesto 2025!I18": {
+   "value": {
+    "type": "number",
+    "value": 48.84
+   },
+   "display": "48,84 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A18,Movimientos!$F$2:$F$312,8)"
+  },
+  "Presupuesto 2025!J18": {
+   "value": {
+    "type": "number",
+    "value": 124.77
+   },
+   "display": "124,77 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A18,Movimientos!$F$2:$F$312,9)"
+  },
+  "Presupuesto 2025!K18": {
+   "value": {
+    "type": "number",
+    "value": 112.98
+   },
+   "display": "112,98 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A18,Movimientos!$F$2:$F$312,10)"
+  },
+  "Presupuesto 2025!L18": {
+   "value": {
+    "type": "number",
+    "value": 148.04
+   },
+   "display": "148,04 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A18,Movimientos!$F$2:$F$312,11)"
+  },
+  "Presupuesto 2025!M18": {
+   "value": {
+    "type": "number",
+    "value": 62.9
+   },
+   "display": "62,90 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A18,Movimientos!$F$2:$F$312,12)"
+  },
+  "Presupuesto 2025!N18": {
+   "value": {
+    "type": "number",
+    "value": 1289.15
+   },
+   "display": "1.289,15 €",
+   "input": "=SUM(B18:M18)"
+  },
+  "Presupuesto 2025!O18": {
+   "value": {
+    "type": "number",
+    "value": 107.42916666666667
+   },
+   "display": "107,43 €",
+   "input": "=AVERAGE(B18:M18)"
+  },
+  "Presupuesto 2025!P18": {
+   "value": {
+    "type": "number",
+    "value": 0.04909835591061712
+   },
+   "display": "4,9%",
+   "input": "=N18/N$26"
+  },
+  "Presupuesto 2025!Q18": {
+   "value": {
+    "type": "number",
+    "value": 1289.15
+   },
+   "display": "1.289,15 €",
+   "input": "=SUMIF(Movimientos!$C$2:$C$312,$A18,Movimientos!$E$2:$E$312)"
+  },
+  "Presupuesto 2025!R18": {
+   "value": {
+    "type": "number",
+    "value": 1680.0
+   },
+   "display": "1.680,00 €",
+   "input": "=VLOOKUP($A18,Categorías!$A$2:$C$19,3,FALSE)*12"
+  },
+  "Presupuesto 2025!S18": {
+   "value": {
+    "type": "number",
+    "value": -390.8499999999999
+   },
+   "display": "-390,85 €",
+   "input": "=N18-R18"
+  },
+  "Presupuesto 2025!T18": {
+   "value": {
+    "type": "number",
+    "value": 0.7673511904761905
+   },
+   "display": "76,7%",
+   "input": "=IF(R18=0,0,N18/R18)"
+  },
+  "Presupuesto 2025!B19": {
+   "value": {
+    "type": "number",
+    "value": 35.0
+   },
+   "display": "35,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A19,Movimientos!$F$2:$F$312,1)"
+  },
+  "Presupuesto 2025!C19": {
+   "value": {
+    "type": "number",
+    "value": 35.0
+   },
+   "display": "35,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A19,Movimientos!$F$2:$F$312,2)"
+  },
+  "Presupuesto 2025!D19": {
+   "value": {
+    "type": "number",
+    "value": 455.0
+   },
+   "display": "455,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A19,Movimientos!$F$2:$F$312,3)"
+  },
+  "Presupuesto 2025!E19": {
+   "value": {
+    "type": "number",
+    "value": 35.0
+   },
+   "display": "35,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A19,Movimientos!$F$2:$F$312,4)"
+  },
+  "Presupuesto 2025!F19": {
+   "value": {
+    "type": "number",
+    "value": 35.0
+   },
+   "display": "35,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A19,Movimientos!$F$2:$F$312,5)"
+  },
+  "Presupuesto 2025!G19": {
+   "value": {
+    "type": "number",
+    "value": 35.0
+   },
+   "display": "35,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A19,Movimientos!$F$2:$F$312,6)"
+  },
+  "Presupuesto 2025!H19": {
+   "value": {
+    "type": "number",
+    "value": 35.0
+   },
+   "display": "35,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A19,Movimientos!$F$2:$F$312,7)"
+  },
+  "Presupuesto 2025!I19": {
+   "value": {
+    "type": "number",
+    "value": 35.0
+   },
+   "display": "35,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A19,Movimientos!$F$2:$F$312,8)"
+  },
+  "Presupuesto 2025!J19": {
+   "value": {
+    "type": "number",
+    "value": 35.0
+   },
+   "display": "35,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A19,Movimientos!$F$2:$F$312,9)"
+  },
+  "Presupuesto 2025!K19": {
+   "value": {
+    "type": "number",
+    "value": 35.0
+   },
+   "display": "35,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A19,Movimientos!$F$2:$F$312,10)"
+  },
+  "Presupuesto 2025!L19": {
+   "value": {
+    "type": "number",
+    "value": 35.0
+   },
+   "display": "35,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A19,Movimientos!$F$2:$F$312,11)"
+  },
+  "Presupuesto 2025!M19": {
+   "value": {
+    "type": "number",
+    "value": 35.0
+   },
+   "display": "35,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A19,Movimientos!$F$2:$F$312,12)"
+  },
+  "Presupuesto 2025!N19": {
+   "value": {
+    "type": "number",
+    "value": 840.0
+   },
+   "display": "840,00 €",
+   "input": "=SUM(B19:M19)"
+  },
+  "Presupuesto 2025!O19": {
+   "value": {
+    "type": "number",
+    "value": 70.0
+   },
+   "display": "70,00 €",
+   "input": "=AVERAGE(B19:M19)"
+  },
+  "Presupuesto 2025!P19": {
+   "value": {
+    "type": "number",
+    "value": 0.03199210252097768
+   },
+   "display": "3,2%",
+   "input": "=N19/N$26"
+  },
+  "Presupuesto 2025!Q19": {
+   "value": {
+    "type": "number",
+    "value": 840.0
+   },
+   "display": "840,00 €",
+   "input": "=SUMIF(Movimientos!$C$2:$C$312,$A19,Movimientos!$E$2:$E$312)"
+  },
+  "Presupuesto 2025!R19": {
+   "value": {
+    "type": "number",
+    "value": 1020.0
+   },
+   "display": "1.020,00 €",
+   "input": "=VLOOKUP($A19,Categorías!$A$2:$C$19,3,FALSE)*12"
+  },
+  "Presupuesto 2025!S19": {
+   "value": {
+    "type": "number",
+    "value": -180.0
+   },
+   "display": "-180,00 €",
+   "input": "=N19-R19"
+  },
+  "Presupuesto 2025!T19": {
+   "value": {
+    "type": "number",
+    "value": 0.8235294117647058
+   },
+   "display": "82,4%",
+   "input": "=IF(R19=0,0,N19/R19)"
+  },
+  "Presupuesto 2025!B20": {
+   "value": {
+    "type": "number",
+    "value": 132.12
+   },
+   "display": "132,12 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A20,Movimientos!$F$2:$F$312,1)"
+  },
+  "Presupuesto 2025!C20": {
+   "value": {
+    "type": "number",
+    "value": 178.57
+   },
+   "display": "178,57 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A20,Movimientos!$F$2:$F$312,2)"
+  },
+  "Presupuesto 2025!D20": {
+   "value": {
+    "type": "number",
+    "value": 174.48
+   },
+   "display": "174,48 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A20,Movimientos!$F$2:$F$312,3)"
+  },
+  "Presupuesto 2025!E20": {
+   "value": {
+    "type": "number",
+    "value": 127.97
+   },
+   "display": "127,97 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A20,Movimientos!$F$2:$F$312,4)"
+  },
+  "Presupuesto 2025!F20": {
+   "value": {
+    "type": "number",
+    "value": 115.56
+   },
+   "display": "115,56 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A20,Movimientos!$F$2:$F$312,5)"
+  },
+  "Presupuesto 2025!G20": {
+   "value": {
+    "type": "number",
+    "value": 86.68
+   },
+   "display": "86,68 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A20,Movimientos!$F$2:$F$312,6)"
+  },
+  "Presupuesto 2025!H20": {
+   "value": {
+    "type": "number",
+    "value": 188.08
+   },
+   "display": "188,08 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A20,Movimientos!$F$2:$F$312,7)"
+  },
+  "Presupuesto 2025!I20": {
+   "value": {
+    "type": "number",
+    "value": 174.99
+   },
+   "display": "174,99 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A20,Movimientos!$F$2:$F$312,8)"
+  },
+  "Presupuesto 2025!J20": {
+   "value": {
+    "type": "number",
+    "value": 115.25
+   },
+   "display": "115,25 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A20,Movimientos!$F$2:$F$312,9)"
+  },
+  "Presupuesto 2025!K20": {
+   "value": {
+    "type": "number",
+    "value": 184.53
+   },
+   "display": "184,53 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A20,Movimientos!$F$2:$F$312,10)"
+  },
+  "Presupuesto 2025!L20": {
+   "value": {
+    "type": "number",
+    "value": 44.03
+   },
+   "display": "44,03 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A20,Movimientos!$F$2:$F$312,11)"
+  },
+  "Presupuesto 2025!M20": {
+   "value": {
+    "type": "number",
+    "value": 49.82
+   },
+   "display": "49,82 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A20,Movimientos!$F$2:$F$312,12)"
+  },
+  "Presupuesto 2025!N20": {
+   "value": {
+    "type": "number",
+    "value": 1572.08
+   },
+   "display": "1.572,08 €",
+   "input": "=SUM(B20:M20)"
+  },
+  "Presupuesto 2025!O20": {
+   "value": {
+    "type": "number",
+    "value": 131.00666666666666
+   },
+   "display": "131,01 €",
+   "input": "=AVERAGE(B20:M20)"
+  },
+  "Presupuesto 2025!P20": {
+   "value": {
+    "type": "number",
+    "value": 0.05987398158473641
+   },
+   "display": "6,0%",
+   "input": "=N20/N$26"
+  },
+  "Presupuesto 2025!Q20": {
+   "value": {
+    "type": "number",
+    "value": 1572.08
+   },
+   "display": "1.572,08 €",
+   "input": "=SUMIF(Movimientos!$C$2:$C$312,$A20,Movimientos!$E$2:$E$312)"
+  },
+  "Presupuesto 2025!R20": {
+   "value": {
+    "type": "number",
+    "value": 2160.0
+   },
+   "display": "2.160,00 €",
+   "input": "=VLOOKUP($A20,Categorías!$A$2:$C$19,3,FALSE)*12"
+  },
+  "Presupuesto 2025!S20": {
+   "value": {
+    "type": "number",
+    "value": -587.9200000000001
+   },
+   "display": "-587,92 €",
+   "input": "=N20-R20"
+  },
+  "Presupuesto 2025!T20": {
+   "value": {
+    "type": "number",
+    "value": 0.7278148148148148
+   },
+   "display": "72,8%",
+   "input": "=IF(R20=0,0,N20/R20)"
+  },
+  "Presupuesto 2025!B21": {
+   "value": {
+    "type": "number",
+    "value": 203.44
+   },
+   "display": "203,44 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A21,Movimientos!$F$2:$F$312,1)"
+  },
+  "Presupuesto 2025!C21": {
+   "value": {
+    "type": "number",
+    "value": 41.66
+   },
+   "display": "41,66 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A21,Movimientos!$F$2:$F$312,2)"
+  },
+  "Presupuesto 2025!D21": {
+   "value": {
+    "type": "number",
+    "value": 55.09
+   },
+   "display": "55,09 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A21,Movimientos!$F$2:$F$312,3)"
+  },
+  "Presupuesto 2025!E21": {
+   "value": {
+    "type": "number",
+    "value": 201.08
+   },
+   "display": "201,08 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A21,Movimientos!$F$2:$F$312,4)"
+  },
+  "Presupuesto 2025!F21": {
+   "value": {
+    "type": "number",
+    "value": 198.09
+   },
+   "display": "198,09 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A21,Movimientos!$F$2:$F$312,5)"
+  },
+  "Presupuesto 2025!G21": {
+   "value": {
+    "type": "number",
+    "value": 141.17
+   },
+   "display": "141,17 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A21,Movimientos!$F$2:$F$312,6)"
+  },
+  "Presupuesto 2025!H21": {
+   "value": {
+    "type": "number",
+    "value": 67.86
+   },
+   "display": "67,86 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A21,Movimientos!$F$2:$F$312,7)"
+  },
+  "Presupuesto 2025!I21": {
+   "value": {
+    "type": "number",
+    "value": 188.01
+   },
+   "display": "188,01 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A21,Movimientos!$F$2:$F$312,8)"
+  },
+  "Presupuesto 2025!J21": {
+   "value": {
+    "type": "number",
+    "value": 26.07
+   },
+   "display": "26,07 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A21,Movimientos!$F$2:$F$312,9)"
+  },
+  "Presupuesto 2025!K21": {
+   "value": {
+    "type": "number",
+    "value": 77.43
+   },
+   "display": "77,43 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A21,Movimientos!$F$2:$F$312,10)"
+  },
+  "Presupuesto 2025!L21": {
+   "value": {
+    "type": "number",
+    "value": 94.29
+   },
+   "display": "94,29 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A21,Movimientos!$F$2:$F$312,11)"
+  },
+  "Presupuesto 2025!M21": {
+   "value": {
+    "type": "number",
+    "value": 79.2
+   },
+   "display": "79,20 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A21,Movimientos!$F$2:$F$312,12)"
+  },
+  "Presupuesto 2025!N21": {
+   "value": {
+    "type": "number",
+    "value": 1373.39
+   },
+   "display": "1.373,39 €",
+   "input": "=SUM(B21:M21)"
+  },
+  "Presupuesto 2025!O21": {
+   "value": {
+    "type": "number",
+    "value": 114.44916666666667
+   },
+   "display": "114,45 €",
+   "input": "=AVERAGE(B21:M21)"
+  },
+  "Presupuesto 2025!P21": {
+   "value": {
+    "type": "number",
+    "value": 0.052306706763435164
+   },
+   "display": "5,2%",
+   "input": "=N21/N$26"
+  },
+  "Presupuesto 2025!Q21": {
+   "value": {
+    "type": "number",
+    "value": 1373.39
+   },
+   "display": "1.373,39 €",
+   "input": "=SUMIF(Movimientos!$C$2:$C$312,$A21,Movimientos!$E$2:$E$312)"
+  },
+  "Presupuesto 2025!R21": {
+   "value": {
+    "type": "number",
+    "value": 1440.0
+   },
+   "display": "1.440,00 €",
+   "input": "=VLOOKUP($A21,Categorías!$A$2:$C$19,3,FALSE)*12"
+  },
+  "Presupuesto 2025!S21": {
+   "value": {
+    "type": "number",
+    "value": -66.6099999999999
+   },
+   "display": "-66,61 €",
+   "input": "=N21-R21"
+  },
+  "Presupuesto 2025!T21": {
+   "value": {
+    "type": "number",
+    "value": 0.9537430555555556
+   },
+   "display": "95,4%",
+   "input": "=IF(R21=0,0,N21/R21)"
+  },
+  "Presupuesto 2025!B22": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A22,Movimientos!$F$2:$F$312,1)"
+  },
+  "Presupuesto 2025!C22": {
+   "value": {
+    "type": "number",
+    "value": 105.03
+   },
+   "display": "105,03 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A22,Movimientos!$F$2:$F$312,2)"
+  },
+  "Presupuesto 2025!D22": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A22,Movimientos!$F$2:$F$312,3)"
+  },
+  "Presupuesto 2025!E22": {
+   "value": {
+    "type": "number",
+    "value": 192.19
+   },
+   "display": "192,19 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A22,Movimientos!$F$2:$F$312,4)"
+  },
+  "Presupuesto 2025!F22": {
+   "value": {
+    "type": "number",
+    "value": 162.12
+   },
+   "display": "162,12 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A22,Movimientos!$F$2:$F$312,5)"
+  },
+  "Presupuesto 2025!G22": {
+   "value": {
+    "type": "number",
+    "value": 84.43
+   },
+   "display": "84,43 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A22,Movimientos!$F$2:$F$312,6)"
+  },
+  "Presupuesto 2025!H22": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A22,Movimientos!$F$2:$F$312,7)"
+  },
+  "Presupuesto 2025!I22": {
+   "value": {
+    "type": "number",
+    "value": 186.12
+   },
+   "display": "186,12 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A22,Movimientos!$F$2:$F$312,8)"
+  },
+  "Presupuesto 2025!J22": {
+   "value": {
+    "type": "number",
+    "value": 187.81
+   },
+   "display": "187,81 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A22,Movimientos!$F$2:$F$312,9)"
+  },
+  "Presupuesto 2025!K22": {
+   "value": {
+    "type": "number",
+    "value": 113.3
+   },
+   "display": "113,30 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A22,Movimientos!$F$2:$F$312,10)"
+  },
+  "Presupuesto 2025!L22": {
+   "value": {
+    "type": "number",
+    "value": 83.21
+   },
+   "display": "83,21 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A22,Movimientos!$F$2:$F$312,11)"
+  },
+  "Presupuesto 2025!M22": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A22,Movimientos!$F$2:$F$312,12)"
+  },
+  "Presupuesto 2025!N22": {
+   "value": {
+    "type": "number",
+    "value": 1114.21
+   },
+   "display": "1.114,21 €",
+   "input": "=SUM(B22:M22)"
+  },
+  "Presupuesto 2025!O22": {
+   "value": {
+    "type": "number",
+    "value": 92.85083333333334
+   },
+   "display": "92,85 €",
+   "input": "=AVERAGE(B22:M22)"
+  },
+  "Presupuesto 2025!P22": {
+   "value": {
+    "type": "number",
+    "value": 0.04243561970226017
+   },
+   "display": "4,2%",
+   "input": "=N22/N$26"
+  },
+  "Presupuesto 2025!Q22": {
+   "value": {
+    "type": "number",
+    "value": 1114.21
+   },
+   "display": "1.114,21 €",
+   "input": "=SUMIF(Movimientos!$C$2:$C$312,$A22,Movimientos!$E$2:$E$312)"
+  },
+  "Presupuesto 2025!R22": {
+   "value": {
+    "type": "number",
+    "value": 1080.0
+   },
+   "display": "1.080,00 €",
+   "input": "=VLOOKUP($A22,Categorías!$A$2:$C$19,3,FALSE)*12"
+  },
+  "Presupuesto 2025!S22": {
+   "value": {
+    "type": "number",
+    "value": 34.210000000000036
+   },
+   "display": "34,21 €",
+   "input": "=N22-R22"
+  },
+  "Presupuesto 2025!T22": {
+   "value": {
+    "type": "number",
+    "value": 1.031675925925926
+   },
+   "display": "103,2%",
+   "input": "=IF(R22=0,0,N22/R22)"
+  },
+  "Presupuesto 2025!B23": {
+   "value": {
+    "type": "number",
+    "value": 42.24
+   },
+   "display": "42,24 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A23,Movimientos!$F$2:$F$312,1)"
+  },
+  "Presupuesto 2025!C23": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A23,Movimientos!$F$2:$F$312,2)"
+  },
+  "Presupuesto 2025!D23": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A23,Movimientos!$F$2:$F$312,3)"
+  },
+  "Presupuesto 2025!E23": {
+   "value": {
+    "type": "number",
+    "value": 64.58
+   },
+   "display": "64,58 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A23,Movimientos!$F$2:$F$312,4)"
+  },
+  "Presupuesto 2025!F23": {
+   "value": {
+    "type": "number",
+    "value": 31.82
+   },
+   "display": "31,82 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A23,Movimientos!$F$2:$F$312,5)"
+  },
+  "Presupuesto 2025!G23": {
+   "value": {
+    "type": "number",
+    "value": 82.6
+   },
+   "display": "82,60 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A23,Movimientos!$F$2:$F$312,6)"
+  },
+  "Presupuesto 2025!H23": {
+   "value": {
+    "type": "number",
+    "value": 129.12
+   },
+   "display": "129,12 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A23,Movimientos!$F$2:$F$312,7)"
+  },
+  "Presupuesto 2025!I23": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A23,Movimientos!$F$2:$F$312,8)"
+  },
+  "Presupuesto 2025!J23": {
+   "value": {
+    "type": "number",
+    "value": 90.59
+   },
+   "display": "90,59 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A23,Movimientos!$F$2:$F$312,9)"
+  },
+  "Presupuesto 2025!K23": {
+   "value": {
+    "type": "number",
+    "value": 77.91
+   },
+   "display": "77,91 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A23,Movimientos!$F$2:$F$312,10)"
+  },
+  "Presupuesto 2025!L23": {
+   "value": {
+    "type": "number",
+    "value": 86.82
+   },
+   "display": "86,82 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A23,Movimientos!$F$2:$F$312,11)"
+  },
+  "Presupuesto 2025!M23": {
+   "value": {
+    "type": "number",
+    "value": 128.34
+   },
+   "display": "128,34 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A23,Movimientos!$F$2:$F$312,12)"
+  },
+  "Presupuesto 2025!N23": {
+   "value": {
+    "type": "number",
+    "value": 734.02
+   },
+   "display": "734,02 €",
+   "input": "=SUM(B23:M23)"
+  },
+  "Presupuesto 2025!O23": {
+   "value": {
+    "type": "number",
+    "value": 61.16833333333333
+   },
+   "display": "61,17 €",
+   "input": "=AVERAGE(B23:M23)"
+  },
+  "Presupuesto 2025!P23": {
+   "value": {
+    "type": "number",
+    "value": 0.027955765586247662
+   },
+   "display": "2,8%",
+   "input": "=N23/N$26"
+  },
+  "Presupuesto 2025!Q23": {
+   "value": {
+    "type": "number",
+    "value": 734.02
+   },
+   "display": "734,02 €",
+   "input": "=SUMIF(Movimientos!$C$2:$C$312,$A23,Movimientos!$E$2:$E$312)"
+  },
+  "Presupuesto 2025!R23": {
+   "value": {
+    "type": "number",
+    "value": 720.0
+   },
+   "display": "720,00 €",
+   "input": "=VLOOKUP($A23,Categorías!$A$2:$C$19,3,FALSE)*12"
+  },
+  "Presupuesto 2025!S23": {
+   "value": {
+    "type": "number",
+    "value": 14.019999999999982
+   },
+   "display": "14,02 €",
+   "input": "=N23-R23"
+  },
+  "Presupuesto 2025!T23": {
+   "value": {
+    "type": "number",
+    "value": 1.0194722222222221
+   },
+   "display": "101,9%",
+   "input": "=IF(R23=0,0,N23/R23)"
+  },
+  "Presupuesto 2025!B24": {
+   "value": {
+    "type": "number",
+    "value": 60.0
+   },
+   "display": "60,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A24,Movimientos!$F$2:$F$312,1)"
+  },
+  "Presupuesto 2025!C24": {
+   "value": {
+    "type": "number",
+    "value": 60.0
+   },
+   "display": "60,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A24,Movimientos!$F$2:$F$312,2)"
+  },
+  "Presupuesto 2025!D24": {
+   "value": {
+    "type": "number",
+    "value": 60.0
+   },
+   "display": "60,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A24,Movimientos!$F$2:$F$312,3)"
+  },
+  "Presupuesto 2025!E24": {
+   "value": {
+    "type": "number",
+    "value": 60.0
+   },
+   "display": "60,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A24,Movimientos!$F$2:$F$312,4)"
+  },
+  "Presupuesto 2025!F24": {
+   "value": {
+    "type": "number",
+    "value": 60.0
+   },
+   "display": "60,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A24,Movimientos!$F$2:$F$312,5)"
+  },
+  "Presupuesto 2025!G24": {
+   "value": {
+    "type": "number",
+    "value": 60.0
+   },
+   "display": "60,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A24,Movimientos!$F$2:$F$312,6)"
+  },
+  "Presupuesto 2025!H24": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A24,Movimientos!$F$2:$F$312,7)"
+  },
+  "Presupuesto 2025!I24": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A24,Movimientos!$F$2:$F$312,8)"
+  },
+  "Presupuesto 2025!J24": {
+   "value": {
+    "type": "number",
+    "value": 408.75
+   },
+   "display": "408,75 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A24,Movimientos!$F$2:$F$312,9)"
+  },
+  "Presupuesto 2025!K24": {
+   "value": {
+    "type": "number",
+    "value": 60.0
+   },
+   "display": "60,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A24,Movimientos!$F$2:$F$312,10)"
+  },
+  "Presupuesto 2025!L24": {
+   "value": {
+    "type": "number",
+    "value": 60.0
+   },
+   "display": "60,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A24,Movimientos!$F$2:$F$312,11)"
+  },
+  "Presupuesto 2025!M24": {
+   "value": {
+    "type": "number",
+    "value": 60.0
+   },
+   "display": "60,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A24,Movimientos!$F$2:$F$312,12)"
+  },
+  "Presupuesto 2025!N24": {
+   "value": {
+    "type": "number",
+    "value": 948.75
+   },
+   "display": "948,75 €",
+   "input": "=SUM(B24:M24)"
+  },
+  "Presupuesto 2025!O24": {
+   "value": {
+    "type": "number",
+    "value": 79.0625
+   },
+   "display": "79,06 €",
+   "input": "=AVERAGE(B24:M24)"
+  },
+  "Presupuesto 2025!P24": {
+   "value": {
+    "type": "number",
+    "value": 0.03613393722235425
+   },
+   "display": "3,6%",
+   "input": "=N24/N$26"
+  },
+  "Presupuesto 2025!Q24": {
+   "value": {
+    "type": "number",
+    "value": 948.75
+   },
+   "display": "948,75 €",
+   "input": "=SUMIF(Movimientos!$C$2:$C$312,$A24,Movimientos!$E$2:$E$312)"
+  },
+  "Presupuesto 2025!R24": {
+   "value": {
+    "type": "number",
+    "value": 1320.0
+   },
+   "display": "1.320,00 €",
+   "input": "=VLOOKUP($A24,Categorías!$A$2:$C$19,3,FALSE)*12"
+  },
+  "Presupuesto 2025!S24": {
+   "value": {
+    "type": "number",
+    "value": -371.25
+   },
+   "display": "-371,25 €",
+   "input": "=N24-R24"
+  },
+  "Presupuesto 2025!T24": {
+   "value": {
+    "type": "number",
+    "value": 0.71875
+   },
+   "display": "71,9%",
+   "input": "=IF(R24=0,0,N24/R24)"
+  },
+  "Presupuesto 2025!B25": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A25,Movimientos!$F$2:$F$312,1)"
+  },
+  "Presupuesto 2025!C25": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A25,Movimientos!$F$2:$F$312,2)"
+  },
+  "Presupuesto 2025!D25": {
+   "value": {
+    "type": "number",
+    "value": 40.75
+   },
+   "display": "40,75 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A25,Movimientos!$F$2:$F$312,3)"
+  },
+  "Presupuesto 2025!E25": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A25,Movimientos!$F$2:$F$312,4)"
+  },
+  "Presupuesto 2025!F25": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A25,Movimientos!$F$2:$F$312,5)"
+  },
+  "Presupuesto 2025!G25": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A25,Movimientos!$F$2:$F$312,6)"
+  },
+  "Presupuesto 2025!H25": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A25,Movimientos!$F$2:$F$312,7)"
+  },
+  "Presupuesto 2025!I25": {
+   "value": {
+    "type": "number",
+    "value": 54.94
+   },
+   "display": "54,94 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A25,Movimientos!$F$2:$F$312,8)"
+  },
+  "Presupuesto 2025!J25": {
+   "value": {
+    "type": "number",
+    "value": 23.16
+   },
+   "display": "23,16 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A25,Movimientos!$F$2:$F$312,9)"
+  },
+  "Presupuesto 2025!K25": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A25,Movimientos!$F$2:$F$312,10)"
+  },
+  "Presupuesto 2025!L25": {
+   "value": {
+    "type": "number",
+    "value": 0.0
+   },
+   "display": "0,00 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A25,Movimientos!$F$2:$F$312,11)"
+  },
+  "Presupuesto 2025!M25": {
+   "value": {
+    "type": "number",
+    "value": 316.85
+   },
+   "display": "316,85 €",
+   "input": "=SUMIFS(Movimientos!$E$2:$E$312,Movimientos!$C$2:$C$312,$A25,Movimientos!$F$2:$F$312,12)"
+  },
+  "Presupuesto 2025!N25": {
+   "value": {
+    "type": "number",
+    "value": 435.7
+   },
+   "display": "435,70 €",
+   "input": "=SUM(B25:M25)"
+  },
+  "Presupuesto 2025!O25": {
+   "value": {
+    "type": "number",
+    "value": 36.30833333333333
+   },
+   "display": "36,31 €",
+   "input": "=AVERAGE(B25:M25)"
+  },
+  "Presupuesto 2025!P25": {
+   "value": {
+    "type": "number",
+    "value": 0.016593998890940445
+   },
+   "display": "1,7%",
+   "input": "=N25/N$26"
+  },
+  "Presupuesto 2025!Q25": {
+   "value": {
+    "type": "number",
+    "value": 435.7
+   },
+   "display": "435,70 €",
+   "input": "=SUMIF(Movimientos!$C$2:$C$312,$A25,Movimientos!$E$2:$E$312)"
+  },
+  "Presupuesto 2025!R25": {
+   "value": {
+    "type": "number",
+    "value": 480.0
+   },
+   "display": "480,00 €",
+   "input": "=VLOOKUP($A25,Categorías!$A$2:$C$19,3,FALSE)*12"
+  },
+  "Presupuesto 2025!S25": {
+   "value": {
+    "type": "number",
+    "value": -44.30000000000001
+   },
+   "display": "-44,30 €",
+   "input": "=N25-R25"
+  },
+  "Presupuesto 2025!T25": {
+   "value": {
+    "type": "number",
+    "value": 0.9077083333333333
+   },
+   "display": "90,8%",
+   "input": "=IF(R25=0,0,N25/R25)"
+  },
+  "Presupuesto 2025!B26": {
+   "value": {
+    "type": "number",
+    "value": 2079.36
+   },
+   "display": "2.079,36 €",
+   "input": "=SUM(B11:B25)"
+  },
+  "Presupuesto 2025!C26": {
+   "value": {
+    "type": "number",
+    "value": 1828.91
+   },
+   "display": "1.828,91 €",
+   "input": "=SUM(C11:C25)"
+  },
+  "Presupuesto 2025!D26": {
+   "value": {
+    "type": "number",
+    "value": 2595.76
+   },
+   "display": "2.595,76 €",
+   "input": "=SUM(D11:D25)"
+  },
+  "Presupuesto 2025!E26": {
+   "value": {
+    "type": "number",
+    "value": 2329.1
+   },
+   "display": "2.329,10 €",
+   "input": "=SUM(E11:E25)"
+  },
+  "Presupuesto 2025!F26": {
+   "value": {
+    "type": "number",
+    "value": 2326.15
+   },
+   "display": "2.326,15 €",
+   "input": "=SUM(F11:F25)"
+  },
+  "Presupuesto 2025!G26": {
+   "value": {
+    "type": "number",
+    "value": 1937.92
+   },
+   "display": "1.937,92 €",
+   "input": "=SUM(G11:G25)"
+  },
+  "Presupuesto 2025!H26": {
+   "value": {
+    "type": "number",
+    "value": 2205.39
+   },
+   "display": "2.205,39 €",
+   "input": "=SUM(H11:H25)"
+  },
+  "Presupuesto 2025!I26": {
+   "value": {
+    "type": "number",
+    "value": 2076.42
+   },
+   "display": "2.076,42 €",
+   "input": "=SUM(I11:I25)"
+  },
+  "Presupuesto 2025!J26": {
+   "value": {
+    "type": "number",
+    "value": 2469.85
+   },
+   "display": "2.469,85 €",
+   "input": "=SUM(J11:J25)"
+  },
+  "Presupuesto 2025!K26": {
+   "value": {
+    "type": "number",
+    "value": 2051.81
+   },
+   "display": "2.051,81 €",
+   "input": "=SUM(K11:K25)"
+  },
+  "Presupuesto 2025!L26": {
+   "value": {
+    "type": "number",
+    "value": 2015.63
+   },
+   "display": "2.015,63 €",
+   "input": "=SUM(L11:L25)"
+  },
+  "Presupuesto 2025!M26": {
+   "value": {
+    "type": "number",
+    "value": 2340.18
+   },
+   "display": "2.340,18 €",
+   "input": "=SUM(M11:M25)"
+  },
+  "Presupuesto 2025!N26": {
+   "value": {
+    "type": "number",
+    "value": 26256.48
+   },
+   "display": "26.256,48 €",
+   "input": "=SUM(N11:N25)"
+  },
+  "Presupuesto 2025!O26": {
+   "value": {
+    "type": "number",
+    "value": 2188.04
+   },
+   "display": "2.188,04 €",
+   "input": "=AVERAGE(B26:M26)"
+  },
+  "Presupuesto 2025!P26": {
+   "value": {
+    "type": "number",
+    "value": 1.0
+   },
+   "display": "100,0%",
+   "input": "=SUM(P11:P25)"
+  },
+  "Presupuesto 2025!Q26": {
+   "value": {
+    "type": "number",
+    "value": 26256.48
+   },
+   "display": "26.256,48 €",
+   "input": "=SUM(Q11:Q25)"
+  },
+  "Presupuesto 2025!R26": {
+   "value": {
+    "type": "number",
+    "value": 28738.8
+   },
+   "display": "28.738,80 €",
+   "input": "=SUM(R11:R25)"
+  },
+  "Presupuesto 2025!S26": {
+   "value": {
+    "type": "number",
+    "value": -2482.3199999999997
+   },
+   "display": "-2.482,32 €",
+   "input": "=N26-R26"
+  },
+  "Presupuesto 2025!T26": {
+   "value": {
+    "type": "number",
+    "value": 0.913624786003591
+   },
+   "display": "91,4%",
+   "input": "=IF(R26=0,0,N26/R26)"
+  },
+  "Presupuesto 2025!B28": {
+   "value": {
+    "type": "number",
+    "value": 2544.2599999999998
+   },
+   "display": "2.544,26 €",
+   "input": "=B8-B26"
+  },
+  "Presupuesto 2025!B29": {
+   "value": {
+    "type": "number",
+    "value": 0.550274460271389
+   },
+   "display": "55,0%",
+   "input": "=IF(B8=0,0,B28/B8)"
+  },
+  "Presupuesto 2025!C28": {
+   "value": {
+    "type": "number",
+    "value": 2880.05
+   },
+   "display": "2.880,05 €",
+   "input": "=C8-C26"
+  },
+  "Presupuesto 2025!C29": {
+   "value": {
+    "type": "number",
+    "value": 0.611610631646903
+   },
+   "display": "61,2%",
+   "input": "=IF(C8=0,0,C28/C8)"
+  },
+  "Presupuesto 2025!D28": {
+   "value": {
+    "type": "number",
+    "value": 2005.54
+   },
+   "display": "2.005,54 €",
+   "input": "=D8-D26"
+  },
+  "Presupuesto 2025!D29": {
+   "value": {
+    "type": "number",
+    "value": 0.4358637776280616
+   },
+   "display": "43,6%",
+   "input": "=IF(D8=0,0,D28/D8)"
+  },
+  "Presupuesto 2025!E28": {
+   "value": {
+    "type": "number",
+    "value": 2100.9
+   },
+   "display": "2.100,90 €",
+   "input": "=E8-E26"
+  },
+  "Presupuesto 2025!E29": {
+   "value": {
+    "type": "number",
+    "value": 0.4742437923250565
+   },
+   "display": "47,4%",
+   "input": "=IF(E8=0,0,E28/E8)"
+  },
+  "Presupuesto 2025!F28": {
+   "value": {
+    "type": "number",
+    "value": 2103.85
+   },
+   "display": "2.103,85 €",
+   "input": "=F8-F26"
+  },
+  "Presupuesto 2025!F29": {
+   "value": {
+    "type": "number",
+    "value": 0.4749097065462754
+   },
+   "display": "47,5%",
+   "input": "=IF(F8=0,0,F28/F8)"
+  },
+  "Presupuesto 2025!G28": {
+   "value": {
+    "type": "number",
+    "value": 4942.08
+   },
+   "display": "4.942,08 €",
+   "input": "=G8-G26"
+  },
+  "Presupuesto 2025!G29": {
+   "value": {
+    "type": "number",
+    "value": 0.7183255813953489
+   },
+   "display": "71,8%",
+   "input": "=IF(G8=0,0,G28/G8)"
+  },
+  "Presupuesto 2025!H28": {
+   "value": {
+    "type": "number",
+    "value": 4204.610000000001
+   },
+   "display": "4.204,61 €",
+   "input": "=H8-H26"
+  },
+  "Presupuesto 2025!H29": {
+   "value": {
+    "type": "number",
+    "value": 0.6559453978159128
+   },
+   "display": "65,6%",
+   "input": "=IF(H8=0,0,H28/H8)"
+  },
+  "Presupuesto 2025!I28": {
+   "value": {
+    "type": "number",
+    "value": 2353.58
+   },
+   "display": "2.353,58 €",
+   "input": "=I8-I26"
+  },
+  "Presupuesto 2025!I29": {
+   "value": {
+    "type": "number",
+    "value": 0.5312821670428893
+   },
+   "display": "53,1%",
+   "input": "=IF(I8=0,0,I28/I8)"
+  },
+  "Presupuesto 2025!J28": {
+   "value": {
+    "type": "number",
+    "value": 1960.15
+   },
+   "display": "1.960,15 €",
+   "input": "=J8-J26"
+  },
+  "Presupuesto 2025!J29": {
+   "value": {
+    "type": "number",
+    "value": 0.4424717832957111
+   },
+   "display": "44,2%",
+   "input": "=IF(J8=0,0,J28/J8)"
+  },
+  "Presupuesto 2025!K28": {
+   "value": {
+    "type": "number",
+    "value": 2544.06
+   },
+   "display": "2.544,06 €",
+   "input": "=K8-K26"
+  },
+  "Presupuesto 2025!K29": {
+   "value": {
+    "type": "number",
+    "value": 0.5535535165267947
+   },
+   "display": "55,4%",
+   "input": "=IF(K8=0,0,K28/K8)"
+  },
+  "Presupuesto 2025!L28": {
+   "value": {
+    "type": "number",
+    "value": 2414.37
+   },
+   "display": "2.414,37 €",
+   "input": "=L8-L26"
+  },
+  "Presupuesto 2025!L29": {
+   "value": {
+    "type": "number",
+    "value": 0.5450045146726862
+   },
+   "display": "54,5%",
+   "input": "=IF(L8=0,0,L28/L8)"
+  },
+  "Presupuesto 2025!M28": {
+   "value": {
+    "type": "number",
+    "value": 6899.639999999999
+   },
+   "display": "6.899,64 €",
+   "input": "=M8-M26"
+  },
+  "Presupuesto 2025!M29": {
+   "value": {
+    "type": "number",
+    "value": 0.7467288323798515
+   },
+   "display": "74,7%",
+   "input": "=IF(M8=0,0,M28/M8)"
+  },
+  "Presupuesto 2025!N28": {
+   "value": {
+    "type": "number",
+    "value": 36953.09
+   },
+   "display": "36.953,09 €",
+   "input": "=N8-N26"
+  },
+  "Presupuesto 2025!N29": {
+   "value": {
+    "type": "number",
+    "value": 0.5846122667817547
+   },
+   "display": "58,5%",
+   "input": "=IF(N8=0,0,N28/N8)"
+  }
+ }
+}

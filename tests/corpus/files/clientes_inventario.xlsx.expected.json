@@ -1,0 +1,1482 @@
+{
+ "file": "clientes_inventario.xlsx",
+ "kind": "xlsx",
+ "description": "Listado de clientes con autofiltro activo (filas ocultas por el filtro), columna oculta, CP y teléfonos como texto, booleanos; inventario con encabezados combinados, filas ocultas, SUBTOTAL 9/109, paneles inmovilizados y anchos de columna; resumen con COUNTIF/COUNTIFS/SUMIF/AVERAGEIF/LARGE/MEDIAN.",
+ "sheets": [
+  "Clientes",
+  "Inventario",
+  "Resumen"
+ ],
+ "activeSheet": "Clientes",
+ "definedNames": {},
+ "features": {
+  "Clientes": {
+   "frozen": [
+    1,
+    2
+   ],
+   "autoFilter": "A1:O251",
+   "filteredCols": [
+    6
+   ],
+   "hiddenRows": [
+    1,
+    4,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    16,
+    17,
+    18,
+    20,
+    23,
+    24,
+    26,
+    27,
+    28,
+    29,
+    32,
+    33,
+    34,
+    36,
+    37,
+    38,
+    39,
+    40,
+    42,
+    43,
+    46,
+    50,
+    51,
+    52,
+    53,
+    54,
+    57,
+    58,
+    59,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    84,
+    85,
+    86,
+    88,
+    89,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    103,
+    104,
+    106,
+    107,
+    109,
+    111,
+    112,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    129,
+    130,
+    133,
+    135,
+    136,
+    138,
+    139,
+    140,
+    142,
+    144,
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151,
+    152,
+    154,
+    155,
+    156,
+    159,
+    160,
+    161,
+    162,
+    163,
+    164,
+    165,
+    166,
+    168,
+    169,
+    170,
+    171,
+    173,
+    174,
+    175,
+    178,
+    180,
+    181,
+    182,
+    183,
+    184,
+    186,
+    187,
+    188,
+    190,
+    191,
+    192,
+    194,
+    197,
+    198,
+    199,
+    200,
+    201,
+    202,
+    203,
+    204,
+    207,
+    208,
+    210,
+    211,
+    212,
+    213,
+    214,
+    215,
+    216,
+    217,
+    218,
+    220,
+    221,
+    222,
+    223,
+    224,
+    226,
+    227,
+    228,
+    229,
+    230,
+    231,
+    232,
+    233,
+    234,
+    235,
+    236,
+    237,
+    238,
+    240,
+    241,
+    243,
+    245,
+    247,
+    248,
+    249,
+    250
+   ],
+   "hiddenCols": [
+    14
+   ],
+   "colWidths": 14
+  },
+  "Inventario": {
+   "frozen": [
+    2,
+    1
+   ],
+   "merges": [
+    "A1:C1",
+    "D1:F1",
+    "G1:I1",
+    "J1:K1"
+   ],
+   "autoFilter": "A2:K122",
+   "hiddenRows": [
+    40,
+    41,
+    42
+   ],
+   "colWidths": 11
+  },
+  "Resumen": {
+   "colWidths": 5
+  }
+ },
+ "fidelity": {
+  "autoFilter": 2
+ },
+ "cells": {
+  "Clientes!A2": {
+   "value": {
+    "type": "text",
+    "value": "C0001"
+   },
+   "display": "C0001"
+  },
+  "Clientes!B2": {
+   "value": {
+    "type": "text",
+    "value": "Talleres Díaz"
+   },
+   "display": "Talleres Díaz"
+  },
+  "Clientes!E2": {
+   "value": {
+    "type": "text",
+    "value": "48490"
+   },
+   "display": "48490"
+  },
+  "Clientes!F2": {
+   "value": {
+    "type": "text",
+    "value": "Bilbao"
+   },
+   "display": "Bilbao"
+  },
+  "Clientes!G2": {
+   "value": {
+    "type": "text",
+    "value": "Bizkaia"
+   },
+   "display": "Bizkaia"
+  },
+  "Clientes!H2": {
+   "value": {
+    "type": "text",
+    "value": "977 290 767"
+   },
+   "display": "977 290 767"
+  },
+  "Clientes!J2": {
+   "value": {
+    "type": "number",
+    "value": 45712.0
+   },
+   "display": "24/02/2025"
+  },
+  "Clientes!K2": {
+   "value": {
+    "type": "bool",
+    "value": true
+   },
+   "display": "VERDADERO"
+  },
+  "Clientes!L2": {
+   "value": {
+    "type": "number",
+    "value": 10000.0
+   },
+   "display": "10.000 €"
+  },
+  "Clientes!M2": {
+   "value": {
+    "type": "number",
+    "value": 11594.38
+   },
+   "display": "11.594,38 €"
+  },
+  "Clientes!N2": {
+   "value": {
+    "type": "text",
+    "value": "Alto"
+   },
+   "display": "Alto",
+   "input": "=IF(M2>L2,\"Alto\",IF(M2>L2*0.8,\"Medio\",\"Bajo\"))"
+  },
+  "Clientes!A3": {
+   "value": {
+    "type": "text",
+    "value": "C0002"
+   },
+   "display": "C0002"
+  },
+  "Clientes!B3": {
+   "value": {
+    "type": "text",
+    "value": "Núñez & Asociados"
+   },
+   "display": "Núñez & Asociados"
+  },
+  "Clientes!E3": {
+   "value": {
+    "type": "text",
+    "value": "08308"
+   },
+   "display": "08308"
+  },
+  "Clientes!F3": {
+   "value": {
+    "type": "text",
+    "value": "Barcelona"
+   },
+   "display": "Barcelona"
+  },
+  "Clientes!G3": {
+   "value": {
+    "type": "text",
+    "value": "Barcelona"
+   },
+   "display": "Barcelona"
+  },
+  "Clientes!H3": {
+   "value": {
+    "type": "text",
+    "value": "976 608 153"
+   },
+   "display": "976 608 153"
+  },
+  "Clientes!J3": {
+   "value": {
+    "type": "number",
+    "value": 45048.0
+   },
+   "display": "02/05/2023"
+  },
+  "Clientes!K3": {
+   "value": {
+    "type": "bool",
+    "value": true
+   },
+   "display": "VERDADERO"
+  },
+  "Clientes!L3": {
+   "value": {
+    "type": "number",
+    "value": 20000.0
+   },
+   "display": "20.000 €"
+  },
+  "Clientes!M3": {
+   "value": {
+    "type": "number",
+    "value": 19565.74
+   },
+   "display": "19.565,74 €"
+  },
+  "Clientes!N3": {
+   "value": {
+    "type": "text",
+    "value": "Medio"
+   },
+   "display": "Medio",
+   "input": "=IF(M3>L3,\"Alto\",IF(M3>L3*0.8,\"Medio\",\"Bajo\"))"
+  },
+  "Clientes!A4": {
+   "value": {
+    "type": "text",
+    "value": "C0003"
+   },
+   "display": "C0003"
+  },
+  "Clientes!B4": {
+   "value": {
+    "type": "text",
+    "value": "Distribuciones Alonso S.A."
+   },
+   "display": "Distribuciones Alonso S.A."
+  },
+  "Clientes!E4": {
+   "value": {
+    "type": "text",
+    "value": "28326"
+   },
+   "display": "28326"
+  },
+  "Clientes!F4": {
+   "value": {
+    "type": "text",
+    "value": "Alcalá de Henares"
+   },
+   "display": "Alcalá de Henares"
+  },
+  "Clientes!G4": {
+   "value": {
+    "type": "text",
+    "value": "Madrid"
+   },
+   "display": "Madrid"
+  },
+  "Clientes!H4": {
+   "value": {
+    "type": "text",
+    "value": "918 867 474"
+   },
+   "display": "918 867 474"
+  },
+  "Clientes!J4": {
+   "value": {
+    "type": "number",
+    "value": 42509.0
+   },
+   "display": "19/05/2016"
+  },
+  "Clientes!K4": {
+   "value": {
+    "type": "bool",
+    "value": true
+   },
+   "display": "VERDADERO"
+  },
+  "Clientes!L4": {
+   "value": {
+    "type": "number",
+    "value": 5000.0
+   },
+   "display": "5.000 €"
+  },
+  "Clientes!M4": {
+   "value": {
+    "type": "number",
+    "value": 3076.76
+   },
+   "display": "3.076,76 €"
+  },
+  "Clientes!N4": {
+   "value": {
+    "type": "text",
+    "value": "Bajo"
+   },
+   "display": "Bajo",
+   "input": "=IF(M4>L4,\"Alto\",IF(M4>L4*0.8,\"Medio\",\"Bajo\"))"
+  },
+  "Clientes!A5": {
+   "value": {
+    "type": "text",
+    "value": "C0004"
+   },
+   "display": "C0004"
+  },
+  "Clientes!B5": {
+   "value": {
+    "type": "text",
+    "value": "Clínica Dental Gil"
+   },
+   "display": "Clínica Dental Gil"
+  },
+  "Clientes!E5": {
+   "value": {
+    "type": "text",
+    "value": "15568"
+   },
+   "display": "15568"
+  },
+  "Clientes!F5": {
+   "value": {
+    "type": "text",
+    "value": "A Coruña"
+   },
+   "display": "A Coruña"
+  },
+  "Clientes!G5": {
+   "value": {
+    "type": "text",
+    "value": "A Coruña"
+   },
+   "display": "A Coruña"
+  },
+  "Clientes!H5": {
+   "value": {
+    "type": "text",
+    "value": "933 803 212"
+   },
+   "display": "933 803 212"
+  },
+  "Clientes!J5": {
+   "value": {
+    "type": "number",
+    "value": 45606.0
+   },
+   "display": "10/11/2024"
+  },
+  "Clientes!K5": {
+   "value": {
+    "type": "bool",
+    "value": false
+   },
+   "display": "FALSO"
+  },
+  "Clientes!L5": {
+   "value": {
+    "type": "number",
+    "value": 3000.0
+   },
+   "display": "3.000 €"
+  },
+  "Clientes!M5": {
+   "value": {
+    "type": "number",
+    "value": 227.96
+   },
+   "display": "227,96 €"
+  },
+  "Clientes!N5": {
+   "value": {
+    "type": "text",
+    "value": "Bajo"
+   },
+   "display": "Bajo",
+   "input": "=IF(M5>L5,\"Alto\",IF(M5>L5*0.8,\"Medio\",\"Bajo\"))"
+  },
+  "Clientes!A6": {
+   "value": {
+    "type": "text",
+    "value": "C0005"
+   },
+   "display": "C0005"
+  },
+  "Clientes!B6": {
+   "value": {
+    "type": "text",
+    "value": "Ferretería Vázquez S.L."
+   },
+   "display": "Ferretería Vázquez S.L."
+  },
+  "Clientes!E6": {
+   "value": {
+    "type": "text",
+    "value": "28419"
+   },
+   "display": "28419"
+  },
+  "Clientes!F6": {
+   "value": {
+    "type": "text",
+    "value": "Alcalá de Henares"
+   },
+   "display": "Alcalá de Henares"
+  },
+  "Clientes!G6": {
+   "value": {
+    "type": "text",
+    "value": "Madrid"
+   },
+   "display": "Madrid"
+  },
+  "Clientes!H6": {
+   "value": {
+    "type": "text",
+    "value": "935 987 297"
+   },
+   "display": "935 987 297"
+  },
+  "Clientes!J6": {
+   "value": {
+    "type": "number",
+    "value": 44777.0
+   },
+   "display": "04/08/2022"
+  },
+  "Clientes!K6": {
+   "value": {
+    "type": "bool",
+    "value": true
+   },
+   "display": "VERDADERO"
+  },
+  "Clientes!L6": {
+   "value": {
+    "type": "number",
+    "value": 20000.0
+   },
+   "display": "20.000 €"
+  },
+  "Clientes!M6": {
+   "value": {
+    "type": "number",
+    "value": 14343.86
+   },
+   "display": "14.343,86 €"
+  },
+  "Clientes!N6": {
+   "value": {
+    "type": "text",
+    "value": "Bajo"
+   },
+   "display": "Bajo",
+   "input": "=IF(M6>L6,\"Alto\",IF(M6>L6*0.8,\"Medio\",\"Bajo\"))"
+  },
+  "Clientes!N7": {
+   "value": {
+    "type": "text",
+    "value": "Bajo"
+   },
+   "display": "Bajo",
+   "input": "=IF(M7>L7,\"Alto\",IF(M7>L7*0.8,\"Medio\",\"Bajo\"))"
+  },
+  "Clientes!N8": {
+   "value": {
+    "type": "text",
+    "value": "Bajo"
+   },
+   "display": "Bajo",
+   "input": "=IF(M8>L8,\"Alto\",IF(M8>L8*0.8,\"Medio\",\"Bajo\"))"
+  },
+  "Clientes!N9": {
+   "value": {
+    "type": "text",
+    "value": "Bajo"
+   },
+   "display": "Bajo",
+   "input": "=IF(M9>L9,\"Alto\",IF(M9>L9*0.8,\"Medio\",\"Bajo\"))"
+  },
+  "Clientes!N10": {
+   "value": {
+    "type": "text",
+    "value": "Medio"
+   },
+   "display": "Medio",
+   "input": "=IF(M10>L10,\"Alto\",IF(M10>L10*0.8,\"Medio\",\"Bajo\"))"
+  },
+  "Clientes!N11": {
+   "value": {
+    "type": "text",
+    "value": "Alto"
+   },
+   "display": "Alto",
+   "input": "=IF(M11>L11,\"Alto\",IF(M11>L11*0.8,\"Medio\",\"Bajo\"))"
+  },
+  "Clientes!N12": {
+   "value": {
+    "type": "text",
+    "value": "Medio"
+   },
+   "display": "Medio",
+   "input": "=IF(M12>L12,\"Alto\",IF(M12>L12*0.8,\"Medio\",\"Bajo\"))"
+  },
+  "Clientes!N13": {
+   "value": {
+    "type": "text",
+    "value": "Alto"
+   },
+   "display": "Alto",
+   "input": "=IF(M13>L13,\"Alto\",IF(M13>L13*0.8,\"Medio\",\"Bajo\"))"
+  },
+  "Clientes!N14": {
+   "value": {
+    "type": "text",
+    "value": "Bajo"
+   },
+   "display": "Bajo",
+   "input": "=IF(M14>L14,\"Alto\",IF(M14>L14*0.8,\"Medio\",\"Bajo\"))"
+  },
+  "Clientes!N15": {
+   "value": {
+    "type": "text",
+    "value": "Bajo"
+   },
+   "display": "Bajo",
+   "input": "=IF(M15>L15,\"Alto\",IF(M15>L15*0.8,\"Medio\",\"Bajo\"))"
+  },
+  "Clientes!N16": {
+   "value": {
+    "type": "text",
+    "value": "Bajo"
+   },
+   "display": "Bajo",
+   "input": "=IF(M16>L16,\"Alto\",IF(M16>L16*0.8,\"Medio\",\"Bajo\"))"
+  },
+  "Clientes!N17": {
+   "value": {
+    "type": "text",
+    "value": "Bajo"
+   },
+   "display": "Bajo",
+   "input": "=IF(M17>L17,\"Alto\",IF(M17>L17*0.8,\"Medio\",\"Bajo\"))"
+  },
+  "Clientes!N18": {
+   "value": {
+    "type": "text",
+    "value": "Bajo"
+   },
+   "display": "Bajo",
+   "input": "=IF(M18>L18,\"Alto\",IF(M18>L18*0.8,\"Medio\",\"Bajo\"))"
+  },
+  "Clientes!N19": {
+   "value": {
+    "type": "text",
+    "value": "Bajo"
+   },
+   "display": "Bajo",
+   "input": "=IF(M19>L19,\"Alto\",IF(M19>L19*0.8,\"Medio\",\"Bajo\"))"
+  },
+  "Clientes!N20": {
+   "value": {
+    "type": "text",
+    "value": "Bajo"
+   },
+   "display": "Bajo",
+   "input": "=IF(M20>L20,\"Alto\",IF(M20>L20*0.8,\"Medio\",\"Bajo\"))"
+  },
+  "Clientes!N21": {
+   "value": {
+    "type": "text",
+    "value": "Alto"
+   },
+   "display": "Alto",
+   "input": "=IF(M21>L21,\"Alto\",IF(M21>L21*0.8,\"Medio\",\"Bajo\"))"
+  },
+  "Inventario!A3": {
+   "value": {
+    "type": "text",
+    "value": "SKU-10000"
+   },
+   "display": "SKU-10000"
+  },
+  "Inventario!D3": {
+   "value": {
+    "type": "number",
+    "value": 137.0
+   },
+   "display": "137"
+  },
+  "Inventario!I3": {
+   "value": {
+    "type": "number",
+    "value": 7999.43
+   },
+   "display": "7.999,43 €",
+   "input": "=D3*G3"
+  },
+  "Inventario!J3": {
+   "value": {
+    "type": "text",
+    "value": "No"
+   },
+   "display": "No",
+   "input": "=IF(D3<E3,\"Sí\",\"No\")"
+  },
+  "Inventario!K3": {
+   "value": {
+    "type": "number",
+    "value": 0.4710092408044935
+   },
+   "display": "47,1%",
+   "input": "=IF(H3=0,0,(H3-G3)/H3)"
+  },
+  "Inventario!A4": {
+   "value": {
+    "type": "text",
+    "value": "SKU-10007"
+   },
+   "display": "SKU-10007"
+  },
+  "Inventario!D4": {
+   "value": {
+    "type": "number",
+    "value": 115.0
+   },
+   "display": "115"
+  },
+  "Inventario!I4": {
+   "value": {
+    "type": "number",
+    "value": 4318.25
+   },
+   "display": "4.318,25 €",
+   "input": "=D4*G4"
+  },
+  "Inventario!J4": {
+   "value": {
+    "type": "text",
+    "value": "No"
+   },
+   "display": "No",
+   "input": "=IF(D4<E4,\"Sí\",\"No\")"
+  },
+  "Inventario!K4": {
+   "value": {
+    "type": "number",
+    "value": 0.5146697686441774
+   },
+   "display": "51,5%",
+   "input": "=IF(H4=0,0,(H4-G4)/H4)"
+  },
+  "Inventario!A5": {
+   "value": {
+    "type": "text",
+    "value": "SKU-10014"
+   },
+   "display": "SKU-10014"
+  },
+  "Inventario!D5": {
+   "value": {
+    "type": "number",
+    "value": 44.0
+   },
+   "display": "44"
+  },
+  "Inventario!I5": {
+   "value": {
+    "type": "number",
+    "value": 3197.48
+   },
+   "display": "3.197,48 €",
+   "input": "=D5*G5"
+  },
+  "Inventario!J5": {
+   "value": {
+    "type": "text",
+    "value": "No"
+   },
+   "display": "No",
+   "input": "=IF(D5<E5,\"Sí\",\"No\")"
+  },
+  "Inventario!K5": {
+   "value": {
+    "type": "number",
+    "value": 0.31886774768019494
+   },
+   "display": "31,9%",
+   "input": "=IF(H5=0,0,(H5-G5)/H5)"
+  },
+  "Inventario!A6": {
+   "value": {
+    "type": "text",
+    "value": "SKU-10021"
+   },
+   "display": "SKU-10021"
+  },
+  "Inventario!D6": {
+   "value": {
+    "type": "number",
+    "value": 266.0
+   },
+   "display": "266"
+  },
+  "Inventario!I6": {
+   "value": {
+    "type": "number",
+    "value": 1941.8
+   },
+   "display": "1.941,80 €",
+   "input": "=D6*G6"
+  },
+  "Inventario!J6": {
+   "value": {
+    "type": "text",
+    "value": "No"
+   },
+   "display": "No",
+   "input": "=IF(D6<E6,\"Sí\",\"No\")"
+  },
+  "Inventario!K6": {
+   "value": {
+    "type": "number",
+    "value": 0.3339416058394161
+   },
+   "display": "33,4%",
+   "input": "=IF(H6=0,0,(H6-G6)/H6)"
+  },
+  "Inventario!A7": {
+   "value": {
+    "type": "text",
+    "value": "SKU-10028"
+   },
+   "display": "SKU-10028"
+  },
+  "Inventario!D7": {
+   "value": {
+    "type": "number",
+    "value": 79.0
+   },
+   "display": "79"
+  },
+  "Inventario!I7": {
+   "value": {
+    "type": "number",
+    "value": 3069.15
+   },
+   "display": "3.069,15 €",
+   "input": "=D7*G7"
+  },
+  "Inventario!J7": {
+   "value": {
+    "type": "text",
+    "value": "No"
+   },
+   "display": "No",
+   "input": "=IF(D7<E7,\"Sí\",\"No\")"
+  },
+  "Inventario!K7": {
+   "value": {
+    "type": "number",
+    "value": 0.5050955414012739
+   },
+   "display": "50,5%",
+   "input": "=IF(H7=0,0,(H7-G7)/H7)"
+  },
+  "Inventario!D124": {
+   "value": {
+    "type": "number",
+    "value": 23805.0
+   },
+   "display": "23.805",
+   "input": "=SUBTOTAL(9,D3:D122)"
+  },
+  "Inventario!I124": {
+   "value": {
+    "type": "number",
+    "value": 968155.96
+   },
+   "display": "968.155,96 €",
+   "input": "=SUBTOTAL(9,I3:I122)"
+  },
+  "Inventario!D125": {
+   "value": {
+    "type": "number",
+    "value": 23805.0
+   },
+   "display": "23.805",
+   "input": "=SUM(D3:D122)"
+  },
+  "Inventario!D126": {
+   "value": {
+    "type": "number",
+    "value": 23075.0
+   },
+   "display": "23.075",
+   "input": "=SUBTOTAL(109,D3:D122)"
+  },
+  "Inventario!I126": {
+   "value": {
+    "type": "number",
+    "value": 953259.46
+   },
+   "display": "953.259,46 €",
+   "input": "=SUBTOTAL(109,I3:I122)"
+  },
+  "Inventario!D127": {
+   "value": {
+    "type": "number",
+    "value": 5.0
+   },
+   "display": "5",
+   "input": "=COUNTIF(J3:J122,\"Sí\")"
+  },
+  "Resumen!B2": {
+   "value": {
+    "type": "number",
+    "value": 18.0
+   },
+   "display": "18",
+   "input": "=COUNTIF(Clientes!$G$2:$G$251,A2)"
+  },
+  "Resumen!C2": {
+   "value": {
+    "type": "number",
+    "value": 13.0
+   },
+   "display": "13",
+   "input": "=COUNTIFS(Clientes!$G$2:$G$251,A2,Clientes!$K$2:$K$251,TRUE)"
+  },
+  "Resumen!D2": {
+   "value": {
+    "type": "number",
+    "value": 111183.9
+   },
+   "display": "111.183,90 €",
+   "input": "=SUMIF(Clientes!$G$2:$G$251,A2,Clientes!$M$2:$M$251)"
+  },
+  "Resumen!E2": {
+   "value": {
+    "type": "number",
+    "value": 10111.111111111111
+   },
+   "display": "10.111,11 €",
+   "input": "=AVERAGEIF(Clientes!$G$2:$G$251,A2,Clientes!$L$2:$L$251)"
+  },
+  "Resumen!B3": {
+   "value": {
+    "type": "number",
+    "value": 8.0
+   },
+   "display": "8",
+   "input": "=COUNTIF(Clientes!$G$2:$G$251,A3)"
+  },
+  "Resumen!C3": {
+   "value": {
+    "type": "number",
+    "value": 6.0
+   },
+   "display": "6",
+   "input": "=COUNTIFS(Clientes!$G$2:$G$251,A3,Clientes!$K$2:$K$251,TRUE)"
+  },
+  "Resumen!D3": {
+   "value": {
+    "type": "number",
+    "value": 49558.12
+   },
+   "display": "49.558,12 €",
+   "input": "=SUMIF(Clientes!$G$2:$G$251,A3,Clientes!$M$2:$M$251)"
+  },
+  "Resumen!E3": {
+   "value": {
+    "type": "number",
+    "value": 7875.0
+   },
+   "display": "7.875,00 €",
+   "input": "=AVERAGEIF(Clientes!$G$2:$G$251,A3,Clientes!$L$2:$L$251)"
+  },
+  "Resumen!B4": {
+   "value": {
+    "type": "number",
+    "value": 25.0
+   },
+   "display": "25",
+   "input": "=COUNTIF(Clientes!$G$2:$G$251,A4)"
+  },
+  "Resumen!C4": {
+   "value": {
+    "type": "number",
+    "value": 18.0
+   },
+   "display": "18",
+   "input": "=COUNTIFS(Clientes!$G$2:$G$251,A4,Clientes!$K$2:$K$251,TRUE)"
+  },
+  "Resumen!D4": {
+   "value": {
+    "type": "number",
+    "value": 153524.64
+   },
+   "display": "153.524,64 €",
+   "input": "=SUMIF(Clientes!$G$2:$G$251,A4,Clientes!$M$2:$M$251)"
+  },
+  "Resumen!E4": {
+   "value": {
+    "type": "number",
+    "value": 10360.0
+   },
+   "display": "10.360,00 €",
+   "input": "=AVERAGEIF(Clientes!$G$2:$G$251,A4,Clientes!$L$2:$L$251)"
+  },
+  "Resumen!B5": {
+   "value": {
+    "type": "number",
+    "value": 16.0
+   },
+   "display": "16",
+   "input": "=COUNTIF(Clientes!$G$2:$G$251,A5)"
+  },
+  "Resumen!C5": {
+   "value": {
+    "type": "number",
+    "value": 14.0
+   },
+   "display": "14",
+   "input": "=COUNTIFS(Clientes!$G$2:$G$251,A5,Clientes!$K$2:$K$251,TRUE)"
+  },
+  "Resumen!D5": {
+   "value": {
+    "type": "number",
+    "value": 81788.73
+   },
+   "display": "81.788,73 €",
+   "input": "=SUMIF(Clientes!$G$2:$G$251,A5,Clientes!$M$2:$M$251)"
+  },
+  "Resumen!E5": {
+   "value": {
+    "type": "number",
+    "value": 6750.0
+   },
+   "display": "6.750,00 €",
+   "input": "=AVERAGEIF(Clientes!$G$2:$G$251,A5,Clientes!$L$2:$L$251)"
+  },
+  "Resumen!B6": {
+   "value": {
+    "type": "number",
+    "value": 21.0
+   },
+   "display": "21",
+   "input": "=COUNTIF(Clientes!$G$2:$G$251,A6)"
+  },
+  "Resumen!C6": {
+   "value": {
+    "type": "number",
+    "value": 16.0
+   },
+   "display": "16",
+   "input": "=COUNTIFS(Clientes!$G$2:$G$251,A6,Clientes!$K$2:$K$251,TRUE)"
+  },
+  "Resumen!D6": {
+   "value": {
+    "type": "number",
+    "value": 192256.63
+   },
+   "display": "192.256,63 €",
+   "input": "=SUMIF(Clientes!$G$2:$G$251,A6,Clientes!$M$2:$M$251)"
+  },
+  "Resumen!E6": {
+   "value": {
+    "type": "number",
+    "value": 12666.666666666666
+   },
+   "display": "12.666,67 €",
+   "input": "=AVERAGEIF(Clientes!$G$2:$G$251,A6,Clientes!$L$2:$L$251)"
+  },
+  "Resumen!B7": {
+   "value": {
+    "type": "number",
+    "value": 19.0
+   },
+   "display": "19",
+   "input": "=COUNTIF(Clientes!$G$2:$G$251,A7)"
+  },
+  "Resumen!C7": {
+   "value": {
+    "type": "number",
+    "value": 16.0
+   },
+   "display": "16",
+   "input": "=COUNTIFS(Clientes!$G$2:$G$251,A7,Clientes!$K$2:$K$251,TRUE)"
+  },
+  "Resumen!D7": {
+   "value": {
+    "type": "number",
+    "value": 129988.79
+   },
+   "display": "129.988,79 €",
+   "input": "=SUMIF(Clientes!$G$2:$G$251,A7,Clientes!$M$2:$M$251)"
+  },
+  "Resumen!E7": {
+   "value": {
+    "type": "number",
+    "value": 12368.421052631578
+   },
+   "display": "12.368,42 €",
+   "input": "=AVERAGEIF(Clientes!$G$2:$G$251,A7,Clientes!$L$2:$L$251)"
+  },
+  "Resumen!B8": {
+   "value": {
+    "type": "number",
+    "value": 11.0
+   },
+   "display": "11",
+   "input": "=COUNTIF(Clientes!$G$2:$G$251,A8)"
+  },
+  "Resumen!C8": {
+   "value": {
+    "type": "number",
+    "value": 8.0
+   },
+   "display": "8",
+   "input": "=COUNTIFS(Clientes!$G$2:$G$251,A8,Clientes!$K$2:$K$251,TRUE)"
+  },
+  "Resumen!D8": {
+   "value": {
+    "type": "number",
+    "value": 35675.85
+   },
+   "display": "35.675,85 €",
+   "input": "=SUMIF(Clientes!$G$2:$G$251,A8,Clientes!$M$2:$M$251)"
+  },
+  "Resumen!E8": {
+   "value": {
+    "type": "number",
+    "value": 6454.545454545455
+   },
+   "display": "6.454,55 €",
+   "input": "=AVERAGEIF(Clientes!$G$2:$G$251,A8,Clientes!$L$2:$L$251)"
+  },
+  "Resumen!B9": {
+   "value": {
+    "type": "number",
+    "value": 12.0
+   },
+   "display": "12",
+   "input": "=COUNTIF(Clientes!$G$2:$G$251,A9)"
+  },
+  "Resumen!C9": {
+   "value": {
+    "type": "number",
+    "value": 8.0
+   },
+   "display": "8",
+   "input": "=COUNTIFS(Clientes!$G$2:$G$251,A9,Clientes!$K$2:$K$251,TRUE)"
+  },
+  "Resumen!D9": {
+   "value": {
+    "type": "number",
+    "value": 88370.17
+   },
+   "display": "88.370,17 €",
+   "input": "=SUMIF(Clientes!$G$2:$G$251,A9,Clientes!$M$2:$M$251)"
+  },
+  "Resumen!E9": {
+   "value": {
+    "type": "number",
+    "value": 12250.0
+   },
+   "display": "12.250,00 €",
+   "input": "=AVERAGEIF(Clientes!$G$2:$G$251,A9,Clientes!$L$2:$L$251)"
+  },
+  "Resumen!B10": {
+   "value": {
+    "type": "number",
+    "value": 36.0
+   },
+   "display": "36",
+   "input": "=COUNTIF(Clientes!$G$2:$G$251,A10)"
+  },
+  "Resumen!C10": {
+   "value": {
+    "type": "number",
+    "value": 24.0
+   },
+   "display": "24",
+   "input": "=COUNTIFS(Clientes!$G$2:$G$251,A10,Clientes!$K$2:$K$251,TRUE)"
+  },
+  "Resumen!D10": {
+   "value": {
+    "type": "number",
+    "value": 210755.18
+   },
+   "display": "210.755,18 €",
+   "input": "=SUMIF(Clientes!$G$2:$G$251,A10,Clientes!$M$2:$M$251)"
+  },
+  "Resumen!E10": {
+   "value": {
+    "type": "number",
+    "value": 9472.222222222223
+   },
+   "display": "9.472,22 €",
+   "input": "=AVERAGEIF(Clientes!$G$2:$G$251,A10,Clientes!$L$2:$L$251)"
+  },
+  "Resumen!B11": {
+   "value": {
+    "type": "number",
+    "value": 17.0
+   },
+   "display": "17",
+   "input": "=COUNTIF(Clientes!$G$2:$G$251,A11)"
+  },
+  "Resumen!C11": {
+   "value": {
+    "type": "number",
+    "value": 12.0
+   },
+   "display": "12",
+   "input": "=COUNTIFS(Clientes!$G$2:$G$251,A11,Clientes!$K$2:$K$251,TRUE)"
+  },
+  "Resumen!D11": {
+   "value": {
+    "type": "number",
+    "value": 97726.18
+   },
+   "display": "97.726,18 €",
+   "input": "=SUMIF(Clientes!$G$2:$G$251,A11,Clientes!$M$2:$M$251)"
+  },
+  "Resumen!E11": {
+   "value": {
+    "type": "number",
+    "value": 9117.64705882353
+   },
+   "display": "9.117,65 €",
+   "input": "=AVERAGEIF(Clientes!$G$2:$G$251,A11,Clientes!$L$2:$L$251)"
+  },
+  "Resumen!B12": {
+   "value": {
+    "type": "number",
+    "value": 16.0
+   },
+   "display": "16",
+   "input": "=COUNTIF(Clientes!$G$2:$G$251,A12)"
+  },
+  "Resumen!C12": {
+   "value": {
+    "type": "number",
+    "value": 15.0
+   },
+   "display": "15",
+   "input": "=COUNTIFS(Clientes!$G$2:$G$251,A12,Clientes!$K$2:$K$251,TRUE)"
+  },
+  "Resumen!D12": {
+   "value": {
+    "type": "number",
+    "value": 108963.52
+   },
+   "display": "108.963,52 €",
+   "input": "=SUMIF(Clientes!$G$2:$G$251,A12,Clientes!$M$2:$M$251)"
+  },
+  "Resumen!E12": {
+   "value": {
+    "type": "number",
+    "value": 10562.5
+   },
+   "display": "10.562,50 €",
+   "input": "=AVERAGEIF(Clientes!$G$2:$G$251,A12,Clientes!$L$2:$L$251)"
+  },
+  "Resumen!B13": {
+   "value": {
+    "type": "number",
+    "value": 13.0
+   },
+   "display": "13",
+   "input": "=COUNTIF(Clientes!$G$2:$G$251,A13)"
+  },
+  "Resumen!C13": {
+   "value": {
+    "type": "number",
+    "value": 9.0
+   },
+   "display": "9",
+   "input": "=COUNTIFS(Clientes!$G$2:$G$251,A13,Clientes!$K$2:$K$251,TRUE)"
+  },
+  "Resumen!D13": {
+   "value": {
+    "type": "number",
+    "value": 98313.39
+   },
+   "display": "98.313,39 €",
+   "input": "=SUMIF(Clientes!$G$2:$G$251,A13,Clientes!$M$2:$M$251)"
+  },
+  "Resumen!E13": {
+   "value": {
+    "type": "number",
+    "value": 11461.538461538461
+   },
+   "display": "11.461,54 €",
+   "input": "=AVERAGEIF(Clientes!$G$2:$G$251,A13,Clientes!$L$2:$L$251)"
+  },
+  "Resumen!B14": {
+   "value": {
+    "type": "number",
+    "value": 19.0
+   },
+   "display": "19",
+   "input": "=COUNTIF(Clientes!$G$2:$G$251,A14)"
+  },
+  "Resumen!C14": {
+   "value": {
+    "type": "number",
+    "value": 15.0
+   },
+   "display": "15",
+   "input": "=COUNTIFS(Clientes!$G$2:$G$251,A14,Clientes!$K$2:$K$251,TRUE)"
+  },
+  "Resumen!D14": {
+   "value": {
+    "type": "number",
+    "value": 101019.9
+   },
+   "display": "101.019,90 €",
+   "input": "=SUMIF(Clientes!$G$2:$G$251,A14,Clientes!$M$2:$M$251)"
+  },
+  "Resumen!E14": {
+   "value": {
+    "type": "number",
+    "value": 8157.894736842105
+   },
+   "display": "8.157,89 €",
+   "input": "=AVERAGEIF(Clientes!$G$2:$G$251,A14,Clientes!$L$2:$L$251)"
+  },
+  "Resumen!B15": {
+   "value": {
+    "type": "number",
+    "value": 19.0
+   },
+   "display": "19",
+   "input": "=COUNTIF(Clientes!$G$2:$G$251,A15)"
+  },
+  "Resumen!C15": {
+   "value": {
+    "type": "number",
+    "value": 16.0
+   },
+   "display": "16",
+   "input": "=COUNTIFS(Clientes!$G$2:$G$251,A15,Clientes!$K$2:$K$251,TRUE)"
+  },
+  "Resumen!D15": {
+   "value": {
+    "type": "number",
+    "value": 134887.2
+   },
+   "display": "134.887,20 €",
+   "input": "=SUMIF(Clientes!$G$2:$G$251,A15,Clientes!$M$2:$M$251)"
+  },
+  "Resumen!E15": {
+   "value": {
+    "type": "number",
+    "value": 11210.526315789473
+   },
+   "display": "11.210,53 €",
+   "input": "=AVERAGEIF(Clientes!$G$2:$G$251,A15,Clientes!$L$2:$L$251)"
+  },
+  "Resumen!B17": {
+   "value": {
+    "type": "number",
+    "value": 250.0
+   },
+   "display": "250",
+   "input": "=COUNTA(Clientes!A2:A251)"
+  },
+  "Resumen!B18": {
+   "value": {
+    "type": "number",
+    "value": 23904.95
+   },
+   "display": "23.904,95 €",
+   "input": "=MAX(Clientes!M2:M251)"
+  },
+  "Resumen!B19": {
+   "value": {
+    "type": "number",
+    "value": 23079.2
+   },
+   "display": "23.079,20 €",
+   "input": "=LARGE(Clientes!M2:M251,3)"
+  },
+  "Resumen!B20": {
+   "value": {
+    "type": "number",
+    "value": 4048.395
+   },
+   "display": "4.048,40 €",
+   "input": "=MEDIAN(Clientes!M2:M251)"
+  },
+  "Resumen!B21": {
+   "value": {
+    "type": "number",
+    "value": 43.0
+   },
+   "display": "43",
+   "input": "=COUNTIF(Clientes!N2:N251,\"Alto\")"
+  }
+ }
+}

@@ -1,0 +1,69 @@
+# Engine benchmarks against the PLAN targets (docs/PLAN.md), on demand.
+# Release profile (LTO), the big files are generated on the runner. The
+# results table lands in the job summary and as an artifact; copy it into
+# docs/qa/benchmarks.md.
+name: Benchmarks
+
+on:
+  workflow_dispatch:
+    inputs:
+      filter:
+        description: "Benchmark names to run (space-separated substrings; empty = all)"
+        required: false
+        default: ""
+      scale:
+        description: "SHEETLIGHT_BENCH_SCALE (1 = PLAN sizes)"
+        required: false
+        default: "1"
+      runs:
+        description: "Repetitions per timed step (median reported)"
+        required: false
+        default: "3"
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: "0"
+
+jobs:
+  bench:
+    runs-on: windows-latest
+    timeout-minutes: 60
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+          shared-key: bench
+
+      # tauri::generate_context! needs the built frontend in dist/.
+      - run: npm ci && npm run build
+
+      - name: cargo bench
+        working-directory: src-tauri
+        env:
+          SHEETLIGHT_BENCH_SCALE: ${{ inputs.scale }}
+          SHEETLIGHT_BENCH_RUNS: ${{ inputs.runs }}
+          BENCH_FILTER: ${{ inputs.filter }}
+        # BENCH_FILTER is split into words on purpose (several names).
+        run: cargo bench --locked --bench engine -- $BENCH_FILTER
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bench-results
+          path: tests/bench/results/
+          if-no-files-found: warn

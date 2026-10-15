@@ -27,3 +27,12 @@ src-tauri/target
 # Local test captures and scratch workbooks
 docs/evidence
 tests/corpus/private/
+
+# QA (WS5): generated corpora, Python venvs, benchmark and e2e outputs
+tests/corpus/generated/
+tests/corpus/.venv/
+__pycache__/
+tests/bench/results/
+tests/e2e/.output/
+test-results/
+playwright-report/

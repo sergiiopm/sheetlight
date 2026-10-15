@@ -46,3 +46,8 @@ lto = true
 opt-level = 3
 panic = "abort"
 strip = true
+
+# Engine benchmarks vs the PLAN targets (WS5): `cargo bench --bench engine`.
+[[bench]]
+name = "engine"
+harness = false

@@ -2,26 +2,25 @@
 
 A lightweight, fast local spreadsheet app for Windows.
 
-> **Work in progress.** Sheetlight is in its first development phase. The app
-> shell, file associations and installer are in place; the grid, formula engine
-> and file import/export are not implemented yet. See [`docs/PLAN.md`](docs/PLAN.md).
-
 Open a workbook, browse it instantly, edit cells and formulas, and save it. No accounts, no cloud, no ribbon. Sister app of [Doclight](https://github.com/sergiiopm/doclight).
 
 > The app interface is in Spanish.
 
-## Planned for v0.1
+## Download
 
-- Opens and saves `.xlsx` and `.csv` (with a fast path for very large CSV files); opens `.xls`
-- Smooth canvas-based grid that stays fast with a million rows
-- Excel-like keyboard navigation, formula bar, function autocomplete
-- Around 150 of the most used functions, using English formula syntax (`=SUM(A1:A5,2)`)
-- Number formats, fonts, colors, borders, alignment, merge, format painter
-- Sort, autofilter, find and replace, undo and redo
-- Clipboard interop with Excel, Google Sheets and LibreOffice
-- Basic charts (bar, column, line, pie)
-- Light and dark themes
-- Registers itself under **Open with** for `.xlsx`, `.xls` and `.csv`
+Grab the installer from the [latest release](https://github.com/sergiiopm/sheetlight/releases/latest). It installs for the current user only, so it doesn't need admin rights.
+
+## Features
+
+- Opens and saves `.xlsx` and `.csv`, including CSVs that use `;` separators and decimal commas
+- Formula engine powered by [IronCalc](https://github.com/ironcalc/IronCalc), with instant recalculation
+- Fast canvas grid that scrolls smoothly through large sheets
+- Ribbon with cell formatting, borders, colours, number formats, filters, sorting, find and replace
+- Multiple sheets per workbook, and multiple workbooks open in tabs
+- Charts: create them from **Insertar → Gráfico**, and charts in Excel files are kept
+- Can be set as the default app for Excel files
+
+Known issues are listed in the [release notes](https://github.com/sergiiopm/sheetlight/releases/latest), and what's next lives in [`docs/PLAN.md`](docs/PLAN.md).
 
 ## Requirements (for building)
 
